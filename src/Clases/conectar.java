@@ -17,7 +17,8 @@ import java.util.logging.Logger;
 public class conectar {
     
 private static final String username="root";
-private static final String password="root";
+private static final String password="denver";
+//private static String database="vivero";
 private static final String url="jdbc:mysql://localhost:3306/sg-soft?autoReconnect=true&useSSL=false";
 public Connection con = null;
     
