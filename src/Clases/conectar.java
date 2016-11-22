@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  */
 public class conectar {
     
-private static final String username="root";
-private static final String password="denver";
-//private static String database="vivero";
-private static final String url="jdbc:mysql://localhost:3306/sg-soft?autoReconnect=true&useSSL=false";
+private static String username="root";
+private static String password="denver";
+private static String database="sg-soft";
+private static String url="jdbc:mysql://localhost/"+database;
 public Connection con = null;
     
     //constructor de la clase
@@ -31,7 +31,7 @@ public Connection con = null;
          try{
         Class.forName("com.mysql.jdbc.Driver");
         con=DriverManager.getConnection(url,username,password);        
-            
+           JOptionPane.showMessageDialog(null,"conectado" ); 
         } catch (SQLException ex){
         JOptionPane.showMessageDialog(null,"Error de Conexcion" +ex);
         
