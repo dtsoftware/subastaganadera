@@ -8,9 +8,10 @@ package Interfaces;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Clases.CrearClientes;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import Interfaces.buscarclientes;
+import Clases.CrearClientes;
 
 /**
  *
@@ -25,21 +26,22 @@ public class Clientes extends javax.swing.JFrame {
  String Telefono1;
  String Telefono2;
  String Credito;
-  String Imagen;
+ String Imagen;
  String Estado;
-  String Audito1;
-  String Audito2;
-  String Fecha1;
-  String Fecha2;
+ String Audito1;
+ String Audito2;
+ String Fecha1;
+ String Fecha2;
     /**
      * Creates new form Clientes
      */
     public Clientes() {
         initComponents();
-      
+     
         this.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha1.setDate(date);
+         
     }
 
     /**
@@ -54,10 +56,10 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonNuevoCliente = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonListar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         btn_regresar = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -116,17 +118,27 @@ public class Clientes extends javax.swing.JFrame {
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
-        jButton1.setText("NUEVO");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNuevoCliente.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButtonNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
+        jButtonNuevoCliente.setText("NUEVO");
+        jButtonNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNuevoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoClienteActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
         jButton2.setText("EDITAR");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
@@ -134,14 +146,14 @@ public class Clientes extends javax.swing.JFrame {
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
-        jButton4.setText("LISTAR");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonListar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButtonListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
+        jButtonListar.setText("LISTAR");
+        jButtonListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonListar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonListarActionPerformed(evt);
             }
         });
 
@@ -184,13 +196,13 @@ public class Clientes extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,10 +216,10 @@ public class Clientes extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -301,16 +313,23 @@ public class Clientes extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel14)
+                                .addGap(33, 33, 33))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14)
-                        .addGap(33, 33, 33))
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -332,15 +351,9 @@ public class Clientes extends javax.swing.JFrame {
                                     .addComponent(jTextFieldTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -379,26 +392,28 @@ public class Clientes extends javax.swing.JFrame {
                             .addComponent(jTextFieldIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(24, 24, 24)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel12)
-                                .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
@@ -411,7 +426,7 @@ public class Clientes extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jDateChooserFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
@@ -460,14 +475,12 @@ public class Clientes extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_btn_regresarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            BuscarU list = new BuscarU();
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+            buscarclientes list = new buscarclientes();
             list.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
+            
+            
+    }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jTextFieldTelefono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefono2ActionPerformed
         // TODO add your handling code here:
@@ -480,8 +493,8 @@ public class Clientes extends javax.swing.JFrame {
          if ((this.jTextFieldIDcliente.getText().trim().length()==0) || (this.jTextFieldNombre.getText().trim().length()==0) || (this.jTextFieldApellido.getText().trim().length()==0)|| (this.jTextFieldCedula.getText().trim().length()==0)|| (this.jTextFieldDireccion.getText().trim().length()==0)  ) {
          JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
          }else{    
-            
-         idClientes= Integer.parseInt(jTextFieldIDcliente.getText());
+            CrearClientes cliente = new CrearClientes();
+            idClientes= Integer.parseInt(jTextFieldIDcliente.getText());
             Nombre=jTextFieldNombre.getText();
             Apellido=jTextFieldApellido.getText();
             Cedula=jTextFieldCedula.getText();
@@ -494,13 +507,14 @@ public class Clientes extends javax.swing.JFrame {
             Audito1="hhh";
             Audito2="hhh";
             Fecha1=jDateChooserFecha1.getDate().toString();
-            Fecha2=jDateChooserFecha1.getDate().toString();;
-        CrearClientes crear = new CrearClientes();
-        crear.guardarcliente(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen,Estado, Audito1,Audito2, Fecha1,Fecha2);   
+            Fecha2=jDateChooserFecha1.getDate().toString();
+            cliente.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);
+       // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);   
+          //  JOptionPane.showMessageDialog(null,"BIEN " );
          }
-        }catch (Exception ex) {
-        JOptionPane.showMessageDialog(null,"Error" +ex);
-        }
+        }catch(Exception ex) {
+       JOptionPane.showMessageDialog(null,"Error  = " +ex);
+       }
             
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
@@ -508,6 +522,16 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButtonNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoClienteActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jButtonNuevoClienteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,6 +559,9 @@ public class Clientes extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
@@ -544,13 +571,13 @@ public class Clientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_regresar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonListar;
+    private javax.swing.JButton jButtonNuevoCliente;
     public static javax.swing.JComboBox<String> jComboBoxActivo;
     public static javax.swing.JComboBox<String> jComboBoxCredito;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
@@ -579,5 +606,5 @@ public class Clientes extends javax.swing.JFrame {
     public static javax.swing.JTextField jTextFieldTelefono2;
     // End of variables declaration//GEN-END:variables
 
-   
+  
 }

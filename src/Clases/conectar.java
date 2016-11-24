@@ -31,7 +31,7 @@ public Connection con = null;
          try{
         Class.forName("com.mysql.jdbc.Driver");
         con=DriverManager.getConnection(url,username,password);        
-           JOptionPane.showMessageDialog(null,"conectado" ); 
+          // JOptionPane.showMessageDialog(null,"conectado" ); 
         } catch (SQLException ex){
         JOptionPane.showMessageDialog(null,"Error de Conexcion" +ex);
         
@@ -55,9 +55,14 @@ public Connection con = null;
     }
     
     
-    
     public void desconectar(){
-    con=null;
+  //probando desconectar
+        
+     
+   con=null;
+    }
+ 
+    
     //JOptionPane.showMessageDialog(null,"desconectada"  );
-    } 
+    
 }
