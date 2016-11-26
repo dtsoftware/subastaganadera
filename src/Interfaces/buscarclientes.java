@@ -7,6 +7,8 @@ package Interfaces;
 
 import javax.swing.*;
 import Clases.CrearClientes;
+import javax.swing.table.DefaultTableModel;
+import java.awt.HeadlessException;
 /**
  *
  * @author Tserng
@@ -39,6 +41,7 @@ public class buscarclientes extends javax.swing.JFrame {
         jRadioButtonNombre = new javax.swing.JRadioButton();
         jRadioButtonCedula = new javax.swing.JRadioButton();
         jButtonRealizarBusqueda = new javax.swing.JButton();
+        btn_seleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,22 +116,28 @@ public class buscarclientes extends javax.swing.JFrame {
                     .addGap(18, 18, 18)))
         );
 
+        btn_seleccionar.setText("SELECCIONAR REGISTRO");
+        btn_seleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_seleccionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(153, 153, 153)
-                            .addComponent(jButtonCancelar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_seleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,8 +148,10 @@ public class buscarclientes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -175,10 +186,39 @@ public class buscarclientes extends javax.swing.JFrame {
             
         }catch(Exception ex){
         
-        
+         JOptionPane.showMessageDialog(null, "ERROR");
         }
               
     }//GEN-LAST:event_jButtonRealizarBusquedaActionPerformed
+
+    private void btn_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seleccionarActionPerformed
+        //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
+        int filaseleccionada;
+        if (Clientes.listacliente==1){ 
+        try{
+            filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+              DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+              CrearClientes crear = new  CrearClientes ();
+              Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              crear.buscarparaeditar(Codigo);
+              this.dispose();
+            }
+
+        }catch (HeadlessException ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+
+        }
+        //la opcion 2 será para la ventana de entradas listar los clientes 
+        }else if (Clientes.listacliente==2){
+        Entradas entra = new Entradas();
+        entra.setVisible(true);
+        
+        }
+    }//GEN-LAST:event_btn_seleccionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +257,7 @@ public class buscarclientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable Tbl_Clientes;
+    private javax.swing.JButton btn_seleccionar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonRealizarBusqueda;
     private javax.swing.JPanel jPanel1;

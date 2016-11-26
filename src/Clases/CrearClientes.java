@@ -20,8 +20,8 @@ import Interfaces.buscarclientes;
 public class CrearClientes {
  Connection conectar;
  PreparedStatement guardarusuario;
- PreparedStatement cargar;
- ResultSet rs;
+ PreparedStatement cargar,cargar2,cargar3;
+ ResultSet rs,rs2;
  DefaultTableModel tabla = new DefaultTableModel(); 
  Object[] filas = new Object[5];
  
@@ -150,4 +150,79 @@ public class CrearClientes {
    }
     
     }
+    
+  public void buscarparaeditar(Integer Codigo){
+  try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    
+     
+     // creamos la consulta
+     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion,Telefono1,Telefono2,Credito,Estado FROM clientes where idClientes ='"+ Codigo +"'";
+     //pasamos la consulta al preparestatement
+    ;
+     cargar2=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    
+     rs2=cargar2.executeQuery(consulta);
+           if (rs2.next()){
+            Clientes.jTextFieldIDcliente.setText(String.valueOf(rs2.getInt("idClientes")) );                
+            Clientes.jTextFieldCedula.setText(rs2.getString("Cedula"));
+            Clientes.jTextFieldNombre.setText(rs2.getString("Nombre"));
+            Clientes.jTextFieldApellido.setText(rs2.getString("Apellido"));
+            Clientes.jTextFieldDireccion.setText(rs2.getString("Direccion"));
+            Clientes.jTextFieldTelefono1.setText(rs2.getString("Telefono1"));
+            Clientes.jTextFieldTelefono2.setText(rs2.getString("Telefono2"));
+            Clientes.jComboBoxActivo.setSelectedItem(rs2.getString("Estado"));
+            Clientes.jComboBoxCredito.setSelectedItem(rs2.getString("Credito"));
+            //imagen pendiente 
+      rs2.close();
+    conect.desconectar();
+           }else{
+           JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
+           conect.desconectar();
+            }
+    
+    
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+  
+  }
+    
+   public void editarclientes(Integer idClientes,String Nombre, String Apellido, String Cedula, String Direccion, String Telefono1, String Telefono2, String Credito,String Imagen, String Estado,String Audito2,String Fecha2){
+       
+        try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
+    
+     // creamos la consulta
+     consulta="UPDATE clientes SET Nombre =?,Apellido=?,Cedula=?,Direccion=?,Telefono1=?,Telefono2=?,Credito=?,Imagen=?,Estado=?,Audito2=?,Fecha2=?  WHERE idClientes= ? ";
+    //pasamos la consulta al preparestatement
+    cargar3=conect.con.prepareStatement(consulta);
+    cargar3.setString(1, Nombre);
+    cargar3.setString(2, Apellido);
+    cargar3.setString(3, Cedula);
+    cargar3.setString(4, Direccion);
+    cargar3.setString(5, Telefono1);
+    cargar3.setString(6, Telefono2);
+    cargar3.setString(7, Credito);
+    cargar3.setString(8, Imagen);
+    cargar3.setString(9, Estado);
+    cargar3.setString(10, Audito2);
+    cargar3.setString(11, Fecha2);
+    cargar3.setInt(12, idClientes);
+    cargar3.executeUpdate();    
+    conect.desconectar(); 
+    JOptionPane.showMessageDialog(null, "Registro Editado Satisfactoriamente");
+        }catch(SQLException ex){
+            
+       JOptionPane.showMessageDialog(null,"Error" +ex);  
+        
+        }
+       
+   } 
+    
 }
