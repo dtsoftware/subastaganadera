@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import Interfaces.Clientes;
 import javax.swing.table.DefaultTableModel;
 import Interfaces.buscarclientes;
+import java.util.Date;
 /**
  *
  * @author Juan
@@ -20,8 +21,8 @@ import Interfaces.buscarclientes;
 public class CrearClientes {
  Connection conectar;
  PreparedStatement guardarusuario;
- PreparedStatement cargar,cargar2,cargar3;
- ResultSet rs,rs2;
+ PreparedStatement cargar,cargar2,cargar3,cargar4;
+ ResultSet rs,rs2,rs4;
  DefaultTableModel tabla = new DefaultTableModel(); 
  Object[] filas = new Object[5];
  
@@ -53,6 +54,15 @@ public class CrearClientes {
             guardarusuario.execute();
             conect.desconectar();
             JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente");
+            Date date = new Date();
+            Clientes.jDateChooserFecha1.setDate(date);
+            Clientes.jTextFieldIDcliente.setText("");
+            Clientes.jTextFieldNombre.setText("");
+            Clientes.jTextFieldApellido.setText("");
+            Clientes.jTextFieldCedula.setText("");
+            Clientes.jTextFieldDireccion.setText("");
+            Clientes.jTextFieldTelefono1.setText("");
+            Clientes.jTextFieldTelefono2.setText("");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
                 
@@ -177,6 +187,8 @@ public class CrearClientes {
             Clientes.jComboBoxActivo.setSelectedItem(rs2.getString("Estado"));
             Clientes.jComboBoxCredito.setSelectedItem(rs2.getString("Credito"));
             //imagen pendiente 
+            Clientes.jButtonEditar.setEnabled(true);
+            Clientes.jButtonEliminar.setEnabled(true);
       rs2.close();
     conect.desconectar();
            }else{
@@ -191,6 +203,40 @@ public class CrearClientes {
   
   }
     
+  public void eliminarcliente(Integer Codigo){
+  try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    // creamos la consulta
+     consulta="DELETE FROM clientes where idClientes = ?";
+     //pasamos la consulta al preparestatement
+     cargar4=conect.con.prepareStatement(consulta);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     cargar4.setInt(1, Codigo);  
+     cargar4.execute();
+    conect.desconectar();          
+    JOptionPane.showMessageDialog(null,"Registro Eliminado Satisfactoriamente");
+    Clientes.jButtonEditar.setEnabled(false);
+    Clientes.jButtonEliminar.setEnabled(false);
+    Date date = new Date();
+            Clientes.jDateChooserFecha1.setDate(date);
+            Clientes.jTextFieldIDcliente.setText("");
+            Clientes.jTextFieldNombre.setText("");
+            Clientes.jTextFieldApellido.setText("");
+            Clientes.jTextFieldCedula.setText("");
+            Clientes.jTextFieldDireccion.setText("");
+            Clientes.jTextFieldTelefono1.setText("");
+            Clientes.jTextFieldTelefono2.setText("");
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+  
+  
+  }
+  
+  
+  
    public void editarclientes(Integer idClientes,String Nombre, String Apellido, String Cedula, String Direccion, String Telefono1, String Telefono2, String Credito,String Imagen, String Estado,String Audito2,String Fecha2){
        
         try {
