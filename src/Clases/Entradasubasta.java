@@ -87,8 +87,8 @@ public class Entradasubasta {
     
     String numero =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 0));
     String tipo =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 1));
-    String color =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 2));
-    String sexo =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3));
+    String sexo =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 2));
+    String color =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3));    
     String ferrete =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4));
     int peso = Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
     String observacion =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 6));

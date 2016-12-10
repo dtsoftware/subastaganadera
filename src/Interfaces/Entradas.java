@@ -30,7 +30,7 @@ DefaultTableModel tabla1;
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
-        
+        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
         
     }
 
@@ -104,6 +104,9 @@ DefaultTableModel tabla1;
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -682,7 +685,9 @@ DefaultTableModel tabla1;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        
+         
+        animalesregistrados animal = new animalesregistrados();
+        animal.cargaranimales();
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -691,14 +696,18 @@ DefaultTableModel tabla1;
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
-        
+      
+                                
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        animalesregistrados animal = new animalesregistrados();
-        animal.cargaranimales();
+        
     }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -730,6 +739,7 @@ DefaultTableModel tabla1;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Entradas().setVisible(true);
+                    
         });
     }
 
