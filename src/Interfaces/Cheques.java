@@ -7,14 +7,12 @@ package Interfaces;
 
 import Clases.Numero_a_Letra;
 import java.awt.event.KeyEvent;
-import sg.soft.Principal;
 
 /**
  *
  * @author Juan
  */
 public class Cheques extends javax.swing.JFrame {
-
 
 
     /**
@@ -56,6 +54,7 @@ public class Cheques extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         montoletras = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        Beneficiario = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -127,7 +126,7 @@ public class Cheques extends javax.swing.JFrame {
 
         jLabel5.setText("_____________________________________________________________________________");
         jPanel5.add(jLabel5);
-        jLabel5.setBounds(110, 170, 462, 14);
+        jLabel5.setBounds(110, 170, 462, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Paguese a la Orden de:");
@@ -159,6 +158,11 @@ public class Cheques extends javax.swing.JFrame {
         jLabel13.setBounds(22, 74, 229, 13);
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton1);
         jButton1.setBounds(20, 160, 65, 23);
 
@@ -175,6 +179,8 @@ public class Cheques extends javax.swing.JFrame {
         montoletras.setBounds(110, 220, 470, 19);
         jPanel5.add(jLabel10);
         jLabel10.setBounds(91, 171, 0, 0);
+        jPanel5.add(Beneficiario);
+        Beneficiario.setBounds(110, 160, 460, 0);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
@@ -267,6 +273,10 @@ public class Cheques extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtmontoKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,6 +311,7 @@ public class Cheques extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel Beneficiario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

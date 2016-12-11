@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
-import java.util.Date;
 /**
  *
  * @author Tserng

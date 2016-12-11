@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import Interfaces.Cheques;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
@@ -91,7 +92,7 @@ public class CrearClientes {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where Nombre ='"+ nombre +"' ORDER BY Nombre";
+     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where Nombre LIKE'"+ nombre +"%' ORDER BY Nombre";
      //pasamos la consulta al preparestatement
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -115,7 +116,50 @@ public class CrearClientes {
    }
      
      }
-    
+     public void buscartodos(){
+     try {
+         tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+     
+     // creamos la consulta
+     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes ORDER BY Nombre";
+     //pasamos la consulta al preparestatement
+     cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     rs=cargar.executeQuery(consulta);
+     //recorremos el resulset
+    while (rs.next()){
+        
+                    filas[0]=rs.getInt("idClientes");
+                    filas[1]=rs.getString("Cedula");
+                    filas[2]=rs.getString("Nombre");
+                    filas[3]=rs.getString("Apellido");
+                    filas[4]=rs.getString("Direccion");
+                                        
+       tabla.addRow(filas);
+    }
+    rs.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+     
+     } 
     public void buscarporcedula( String Cedula){
      try {
          tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
@@ -136,7 +180,7 @@ public class CrearClientes {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where Cedula ='"+ Cedula +"' ORDER BY Nombre";
+     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where Cedula LIKE'"+ Cedula +"%' ORDER BY Nombre";
      //pasamos la consulta al preparestatement
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -171,30 +215,32 @@ public class CrearClientes {
      // creamos la consulta
      consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion,Telefono1,Telefono2,Credito,Estado FROM clientes where idClientes ='"+ Codigo +"'";
      //pasamos la consulta al preparestatement
-    ;
+    
      cargar2=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
     
      rs2=cargar2.executeQuery(consulta);
            if (rs2.next()){
-            Clientes.jTextFieldIDcliente.setText(String.valueOf(rs2.getInt("idClientes")) );                
-            Clientes.jTextFieldCedula.setText(rs2.getString("Cedula"));
-            Clientes.jTextFieldNombre.setText(rs2.getString("Nombre"));
-            Clientes.jTextFieldApellido.setText(rs2.getString("Apellido"));
-            Clientes.jTextFieldDireccion.setText(rs2.getString("Direccion"));
-            Clientes.jTextFieldTelefono1.setText(rs2.getString("Telefono1"));
-            Clientes.jTextFieldTelefono2.setText(rs2.getString("Telefono2"));
-            Clientes.jComboBoxActivo.setSelectedItem(rs2.getString("Estado"));
-            Clientes.jComboBoxCredito.setSelectedItem(rs2.getString("Credito"));
-            //imagen pendiente 
-            Clientes.jButtonEditar.setEnabled(true);
-            Clientes.jButtonEliminar.setEnabled(true);
-      rs2.close();
-    conect.desconectar();
-           }else{
+
+                            Clientes.jTextFieldIDcliente.setText(String.valueOf(rs2.getInt("idClientes")) );                
+                            Clientes.jTextFieldCedula.setText(rs2.getString("Cedula"));
+                            Clientes.jTextFieldNombre.setText(rs2.getString("Nombre"));
+                            Clientes.jTextFieldApellido.setText(rs2.getString("Apellido"));
+                            Clientes.jTextFieldDireccion.setText(rs2.getString("Direccion"));
+                            Clientes.jTextFieldTelefono1.setText(rs2.getString("Telefono1"));
+                            Clientes.jTextFieldTelefono2.setText(rs2.getString("Telefono2"));
+                            Clientes.jComboBoxActivo.setSelectedItem(rs2.getString("Estado"));
+                            Clientes.jComboBoxCredito.setSelectedItem(rs2.getString("Credito"));
+                            //imagen pendiente 
+                            Clientes.jButtonEditar.setEnabled(true);
+                            Clientes.jButtonEliminar.setEnabled(true);
+                            rs2.close();
+                            conect.desconectar();
+                          }
+           else{
            JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
            conect.desconectar();
-            }
+               }
     
     
    }catch (SQLException ex){

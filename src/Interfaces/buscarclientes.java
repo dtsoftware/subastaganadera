@@ -8,7 +8,6 @@ package Interfaces;
 import javax.swing.*;
 import Clases.CrearClientes;
 import javax.swing.table.DefaultTableModel;
-import java.awt.HeadlessException;
 import Clases.Entradasubasta;
 /**
  *
@@ -16,6 +15,7 @@ import Clases.Entradasubasta;
  */
 public class buscarclientes extends javax.swing.JFrame {
     String Nombre,Cedula;
+    public static Integer Aux;
    
    // DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
     /**
@@ -23,9 +23,9 @@ public class buscarclientes extends javax.swing.JFrame {
      */
     public buscarclientes() {
        initComponents();
-            
+       CrearClientes busc = new CrearClientes();
+       busc.buscartodos();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +71,22 @@ public class buscarclientes extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jTextFieldBuscar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextFieldBuscarPropertyChange(evt);
+            }
+        });
+        jTextFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldBuscarKeyTyped(evt);
+            }
+        });
+
         seleccionaropciones.add(jRadioButtonNombre);
+        jRadioButtonNombre.setSelected(true);
         jRadioButtonNombre.setText("Nombre");
         jRadioButtonNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,14 +174,17 @@ public class buscarclientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11))
+                        .addContainerGap())))
         );
 
         pack();
@@ -260,8 +278,39 @@ public class buscarclientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonEntradaActionPerformed
 
+    private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
+       
+              
+    }//GEN-LAST:event_jTextFieldBuscarKeyTyped
+
+    private void jTextFieldBuscarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldBuscarPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldBuscarPropertyChange
+
+    private void jTextFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyReleased
+        try {
+          if (this.jRadioButtonNombre.isSelected()==true)
+                {
+                
+                CrearClientes busc = new CrearClientes();
+                Nombre=this.jTextFieldBuscar.getText();
+                busc.buscarpornombre(Nombre);
+                
+                }else if (this.jRadioButtonCedula.isSelected()==true){
+                CrearClientes busc = new CrearClientes();
+                Cedula=this.jTextFieldBuscar.getText();
+                busc.buscarporcedula(Cedula);    
+                    
+                }
+                evt.consume();
+        }catch(Exception ex){
+        
+         JOptionPane.showMessageDialog(null, "ERROR");
+        }
+    }//GEN-LAST:event_jTextFieldBuscarKeyReleased
+
     /**
-     * @param args the command line arguments
+     * @param argrs
      */
     public static void main(String argrs[]) {
         /* Set the Nimbus look and feel */
@@ -288,10 +337,8 @@ public class buscarclientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new buscarclientes().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new buscarclientes().setVisible(true);
         });
     }
 
