@@ -19,6 +19,7 @@ import java.util.Date;
 public class animalesregistrados {
     ResultSet rsmachos,rshembras,todos;
     PreparedStatement machos,hembras,animales;
+    Integer totalmachos,totalhembras;
     //DefaultTableModel tabla;
     Object[] filas = new Object[6];
     public  animalesregistrados(){
@@ -33,7 +34,7 @@ public class animalesregistrados {
      conectar conect = new conectar(); 
                  conect.conexion();
                  
-Calendar c = Calendar.getInstance();
+//Calendar c = Calendar.getInstance();
     
 //-----obtener la fecha----------------------
       String  dia = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -72,6 +73,7 @@ Calendar c = Calendar.getInstance();
        tabla.addRow(filas);
     }
     todos.close();
+    animales.close();
     conect.desconectar();
            
    }catch (Exception ex){
@@ -80,14 +82,94 @@ Calendar c = Calendar.getInstance();
      
     }
     
-    public Integer machos(){
+    public void machos(){
+    try {
+     String consulta; 
+     
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
     
-        return 0;
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+   
+     
+     // creamos la consulta
+     consulta="SELECT count(*) FROM entradas  where Fecha ='"+ fecha +"' and sexo='MACHO' ORDER BY Numero";
+     //pasamos la consulta al preparestatement
+    machos=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsmachos=machos.executeQuery(consulta);
+     //recorremos el resulset
+    rsmachos.next();
+        
+               totalmachos=rsmachos.getInt(1);
+          Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   machos.close();
+   rsmachos.close();
+   conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+       // return totalmachos;
+   
     }
     
     
-    public Integer hembras(){
+    public void hembras(){
+    try {
+     String consulta; 
+     
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
     
-        return 0;
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+   
+     
+     // creamos la consulta
+     consulta="SELECT count(*) FROM entradas  where Fecha ='"+ fecha +"' and sexo='HEMBRA' ORDER BY Numero";
+     //pasamos la consulta al preparestatement
+    hembras=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rshembras=hembras.executeQuery(consulta);
+     //recorremos el resulset
+    rshembras.next();
+        
+          totalhembras=rshembras.getInt(1);
+          Entradas.jTextFieldTotalHembras.setText(totalhembras.toString());
+  
+   hembras.close();
+   rshembras.close();
+   conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+    
     }
+public void totalmachoshembras(){
+    Integer m,h,t;
+    h= Integer.parseInt(Entradas.jTextFieldTotalHembras.getText());
+    
+    m= Integer.parseInt(Entradas.jTextFieldTotalMachos.getText());
+    t=h+m;
+    
+    Entradas.jTextFieldTotalAnimales.setText(t.toString());
+    }
+       
 }

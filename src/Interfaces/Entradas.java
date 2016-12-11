@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaces;
-
+import java.awt.event.WindowAdapter;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -30,7 +30,7 @@ DefaultTableModel tabla1;
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
-        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+        
         
     }
 
@@ -688,6 +688,11 @@ DefaultTableModel tabla1;
          
         animalesregistrados animal = new animalesregistrados();
         animal.cargaranimales();
+        //animalesregistrados anima = new animalesregistrados();
+       animal.machos();
+       animal.hembras();
+       animal.totalmachoshembras();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -795,7 +800,7 @@ DefaultTableModel tabla1;
     public static javax.swing.JTextField jTextFieldNombre;
     public static javax.swing.JTextField jTextFieldNumeroanimal;
     public static javax.swing.JTextField jTextFieldPeso;
-    private javax.swing.JTextField jTextFieldTotalAnimales;
+    public static javax.swing.JTextField jTextFieldTotalAnimales;
     public static javax.swing.JTextField jTextFieldTotalHembras;
     public static javax.swing.JTextField jTextFieldTotalMachos;
     // End of variables declaration//GEN-END:variables
