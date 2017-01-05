@@ -303,7 +303,7 @@ public class Usuarios extends javax.swing.JFrame {
         cmb_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
         cmb_estado.setEnabled(false);
         jPanel2.add(cmb_estado);
-        cmb_estado.setBounds(510, 220, 187, 25);
+        cmb_estado.setBounds(510, 225, 180, 20);
 
         imagen.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 0)));
 

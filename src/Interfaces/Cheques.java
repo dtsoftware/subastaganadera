@@ -37,8 +37,9 @@ public class Cheques extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextField2 = new javax.swing.JTextField();
+        Detalle = new javax.swing.JScrollPane();
+        Detalle01 = new javax.swing.JTextArea();
+        Fecha = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -51,9 +52,8 @@ public class Cheques extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtmonto = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        Numero = new javax.swing.JTextField();
         montoletras = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         Beneficiario = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -104,10 +104,16 @@ public class Cheques extends javax.swing.JFrame {
         jLabel4.setText("Fecha:");
         jPanel5.add(jLabel4);
         jLabel4.setBounds(570, 90, 38, 15);
-        jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(130, 290, 610, 62);
-        jPanel5.add(jTextField2);
-        jTextField2.setBounds(640, 90, 102, 20);
+
+        Detalle01.setColumns(20);
+        Detalle01.setRows(5);
+        Detalle01.setText("nvbvbvb\n");
+        Detalle.setViewportView(Detalle01);
+
+        jPanel5.add(Detalle);
+        Detalle.setBounds(130, 290, 610, 62);
+        jPanel5.add(Fecha);
+        Fecha.setBounds(640, 90, 102, 20);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Observaciones");
@@ -173,14 +179,12 @@ public class Cheques extends javax.swing.JFrame {
         });
         jPanel5.add(txtmonto);
         txtmonto.setBounds(610, 150, 131, 30);
-        jPanel5.add(jTextField5);
-        jTextField5.setBounds(640, 50, 102, 20);
+        jPanel5.add(Numero);
+        Numero.setBounds(640, 50, 102, 20);
         jPanel5.add(montoletras);
         montoletras.setBounds(110, 220, 470, 19);
-        jPanel5.add(jLabel10);
-        jLabel10.setBounds(91, 171, 0, 0);
         jPanel5.add(Beneficiario);
-        Beneficiario.setBounds(110, 160, 460, 0);
+        Beneficiario.setBounds(110, 150, 460, 20);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
@@ -215,7 +219,7 @@ public class Cheques extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addGap(69, 69, 69))
         );
         jPanel3Layout.setVerticalGroup(
@@ -235,9 +239,9 @@ public class Cheques extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -261,7 +265,8 @@ public class Cheques extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
+       FormatoCheques imp = new FormatoCheques();
+    imp.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtmontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyPressed
@@ -312,12 +317,15 @@ public class Cheques extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel Beneficiario;
+    private javax.swing.JScrollPane Detalle;
+    public static javax.swing.JTextArea Detalle01;
+    private javax.swing.JTextField Fecha;
+    public static javax.swing.JTextField Numero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -333,10 +341,7 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
     public static javax.swing.JLabel montoletras;
-    private javax.swing.JTextField txtmonto;
+    public static javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
 }

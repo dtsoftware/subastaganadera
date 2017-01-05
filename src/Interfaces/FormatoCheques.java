@@ -4,49 +4,41 @@
  * and open the template in the editor.
  */
 package Interfaces;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import static java.awt.print.Printable.NO_SUCH_PAGE;
-import static java.awt.print.Printable.PAGE_EXISTS;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-
+import java.awt.*;
+import java.awt.print.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Juan
  */
-public class FormatoCheques extends javax.swing.JFrame {
+public class FormatoCheques extends javax.swing.JFrame implements Printable{
 
     /**
      * Creates new form FormatoCheques
      */
     public FormatoCheques() {
         initComponents();
+        FormatoCheques.Beneficiario.setText(Cheques.Beneficiario.getText());
+        FormatoCheques.MontoLetras.setText(Cheques.montoletras.getText());
+        FormatoCheques.MontoNumeros.setText(Cheques.txtmonto.getText());
+        FormatoCheques.Detalle.setText(Cheques.Detalle01.getText());
+        FormatoCheques.Numero.setText(Cheques.Numero.getText());
+         
+              try {
+        PrinterJob gap = PrinterJob.getPrinterJob();
+        gap.setPrintable(this);
+        //boolean top = gap.printDialog();
+       // if(top){
+           
+                gap.print();
+this.setVisible(false);
+        //}
+            } catch (PrinterException ex) {
+                Logger.getLogger(FormatoCheques.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
-public void imprimirturno() {
-        PrinterJob printerJob = PrinterJob.getPrinterJob();
-        printerJob.setPrintable((Printable) this);
-        //muestra ventana de dialogo para imprimir
-        try {
-            printerJob.print();
-        } catch (PrinterException ex) {
-            System.out.println("Error:" + ex);
-        }
-    }
-public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-        if (pageIndex == 0) {
-            Graphics2D g2d = (Graphics2D) graphics;
-            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-           // FormatoCheques.printAll(graphics);
-            return PAGE_EXISTS;
-        } else {
-            return NO_SUCH_PAGE;
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,90 +48,84 @@ public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Recibo = new javax.swing.JPanel();
+        Beneficiario = new javax.swing.JLabel();
+        MontoLetras = new javax.swing.JLabel();
+        Fecha = new javax.swing.JLabel();
+        MontoNumeros = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Detalle = new javax.swing.JTextArea();
+        Numero = new javax.swing.JLabel();
+        Impresion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
-        jLabel1.setText("BENEFICIARIO");
+        Recibo.setBackground(java.awt.SystemColor.text);
+        Recibo.setLayout(null);
 
-        jLabel2.setText("DESCRIPCION DEL MONTO");
+        Beneficiario.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        Beneficiario.setText("JUAN CARLOS DUCREUX DE LEÓN");
+        Recibo.add(Beneficiario);
+        Beneficiario.setBounds(10, 80, 190, 13);
 
-        jLabel3.setText("DETALLE CHEQUE");
+        MontoLetras.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        MontoLetras.setText("QUINIENTOS CUARENTA Y CUATOR CON 50/100 DOLARES");
+        Recibo.add(MontoLetras);
+        MontoLetras.setBounds(10, 120, 340, 13);
 
-        jLabel4.setText("NUMERO");
+        Fecha.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        Fecha.setText("0 5   1 2   2 0 1 6");
+        Recibo.add(Fecha);
+        Fecha.setBounds(320, 40, 100, 13);
 
-        jLabel5.setText("MONTO");
+        MontoNumeros.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        MontoNumeros.setText("B./ 544.50");
+        Recibo.add(MontoNumeros);
+        MontoNumeros.setBounds(360, 120, 70, 13);
 
-        jLabel6.setText("FECHA");
+        Detalle.setColumns(20);
+        Detalle.setRows(5);
+        Detalle.setText("\nPAGO POR SERVICIOS PROFECIONALES: REPARACION E \nINSTALACION DE COMPUTADORS");
+        Detalle.setBorder(null);
+        jScrollPane1.setViewportView(Detalle);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Recibo.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 160, 410, 110);
+
+        Numero.setText("jLabel1");
+        Recibo.add(Numero);
+        Numero.setBounds(170, 270, 34, 14);
+
+        Impresion.setText("IMPRIMIR");
+        Impresion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ImpresionActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel4)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(238, 238, 238)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel5)))))
-                .addContainerGap(234, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Impresion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Recibo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel4)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Recibo, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Impresion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 650, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     imprimirturno();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void ImpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImpresionActionPerformed
+       
+        
+    }//GEN-LAST:event_ImpresionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,22 +155,37 @@ public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormatoCheques().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FormatoCheques().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JLabel Beneficiario;
+    public static javax.swing.JTextArea Detalle;
+    private javax.swing.JLabel Fecha;
+    private javax.swing.JButton Impresion;
+    public static javax.swing.JLabel MontoLetras;
+    public static javax.swing.JLabel MontoNumeros;
+    public static javax.swing.JLabel Numero;
+    private javax.swing.JPanel Recibo;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public int print(Graphics graf, PageFormat pagfor, int index) throws PrinterException 
+    {
+        if (index>0){           
+            return NO_SUCH_PAGE;        
+        }
+        
+        Graphics2D hub = (Graphics2D) graf;
+
+        hub.translate(pagfor.getImageableX() + 0.1, pagfor.getImageableY() + 0.1);
+        hub.scale(1.0, 1.0);
+        Recibo.printAll(graf);
+        return PAGE_EXISTS;   
+    }
+
+    
 }
