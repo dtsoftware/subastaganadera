@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaces;
-
+import java.awt.event.WindowAdapter;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import Clases.Entradasubasta;
 import javax.swing.table.DefaultTableModel;
+import Clases.animalesregistrados;
 /**
  *
  * @author Juan
@@ -28,7 +29,9 @@ DefaultTableModel tabla1;
         DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
-        this.jDateChooserFecha.setDate(date);        
+        this.jDateChooserFecha.setDate(date); 
+        
+        
     }
 
     /**
@@ -90,7 +93,7 @@ DefaultTableModel tabla1;
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -98,6 +101,17 @@ DefaultTableModel tabla1;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -295,7 +309,7 @@ DefaultTableModel tabla1;
 
             },
             new String [] {
-                "# De llegada", "Descripción", "Sexo", "Color", "Observaciones", "Cod Comprador", "Peso"
+                "# De llegada", "Sexo", "Color", "Cod Comprador", "Peso", "Observaciones"
             }
         ));
         jScrollPane3.setViewportView(jTableAnimalesRegistrados);
@@ -501,19 +515,29 @@ DefaultTableModel tabla1;
         jButton7.setMinimumSize(new java.awt.Dimension(115, 15));
         jButton7.setPreferredSize(new java.awt.Dimension(115, 15));
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton7);
         jButton7.setBounds(11, 202, 115, 57);
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
-        jButton8.setText("MODIFICAR");
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setMaximumSize(new java.awt.Dimension(115, 15));
-        jButton8.setMinimumSize(new java.awt.Dimension(115, 15));
-        jButton8.setPreferredSize(new java.awt.Dimension(115, 15));
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel5.add(jButton8);
-        jButton8.setBounds(11, 265, 115, 58);
+        jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButtonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
+        jButtonModificar.setText("MODIFICAR");
+        jButtonModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonModificar.setMaximumSize(new java.awt.Dimension(115, 15));
+        jButtonModificar.setMinimumSize(new java.awt.Dimension(115, 15));
+        jButtonModificar.setPreferredSize(new java.awt.Dimension(115, 15));
+        jButtonModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonModificar);
+        jButtonModificar.setBounds(11, 265, 115, 58);
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
@@ -659,6 +683,37 @@ DefaultTableModel tabla1;
         entra.guardarentradas();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+         
+        animalesregistrados animal = new animalesregistrados();
+        animal.cargaranimales();
+        //animalesregistrados anima = new animalesregistrados();
+       animal.machos();
+       animal.hembras();
+       animal.totalmachoshembras();
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        // TODO add your handling code here:
+      
+                                
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -689,6 +744,7 @@ DefaultTableModel tabla1;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Entradas().setVisible(true);
+                    
         });
     }
 
@@ -698,12 +754,12 @@ DefaultTableModel tabla1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonAgregarAnimal;
     private javax.swing.JButton jButtonEliminarAnimal;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonListar;
+    private javax.swing.JButton jButtonModificar;
     public static javax.swing.JComboBox<String> jComboBoxColor;
     public static javax.swing.JComboBox jComboBoxSexo;
     public static javax.swing.JComboBox<String> jComboBoxTipo;
@@ -733,7 +789,7 @@ DefaultTableModel tabla1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableAnimalesRegistrados;
+    public static javax.swing.JTable jTableAnimalesRegistrados;
     public static javax.swing.JTable jTableEntradaDeAnimales;
     private javax.swing.JTextArea jTextAreaObservacion;
     public static javax.swing.JTextField jTextFieldApellido;
@@ -744,9 +800,9 @@ DefaultTableModel tabla1;
     public static javax.swing.JTextField jTextFieldNombre;
     public static javax.swing.JTextField jTextFieldNumeroanimal;
     public static javax.swing.JTextField jTextFieldPeso;
-    private javax.swing.JTextField jTextFieldTotalAnimales;
-    private javax.swing.JTextField jTextFieldTotalHembras;
-    private javax.swing.JTextField jTextFieldTotalMachos;
+    public static javax.swing.JTextField jTextFieldTotalAnimales;
+    public static javax.swing.JTextField jTextFieldTotalHembras;
+    public static javax.swing.JTextField jTextFieldTotalMachos;
     // End of variables declaration//GEN-END:variables
 
 }
