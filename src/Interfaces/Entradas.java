@@ -14,6 +14,8 @@ import java.awt.event.KeyEvent;
 import Clases.Entradasubasta;
 import javax.swing.table.DefaultTableModel;
 import Clases.animalesregistrados;
+import java.awt.event.KeyAdapter;
+import javax.swing.JTextField;
 /**
  *
  * @author Juan
@@ -30,8 +32,7 @@ DefaultTableModel tabla1;
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
-        
-        
+             
     }
 
     /**
@@ -96,7 +97,7 @@ DefaultTableModel tabla1;
         jButtonModificar = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jButtonNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
@@ -147,6 +148,11 @@ DefaultTableModel tabla1;
         jTextFieldCodigoG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCodigoGActionPerformed(evt);
+            }
+        });
+        jTextFieldCodigoG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCodigoGKeyTyped(evt);
             }
         });
 
@@ -249,10 +255,10 @@ DefaultTableModel tabla1;
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL ANIMAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel2.setText("NUMERO");
+        jLabel2.setText("*NUMERO");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel9.setText("FERRETE");
+        jLabel9.setText("*FERRETE");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel10.setText("DESCRIPCION");
@@ -278,6 +284,12 @@ DefaultTableModel tabla1;
         jTextAreaObservacion.setColumns(20);
         jTextAreaObservacion.setRows(5);
         jScrollPane1.setViewportView(jTextAreaObservacion);
+
+        jTextFieldNumeroanimal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNumeroanimalKeyTyped(evt);
+            }
+        });
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TE", "TA", "VA", "VF", "NA", "NO", "TO", "YG", "CB" }));
 
@@ -368,7 +380,13 @@ DefaultTableModel tabla1;
         jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MACHO", "HEMBRA" }));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel17.setText("PESO");
+        jLabel17.setText("*PESO");
+
+        jTextFieldPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPesoKeyTyped(evt);
+            }
+        });
 
         jButtonAgregarAnimal.setText("AGREGAR");
         jButtonAgregarAnimal.addActionListener(new java.awt.event.ActionListener() {
@@ -558,11 +576,17 @@ DefaultTableModel tabla1;
         jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
         jButtonGuardar.setText("GUARDAR");
+        jButtonGuardar.setEnabled(false);
         jButtonGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonGuardar.setMaximumSize(new java.awt.Dimension(115, 15));
         jButtonGuardar.setMinimumSize(new java.awt.Dimension(115, 15));
         jButtonGuardar.setPreferredSize(new java.awt.Dimension(115, 15));
         jButtonGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonGuardar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonGuardarFocusLost(evt);
+            }
+        });
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarActionPerformed(evt);
@@ -571,16 +595,21 @@ DefaultTableModel tabla1;
         jPanel5.add(jButtonGuardar);
         jButtonGuardar.setBounds(11, 398, 115, 58);
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
-        jButton10.setText("NUEVO");
-        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton10.setMaximumSize(new java.awt.Dimension(115, 15));
-        jButton10.setMinimumSize(new java.awt.Dimension(115, 15));
-        jButton10.setPreferredSize(new java.awt.Dimension(115, 15));
-        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel5.add(jButton10);
-        jButton10.setBounds(11, 329, 115, 63);
+        jButtonNuevo.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
+        jButtonNuevo.setText("NUEVO");
+        jButtonNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNuevo.setMaximumSize(new java.awt.Dimension(115, 15));
+        jButtonNuevo.setMinimumSize(new java.awt.Dimension(115, 15));
+        jButtonNuevo.setPreferredSize(new java.awt.Dimension(115, 15));
+        jButtonNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonNuevo);
+        jButtonNuevo.setBounds(11, 329, 115, 63);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -649,13 +678,22 @@ DefaultTableModel tabla1;
     private void jButtonAgregarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarAnimalActionPerformed
         // TODO add your handling code here:
         try{
+        if (this.jTextFieldCodigoG.getText().trim().length()==0){
+         JOptionPane.showMessageDialog(null, "Debe Realizar La Busqueda Del Ganadero");   
+        }else{   
+        if ((this.jTextFieldNumeroanimal.getText().trim().length()==0) || (this.jTextFieldFerrete.getText().trim().length()==0) || (this.jTextFieldPeso.getText().trim().length()==0)) {
+         JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
+         }else{             
         DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();
         tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),jComboBoxTipo.getSelectedItem(),jComboBoxSexo.getSelectedItem(),jComboBoxColor.getSelectedItem(),jTextFieldFerrete.getText(),jTextFieldPeso.getText(),jTextAreaObservacion.getText()});
         this.jTextFieldNumeroanimal.setText("");
         this.jTextFieldFerrete.setText("");
         this.jTextAreaObservacion.setText("");
         this.jTextFieldPeso.setText("");
+        jButtonGuardar.setEnabled(true);
         jTextFieldNumeroanimal.requestFocus();
+        }
+        }
         }catch (Exception ex){
         JOptionPane.showMessageDialog(null, "Error:   " +ex);
         }
@@ -714,6 +752,40 @@ DefaultTableModel tabla1;
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
 
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        // TODO add your handling code here:
+        Entradasubasta entrada = new Entradasubasta();
+        entrada.nuevaentrada();
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonGuardarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonGuardarFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonGuardarFocusLost
+
+    private void jTextFieldNumeroanimalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroanimalKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+          if(Character.isLetter(c)){
+              evt.consume();
+          }
+    }//GEN-LAST:event_jTextFieldNumeroanimalKeyTyped
+
+    private void jTextFieldPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesoKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+          if(Character.isLetter(c)){
+              evt.consume();
+          }
+    }//GEN-LAST:event_jTextFieldPesoKeyTyped
+
+    private void jTextFieldCodigoGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoGKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+          if(Character.isLetter(c)){
+              evt.consume();
+          }
+    }//GEN-LAST:event_jTextFieldCodigoGKeyTyped
+    
     /**
      * @param args the command line arguments
      */
@@ -749,7 +821,6 @@ DefaultTableModel tabla1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -757,9 +828,10 @@ DefaultTableModel tabla1;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonAgregarAnimal;
     private javax.swing.JButton jButtonEliminarAnimal;
-    private javax.swing.JButton jButtonGuardar;
+    public static javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonNuevo;
     public static javax.swing.JComboBox<String> jComboBoxColor;
     public static javax.swing.JComboBox jComboBoxSexo;
     public static javax.swing.JComboBox<String> jComboBoxTipo;
@@ -791,7 +863,7 @@ DefaultTableModel tabla1;
     private javax.swing.JScrollPane jScrollPane3;
     public static javax.swing.JTable jTableAnimalesRegistrados;
     public static javax.swing.JTable jTableEntradaDeAnimales;
-    private javax.swing.JTextArea jTextAreaObservacion;
+    public static javax.swing.JTextArea jTextAreaObservacion;
     public static javax.swing.JTextField jTextFieldApellido;
     public static javax.swing.JTextField jTextFieldCedula;
     public static javax.swing.JTextField jTextFieldCodigoG;

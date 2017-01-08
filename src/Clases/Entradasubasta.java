@@ -89,7 +89,8 @@ public class Entradasubasta {
     String sexo =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 2));
     String color =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3));    
     String ferrete =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4));
-    int peso = Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
+    //double peso = Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
+    double peso = Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
     String observacion =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 6));
     //int cantidad=Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3)));
     //double costounitario=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4))); 
@@ -104,7 +105,7 @@ public class Entradasubasta {
   guardarentradas.setString(6, color);
   guardarentradas.setString(7, sexo);
   guardarentradas.setString(8, ferrete);
-  guardarentradas.setInt(9, peso);
+  guardarentradas.setDouble(9, peso);
   guardarentradas.setString(10, observacion);
   //guardarentradas.setInt(6, cantidad);
   //guardarentradas.setDouble(7, costounitario);
@@ -131,6 +132,14 @@ public class Entradasubasta {
     Entradas.jTextFieldCedula.setText("");
     Entradas.jTextFieldDireccion.setText("");
     Entradas.jTextFieldCodigoG.requestFocus();
+    //ACTUALIZA LA TABLA DE INGRESADOS
+     animalesregistrados animal = new animalesregistrados();
+     animal.cargaranimales();
+        //animalesregistrados anima = new animalesregistrados();
+       animal.machos();
+       animal.hembras();
+       animal.totalmachoshembras();
+     //
     JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
     
    /* 
@@ -139,6 +148,7 @@ public class Entradasubasta {
     ventas.jTextFieldSubTotal.setText("0.00");
     ventas.jTextFieldTotalventa.setText("0.00");
     */
+    guardarentradas.close();
     conect.desconectar();
     
         }catch(SQLException ex){
@@ -148,6 +158,40 @@ public class Entradasubasta {
         }
         
      
+    
+    }
+    
+    
+    public void nuevaentrada(){
+    
+        try {
+        DefaultTableModel tabla= (DefaultTableModel) Entradas.jTableEntradaDeAnimales.getModel();
+        //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+    Entradas.jTextFieldCodigoG.setText("");
+    Entradas.jTextFieldNombre.setText("");
+    Entradas.jTextFieldApellido.setText("");
+    Entradas.jTextFieldCedula.setText("");
+    Entradas.jTextFieldDireccion.setText("");
+    Entradas.jTextFieldFerrete.setText("");
+    Entradas.jTextFieldPeso.setText("");
+    Entradas.jTextAreaObservacion.setText("");
+    Entradas.jTextFieldNumeroanimal.setText("");
+    Entradas.jTextFieldCodigoG.requestFocus();
+    
+        }catch (Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex);      
+        }
     
     }
     
