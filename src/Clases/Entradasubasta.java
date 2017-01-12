@@ -79,7 +79,7 @@ public class Entradasubasta {
       String fecha = (year + "-" + mes+ "-" + dia);         
      //---------fin de obtener la fecha
          
-      
+      String estado="No Subastado";
                
     //-------aki para guardar el contenido del jtable en la tabla detallesventas
     for (int i = 0; i < Entradas.jTableEntradaDeAnimales.getRowCount(); i++) {
@@ -95,7 +95,7 @@ public class Entradasubasta {
     //int cantidad=Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3)));
     //double costounitario=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4))); 
     //double total=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5))); 
-  guardarentradas=conect.con.prepareStatement("INSERT INTO entradas ( Codigo, Fecha, CodCliente, Numero, Tipo, Color,Sexo,Ferrete,Peso,Observacion) VALUES (?,?,?,?,?,?,?,?,?,?)");
+  guardarentradas=conect.con.prepareStatement("INSERT INTO entradas ( Codigo, Fecha, CodCliente, Numero, Tipo, Color,Sexo,Ferrete,Peso,Observacion,Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
   //este es duplicando el numero consultar a juan el uso del codigo
   guardarentradas.setString(1,numero);
   guardarentradas.setString(2, fecha);
@@ -107,9 +107,8 @@ public class Entradasubasta {
   guardarentradas.setString(8, ferrete);
   guardarentradas.setDouble(9, peso);
   guardarentradas.setString(10, observacion);
-  //guardarentradas.setInt(6, cantidad);
-  //guardarentradas.setDouble(7, costounitario);
-  //guardarentradas.setDouble(8, total); 
+  guardarentradas.setString(11, estado);
+ 
   guardarentradas.execute();
        }
     

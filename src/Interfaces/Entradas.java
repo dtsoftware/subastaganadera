@@ -87,12 +87,13 @@ DefaultTableModel tabla1;
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButtonModificar = new javax.swing.JButton();
+        jButtonModifica = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButtonNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Entradas");
         setBackground(java.awt.Color.white);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -533,21 +534,21 @@ DefaultTableModel tabla1;
         jPanel5.add(jButton7);
         jButton7.setBounds(11, 202, 115, 57);
 
-        jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButtonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
-        jButtonModificar.setText("MODIFICAR");
-        jButtonModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonModificar.setMaximumSize(new java.awt.Dimension(115, 15));
-        jButtonModificar.setMinimumSize(new java.awt.Dimension(115, 15));
-        jButtonModificar.setPreferredSize(new java.awt.Dimension(115, 15));
-        jButtonModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModifica.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButtonModifica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
+        jButtonModifica.setText("MODIFICAR");
+        jButtonModifica.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonModifica.setMaximumSize(new java.awt.Dimension(115, 15));
+        jButtonModifica.setMinimumSize(new java.awt.Dimension(115, 15));
+        jButtonModifica.setPreferredSize(new java.awt.Dimension(115, 15));
+        jButtonModifica.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonModifica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModificarActionPerformed(evt);
+                jButtonModificaActionPerformed(evt);
             }
         });
-        jPanel5.add(jButtonModificar);
-        jButtonModificar.setBounds(11, 265, 115, 58);
+        jPanel5.add(jButtonModifica);
+        jButtonModifica.setBounds(11, 265, 115, 58);
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
@@ -728,11 +729,14 @@ DefaultTableModel tabla1;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+    private void jButtonModificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificaActionPerformed
         // TODO add your handling code here:
+        ModificarEntradas modi = new ModificarEntradas();
+        modi.setVisible(true);
+       this.dispose();
       
                                 
-    }//GEN-LAST:event_jButtonModificarActionPerformed
+    }//GEN-LAST:event_jButtonModificaActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -821,7 +825,7 @@ DefaultTableModel tabla1;
     private javax.swing.JButton jButtonEliminarAnimal;
     public static javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonListar;
-    private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonModifica;
     private javax.swing.JButton jButtonNuevo;
     public static javax.swing.JComboBox<String> jComboBoxColor;
     public static javax.swing.JComboBox jComboBoxSexo;
