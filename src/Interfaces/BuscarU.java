@@ -5,12 +5,8 @@
  */
 package Interfaces;
 
-import Clases.conectar;
-import java.awt.HeadlessException;
+import Clases.CrearUsuarios;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,33 +16,25 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class BuscarU extends javax.swing.JFrame {
+String Nombre,Cedula;
+public static Integer Aux;
+
 JTable tabla;
 ResultSet rs;
+
+ Object[] filas = new Object[5];
     /**
      * Creates new form BuscarU
-     * @throws java.sql.SQLException
      */
-    public BuscarU() throws SQLException {
-        initComponents();
-        
-        
-        DefaultTableModel dfm = new DefaultTableModel();
-        tabla = this.Tbl_usuarios;
-        tabla.setModel(dfm);
-        
-        dfm.setColumnIdentifiers(new Object[]{"Usuario", "Contraseña", "Nombre", "Apellido"});
-        
-        conectar cn = new conectar();
-        rs = cn.SeleccionarUsuarios();
-     
-    try {
-        while(rs.next()){
-            dfm.addRow(new Object[]{rs.getString("Contraseña"), rs.getString("Nombre"), rs.getString("Apellido"), rs.getString("Usuario")} );
-            
-            }                            
-    } catch (SQLException ex) {
-        Logger.getLogger(BuscarU.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    public BuscarU() {
+       initComponents();
+       
+       if ("1".equals(this.Valido.getText())){
+       CrearUsuarios busc = new CrearUsuarios();
+       busc.buscartodos();
+       } else if ("2".equals(this.Valido.getText())){
+       JOptionPane.showMessageDialog(null, "PRUEBA EXITOSA");
+       }
     }
 
     /**
@@ -62,10 +50,11 @@ ResultSet rs;
         jScrollPane1 = new javax.swing.JScrollPane();
         Tbl_usuarios = new javax.swing.JTable();
         btn_seleccionar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldBuscar = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonNombre = new javax.swing.JRadioButton();
+        jRadioButtonCedula = new javax.swing.JRadioButton();
+        Valido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -85,7 +74,7 @@ ResultSet rs;
                 {null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Apellido", "Direccion"
+                "Codigo", "Usuario", "Nombre", "Apellido"
             }
         ));
         jScrollPane1.setViewportView(Tbl_usuarios);
@@ -97,6 +86,12 @@ ResultSet rs;
             }
         });
 
+        jTextFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldBuscarKeyReleased(evt);
+            }
+        });
+
         jButton3.setText("BUSCAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,9 +99,9 @@ ResultSet rs;
             }
         });
 
-        jRadioButton1.setText("Nombre");
+        jRadioButtonNombre.setText("Nombre");
 
-        jRadioButton2.setText("Cedula");
+        jRadioButtonCedula.setText("Cedula");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,16 +115,18 @@ ResultSet rs;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_seleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jRadioButtonNombre)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jRadioButtonCedula)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton3)))
+                            .addComponent(Valido))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -138,9 +135,9 @@ ResultSet rs;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
+                    .addComponent(jTextFieldBuscar)
+                    .addComponent(jRadioButtonNombre)
+                    .addComponent(jRadioButtonCedula)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,7 +145,9 @@ ResultSet rs;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(btn_seleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Valido)
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -160,45 +159,52 @@ this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seleccionarActionPerformed
-        int filaseleccionada;
+        //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
+        int filaseleccionada; 
 
-     try{
-     
-         filaseleccionada= this.Tbl_usuarios.getSelectedRow();
-         
-         if (filaseleccionada==-1){
-         
-             JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
+        try{
+            filaseleccionada= this.Tbl_usuarios.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+              DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_usuarios.getModel();
+              CrearUsuarios crear = new  CrearUsuarios ();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              crear.buscarparaeditar(Codigo);
+              this.dispose();
+            }
 
-         }else{
+        }catch (Exception ex){
 
-             DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_usuarios.getModel();
-           
-             String usuario=(String)modelotabla.getValueAt(filaseleccionada, 0);
-             String contraseña=(String) modelotabla.getValueAt(filaseleccionada, 1);
-             String nombre=(String)modelotabla.getValueAt(filaseleccionada, 2);
-             String apellido=(String)modelotabla.getValueAt(filaseleccionada, 3);
-          
-             Usuarios.txtusuario.setText(usuario);
-             Usuarios.txtcontraseña.setText(contraseña);
-             Usuarios.txtnombre.setText(nombre);
-             Usuarios.txtapellido.setText(apellido);
-             
-             
-             
-             this.dispose();
-          }
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
 
-       }catch (HeadlessException ex){
+        }
 
-             JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
-
-       }     
     }//GEN-LAST:event_btn_seleccionarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyReleased
+         try {
+          if (this.jRadioButtonNombre.isSelected()==true)
+                {
+                
+                CrearUsuarios busc = new CrearUsuarios();
+                Nombre=this.jTextFieldBuscar.getText();
+                busc.buscarpornombre(Nombre);
+                
+                }else if (this.jRadioButtonCedula.isSelected()==true){
+                JOptionPane.showMessageDialog(null, "NO HAY BUSQUEDA POR CEDULA PARA USUARIOS");  
+                    
+                }
+                evt.consume();
+        }catch(Exception ex){
+        
+         JOptionPane.showMessageDialog(null, "ERROR");
+        }
+    }//GEN-LAST:event_jTextFieldBuscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -229,22 +235,19 @@ this.dispose();        // TODO add your handling code here:
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new BuscarU().setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(BuscarU.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            new BuscarU().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Tbl_usuarios;
+    public static javax.swing.JTable Tbl_usuarios;
+    public static javax.swing.JLabel Valido;
     private javax.swing.JButton btn_seleccionar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonCedula;
+    private javax.swing.JRadioButton jRadioButtonNombre;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

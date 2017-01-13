@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * @author Juan
  */
 public class conectar {
-    
+   
 private static final String username="root";
 private static final String password="root";
 private static final String database="sg-soft";

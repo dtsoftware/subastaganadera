@@ -31,7 +31,7 @@ public class CrearClientes {
   // tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
         }
       
-     public void guardar(Integer idClientes, String Nombre, String Apellido, String Cedula, String Direccion, String Telefono1, String Telefono2, String Credito,String Imagen, String Estado, String Audito1,String Audito2,String Fecha1,String Fecha2){
+  public void guardar(Integer idClientes, String Nombre, String Apellido, String Cedula, String Direccion, String Telefono1, String Telefono2, String Credito,String Imagen, String Estado, String Audito1,String Audito2,String Fecha1,String Fecha2){
      
 
              try {
@@ -72,7 +72,7 @@ public class CrearClientes {
         
     }
     
-     public void buscarpornombre(String nombre){
+  public void buscarpornombre(String nombre){
      try {
          tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
      String consulta;    
@@ -116,7 +116,8 @@ public class CrearClientes {
    }
      
      }
-     public void buscartodos(){
+     
+  public void buscartodos(){
      try {
          tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
      String consulta;    
@@ -160,7 +161,8 @@ public class CrearClientes {
    }
      
      } 
-    public void buscarporcedula( String Cedula){
+         
+  public void buscarporcedula( String Cedula){
      try {
          tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
      String consulta;    
@@ -248,7 +250,7 @@ public class CrearClientes {
    }
   
   }
-    
+     
   public void eliminarcliente(Integer Codigo){
   try {
      String consulta;  
@@ -280,10 +282,8 @@ public class CrearClientes {
   
   
   }
-  
-  
-  
-   public void editarclientes(Integer idClientes,String Nombre, String Apellido, String Cedula, String Direccion, String Telefono1, String Telefono2, String Credito,String Imagen, String Estado,String Audito2,String Fecha2){
+   
+  public void editarclientes(Integer idClientes,String Nombre, String Apellido, String Cedula, String Direccion, String Telefono1, String Telefono2, String Credito,String Imagen, String Estado,String Audito2,String Fecha2){
        
         try {
      String consulta;  

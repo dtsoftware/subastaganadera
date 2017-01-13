@@ -40,8 +40,8 @@
                       <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_seleccionar" alignment="1" max="32767" attributes="0"/>
                           <Component id="jButtonEntrada" max="32767" attributes="0"/>
-                          <Component id="btn_seleccionar" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -58,17 +58,12 @@
               <Component id="jScrollPane1" pref="273" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButtonCancelar" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButtonEntrada" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn_seleccionar" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButtonCancelar" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jButtonEntrada" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btn_seleccionar" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
