@@ -5,9 +5,6 @@
  */
 package Interfaces;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import Interfaces.buscarclientes;
@@ -23,7 +20,6 @@ import javax.swing.ImageIcon;
  * @author Juan
  */
 public class Clientes extends javax.swing.JFrame {
- public static Integer listacliente;
  Integer idClientes;
  String Nombre;
  String Apellido;
@@ -496,10 +492,9 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try{
-        listacliente=1;
         buscarclientes list = new buscarclientes();
         list.setVisible(true);
-       buscarclientes.jButtonEntrada.setVisible(false);
+       buscarclientes.Validar="1";
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Error:"+ex);
         }     

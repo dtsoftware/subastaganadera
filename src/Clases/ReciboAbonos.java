@@ -45,7 +45,7 @@ public void buscarcliente(Integer Codigo){
      rs2=cargar2.executeQuery(consulta);
            if (rs2.next()){
             Recibos.txtBeneficiario.setText(rs2.getString("Nombre")+ " " + rs2.getString("Apellido"));         
-       
+            Recibos.cliente.setText(String.valueOf(rs2.getInt("idClientes")) );
       rs2.close();
     conect.desconectar();
            }else{

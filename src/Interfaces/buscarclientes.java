@@ -9,6 +9,7 @@ import javax.swing.*;
 import Clases.CrearClientes;
 import javax.swing.table.DefaultTableModel;
 import Clases.Entradasubasta;
+import Clases.ReciboAbonos;
 /**
  *
  * @author Tserng
@@ -16,7 +17,7 @@ import Clases.Entradasubasta;
 public class buscarclientes extends javax.swing.JFrame {
     String Nombre,Cedula;
     public static Integer Aux;
-   
+   public static String Validar;
    // DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
     /**
      * Creates new form buscarclientes
@@ -25,7 +26,6 @@ public class buscarclientes extends javax.swing.JFrame {
        initComponents();
        CrearClientes busc = new CrearClientes();
        busc.buscartodos();
-  
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,8 +45,7 @@ public class buscarclientes extends javax.swing.JFrame {
         jRadioButtonNombre = new javax.swing.JRadioButton();
         jRadioButtonCedula = new javax.swing.JRadioButton();
         jButtonRealizarBusqueda = new javax.swing.JButton();
-        btn_seleccionar = new javax.swing.JButton();
-        jButtonEntrada = new javax.swing.JButton();
+        Seleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,17 +135,10 @@ public class buscarclientes extends javax.swing.JFrame {
                     .addGap(18, 18, 18)))
         );
 
-        btn_seleccionar.setText("SELECCIONAR REGISTRO");
-        btn_seleccionar.addActionListener(new java.awt.event.ActionListener() {
+        Seleccionar.setText("SELECCIONAR REGISTRO");
+        Seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_seleccionarActionPerformed(evt);
-            }
-        });
-
-        jButtonEntrada.setText("SELECCIONAR REGISTRO");
-        jButtonEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEntradaActionPerformed(evt);
+                SeleccionarActionPerformed(evt);
             }
         });
 
@@ -155,18 +147,17 @@ public class buscarclientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Seleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_seleccionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -175,14 +166,12 @@ public class buscarclientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -222,62 +211,6 @@ public class buscarclientes extends javax.swing.JFrame {
               
     }//GEN-LAST:event_jButtonRealizarBusquedaActionPerformed
 
-    private void btn_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seleccionarActionPerformed
-        //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
-        int filaseleccionada; 
-        if (Clientes.listacliente==1){ 
-        try{
-            filaseleccionada= this.Tbl_Clientes.getSelectedRow();
-            if (filaseleccionada==-1){
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
-            }else{
-              DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
-              CrearClientes crear = new  CrearClientes ();
-             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
-              crear.buscarparaeditar(Codigo);
-              this.dispose();
-            }
-
-        }catch (Exception ex){
-
-            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
-
-        }
-        //la opcion 2 será para la ventana de entradas listar los clientes 
-        }
-         
-      
-        
-        //para opciones futuras
-    }//GEN-LAST:event_btn_seleccionarActionPerformed
-
-    private void jButtonEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntradaActionPerformed
-        // TODO add your handling code here:
-        int filaseleccionada; 
-        if (Entradas.listacliente2==2){
-             try{
-           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
-            if (filaseleccionada==-1){
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
-            }else{
-            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
-              Entradasubasta buscar = new  Entradasubasta();
-             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
-              buscar.buscarcliente(Codigo);
-              this.dispose();
-            }
-
-        }catch (Exception ex){
-
-            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
-
-        }
-        
-        }
-        
-       
-    }//GEN-LAST:event_jButtonEntradaActionPerformed
-
     private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
        
               
@@ -308,6 +241,68 @@ public class buscarclientes extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null, "ERROR");
         }
     }//GEN-LAST:event_jTextFieldBuscarKeyReleased
+
+    private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
+                //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
+        int filaseleccionada; 
+        if (Validar=="1"){  // LLAMADO DESDE VENTANA CLIENTES
+        try{
+            filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+              DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+              CrearClientes crear = new  CrearClientes ();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              crear.buscarparaeditar(Codigo);
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        
+        if (Validar=="2"){   // LLAMADO DESDE VENTANA ENTRADAS
+             try{
+           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+              Entradasubasta buscar = new  Entradasubasta();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              buscar.buscarcliente(Codigo);
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }        
+        }
+  
+        if (Validar=="3"){   // LLAMADO DESDE VENTANA RECIBOS
+             try{
+           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+              ReciboAbonos buscar = new  ReciboAbonos();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              buscar.buscarcliente(Codigo);
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }        
+        }
+  
+    }//GEN-LAST:event_SeleccionarActionPerformed
 
     /**
      * @param argrs
@@ -343,10 +338,9 @@ public class buscarclientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton Seleccionar;
     public static javax.swing.JTable Tbl_Clientes;
-    public static javax.swing.JButton btn_seleccionar;
     private javax.swing.JButton jButtonCancelar;
-    public static javax.swing.JButton jButtonEntrada;
     private javax.swing.JButton jButtonRealizarBusqueda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButtonCedula;

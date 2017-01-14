@@ -5,7 +5,6 @@
  */
 package Interfaces;
 
-import Clases.Entradasubasta;
 import Clases.Numero_a_Letra;
 import Clases.ReciboAbonos;
 import java.awt.event.KeyEvent;
@@ -16,7 +15,6 @@ import javax.swing.JOptionPane;
  * @author Juan
  */
 public class Recibos extends javax.swing.JFrame {
-public static Integer listacliente2;
     /**
      * Creates new form Recibos
      */
@@ -434,7 +432,14 @@ this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadKeyPressed
 
     private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
-
+        try{
+        buscarclientes list = new buscarclientes();
+        list.setVisible(true);
+       buscarclientes.Validar="3";
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null, "Error:"+ex);
+        }     
+            
     }//GEN-LAST:event_clientesActionPerformed
 
     /**

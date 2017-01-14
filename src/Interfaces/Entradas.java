@@ -4,24 +4,17 @@
  * and open the template in the editor.
  */
 package Interfaces;
-import java.awt.event.WindowAdapter;
-import java.sql.SQLException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import Clases.Entradasubasta;
 import javax.swing.table.DefaultTableModel;
 import Clases.animalesregistrados;
-import java.awt.event.KeyAdapter;
-import javax.swing.JTextField;
 /**
  *
  * @author Juan
  */
 public class Entradas extends javax.swing.JFrame {
-public static Integer listacliente2;
 DefaultTableModel tabla1;
     /**
      * Creates new form Entradas
@@ -655,10 +648,9 @@ DefaultTableModel tabla1;
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
-           listacliente2=2;
         buscarclientes list = new buscarclientes();
         list.setVisible(true); 
-        buscarclientes.btn_seleccionar.setVisible(false);
+        buscarclientes.Validar="2";
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
