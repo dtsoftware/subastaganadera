@@ -245,6 +245,11 @@ public class Clientes extends javax.swing.JFrame {
                 jTextFieldIDclienteActionPerformed(evt);
             }
         });
+        jTextFieldIDcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldIDclienteKeyTyped(evt);
+            }
+        });
 
         jTextFieldNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -654,6 +659,14 @@ public class Clientes extends javax.swing.JFrame {
        evt.setSource((char) KeyEvent.VK_ENTER);
        jTextFieldNombre.requestFocus();
     }//GEN-LAST:event_jTextFieldIDclienteActionPerformed
+
+    private void jTextFieldIDclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDclienteKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+          if(Character.isLetter(c)){
+              evt.consume();
+          }
+    }//GEN-LAST:event_jTextFieldIDclienteKeyTyped
 
     /**
      * @param args the command line arguments

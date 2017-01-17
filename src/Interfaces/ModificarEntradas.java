@@ -62,6 +62,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldID_Entradas = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jTextFieldCodigodebusqueda = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modificar Entradas");
@@ -300,6 +301,22 @@ public class ModificarEntradas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Filtrar Datos Por Codigo");
 
+        jTextFieldCodigodebusqueda.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextFieldCodigodebusqueda.setForeground(new java.awt.Color(255, 0, 0));
+        jTextFieldCodigodebusqueda.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextFieldCodigodebusquedaPropertyChange(evt);
+            }
+        });
+        jTextFieldCodigodebusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldCodigodebusquedaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCodigodebusquedaKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -313,7 +330,9 @@ public class ModificarEntradas extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
-                                .addComponent(jLabel1))
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -325,11 +344,13 @@ public class ModificarEntradas extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,7 +358,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonRefrezcar, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -432,6 +453,37 @@ public class ModificarEntradas extends javax.swing.JFrame {
         this.jTextFieldID_Entradas.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 8).toString()); 
     }//GEN-LAST:event_jTableModificarEntradasMouseClicked
 
+    private void jTextFieldCodigodebusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigodebusquedaKeyReleased
+        // TODO add your handling code here:
+       try {
+      String codigo;
+      // codigo= Integer.parseInt(jTextFieldCodigodebusqueda.getText());
+      codigo= jTextFieldCodigodebusqueda.getText();
+       animalesregistrados reg = new animalesregistrados();
+       if (this.jTextFieldCodigodebusqueda.getText().trim().length()==0){
+      // if(this.jTextFieldCodigodebusqueda.getText()==""){
+             reg.entradasparamodificar();
+      // evt.consume();
+       }else{
+     
+       reg.cargaranimalesporcodigo(codigo);
+       }
+       evt.consume();
+       }catch(Exception ex){
+       JOptionPane.showMessageDialog(null,"Error" +ex);  
+       }
+        
+       
+    }//GEN-LAST:event_jTextFieldCodigodebusquedaKeyReleased
+
+    private void jTextFieldCodigodebusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigodebusquedaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigodebusquedaKeyTyped
+
+    private void jTextFieldCodigodebusquedaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldCodigodebusquedaPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigodebusquedaPropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -492,6 +544,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
     public static javax.swing.JTable jTableModificarEntradas;
     public static javax.swing.JTextArea jTextAreaObservacion;
     private javax.swing.JTextField jTextFieldCod_Vendedor;
+    private javax.swing.JTextField jTextFieldCodigodebusqueda;
     public static javax.swing.JTextField jTextFieldFerrete;
     private javax.swing.JTextField jTextFieldID_Entradas;
     public static javax.swing.JTextField jTextFieldNumeroanimal;

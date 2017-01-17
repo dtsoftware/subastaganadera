@@ -86,6 +86,63 @@ public class animalesregistrados {
    }
     }
     
+    public void cargaranimalesporcodigo(String codigo ){
+ try {
+     DefaultTableModel tabla= (DefaultTableModel) ModificarEntradas.jTableModificarEntradas.getModel();   
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
+    
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(ModificarEntradas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(ModificarEntradas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(ModificarEntradas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+     
+     // creamos la consulta
+     consulta="SELECT Numero,Tipo,Sexo,Color,Peso,Ferrete,CodCliente,Observacion,idEntradas FROM entradas  where CodCliente LIKE '"+ codigo +"%' and  Fecha ='"+ fecha +"' ORDER BY Numero";
+     //pasamos la consulta al preparestatement
+     animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     todos=animales.executeQuery(consulta);
+     //recorremos el resulset
+    while (todos.next()){
+        
+                    filas1[0]=todos.getInt("Numero");
+                    filas1[1]=todos.getString("Tipo");
+                    filas1[2]=todos.getString("Sexo");
+                    filas1[3]=todos.getString("Color");
+                    filas1[4]=todos.getDouble("Peso");
+                    filas1[5]=todos.getString("Ferrete");
+                    filas1[6]=todos.getInt("CodCliente");
+                    filas1[7]=todos.getString("Observacion");   
+                    filas1[8]=todos.getInt("idEntradas");
+       tabla.addRow(filas1);
+    }
+    todos.close();
+    animales.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+
+}
     
     public void cargaranimales(){
     
