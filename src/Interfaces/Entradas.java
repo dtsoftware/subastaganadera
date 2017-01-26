@@ -64,8 +64,8 @@ DefaultTableModel tabla1;
         jTextAreaObservacion = new javax.swing.JTextArea();
         jTextFieldNumeroanimal = new javax.swing.JTextField();
         jTextFieldFerrete = new javax.swing.JTextField();
-        jComboBoxTipo = new javax.swing.JComboBox<>();
-        jComboBoxColor = new javax.swing.JComboBox<>();
+        jComboBoxTipo = new javax.swing.JComboBox<String>();
+        jComboBoxColor = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableEntradaDeAnimales = new javax.swing.JTable();
         jButtonEliminarAnimal = new javax.swing.JButton();
@@ -284,9 +284,9 @@ DefaultTableModel tabla1;
             }
         });
 
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TE", "TA", "VA", "VF", "NA", "NO", "TO", "YG", "CB" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TE", "TA", "VA", "VF", "NA", "NO", "TO", "YG", "CB" }));
 
-        jComboBoxColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BA", "NE", "CH", "RO", "AZ", "ZA", "AM", "HO", "AR", "PI " }));
+        jComboBoxColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BA", "NE", "CH", "RO", "AZ", "ZA", "AM", "HO", "AR", "PI " }));
 
         jTableEntradaDeAnimales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -314,7 +314,7 @@ DefaultTableModel tabla1;
 
             },
             new String [] {
-                "# De llegada", "Sexo", "Color", "Cod Comprador", "Peso", "Observaciones"
+                "# De llegada", "Sexo", "Color", "Cod Vendedor", "Peso", "Observaciones"
             }
         ));
         jScrollPane3.setViewportView(jTableAnimalesRegistrados);

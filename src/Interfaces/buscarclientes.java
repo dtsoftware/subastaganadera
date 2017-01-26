@@ -10,6 +10,7 @@ import Clases.CrearClientes;
 import javax.swing.table.DefaultTableModel;
 import Clases.Entradasubasta;
 import Clases.ReciboAbonos;
+import Clases.subastas;
 /**
  *
  * @author Tserng
@@ -47,7 +48,7 @@ public class buscarclientes extends javax.swing.JFrame {
         jButtonRealizarBusqueda = new javax.swing.JButton();
         Seleccionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonCancelar.setText("CANCELAR");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -302,6 +303,26 @@ public class buscarclientes extends javax.swing.JFrame {
         }        
         }
   
+         if (Validar=="4"){   // LLAMADO DESDE VENTANA SUBASTAS
+             try{
+           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+              subastas suba = new  subastas();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              suba.buscarcliente(Codigo);
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }        
+        }
+        
+        
     }//GEN-LAST:event_SeleccionarActionPerformed
 
     /**

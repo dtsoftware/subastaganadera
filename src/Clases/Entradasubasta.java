@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Entradasubasta {
     ResultSet rs2;
-    PreparedStatement cargar2,guardarentradas;
+    PreparedStatement cargar2,guardarentradas,guardardetallesentradas;
     DefaultTableModel tabla;
      
     public Entradasubasta(){
@@ -65,9 +65,12 @@ public class Entradasubasta {
     
     public void guardarentradas(){
     try {
+    int idEntrada=0;
     DefaultTableModel tabla= (DefaultTableModel) Entradas.jTableEntradaDeAnimales.getModel();
     conectar conect = new conectar(); 
     conect.conexion();
+    animalesregistrados identra = new animalesregistrados();
+    
     //en esta clase debo guardar los datos del cliente y las entradas al sistema
     int codigocliente= Integer.parseInt(Entradas.jTextFieldCodigoG.getText());
     //int codigo=Integer.parseInt(Entradas.jTextFieldNumeroanimal.getText());
@@ -78,10 +81,24 @@ public class Entradasubasta {
       String year = Integer.toString(Entradas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
       String fecha = (year + "-" + mes+ "-" + dia);         
      //---------fin de obtener la fecha
-         
-      String estado="No Subastado";
-               
-    //-------aki para guardar el contenido del jtable en la tabla detallesventas
+          
+      String estado="Por Subastar";
+      String condicion="Contado";
+   
+      //codigo para guardar en tabla entradas.
+  guardarentradas=conect.con.prepareStatement("INSERT INTO entradas ( Fecha, CodCliente, Condicion,Estado) VALUES (?,?,?,?)");
+  //este es duplicando el numero consultar a juan el uso del codigo
+  guardarentradas.setString(1, fecha);
+   guardarentradas.setInt(2, codigocliente);
+   guardarentradas.setString(3, condicion);
+   guardarentradas.setString(4, estado);
+  guardarentradas.execute();
+ // guardarentradas.close();
+      
+      //hasta aki  tabla de entradas
+      
+         idEntrada=identra.buscarultimaentrada();
+    //-------aki para guardar el contenido del jtable en la tabla detallesentradas
     for (int i = 0; i < Entradas.jTableEntradaDeAnimales.getRowCount(); i++) {
     
     String numero =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 0));
@@ -95,21 +112,23 @@ public class Entradasubasta {
     //int cantidad=Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3)));
     //double costounitario=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4))); 
     //double total=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5))); 
-  guardarentradas=conect.con.prepareStatement("INSERT INTO entradas ( Codigo, Fecha, CodCliente, Numero, Tipo, Color,Sexo,Ferrete,Peso,Observacion,Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+  guardardetallesentradas=conect.con.prepareStatement("INSERT INTO entrada_detalle ( idEntrada,idAnimal, Fecha, CodVendedor, Tipo, Color,Sexo,Ferrete,Peso,Observacion,Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
   //este es duplicando el numero consultar a juan el uso del codigo
-  guardarentradas.setString(1,numero);
-  guardarentradas.setString(2, fecha);
-  guardarentradas.setInt(3, codigocliente);
-  guardarentradas.setString(4, numero);
-  guardarentradas.setString(5, tipo);
-  guardarentradas.setString(6, color);
-  guardarentradas.setString(7, sexo);
-  guardarentradas.setString(8, ferrete);
-  guardarentradas.setDouble(9, peso);
-  guardarentradas.setString(10, observacion);
-  guardarentradas.setString(11, estado);
+  guardardetallesentradas.setInt(1, idEntrada);
+  guardardetallesentradas.setString(2,numero);
+  guardardetallesentradas.setString(3, fecha);
+  guardardetallesentradas.setInt(4, codigocliente);
+  guardardetallesentradas.setString(5, tipo);
+  guardardetallesentradas.setString(6, color);
+  guardardetallesentradas.setString(7, sexo);
+  guardardetallesentradas.setString(8, ferrete);
+  guardardetallesentradas.setDouble(9, peso);
+  guardardetallesentradas.setString(10, observacion);
+  guardardetallesentradas.setString(11, estado);
  
-  guardarentradas.execute();
+  guardardetallesentradas.execute();
+  
+  
        }
     
     //-------------------hasta aki guardo en detallesventa-------------//
@@ -148,6 +167,7 @@ public class Entradasubasta {
     ventas.jTextFieldTotalventa.setText("0.00");
     */
     guardarentradas.close();
+    guardardetallesentradas.close();
     conect.desconectar();
     
         }catch(SQLException ex){
