@@ -55,7 +55,7 @@ public class Subastas extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonNosubastado = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -86,7 +86,6 @@ public class Subastas extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
-        jButtonLimpiar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -101,6 +100,7 @@ public class Subastas extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jButtonLista = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jButtonLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(909, 650));
@@ -213,7 +213,7 @@ public class Subastas extends javax.swing.JFrame {
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(jButton2);
-        jButton2.setBounds(760, 270, 112, 60);
+        jButton2.setBounds(760, 280, 112, 50);
 
         jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
@@ -226,7 +226,7 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonGuardar);
-        jButtonGuardar.setBounds(760, 420, 112, 70);
+        jButtonGuardar.setBounds(760, 450, 112, 50);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
@@ -234,13 +234,18 @@ public class Subastas extends javax.swing.JFrame {
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(jButton4);
-        jButton4.setBounds(760, 340, 112, 70);
+        jButton4.setBounds(760, 340, 112, 50);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 255));
-        jButton5.setText("GANADO NO SUBASTADO");
-        jPanel2.add(jButton5);
-        jButton5.setBounds(570, 325, 170, 50);
+        jButtonNosubastado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButtonNosubastado.setForeground(new java.awt.Color(0, 0, 255));
+        jButtonNosubastado.setText("GANADO NO SUBASTADO");
+        jButtonNosubastado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNosubastadoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonNosubastado);
+        jButtonNosubastado.setBounds(570, 325, 170, 50);
 
         btn_salir.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
@@ -253,7 +258,7 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btn_salir);
-        btn_salir.setBounds(760, 500, 112, 60);
+        btn_salir.setBounds(760, 510, 112, 50);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
@@ -425,13 +430,6 @@ public class Subastas extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        jButtonLimpiar.setText("LIMPIAR");
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -475,31 +473,24 @@ public class Subastas extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(jTextFieldNanimal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                .addComponent(jTextFieldPrecio))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButtonLimpiar)
-                                .addGap(17, 17, 17)))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(jTextFieldPrecio))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jRadioButton1)
-                                .addComponent(jRadioButton2)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioButton2)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -613,6 +604,15 @@ public class Subastas extends javax.swing.JFrame {
         jPanel2.add(jSeparator2);
         jSeparator2.setBounds(20, 258, 850, 10);
 
+        jButtonLimpiar.setText("LIMPIAR");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonLimpiar);
+        jButtonLimpiar.setBounds(760, 400, 110, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -669,18 +669,15 @@ this.dispose();      // TODO add your handling code here:
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         try{
-             //-----obtener la fecha----------------------
-      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
-      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
-      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-      fecha = (year + "-" + mes+ "-" + dia);   
-     //---------fin de obtener la fecha
-            
-            
-        
+           subastas suba = new subastas();
+           suba.guardarsubasta();
+           suba.machos();
+           suba.hembras();
+           suba.totalmachoshembras();
+           suba.buscarporsubastar();
+           suba.tablesubastado();
         }catch(Exception ex){
-        
-        
+        JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
@@ -765,22 +762,26 @@ this.dispose();      // TODO add your handling code here:
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        
         try{
         subastas sub = new subastas();
-        sub.machos();
-        sub.hembras();
-        sub.buscarporsubastar();
-        sub.totalmachoshembras();
+       sub.machos();
+       sub.hembras();
+       sub.totalmachoshembras();
+       sub.buscarporsubastar();
+       sub.tablesubastado();
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null,"Error" +ex); 
         }
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
+      
         jTextAreaDetalle.setText("");
-        jTextFieldNanimal.setText("");
-        jTextFieldCodigoComprador.setText("");
+        jTextFieldNanimal.setText("0");
+        jTextFieldCodigoComprador.setText("0");
         jTextFieldTipo.setText("");
         jTextFieldColor.setText("");
         jTextFieldSexo.setText("");
@@ -790,7 +791,16 @@ this.dispose();      // TODO add your handling code here:
         jTextFieldPesoNeto.setText("");
         jTextFieldPrecioPactado.setText("");
         jTextFieldMontoTotal.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldPeso.setText("");
+        
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jButtonNosubastadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNosubastadoActionPerformed
+        // TODO add your handling code here:
+        Nosubastados nsuba = new Nosubastados();
+        nsuba.setVisible(true);
+    }//GEN-LAST:event_jButtonNosubastadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -831,10 +841,10 @@ this.dispose();      // TODO add your handling code here:
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonLista;
+    private javax.swing.JButton jButtonNosubastado;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -869,8 +879,8 @@ this.dispose();      // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTableSubastados;
-    private javax.swing.JTextArea jTextAreaDetalle;
+    public static javax.swing.JTable jTableSubastados;
+    public static javax.swing.JTextArea jTextAreaDetalle;
     private javax.swing.JTextField jTextField10;
     public static javax.swing.JTextField jTextFieldCeduladelcomprador;
     public static javax.swing.JTextField jTextFieldCheques;
@@ -879,14 +889,14 @@ this.dispose();      // TODO add your handling code here:
     public static javax.swing.JTextField jTextFieldFerrete;
     public static javax.swing.JTextField jTextFieldHembras;
     public static javax.swing.JTextField jTextFieldMachos;
-    private javax.swing.JTextField jTextFieldMontoTotal;
+    public static javax.swing.JTextField jTextFieldMontoTotal;
     public static javax.swing.JTextField jTextFieldNanimal;
     public static javax.swing.JTextField jTextFieldNombredelcomprador;
     public static javax.swing.JTextField jTextFieldPeso;
     public static javax.swing.JTextField jTextFieldPesoNeto;
     public static javax.swing.JTextField jTextFieldPorsubastar;
-    private javax.swing.JTextField jTextFieldPrecio;
-    private javax.swing.JTextField jTextFieldPrecioPactado;
+    public static javax.swing.JTextField jTextFieldPrecio;
+    public static javax.swing.JTextField jTextFieldPrecioPactado;
     public static javax.swing.JTextField jTextFieldSexo;
     public static javax.swing.JTextField jTextFieldTipo;
     public static javax.swing.JTextField jTextFieldTotaldeanimales;

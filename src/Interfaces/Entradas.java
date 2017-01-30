@@ -314,7 +314,7 @@ DefaultTableModel tabla1;
 
             },
             new String [] {
-                "# De llegada", "Sexo", "Color", "Cod Vendedor", "Peso", "Observaciones"
+                "# De Animal", "Sexo", "Color", "Cod Vendedor", "Peso", "Observaciones"
             }
         ));
         jScrollPane3.setViewportView(jTableAnimalesRegistrados);

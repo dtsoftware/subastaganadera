@@ -7,6 +7,20 @@ package Clases;
 
 import Interfaces.Entradas;
 import Interfaces.Subastas;
+import Interfaces.Nosubastados;
+import static Interfaces.Subastas.jTextAreaDetalle;
+import static Interfaces.Subastas.jTextFieldCeduladelcomprador;
+import static Interfaces.Subastas.jTextFieldCodigoComprador;
+import static Interfaces.Subastas.jTextFieldColor;
+import static Interfaces.Subastas.jTextFieldFerrete;
+import static Interfaces.Subastas.jTextFieldMontoTotal;
+import static Interfaces.Subastas.jTextFieldNanimal;
+import static Interfaces.Subastas.jTextFieldNombredelcomprador;
+import static Interfaces.Subastas.jTextFieldPeso;
+import static Interfaces.Subastas.jTextFieldPesoNeto;
+import static Interfaces.Subastas.jTextFieldPrecioPactado;
+import static Interfaces.Subastas.jTextFieldSexo;
+import static Interfaces.Subastas.jTextFieldTipo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,10 +33,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Tserng
  */
 public class subastas {
-    ResultSet rs2,animal,rsmachos,rssubastados,rshembras;
-    PreparedStatement cargar2,cargaranimal,guardarsubastas,machos,subastados,hembra;
+    ResultSet rs2,animal,rsmachos,rssubastados,rshembras,todos,ntodos;
+    PreparedStatement cargar2,cargaranimal,guardarsubastas,machos,subastados,hembra,estado,animales,nanimales;
     DefaultTableModel tabla;
     Integer totalmachos,totalhembra,totalporsubastar;
+    Object[] filas = new Object[7];
+    Object[] filas1 = new Object[7];
     public subastas(){
     }
     
@@ -82,7 +98,7 @@ public class subastas {
    
      
      // creamos la consulta
-     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and sexo='MACHO' ORDER BY idAnimal";
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and sexo='MACHO'";
      //pasamos la consulta al preparestatement
     machos=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -90,7 +106,7 @@ public class subastas {
      //recorremos el resulset
     rsmachos.next();
         
-               totalmachos=rsmachos.getInt(1);
+          totalmachos=rsmachos.getInt(1);
           Subastas.jTextFieldMachos.setText(totalmachos.toString());
   
    machos.close();
@@ -122,7 +138,7 @@ public class subastas {
    
      
      // creamos la consulta
-     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and sexo='HEMBRA' ORDER BY idAnimal";
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and sexo='HEMBRA'";
      //pasamos la consulta al preparestatement
     hembra=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -178,18 +194,16 @@ public class subastas {
    
      
      // creamos la consulta
-     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar'";
      //pasamos la consulta al preparestatement
     subastados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
     rssubastados=subastados.executeQuery(consulta);
      //recorremos el resulset
-    if (rssubastados.next()){
+    rssubastados.next();
     totalporsubastar= rssubastados.getInt(1);
-          Subastas.jTextFieldPorsubastar.setText(totalporsubastar.toString());
-    }else{
+   Subastas.jTextFieldPorsubastar.setText(totalporsubastar.toString());
     
-    }
    subastados.close();
    rssubastados.close();
    conect.desconectar();
@@ -200,8 +214,200 @@ public class subastas {
        // return totalmachos;
    
     }
-         
-         
+     
+       public void tablenosubastado(){
+     try{
+     DefaultTableModel tabla= (DefaultTableModel) Nosubastados.jTableNoSubastados.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+      //-----obtener la fecha----------------------
+      String  dia = Integer.toString(Nosubastados.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Nosubastados.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Nosubastados.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha                     
+      //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+      // creamos la consulta
+     consulta="SELECT idAnimal,Observacion,Sexo,Color,Precio,Peso,CodVendedor FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar'";
+     //pasamos la consulta al preparestatement
+     nanimales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     ntodos=nanimales.executeQuery(consulta);
+     //recorremos el resulset
+    while (ntodos.next()){
+        
+                    filas1[0]=ntodos.getInt("idAnimal");
+                    filas1[1]=ntodos.getString("Observacion");
+                    filas1[2]=ntodos.getString("Sexo");
+                    filas1[3]=ntodos.getString("Color");
+                    filas1[4]=ntodos.getDouble("Precio");
+                    filas1[5]=ntodos.getDouble("Peso");
+                    filas1[6]=ntodos.getInt("CodVendedor");
+                                      
+       tabla.addRow(filas1);
+    }
+      nanimales.close();
+      ntodos.close();
+      conect.desconectar();
+     }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex);
+     }
+     
+     } 
+      
+      
+      
+      
+     public void tablesubastado(){
+     try{
+     DefaultTableModel tabla= (DefaultTableModel) Subastas.jTableSubastados.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+      //-----obtener la fecha----------------------
+      String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha                     
+      //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+      // creamos la consulta
+     consulta="SELECT idAnimal,Observacion,Sexo,Color,Precio,Peso,idComprador FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Subastado'";
+     //pasamos la consulta al preparestatement
+     animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     todos=animales.executeQuery(consulta);
+     //recorremos el resulset
+    while (todos.next()){
+        
+                    filas[0]=todos.getInt("idAnimal");
+                    filas[1]=todos.getString("Observacion");
+                    filas[2]=todos.getString("Sexo");
+                    filas[3]=todos.getString("Color");
+                    filas[4]=todos.getDouble("Precio");
+                    filas[5]=todos.getDouble("Peso");
+                    filas[6]=todos.getInt("idComprador");
+                                      
+       tabla.addRow(filas);
+    }
+      animales.close();
+      todos.close();
+      conect.desconectar();
+     }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex);
+     }
+     
+     } 
+      
+     public void guardarsubasta(){
+    try {
+    String consulta,tipo,detalle;
+    Double peso,precio,valortotal;
+    Integer numeroa,codcomprador;
+  
+    conectar conect = new conectar(); 
+    conect.conexion();
+    
+    codcomprador= Integer.parseInt(Subastas.jTextFieldCodigoComprador.getText());
+    tipo= Subastas.jTextFieldTipo.getText();
+    numeroa= Integer.parseInt(Subastas.jTextFieldNanimal.getText());
+    peso= Double.parseDouble(Subastas.jTextFieldPesoNeto.getText());
+    precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
+    detalle=Subastas.jTextAreaDetalle.getText();
+    valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
+    
+    //-----obtener la fecha----------------------
+      String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+          
+      String estados="Subastado";
+     //String condicion="Contado";
+   
+      //codigo para guardar en tabla subastas.
+  guardarsubastas=conect.con.prepareStatement("INSERT INTO subastas ( Fecha, Tipo, NumeroA,CodComprador,Peso,Precio,Detalle,ValorTotal) VALUES (?,?,?,?,?,?,?,?)");
+  //este es duplicando el numero consultar a juan el uso del codigo
+  guardarsubastas.setString(1, fecha);
+  guardarsubastas.setString(2, tipo);
+  guardarsubastas.setInt(3, numeroa);
+  guardarsubastas.setInt(4, codcomprador);
+  guardarsubastas.setDouble(5, peso);
+  guardarsubastas.setDouble(6, precio);
+  guardarsubastas.setString(7, detalle);
+  guardarsubastas.setDouble(8, valortotal);
+  guardarsubastas.execute();
+ //hasta aki
+    
+ //codigo para actualizar el estado en entrada detalle a subastado   
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?  WHERE idAnimal= ? and Fecha=?";
+    //pasamos la consulta al preparestatement
+    estado =conect.con.prepareStatement(consulta);
+    estado.setString(1, estados);
+    estado.setInt(2, codcomprador);
+    estado.setDouble(3, valortotal);
+    estado.setInt(4, numeroa);
+    estado.setString(5, fecha);
+    estado.executeUpdate(); 
+ //hasta aki     
+        jTextAreaDetalle.setText("");
+        jTextFieldNanimal.setText("0");
+        jTextFieldCodigoComprador.setText("0");
+        jTextFieldTipo.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldSexo.setText("");
+        jTextFieldFerrete.setText("");
+        jTextFieldNombredelcomprador.setText("");
+        jTextFieldCeduladelcomprador.setText("");
+        jTextFieldPesoNeto.setText("");
+        jTextFieldPrecioPactado.setText("");
+        jTextFieldMontoTotal.setText("");
+        Subastas.jTextFieldPrecio.setText("");
+        jTextFieldPeso.setText("");
+        Subastas.jTextFieldNanimal.requestFocus();
+    
+    JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+    
+    
+    guardarsubastas.close();
+    estado.close();
+    conect.desconectar();
+    
+        }catch(SQLException ex){
+           
+        JOptionPane.showMessageDialog(null, "Error" + ex);
+        
+        }
+        
+     
+    
+    }    
          
      public void buscaranimal(Integer Codigo, String fecha){
      try {
@@ -244,4 +450,5 @@ public class subastas {
    }
      
      }
+     
 }
