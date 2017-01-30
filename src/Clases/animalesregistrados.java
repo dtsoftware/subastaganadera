@@ -321,13 +321,17 @@ public class animalesregistrados {
     
     }
 public void totalmachoshembras(){
-    Integer m,h,t;
+   try{
+   Integer m,h,t;
     h= Integer.parseInt(Entradas.jTextFieldTotalHembras.getText());
     
     m= Integer.parseInt(Entradas.jTextFieldTotalMachos.getText());
     t=h+m;
     
     Entradas.jTextFieldTotalAnimales.setText(t.toString());
+   }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex);
+   }    
     }
        
 public void guardareditados( Integer numero,Integer idedetalle, String tipo,String sexo,String color,String ferrete,String observacion , double peso ){

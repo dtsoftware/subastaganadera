@@ -5,10 +5,12 @@
  */
 package Clases;
 
+import Interfaces.Entradas;
 import Interfaces.Subastas;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,10 +19,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Tserng
  */
 public class subastas {
-    ResultSet rs2,animal;
-    PreparedStatement cargar2,cargaranimal,guardarsubastas;
+    ResultSet rs2,animal,rsmachos,rssubastados,rshembras;
+    PreparedStatement cargar2,cargaranimal,guardarsubastas,machos,subastados,hembra;
     DefaultTableModel tabla;
-    
+    Integer totalmachos,totalhembra,totalporsubastar;
     public subastas(){
     }
     
@@ -51,7 +53,7 @@ public class subastas {
       rs2.close();
     conect.desconectar();
            }else{
-           JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
+           JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar: El Cliente No Esta Registrado"  ); 
            conect.desconectar();
             }
     
@@ -61,7 +63,146 @@ public class subastas {
    }
     
     }
+    
+         public void machos(){
+    try {
+     String consulta; 
      
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
+    
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+   
+     
+     // creamos la consulta
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and sexo='MACHO' ORDER BY idAnimal";
+     //pasamos la consulta al preparestatement
+    machos=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsmachos=machos.executeQuery(consulta);
+     //recorremos el resulset
+    rsmachos.next();
+        
+               totalmachos=rsmachos.getInt(1);
+          Subastas.jTextFieldMachos.setText(totalmachos.toString());
+  
+   machos.close();
+   rsmachos.close();
+   conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+       // return totalmachos;
+   
+    }
+     
+      public void hembras(){
+    try {
+     String consulta; 
+     
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
+    
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+   
+     
+     // creamos la consulta
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and sexo='HEMBRA' ORDER BY idAnimal";
+     //pasamos la consulta al preparestatement
+    hembra=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rshembras=hembra.executeQuery(consulta);
+     //recorremos el resulset
+    rshembras.next();
+        
+               totalhembra=rshembras.getInt(1);
+          Subastas.jTextFieldHembras.setText(totalhembra.toString());
+  
+   hembra.close();
+   rshembras.close();
+   conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+       // return totalmachos;
+   
+    }   
+    
+      public void totalmachoshembras(){
+     
+    try{
+    Integer m,h,t;
+    h= Integer.parseInt(Subastas.jTextFieldHembras.getText());
+    
+    m= Integer.parseInt(Subastas.jTextFieldMachos.getText());
+    t=h+m;
+    
+    Subastas.jTextFieldTotaldeanimales.setText(t.toString());
+    }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" + ex);
+    }      
+   
+    }
+         
+      public void buscarporsubastar(){
+    try {
+     String consulta; 
+     
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
+    
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+   
+     
+     // creamos la consulta
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
+     //pasamos la consulta al preparestatement
+    subastados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rssubastados=subastados.executeQuery(consulta);
+     //recorremos el resulset
+    if (rssubastados.next()){
+    totalporsubastar= rssubastados.getInt(1);
+          Subastas.jTextFieldPorsubastar.setText(totalporsubastar.toString());
+    }else{
+    
+    }
+   subastados.close();
+   rssubastados.close();
+   conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+       // return totalmachos;
+   
+    }
+         
+         
+         
      public void buscaranimal(Integer Codigo, String fecha){
      try {
      String consulta;  
@@ -70,14 +211,14 @@ public class subastas {
     
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo, Color, Sexo,Ferrete,Peso FROM entrada_detalle where idAnimal ='"+ Codigo +"' and Fecha ='"+ fecha +"'   ";
+     consulta="SELECT idAnimal,Tipo, Color, Sexo,Ferrete,Peso FROM entrada_detalle where idAnimal ='"+ Codigo +"' and Fecha ='"+ fecha +"' and Estado='Por Subastar'  ";
      //pasamos la consulta al preparestatement
     
      cargaranimal=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
     
      animal=cargaranimal.executeQuery(consulta);
-           if (animal.next()){
+           if (animal.next()==true){
             Subastas.jTextFieldNanimal.setText(String.valueOf(animal.getInt("idAnimal")) );                
             Subastas.jTextFieldTipo.setText(animal.getString("Tipo"));
             Subastas.jTextFieldColor.setText(animal.getString("Color"));
@@ -90,10 +231,10 @@ public class subastas {
           
             //imagen pendiente 
        
-      animal.close();
+    animal.close();
     conect.desconectar();
            }else{
-           JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
+           JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar: El Animal Ha Sido Subastado O no se a Realizado Su Registro De Entada"  ); 
            conect.desconectar();
             }
     
