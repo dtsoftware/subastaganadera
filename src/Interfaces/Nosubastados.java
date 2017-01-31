@@ -55,7 +55,7 @@ public class Nosubastados extends javax.swing.JFrame {
 
             },
             new String [] {
-                "# llegada", "Descripcion", "Sexo", "Color", "Precio Unit.", "Peso", "Cod. Vendedor"
+                "# De Animal", "Descripcion", "Sexo", "Color", "Precio Unit.", "Peso", "Cod. Vendedor"
             }
         ));
         jScrollPane1.setViewportView(jTableNoSubastados);

@@ -604,6 +604,7 @@ public class Subastas extends javax.swing.JFrame {
         jPanel2.add(jSeparator2);
         jSeparator2.setBounds(20, 258, 850, 10);
 
+        jButtonLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonLimpiar.setText("LIMPIAR");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -669,6 +670,12 @@ this.dispose();      // TODO add your handling code here:
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         try{
+            
+           if ((jTextFieldNanimal.getText().trim().length()==0) || (jTextFieldCodigoComprador.getText().trim().length()==0)|| (jTextFieldTipo.getText().trim().length()==0) || (jTextFieldColor.getText().trim().length()==0)
+                 || (jTextFieldSexo.getText().trim().length()==0) || (jTextFieldFerrete.getText().trim().length()==0) || (jTextFieldNombredelcomprador.getText().trim().length()==0)|| (jTextFieldCeduladelcomprador.getText().trim().length()==0)
+                   || (jTextFieldPesoNeto.getText().trim().length()==0)|| (jTextFieldPrecioPactado.getText().trim().length()==0)|| (jTextFieldMontoTotal.getText().trim().length()==0)){
+            JOptionPane.showMessageDialog(null,"Para Poder realizar Esta Operacion Debe Completar La Informacion En Las Cajas De Textos");
+           }else{
            subastas suba = new subastas();
            suba.guardarsubasta();
            suba.machos();
@@ -676,6 +683,7 @@ this.dispose();      // TODO add your handling code here:
            suba.totalmachoshembras();
            suba.buscarporsubastar();
            suba.tablesubastado();
+            }
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
