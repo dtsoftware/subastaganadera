@@ -5,6 +5,7 @@
  */
 package Clases;
 import Interfaces.Entradas;
+import Interfaces.Facturacion;
 import Interfaces.ModificarEntradas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,12 +19,14 @@ import java.util.Date;
  * @author Tserng
  */
 public class animalesregistrados {
-    ResultSet rsmachos,rshembras,todos,rsentradas;
-    PreparedStatement machos,hembras,animales,editar,numeroentrada;
+    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, ActualizarE;
+    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, InsertFact, ActEdetalle, Completados, ActEntrada;
     Integer totalmachos,totalhembras, ultimaentrada;;
+    
     //DefaultTableModel tabla;
     Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
+    Object[] filas2 = new Object[9];
     public  animalesregistrados(){
     
     }
@@ -239,6 +242,156 @@ public class animalesregistrados {
     return ultimaentrada;
     }
     
+    
+    public void cargaracomprados(){
+    
+    try {
+            DefaultTableModel tabla= (DefaultTableModel) Facturacion.jTableAnimalesVendidos.getModel();   
+            String consulta;    
+            conectar conect = new conectar(); 
+            conect.conexion();
+
+            String  dia = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+            String fecha = (year + "-" + mes+ "-" + dia);
+            String Estado = "Subastado";
+
+            try {
+                if (tabla != null) {
+                    while (tabla.getRowCount() > 0) {
+                        tabla.removeRow(0);
+                    }
+                }
+           
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,"Error" +ex);
+                }
+//
+            consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' ";
+
+            comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            buy=comprados.executeQuery(consulta);
+   
+            while (buy.next()){
+                    filas2[1]=buy.getString("idAnimal");
+                    filas2[2]=buy.getString("Observacion");
+                    filas2[3]=buy.getString("Sexo");
+                    filas2[4]=buy.getString("Color");
+                    filas2[5]=buy.getString("idComprador");
+                    filas2[6]=buy.getDouble("Precio");
+                    filas2[7]=buy.getDouble("Peso");
+                    filas2[8]=buy.getString("CodVendedor"); 
+                    tabla.addRow(filas2);
+            }
+            buy.close();
+            comprados.close();
+            conect.desconectar();
+           
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null,"No Hay Animales Comprados o Subastados el dia de hoy");
+        }
+     
+    }
+   
+    
+    public void cargartodasfacturas(){
+    
+    try {
+            DefaultTableModel tabla= (DefaultTableModel) Facturacion.jTableAnimalesVendidos.getModel();   
+            String consulta, CActualizar, Consulta2, EActualizar;    
+            conectar conect = new conectar(); 
+            conect.conexion();
+
+            String  dia = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+            String fecha = (year + "-" + mes+ "-" + dia);
+
+            String Estado = "Subastado";
+            Integer Codigo= Integer.parseInt(Facturacion.idcomprador.getText());
+            Integer CODFact= Integer.parseInt(Facturacion.NumFactura.getText());
+            
+            
+            for (int i = 0; i < Facturacion.jTableAnimalesVendidos.getRowCount(); i++) {
+            Integer Animal =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 1)));
+            Integer Comprador =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 5)));            
+            
+            if (Facturacion.seleccion.isSelected()== true){ 
+                  if (Comprador == Codigo)
+                  {     
+                      JOptionPane.showMessageDialog(null,"Codigo Igual");
+                   // boolean a = boolean.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 0));
+                        if( Facturacion.jTableAnimalesVendidos.getValueAt(i, 0)!=null){                       
+                        }else{
+                            continue;
+                        }
+                  } else{
+                         continue; 
+                          }
+                }
+            
+                consulta="SELECT idAnimal,Precio, Peso FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And idAnimal = '"+Animal+"' ";
+           
+                comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                cargall=comprados.executeQuery(consulta);
+
+                Double comision, TotalReal, TotalBruto;
+
+                while (cargall.next()){
+                    
+                    InsertFact=conect.con.prepareStatement("INSERT INTO facturas_detalle ( idFactura, idAnimal) VALUES (?,?)");
+                    InsertFact.setInt(1,CODFact);
+                    InsertFact.setInt(2,cargall.getInt("idAnimal")); 
+                    InsertFact.execute();       
+                    TotalBruto = (cargall.getDouble("Precio")*cargall.getDouble("Peso"));
+                    comision = (TotalBruto* 0.03);
+                    TotalReal = (TotalBruto - comision);
+                    
+                    CActualizar="UPDATE entrada_detalle SET Estado =?,TotalBruto=?,Comision=?,TotalReal=? WHERE idComprador= '"+Codigo+"' And Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idAnimal = ?";
+                    //pasamos la consulta al preparestatement
+                    ActEdetalle=conect.con.prepareStatement(CActualizar);
+                    ActEdetalle.setString(1, "Completado");
+                    ActEdetalle.setDouble(2, TotalBruto);
+                    ActEdetalle.setDouble(3, comision);
+                    ActEdetalle.setDouble(4, TotalReal);
+                    ActEdetalle.setInt(5, cargall.getInt("idAnimal"));
+                    ActEdetalle.executeUpdate();  
+
+                }
+            }
+            
+            Consulta2="SELECT SUM(TotalReal) AS Total FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+"Completado"+"' And idComprador = '"+Codigo+"'";
+           
+                Completados=conect.con.prepareStatement(Consulta2,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                ActualizarE=Completados.executeQuery(Consulta2);
+
+
+                while (ActualizarE.next()){
+                    
+                    
+                    EActualizar="UPDATE entradas SET Estado =?,Total=? WHERE CodCliente= '"+Codigo+"' And Fecha = '"+fecha+"'";
+                    //pasamos la consulta al preparestatement
+                    ActEntrada=conect.con.prepareStatement(EActualizar);
+                    ActEntrada.setString(1, "Completado");
+                    ActEntrada.setDouble(2, ActualizarE.getDouble("Total"));
+                    ActEntrada.executeUpdate();  
+
+                }
+            
+            
+            
+            
+            cargall.close();
+            comprados.close();
+            conect.desconectar();
+            InsertFact.close();
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null,"Error Al Registrar Detalle de Factura");
+        }
+     
+    }
     
     public void machos(){
     try {

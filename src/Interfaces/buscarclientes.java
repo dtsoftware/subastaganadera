@@ -9,6 +9,7 @@ import javax.swing.*;
 import Clases.CrearClientes;
 import javax.swing.table.DefaultTableModel;
 import Clases.Entradasubasta;
+import Clases.FacturasCompras;
 import Clases.ReciboAbonos;
 import Clases.subastas;
 /**
@@ -169,7 +170,7 @@ public class buscarclientes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -244,7 +245,7 @@ public class buscarclientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarKeyReleased
 
     private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
-                //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
+                 //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
         int filaseleccionada; 
         if (Validar=="1"){  // LLAMADO DESDE VENTANA CLIENTES
         try{
@@ -294,6 +295,27 @@ public class buscarclientes extends javax.swing.JFrame {
               ReciboAbonos buscar = new  ReciboAbonos();
              Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
               buscar.buscarcliente(Codigo);
+              ReciboAbonos Factura = new ReciboAbonos();
+                Factura.cargarfacturas();
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }        
+        }
+        
+        if (Validar=="4"){   // LLAMADO DESDE VENTANA FACTURACION DE COMPRAS
+             try{
+           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+              FacturasCompras buscar = new  FacturasCompras();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              buscar.buscarcliente(Codigo);
               this.dispose();
             }
 
@@ -303,26 +325,6 @@ public class buscarclientes extends javax.swing.JFrame {
         }        
         }
   
-         if (Validar=="4"){   // LLAMADO DESDE VENTANA SUBASTAS
-             try{
-           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
-            if (filaseleccionada==-1){
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
-            }else{
-            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
-              subastas suba = new  subastas();
-             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
-              suba.buscarcliente(Codigo);
-              this.dispose();
-            }
-
-        }catch (Exception ex){
-
-            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
-        }        
-        }
-        
-        
     }//GEN-LAST:event_SeleccionarActionPerformed
 
     /**
