@@ -39,7 +39,6 @@ public class Cheques extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Detalle = new javax.swing.JScrollPane();
         Detalle01 = new javax.swing.JTextArea();
-        Fecha = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -107,13 +106,10 @@ public class Cheques extends javax.swing.JFrame {
 
         Detalle01.setColumns(20);
         Detalle01.setRows(5);
-        Detalle01.setText("nvbvbvb\n");
         Detalle.setViewportView(Detalle01);
 
         jPanel5.add(Detalle);
         Detalle.setBounds(130, 290, 610, 62);
-        jPanel5.add(Fecha);
-        Fecha.setBounds(640, 90, 102, 20);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Observaciones");
@@ -180,7 +176,7 @@ public class Cheques extends javax.swing.JFrame {
         jPanel5.add(txtmonto);
         txtmonto.setBounds(610, 150, 131, 30);
         jPanel5.add(Numero);
-        Numero.setBounds(640, 50, 102, 20);
+        Numero.setBounds(640, 40, 102, 30);
         jPanel5.add(montoletras);
         montoletras.setBounds(110, 220, 470, 19);
         jPanel5.add(Beneficiario);
@@ -317,9 +313,8 @@ public class Cheques extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel Beneficiario;
-    private javax.swing.JScrollPane Detalle;
+    public static javax.swing.JScrollPane Detalle;
     public static javax.swing.JTextArea Detalle01;
-    private javax.swing.JTextField Fecha;
     public static javax.swing.JTextField Numero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

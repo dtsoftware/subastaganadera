@@ -321,8 +321,6 @@ public class animalesregistrados {
             if (Facturacion.seleccion.isSelected()== true){ 
                   if (Comprador == Codigo)
                   {     
-                      JOptionPane.showMessageDialog(null,"Codigo Igual");
-                   // boolean a = boolean.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 0));
                         if( Facturacion.jTableAnimalesVendidos.getValueAt(i, 0)!=null){                       
                         }else{
                             continue;
