@@ -85,7 +85,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "# De llegada", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor", "Observaciones", "ID_DETALLE"
+                "# De Animal", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor", "Observaciones", "ID_DETALLE"
             }
         ));
         jTableModificarEntradas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -447,6 +447,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
 
     private void jLabel10AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel10AncestorAdded
         // TODO add your handling code here:
+       // ModificarEntradas.jTableModificarEntradas.getValueAt(1,1).equals(true);
     }//GEN-LAST:event_jLabel10AncestorAdded
 
     private void jTableModificarEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableModificarEntradasMouseClicked

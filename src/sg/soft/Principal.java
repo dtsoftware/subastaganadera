@@ -13,7 +13,7 @@ import Interfaces.FacturarC;
 import Interfaces.FacturarV;
 import Interfaces.Recibos;
 import Interfaces.Subastas;
-import Interfaces.Traspasos;
+import Interfaces.Traspaso;
 import Interfaces.Usuarios;
 import java.io.BufferedReader;
 import java.io.File;
@@ -452,7 +452,7 @@ void GenerarBackupMySQL(){
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-Traspasos cambio = new Traspasos ();
+Traspaso cambio = new Traspaso ();
 cambio.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
