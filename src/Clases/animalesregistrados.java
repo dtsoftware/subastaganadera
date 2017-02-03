@@ -267,9 +267,14 @@ public class animalesregistrados {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,"Error" +ex);
                 }
-//
-            consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' ";
-
+            if (Facturacion.Orden == "1"){
+                consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY idAnimal";
+            }else if (Facturacion.Orden == "2"){
+                consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY CodVendedor";
+            }else{
+                consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY idComprador";
+            }
+            
             comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             buy=comprados.executeQuery(consulta);
@@ -335,17 +340,21 @@ public class animalesregistrados {
                 comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
                 cargall=comprados.executeQuery(consulta);
 
-                Double comision, TotalReal, TotalBruto;
+                Double comision, TotalReal, TotalBruto, Valor;
 
                 while (cargall.next()){
                     
                     InsertFact=conect.con.prepareStatement("INSERT INTO facturas_detalle ( idFactura, idAnimal) VALUES (?,?)");
                     InsertFact.setInt(1,CODFact);
                     InsertFact.setInt(2,cargall.getInt("idAnimal")); 
-                    InsertFact.execute();       
-                    TotalBruto = (cargall.getDouble("Precio")*cargall.getDouble("Peso"));
-                    comision = (TotalBruto* 0.03);
-                    TotalReal = (TotalBruto - comision);
+                    InsertFact.execute();
+                    int decimales;
+                    decimales = 2;
+                    redondear redon  = new redondear();
+                    
+                    TotalBruto = redon.redondearDecimales((cargall.getDouble("Precio")*cargall.getDouble("Peso")), decimales);                   
+                    comision = redon.redondearDecimales((TotalBruto* 0.03), decimales);
+                    TotalReal = redon.redondearDecimales((TotalBruto - comision), decimales);
                     
                     CActualizar="UPDATE entrada_detalle SET Estado =?,TotalBruto=?,Comision=?,TotalReal=? WHERE idComprador= '"+Codigo+"' And Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idAnimal = ?";
                     //pasamos la consulta al preparestatement

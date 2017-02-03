@@ -17,16 +17,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class Facturacion extends javax.swing.JFrame {
-
+  public static String Orden;
     /**
      * Creates new form Facturacion
      */
     public Facturacion() {
            initComponents();
+          
         DefaultTableModel tabla1= (DefaultTableModel) this.jTableAnimalesVendidos.getModel();
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
+       
     }
 
     /**
@@ -507,6 +509,11 @@ public class Facturacion extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableAnimalesVendidos);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "# Llegada", "Cod Vendedor", "Cod Comprador" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
@@ -731,12 +738,29 @@ public class Facturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_seleccionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+      
+        Facturacion.Orden = "1";
+        
         animalesregistrados Acomprados = new animalesregistrados();
         Acomprados.cargaracomprados();
         
         FacturasCompras UFact = new FacturasCompras ();
         UFact.BuscarUltFact();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+ 
+        if(String.valueOf(this.jComboBox1.getSelectedItem())=="Cod Vendedor"){
+           Facturacion.Orden = "2";   
+        }else if(String.valueOf(this.jComboBox1.getSelectedItem())=="Cod Comprador"){
+            Facturacion.Orden = "3";   
+        }else{
+            Facturacion.Orden = "1";   
+        }
+        animalesregistrados Acomprados = new animalesregistrados();
+        Acomprados.cargaracomprados(); 
+        
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
