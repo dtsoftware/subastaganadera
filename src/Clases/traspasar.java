@@ -19,10 +19,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class traspasar {
     ResultSet todos,rs2,rs;
-    PreparedStatement animales,cargar2,cargar;
+    PreparedStatement animales,cargar2,cargar,entradas,detentradas;
      //DefaultTableModel tabla;
    
-    Object[] filas1 = new Object[7]; 
+    Object[] filas1 = new Object[8]; 
     
     public traspasar(){}
     
@@ -50,6 +50,7 @@ public class traspasar {
                             rs.close();
                             cargar.close();
                             conect.desconectar();
+                            Traspaso.jTextFieldCodigonuevodueno.setEnabled(false);
                           }
            else{
            JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
@@ -129,7 +130,7 @@ public class traspasar {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor FROM entrada_detalle  where CodVendedor LIKE '"+ codigo +"%' and Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor,idEntrada FROM entrada_detalle  where CodVendedor LIKE '"+ codigo +"%' and Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -144,7 +145,7 @@ public class traspasar {
                     filas1[4]=todos.getDouble("Peso");
                     filas1[5]=todos.getString("Ferrete");
                     filas1[6]=todos.getInt("CodVendedor");
-                    
+                    filas1[7]=todos.getInt("idEntrada");
        tabla.addRow(filas1);
     }
     todos.close();
@@ -154,6 +155,43 @@ public class traspasar {
    }catch (Exception ex){
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }
+    
+    }
+    
+    public void guardartraspaso(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
+    try{
+    String consulta,consulta2;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
+    /*
+     public void guardartraspaso(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
+     // para traspaso en entradas
+     consulta="UPDATE entradas SET CodCliente =? WHERE Fecha =? and idEntradas=?";
+    //pasamos la consulta al preparestatement
+    entradas=conect.con.prepareStatement(consulta);
+    entradas.setInt(1, nuevocodigo);
+    entradas.setString(2, fecha);
+    entradas.setInt(3, identrada);    
+    entradas.executeUpdate(); 
+    entradas.close(); 
+    */
+    consulta2="UPDATE entrada_detalle SET traspasado='si', CodVendedor =? WHERE Fecha =? and idAnimal=?";
+    //pasamos la consulta al preparestatement
+    detentradas=conect.con.prepareStatement(consulta2);
+    detentradas.setInt(1, nuevocodigo);
+    detentradas.setString(2, fecha);
+    detentradas.setInt(3, idanimal);    
+    detentradas.executeUpdate(); 
+    detentradas.close(); 
+    
+    conect.desconectar(); 
+    JOptionPane.showMessageDialog(null, "Registro De Traspaso Realizado Satisfactoriamente");
+    
+    
+    }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex);    
+    }
+        
     
     }
     
@@ -186,7 +224,7 @@ public class traspasar {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor, idEntrada FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -201,7 +239,7 @@ public class traspasar {
                     filas1[4]=todos.getDouble("Peso");
                     filas1[5]=todos.getString("Ferrete");
                     filas1[6]=todos.getInt("CodVendedor");
-                    
+                    filas1[7]=todos.getInt("idEntrada");
        tabla.addRow(filas1);
     }
     todos.close();
