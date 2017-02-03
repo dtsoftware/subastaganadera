@@ -7,6 +7,7 @@ package Interfaces;
 
 import Clases.Numero_a_Letra;
 import Clases.ReciboAbonos;
+import Clases.redondear;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -66,6 +67,7 @@ public class Recibos extends javax.swing.JFrame {
         AFactura = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         Fact = new javax.swing.JLabel();
+        Fact2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -281,6 +283,8 @@ public class Recibos extends javax.swing.JFrame {
 
         Fact.setText("0");
 
+        Fact2.setText("-------");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -294,7 +298,9 @@ public class Recibos extends javax.swing.JFrame {
                         .addComponent(jRadioButton2))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Fact2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -305,7 +311,9 @@ public class Recibos extends javax.swing.JFrame {
                     .addComponent(AFactura)
                     .addComponent(jRadioButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Fact))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Fact)
+                    .addComponent(Fact2)))
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -552,8 +560,12 @@ public class Recibos extends javax.swing.JFrame {
             Numero_a_Letra NumLetra = new Numero_a_Letra();
             String numero = txtCantidad.getText();
             Recibos.Suma.setText(NumLetra.Convertir(numero,true));
+            
+            
             this.saldo.setText(Double.toString(Double.parseDouble(this.saldo.getText()) - (Double.parseDouble(txtCantidad.getText()))));
-
+            redondear redon  = new redondear();
+            Double Monto = redon.redondearDecimales(Double.parseDouble(this.saldo.getText()), 2);
+            this.saldo.setText(""+Monto);
         }
 
         if (cTeclaPresionada==KeyEvent.VK_BACK_SPACE){
@@ -599,7 +611,9 @@ public class Recibos extends javax.swing.JFrame {
                 }else{
                     DefaultTableModel modelotabla=(DefaultTableModel) this.jTableFacturas.getModel();
                     String Facturax =String.valueOf(modelotabla.getValueAt(filaseleccionada, 0));
+                    String Facturay =String.valueOf(modelotabla.getValueAt(filaseleccionada, 4));
                     Recibos.Fact.setText(Facturax);
+                    Recibos.Fact2.setText(Facturay);
                     String Saldo =String.valueOf(modelotabla.getValueAt(filaseleccionada, 3));
                     Recibos.saldo.setText(Saldo);
                     Recibos.detalle.setText("PAGO PARA CANCELAR FACTURA N°:"+Facturax);
@@ -660,6 +674,7 @@ public class Recibos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JRadioButton AFactura;
     public static javax.swing.JLabel Fact;
+    public static javax.swing.JLabel Fact2;
     private javax.swing.JButton Guardar;
     public static javax.swing.JTextField Suma;
     public static javax.swing.JComboBox<String> banco;

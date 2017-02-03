@@ -46,8 +46,8 @@ public class FacturasCompras {
      
      // creamos la consulta
      consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where idClientes ='"+ Codigo +"'";
-     consulta1="SELECT COUNT(Sexo) As 'MACHOS' FROM entrada_detalle Where Sexo = '"+'M'+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And Fecha = '"+fecha+"'";
-     consulta2="SELECT COUNT(Sexo) As 'HEMBRAS' FROM entrada_detalle Where Sexo = '"+'H'+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And Fecha = '"+fecha+"'";
+     consulta1="SELECT COUNT(Sexo) As 'MACHOS' FROM entrada_detalle Where Sexo = '"+"MACHO"+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And Fecha = '"+fecha+"'";
+     consulta2="SELECT COUNT(Sexo) As 'HEMBRAS' FROM entrada_detalle Where Sexo = '"+"HEMBRA"+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And Fecha = '"+fecha+"'";
      
      //pasamos la consulta al preparestatement
     
@@ -85,17 +85,22 @@ public class FacturasCompras {
                     consulta3="SELECT Precio, Peso FROM entrada_detalle Where Estado = '"+Estado+"' And idComprador = '"+ID+"' And Fecha ='"+fecha+"'";
                     cargar5=conect.con.prepareStatement(consulta3,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
                     rs4=cargar5.executeQuery(consulta3);
-                Double MTotal;
+                Double MTotal, NuevoValor;
                 MTotal = (0.00);
-                if (rs4.next()){
+                 redondear redon  = new redondear();
+                while (rs4.next()){
+                // if (rs4.next()){
                      
-                    MTotal = MTotal + (rs4.getDouble("Precio")*rs4.getDouble("Peso"));
+                    NuevoValor = redon.redondearDecimales((rs4.getDouble("Precio")*rs4.getDouble("Peso")), 2);
                     
-                }else{
-                    JOptionPane.showMessageDialog(null,"No Hay Facturas Por Completar Para Este Cliente"  );
-                    conect.desconectar();
+                    MTotal = redon.redondearDecimales(MTotal + NuevoValor, 2);
+               // }else{
+                  //  JOptionPane.showMessageDialog(null,"No Hay Facturas Por Completar Para Este Cliente"  );
+                //    conect.desconectar();
+                //}
                 }
                     Facturacion.txtmonto.setText(""+MTotal); 
+
                     int H= Integer.parseInt(rs3.getString("HEMBRAS"));
                     int M= Integer.parseInt(rs2.getString("MACHOS"));
                     int Final= (H+M);
@@ -175,7 +180,8 @@ public void guardarfactura(){
                
     int codigo= Integer.parseInt(Facturacion.NumFactura.getText());
     int codigocliente= Integer.parseInt(Facturacion.idcomprador.getText());
-    Double Monto =Double.parseDouble(Facturacion.txtmonto.getText());   
+    redondear redon  = new redondear();
+    Double Monto = redon.redondearDecimales(Double.parseDouble(Facturacion.txtmonto.getText()), 2);
     String Tipo = String.valueOf(Facturacion.tipo.getSelectedItem());
     String Estado = "POR PAGAR";    
 

@@ -32,5 +32,5 @@ public class redondear {
         
         return resultado;
     }
-    
+
 }
