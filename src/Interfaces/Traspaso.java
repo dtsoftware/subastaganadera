@@ -511,6 +511,15 @@ public static String fecha;
             traspasar tra = new traspasar();
         tra.guardartraspaso(identrada, fecha, idanimal, codigonuevo);
         tra.buscarparatraspaso();
+            jTextFieldDueno.setText("");
+            jTextFieldNombredueno.setText("");
+            jTextFieldApellidodueno.setText("");
+            jTextFieldCeduladueno.setText("");
+            jTextFieldNombrenuevodueno.setText("");
+            jTextFieldApellidonuevodueno.setText("");
+            jTextFieldCedulanuevodueno.setText("");
+            jTextFieldCodigonuevodueno.setText("");
+            jTextFieldCodigonuevodueno.setEnabled(true);
         }catch(Exception ex){        
          JOptionPane.showMessageDialog(null,"Error" +ex);
         }
