@@ -9,6 +9,7 @@ import Clases.Numero_a_Letra;
 import Clases.ReciboAbonos;
 import Clases.redondear;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,11 +18,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class Recibos extends javax.swing.JFrame {
+    public static Integer Aux;
     /**
      * Creates new form Recibos
      */
     public Recibos() {
         initComponents();
+        Recibos.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        Recibos.jDateChooserFecha.setDate(date); 
+        Aux = 1;
     }
 
     /**
@@ -65,7 +71,7 @@ public class Recibos extends javax.swing.JFrame {
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         AFactura = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        asaldo = new javax.swing.JRadioButton();
         Fact = new javax.swing.JLabel();
         Fact2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -255,7 +261,7 @@ public class Recibos extends javax.swing.JFrame {
         });
 
         saldo.setEditable(false);
-        saldo.setText("0.00");
+        saldo.setText("0.0");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tipo de Abono"));
@@ -271,13 +277,13 @@ public class Recibos extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 0, 0));
-        jRadioButton2.setText("A Saldo");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        asaldo.setBackground(new java.awt.Color(255, 255, 255));
+        asaldo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        asaldo.setForeground(new java.awt.Color(255, 0, 0));
+        asaldo.setText("A Saldo");
+        asaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                asaldoActionPerformed(evt);
             }
         });
 
@@ -295,7 +301,7 @@ public class Recibos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(AFactura)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2))
+                        .addComponent(asaldo))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,7 +315,7 @@ public class Recibos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AFactura)
-                    .addComponent(jRadioButton2))
+                    .addComponent(asaldo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Fact)
@@ -520,7 +526,7 @@ public class Recibos extends javax.swing.JFrame {
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
 
-        if ((this.recibo.getText().trim().length()==0) || (this.txtCantidad.getText().trim().length()==0) || (this.cliente.getText().trim().length()==0)|| (this.Suma.getText().trim().length()==0)  ) {
+        if ((Recibos.recibo.getText().trim().length()==0) || (this.txtCantidad.getText().trim().length()==0) || (this.cliente.getText().trim().length()==0)|| (this.Suma.getText().trim().length()==0) ) {
             JOptionPane.showMessageDialog(null, "Falta Rellenar Campos Claves Para Completar El Registro");
         }else{
             ReciboAbonos Factura = new ReciboAbonos();
@@ -537,6 +543,9 @@ public class Recibos extends javax.swing.JFrame {
             buscarclientes list = new buscarclientes();
             list.setVisible(true);
             buscarclientes.Validar="3";
+            Recibos.Fact.setText("0");
+        Recibos.Fact2.setText("----");
+        Recibos.saldo.setText("0.0");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
@@ -546,12 +555,15 @@ public class Recibos extends javax.swing.JFrame {
     private void clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteActionPerformed
         // TODO add your handling code here:
         Integer cod;
-        cod= Integer.parseInt(this.cliente.getText());
+        cod= Integer.parseInt(Recibos.cliente.getText());
         evt.setSource((char) KeyEvent.VK_ENTER);
         ReciboAbonos busca = new ReciboAbonos();
         busca.buscarcliente(cod);
         ReciboAbonos Factura = new ReciboAbonos();
         Factura.cargarfacturas();
+        Recibos.Fact.setText("0");
+        Recibos.Fact2.setText("----");
+        Recibos.saldo.setText("0.0");
     }//GEN-LAST:event_clienteActionPerformed
 
     private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
@@ -562,10 +574,10 @@ public class Recibos extends javax.swing.JFrame {
             Recibos.Suma.setText(NumLetra.Convertir(numero,true));
             
             
-            this.saldo.setText(Double.toString(Double.parseDouble(this.saldo.getText()) - (Double.parseDouble(txtCantidad.getText()))));
+            Recibos.saldo.setText(Double.toString(Double.parseDouble(this.saldo.getText()) - (Double.parseDouble(txtCantidad.getText()))));
             redondear redon  = new redondear();
-            Double Monto = redon.redondearDecimales(Double.parseDouble(this.saldo.getText()), 2);
-            this.saldo.setText(""+Monto);
+            Double Monto = redon.redondearDecimales(Double.parseDouble(Recibos.saldo.getText()), 2);
+            Recibos.saldo.setText(""+Monto);
         }
 
         if (cTeclaPresionada==KeyEvent.VK_BACK_SPACE){
@@ -593,12 +605,35 @@ public class Recibos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantidadKeyPressed
 
     private void AFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AFacturaActionPerformed
-        // TODO add your handling code here:
+        if (Aux==1){
+            Recibos.AFactura.setSelected(true);
+            Recibos.asaldo.setSelected(false);
+        }else{
+            Recibos.asaldo.setSelected(false);
+            Recibos.saldo.setText("0.0");
+        }
+        Aux = 1;
     }//GEN-LAST:event_AFacturaActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void asaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asaldoActionPerformed
+        
+        if (Aux==2){
+            Recibos.asaldo.setSelected(true);
+            Recibos.AFactura.setSelected(false);
+        }else{
+            Recibos.AFactura.setSelected(false);
+            Double STotal=0.00; 
+                for (int i = 0; i < Recibos.jTableFacturas.getRowCount(); i++) {   
+                    String saldodebe =String.valueOf(Recibos.jTableFacturas.getValueAt(i, 3));
+                    STotal = (STotal + (Double.parseDouble(String.valueOf(saldodebe))));
+                }
+                Recibos.Fact.setText("0");
+                Recibos.Fact2.setText("----");
+                Recibos.saldo.setText(""+STotal);
+            }
+        Aux = 2;   
+       
+    }//GEN-LAST:event_asaldoActionPerformed
 
     private void jTableFacturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFacturasMouseClicked
         //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
@@ -677,6 +712,7 @@ public class Recibos extends javax.swing.JFrame {
     public static javax.swing.JLabel Fact2;
     private javax.swing.JButton Guardar;
     public static javax.swing.JTextField Suma;
+    public static javax.swing.JRadioButton asaldo;
     public static javax.swing.JComboBox<String> banco;
     public static javax.swing.JTextField cliente;
     private javax.swing.JButton clientes;
@@ -706,7 +742,6 @@ public class Recibos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTableFacturas;
     private javax.swing.JTextField jTextField6;

@@ -21,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, todos;
-    PreparedStatement cargar2, cargar3, guardarrecibo, facturas;
+      ResultSet rs2, todos, todos2;
+    PreparedStatement cargar2, cargar3, guardarrecibo, facturas, facturas2;
     DefaultTableModel tabla; 
 
 
@@ -117,6 +117,8 @@ public void guardarrecibo(){
             DefaultTableModel tabla = (DefaultTableModel) Recibos.jTableFacturas.getModel();
             conectar conect = new conectar(); 
             conect.conexion();
+            String consulta1, consulta2;
+                    Double STotal, GValor, SaldoI;
     
             //-----obtener la fecha----------------------
             String  dia = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -132,11 +134,26 @@ public void guardarrecibo(){
             String Tipo = String.valueOf(Recibos.tipo.getSelectedItem());
             String Concepto = Recibos.detalle.getText();    
             String Banco =String.valueOf(Recibos.banco.getSelectedItem());
+            if (Recibos.AFactura.isSelected()){
+                
             
-            if(!"0.0".equals(Recibos.saldo.getText()) && "CONTADO".equals(Recibos.Fact2.getText())){
-                JOptionPane.showMessageDialog(null, "LA FACTURA ES AL CONTADO, DEBE CANCELAR SU TOTALIDAD");
-            }else
-            {
+                if(!"0.0".equals(Recibos.saldo.getText()) && "CONTADO".equals(Recibos.Fact2.getText())){
+                    JOptionPane.showMessageDialog(null, "LA FACTURA ES AL CONTADO, DEBE CANCELAR SU TOTALIDAD");
+                     int filaseleccionada;
+                    Recibos.txtCantidad.setText("");
+                    filaseleccionada= Recibos.jTableFacturas.getSelectedRow();
+                    if (filaseleccionada==-1){
+                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+                    }else{
+                        DefaultTableModel modelotabla=(DefaultTableModel) Recibos.jTableFacturas.getModel();
+                        String RIS =String.valueOf(modelotabla.getValueAt(filaseleccionada, 3));
+                        Recibos.saldo.setText(RIS);
+                    }
+                    
+                    
+                    
+                }else
+                {
                     guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, Monto, CodCliente, Detalle, Fecha, Tipo, Banco) VALUES (?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,codigo);
@@ -149,8 +166,7 @@ public void guardarrecibo(){
                     guardarrecibo.execute(); 
                     
                     ActualizarSaldo();  
-                    //-------------------hasta aki guardo en detallesventa-------------//
-                    //--------limpiar tabla------
+
                     try {
                             if (tabla != null) {
                                 while (tabla.getRowCount() > 0) {
@@ -161,21 +177,102 @@ public void guardarrecibo(){
                         } catch (Exception ex) {
                             JOptionPane.showMessageDialog(null,"Error" +ex);
                         }
-            //-----hasta aki limpiar tabla-----
                     
-            Recibos.recibo.setText("");
-            Recibos.cliente.setText("");
-            Recibos.txtCantidad.setText("");
-            Recibos.detalle.setText("");
-            Recibos.saldo.setText("");
-            Recibos.txtBeneficiario.setText("");
-            Recibos.Suma.setText("");
+                Recibos.recibo.setText("");
+                Recibos.cliente.setText("");
+                Recibos.txtCantidad.setText("");
+                Recibos.detalle.setText("");
+                Recibos.saldo.setText("");
+                Recibos.txtBeneficiario.setText("");
+                Recibos.Suma.setText("");
 
-            JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+                JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
     
-            guardarrecibo.close();
-            conect.desconectar();    
+                guardarrecibo.close();
+                conect.desconectar();    
                     
+                }
+            }else{
+                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, Monto, CodCliente, Detalle, Fecha, Tipo, Banco) VALUES (?,?,?,?,?,?,?)");
+                    //este es duplicando el numero consultar a juan el uso del codigo
+                    guardarrecibo.setInt(1,codigo);
+                    guardarrecibo.setDouble(2, Monto);
+                    guardarrecibo.setInt(3, codigocliente);
+                    guardarrecibo.setString(4, Concepto);
+                    guardarrecibo.setString(5, fecha);
+                    guardarrecibo.setString(6, Tipo);
+                    guardarrecibo.setString(7, Banco);
+                    guardarrecibo.execute(); 
+                 
+                    String Est1 = "POR PAGAR";
+                    
+                    SaldoI = Double.parseDouble(Recibos.txtCantidad.getText());
+                    STotal = 0.00;
+                    
+                    consulta1="SELECT idFacturas, Fecha, Monto, Saldo, Tipo, Estado FROM facturas  where (CodCliente ='"+ codigocliente +"') and (Estado = '"+ Est1 +"') ORDER BY Fecha ASC";
+
+                    facturas2=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+                    todos2=facturas2.executeQuery(consulta1);
+      
+                            while (todos2.next()){   
+   
+                                    redondear redon  = new redondear();
+                                    GValor = redon.redondearDecimales(todos2.getDouble("Saldo")- SaldoI, 2);
+                                    if(GValor<0){
+                                        Est1 = "CANCELADO";
+                                        SaldoI = GValor*(-1);
+                                        STotal = 0.00;
+                                    }else if(GValor==0){
+                                        Est1 = "CANCELADO";
+                                        STotal = 0.00;
+                                        SaldoI = 0.00;                       
+                                    }else{
+                                        Est1 = "POR PAGAR";
+                                        STotal = GValor;
+                                        SaldoI = 0.00;
+                                    }
+                                    
+                                    consulta2="UPDATE facturas SET Saldo =?,Estado=? WHERE idFacturas= ? ";
+
+                                        cargar3=conect.con.prepareStatement(consulta2);
+                                        cargar3.setDouble(1, STotal);
+                                        cargar3.setString(2, Est1);
+                                        cargar3.setInt(3, todos2.getInt("idFacturas"));
+                                        cargar3.executeUpdate();                                       
+                            }
+            
+                    todos2.close();
+                    facturas2.close();
+                    conect.desconectar();
+            
+
+                    try {
+                            if (tabla != null) {
+                                while (tabla.getRowCount() > 0) {
+                                    tabla.removeRow(0);
+                                }
+                            }
+           
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null,"Error" +ex);
+                        }
+                    
+                Recibos.recibo.setText("");
+                Recibos.cliente.setText("");
+                Recibos.txtCantidad.setText("");
+                Recibos.detalle.setText("");
+                Recibos.saldo.setText("");
+                Recibos.txtBeneficiario.setText("");
+                Recibos.Suma.setText("");
+
+                JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+    
+                guardarrecibo.close();
+                conect.desconectar();   
+            
+            
+            
             }
     
         }catch(SQLException ex){

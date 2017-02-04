@@ -42,7 +42,6 @@ public void buscarfcompras(){
       String year = Integer.toString(c1.get(Calendar.YEAR));
       String fecha = (year + "-" + mes+ "-" + dia);         
 
-        JOptionPane.showMessageDialog(null,"Fecha:" +fecha);
       try {
             if (tabla != null) {
                 while (tabla.getRowCount() > 0) {

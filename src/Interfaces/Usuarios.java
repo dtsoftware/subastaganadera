@@ -77,7 +77,6 @@ public class Usuarios extends javax.swing.JFrame {
         imagen = new javax.swing.JPanel();
         lbl_foto = new javax.swing.JLabel();
         txtrutaimagen = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btn_agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -328,15 +327,6 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel2.add(txtrutaimagen);
         txtrutaimagen.setBounds(710, 220, 185, 30);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1);
-        jButton1.setBounds(830, 10, 73, 23);
-
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 60, 910, 305);
 
@@ -493,12 +483,6 @@ public class Usuarios extends javax.swing.JFrame {
         Desactivar(); 
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                BuscarU list = new BuscarU();
-        list.setVisible(true);
-        BuscarU.Valido.setText("2");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 public void Activar  (){
      Usuarios.txtusuario.setEnabled(true);
      Usuarios.txtnombre.setEnabled(true);
@@ -589,7 +573,6 @@ public void Limpiar  (){
     public static javax.swing.JComboBox<String> cmb_estado;
     public static javax.swing.JComboBox<String> cmb_tipousuario;
     private javax.swing.JPanel imagen;
-    private javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
