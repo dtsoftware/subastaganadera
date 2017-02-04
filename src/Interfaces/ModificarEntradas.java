@@ -75,6 +75,11 @@ public class ModificarEntradas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modificar Entradas");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -403,7 +408,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null, "La Operacion No Se Puede Realizar( Debe Seleccionar Un Registro Y Editarlo )");
          }else{ 
             
-         numero= Integer.parseInt(this.jTextFieldCod_Vendedor.getText());
+         numero= Integer.parseInt(this.jTextFieldNumeroanimal.getText());
          //codigo=numero;
          tipo=this.jComboBoxTipo.getSelectedItem().toString();
          sexo=jComboBoxSexo.getSelectedItem().toString();
@@ -499,6 +504,10 @@ public class ModificarEntradas extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

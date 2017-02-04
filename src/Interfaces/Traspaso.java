@@ -8,13 +8,15 @@ package Interfaces;
 
 import java.util.Date;
 import Clases.traspasar;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Tserng
  */
 public class Traspaso extends javax.swing.JFrame {
-
+public static Integer identrada,nuevocodigo,idanimal,codigonuevo;
+public static String fecha;
     /**
      * Creates new form Traspaso
      */
@@ -23,6 +25,11 @@ public class Traspaso extends javax.swing.JFrame {
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
+        //ocultando columna del jtable 
+        jTableTraspasos.getColumnModel().getColumn(7).setMaxWidth(7);
+        jTableTraspasos.getColumnModel().getColumn(7).setMinWidth(7);
+        jTableTraspasos.getColumnModel().getColumn(7).setPreferredWidth(7);
+        //hasta aki 
     }
 
     /**
@@ -51,8 +58,8 @@ public class Traspaso extends javax.swing.JFrame {
         jTextFieldCeduladueno = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonTraspasar = new javax.swing.JButton();
+        jButtonLimpiar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -100,7 +107,7 @@ public class Traspaso extends javax.swing.JFrame {
 
             },
             new String [] {
-                "# De Animal", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor"
+                "# De Animal", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor", "# De Entrada"
             }
         ));
         jTableTraspasos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -224,13 +231,23 @@ public class Traspaso extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/App-login-manager-icon.png"))); // NOI18N
-        jButton1.setText("Traspasar");
+        jButtonTraspasar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonTraspasar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/App-login-manager-icon.png"))); // NOI18N
+        jButtonTraspasar.setText("Traspasar");
+        jButtonTraspasar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTraspasarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
-        jButton2.setText("Limpiar");
+        jButtonLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
+        jButtonLimpiar.setText("Nuevo");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
@@ -249,8 +266,8 @@ public class Traspaso extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonTraspasar, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -258,9 +275,9 @@ public class Traspaso extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonTraspasar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
@@ -421,9 +438,19 @@ public class Traspaso extends javax.swing.JFrame {
       try{
       Integer codigo;    
       Integer i =Traspaso.jTableTraspasos.getSelectedRow();
+      //-----obtener la fecha----------------------
+      String  dia = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+      //nuevocodigo= Integer.parseInt(jTextFieldCodigonuevodueno.getText());
+      idanimal=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 0);
       codigo = (Integer) Traspaso.jTableTraspasos.getValueAt(i, 6);
+      identrada=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 7);      
       traspasar tras=new traspasar();
       tras.buscardueno(codigo);
+      
       }catch(Exception ex){
       JOptionPane.showMessageDialog(null,"Error" +ex);
       }
@@ -450,16 +477,53 @@ public class Traspaso extends javax.swing.JFrame {
          if (x==y){
             JOptionPane.showMessageDialog(null,"El Animal Ya Le Pertenece A Este Ganadero");  
          }else{
-        Integer codigo;
-        codigo= Integer.parseInt(jTextFieldCodigonuevodueno.getText());
-        traspasar tra = new traspasar();
-        tra.buscarnuevodueno(codigo);
+        codigonuevo= Integer.parseInt(jTextFieldCodigonuevodueno.getText());
+        traspasar tra = new traspasar();        
+        tra.buscarnuevodueno(codigonuevo);
+        
          }
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null,"Error" +ex);
         }
         
     }//GEN-LAST:event_jTextFieldCodigonuevoduenoActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        try{
+            jTextFieldDueno.setText("");
+            jTextFieldNombredueno.setText("");
+            jTextFieldApellidodueno.setText("");
+            jTextFieldCeduladueno.setText("");
+            jTextFieldNombrenuevodueno.setText("");
+            jTextFieldApellidonuevodueno.setText("");
+            jTextFieldCedulanuevodueno.setText("");
+            jTextFieldCodigonuevodueno.setText("");
+            jTextFieldCodigonuevodueno.setEnabled(true);
+        }catch(Exception ex){
+         JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jButtonTraspasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTraspasarActionPerformed
+        // TODO add your handling code here:
+        try{
+            traspasar tra = new traspasar();
+        tra.guardartraspaso(identrada, fecha, idanimal, codigonuevo);
+        tra.buscarparatraspaso();
+            jTextFieldDueno.setText("");
+            jTextFieldNombredueno.setText("");
+            jTextFieldApellidodueno.setText("");
+            jTextFieldCeduladueno.setText("");
+            jTextFieldNombrenuevodueno.setText("");
+            jTextFieldApellidonuevodueno.setText("");
+            jTextFieldCedulanuevodueno.setText("");
+            jTextFieldCodigonuevodueno.setText("");
+            jTextFieldCodigonuevodueno.setEnabled(true);
+        }catch(Exception ex){        
+         JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+    }//GEN-LAST:event_jButtonTraspasarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,9 +561,9 @@ public class Traspaso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonTraspasar;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

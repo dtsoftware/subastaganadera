@@ -366,14 +366,15 @@ public class subastas {
  //hasta aki
     
  //codigo para actualizar el estado en entrada detalle a subastado   
- consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?  WHERE idAnimal= ? and Fecha=?";
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?  WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
     estado =conect.con.prepareStatement(consulta);
     estado.setString(1, estados);
     estado.setInt(2, codcomprador);
     estado.setDouble(3, valortotal);
-    estado.setInt(4, numeroa);
-    estado.setString(5, fecha);
+    estado.setDouble(4, precio);
+    estado.setInt(5, numeroa);
+    estado.setString(6, fecha);
     estado.executeUpdate(); 
  //hasta aki     
         jTextAreaDetalle.setText("");
