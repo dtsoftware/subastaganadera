@@ -54,6 +54,12 @@ public class Cheques extends javax.swing.JFrame {
         Numero = new javax.swing.JTextField();
         montoletras = new javax.swing.JLabel();
         Beneficiario = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jButton4 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -67,7 +73,7 @@ public class Cheques extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel1.setText("I M P R E S I O N  D E  C H E Q U E S  A  V E N D E D O R E S");
+        jLabel1.setText("I M P R E S I O N  D E  C H E Q U E S  D E L  S I S T E M A");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,7 +82,7 @@ public class Cheques extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(180, 180, 180)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,12 +103,12 @@ public class Cheques extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("No.");
         jPanel5.add(jLabel3);
-        jLabel3.setBounds(570, 50, 20, 15);
+        jLabel3.setBounds(570, 80, 20, 15);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Fecha:");
         jPanel5.add(jLabel4);
-        jLabel4.setBounds(570, 90, 38, 15);
+        jLabel4.setBounds(570, 120, 38, 15);
 
         Detalle01.setColumns(20);
         Detalle01.setRows(5);
@@ -152,21 +158,21 @@ public class Cheques extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("N O M B R E  D E L  B A N C O");
         jPanel5.add(jLabel12);
-        jLabel12.setBounds(22, 51, 202, 17);
+        jLabel12.setBounds(20, 70, 202, 17);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel13.setText("N U M E R O  D E  C U E N T A  B A N C A R I A");
         jPanel5.add(jLabel13);
-        jLabel13.setBounds(22, 74, 229, 13);
+        jLabel13.setBounds(20, 90, 229, 13);
 
-        jButton1.setText("Buscar");
+        jButton1.setText("Client/Prov");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton1);
-        jButton1.setBounds(20, 160, 65, 23);
+        jButton1.setBounds(20, 160, 90, 23);
 
         txtmonto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -174,19 +180,50 @@ public class Cheques extends javax.swing.JFrame {
             }
         });
         jPanel5.add(txtmonto);
-        txtmonto.setBounds(610, 150, 131, 30);
+        txtmonto.setBounds(610, 150, 140, 30);
         jPanel5.add(Numero);
-        Numero.setBounds(640, 40, 102, 30);
+        Numero.setBounds(610, 70, 140, 30);
         jPanel5.add(montoletras);
         montoletras.setBounds(110, 220, 470, 19);
         jPanel5.add(Beneficiario);
         Beneficiario.setBounds(110, 150, 460, 20);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(null);
+
+        jRadioButton1.setText("P. a Vendedor");
+        jPanel4.add(jRadioButton1);
+        jRadioButton1.setBounds(10, 10, 110, 23);
+
+        jRadioButton2.setText("P. de Gastos");
+        jPanel4.add(jRadioButton2);
+        jRadioButton2.setBounds(130, 10, 110, 23);
+
+        jRadioButton4.setText("P. de Planilla");
+        jPanel4.add(jRadioButton4);
+        jRadioButton4.setBounds(250, 10, 100, 23);
+
+        jButton4.setText("DETALLE");
+        jPanel4.add(jButton4);
+        jButton4.setBounds(390, 10, 190, 23);
+
+        jPanel5.add(jPanel4);
+        jPanel4.setBounds(170, 10, 590, 40);
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
+        jPanel5.add(jTextField1);
+        jTextField1.setBounds(610, 110, 140, 30);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
 
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setLayout(null);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/wallet.png"))); // NOI18N
@@ -196,6 +233,8 @@ public class Cheques extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton2);
+        jButton2.setBounds(642, 16, 118, 41);
 
         jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.activeTitleGradient"));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -206,27 +245,8 @@ public class Cheques extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                .addGap(69, 69, 69))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jPanel3.add(jButton3);
+        jButton3.setBounds(12, 13, 530, 41);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,11 +254,11 @@ public class Cheques extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +268,7 @@ public class Cheques extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -277,6 +297,18 @@ public class Cheques extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        int caracteres = 30;
+        
+        if(jTextField1.getText().length()>=caracteres){
+            evt.consume();
+            
+        }else{
+            jTextField1.setText(jTextField1.getText()+"   ");
+        }
+        
+    }//GEN-LAST:event_jTextField1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -319,6 +351,7 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -335,7 +368,12 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JTextField jTextField1;
     public static javax.swing.JLabel montoletras;
     public static javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables

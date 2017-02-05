@@ -5,12 +5,17 @@
  */
 package sg.soft;
 import Clases.conectar;
+import Interfaces.Bancos;
 import Interfaces.Cheques;
 import Interfaces.Clientes;
+import Interfaces.Depositos;
 import Interfaces.Entradas;
 import Interfaces.Facturacion;
 import Interfaces.FacturarC;
 import Interfaces.FacturarV;
+import Interfaces.MantChk;
+import Interfaces.NotasDC;
+import Interfaces.Proveedor;
 import Interfaces.Recibos;
 import Interfaces.Subastas;
 import Interfaces.Traspaso;
@@ -75,6 +80,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -91,10 +97,24 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem26 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
+        jMenuItem28 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -259,6 +279,15 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
+        jMenuItem18.setText("Proveedores");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem18);
+
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/wallet.png"))); // NOI18N
         jMenu7.setText("Facturacion");
 
@@ -308,15 +337,30 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/money-icon (1).png"))); // NOI18N
         jMenuItem6.setText("Cuentas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
         jMenu2.add(jSeparator3);
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cheque-icon.png"))); // NOI18N
         jMenuItem7.setText("Cheques");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/safe-icon.png"))); // NOI18N
         jMenuItem8.setText("Depositos");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Bank-icon.png"))); // NOI18N
@@ -336,6 +380,55 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Reportes     ");
+
+        jMenu9.setText("Listas de Maestros");
+
+        jMenuItem26.setText("Lista de Clientes");
+        jMenu9.add(jMenuItem26);
+
+        jMenuItem27.setText("Lista de Proveedores");
+        jMenu9.add(jMenuItem27);
+
+        jMenuItem28.setText("Lista de Cuentas Bancarias");
+        jMenu9.add(jMenuItem28);
+
+        jMenuItem29.setText("Lista de Usuarios");
+        jMenu9.add(jMenuItem29);
+
+        jMenu4.add(jMenu9);
+
+        jMenuItem19.setText("Entradas");
+        jMenu4.add(jMenuItem19);
+
+        jMenuItem20.setText("Subastas");
+        jMenu4.add(jMenuItem20);
+
+        jMenu8.setText("Banco");
+
+        jMenuItem22.setText("Listas Cheques");
+        jMenu8.add(jMenuItem22);
+
+        jMenuItem21.setText("Listas Depositos");
+        jMenu8.add(jMenuItem21);
+
+        jMenuItem23.setText("Listas Notas Debito/Credito");
+        jMenu8.add(jMenuItem23);
+
+        jMenuItem24.setText("Conciliaciones Bancarias");
+        jMenu8.add(jMenuItem24);
+
+        jMenu4.add(jMenu8);
+
+        jMenu10.setText("Otros Listados");
+
+        jMenuItem25.setText("Estados de Cuenta");
+        jMenu10.add(jMenuItem25);
+
+        jMenuItem30.setText("Lista de Traspasos");
+        jMenu10.add(jMenuItem30);
+
+        jMenu4.add(jMenu10);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Configuracion     ");
@@ -349,10 +442,6 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu5.add(jMenuItem11);
         jMenu5.add(jSeparator5);
-
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/company-building-icon.png"))); // NOI18N
-        jMenuItem12.setText("Compañia");
-        jMenu5.add(jMenuItem12);
 
         jMenuBar1.add(jMenu5);
 
@@ -379,7 +468,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+               NotasDC cliente = new NotasDC();
+        cliente.setVisible(true); 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -487,6 +577,26 @@ close();
 // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        MantChk fact = new MantChk();
+fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+             Proveedor fact = new Proveedor();
+fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+                    Bancos fact = new Bancos();
+fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+                           Depositos fact = new Depositos();
+fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,24 +647,39 @@ close();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
+    private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
