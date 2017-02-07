@@ -5,6 +5,11 @@
  */
 package Interfaces;
 
+import Clases.CrearBancos;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
@@ -16,6 +21,11 @@ public class Bancos extends javax.swing.JFrame {
      */
     public Bancos() {
         initComponents();
+        
+        DefaultTableModel tabla1= (DefaultTableModel) this.registros.getModel();
+        Bancos.fecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        Bancos.fecha.setDate(date); 
     }
 
     /**
@@ -36,20 +46,20 @@ public class Bancos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
+        codigo = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        cuenta = new javax.swing.JTextField();
+        montoi = new javax.swing.JTextField();
+        montoa = new javax.swing.JTextField();
+        estado = new javax.swing.JComboBox<>();
+        detalle = new javax.swing.JComboBox<>();
+        fecha = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        registros = new javax.swing.JTable();
+        nuevo = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
         cmdcancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -57,6 +67,11 @@ public class Bancos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -85,56 +100,93 @@ public class Bancos extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Monto Actual:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codigo.setEditable(false);
+        codigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nombre.setEditable(false);
+        nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cuenta.setEditable(false);
+        cuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cuenta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        montoi.setEditable(false);
+        montoi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        montoi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        montoa.setEditable(false);
+        montoa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        montoa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuenta Corriente", "Cuenta Ahorro" }));
+        detalle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        detalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuenta Corriente", "Cuenta Ahorro" }));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CODIGO", "NOMBRE", "CUENTA", "DESCRIPCION", "M. INICIAL", "M. ACTUAL", "ESTADO"
+                "Creada", "CODIGO", "NOMBRE", "CUENTA", "DESCRIPCION", "M. INICIAL", "M. ACTUAL", "ESTADO"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(75);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(75);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(75);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(75);
+        registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrosMouseClicked(evt);
+            }
+        });
+        registros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                registrosKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(registros);
+        if (registros.getColumnModel().getColumnCount() > 0) {
+            registros.getColumnModel().getColumn(0).setMinWidth(60);
+            registros.getColumnModel().getColumn(0).setMaxWidth(60);
+            registros.getColumnModel().getColumn(1).setMinWidth(60);
+            registros.getColumnModel().getColumn(1).setMaxWidth(60);
+            registros.getColumnModel().getColumn(2).setMinWidth(150);
+            registros.getColumnModel().getColumn(2).setMaxWidth(150);
+            registros.getColumnModel().getColumn(3).setMinWidth(100);
+            registros.getColumnModel().getColumn(3).setMaxWidth(100);
+            registros.getColumnModel().getColumn(4).setMinWidth(100);
+            registros.getColumnModel().getColumn(4).setMaxWidth(100);
+            registros.getColumnModel().getColumn(6).setMinWidth(75);
+            registros.getColumnModel().getColumn(6).setMaxWidth(75);
+            registros.getColumnModel().getColumn(7).setMinWidth(75);
+            registros.getColumnModel().getColumn(7).setMaxWidth(75);
         }
 
-        jButton1.setText("Nuevo");
+        nuevo.setText("Nuevo");
+        nuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevoMouseClicked(evt);
+            }
+        });
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Editar");
+        editar.setText("Editar");
 
-        jButton3.setText("Guardar");
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
 
         cmdcancelar.setText("Cancelar");
         cmdcancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -152,11 +204,11 @@ public class Bancos extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cmdcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -167,11 +219,12 @@ public class Bancos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmdcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmdcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -196,26 +249,26 @@ public class Bancos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                            .addComponent(jTextField3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                            .addComponent(cuenta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5))
+                            .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(montoi)
+                            .addComponent(montoa))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox2, 0, 177, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(detalle, 0, 177, Short.MAX_VALUE)
+                            .addComponent(estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -224,30 +277,32 @@ public class Bancos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(fecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(montoi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(montoa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,6 +362,64 @@ public class Bancos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cmdcancelarActionPerformed
 
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        CrearBancos Numero = new CrearBancos();
+        Numero.UltimoRg();
+        Habilitar();
+    }//GEN-LAST:event_nuevoActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        CrearBancos user = new CrearBancos();
+        user.guardarbanco();
+        Limpiar();
+        Habilitar();    
+    }//GEN-LAST:event_guardarActionPerformed
+
+    private void nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMouseClicked
+
+    }//GEN-LAST:event_nuevoMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+        CrearBancos buscar = new CrearBancos();
+        buscar.buscarregistros();
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void registrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registrosKeyPressed
+      
+       
+    }//GEN-LAST:event_registrosKeyPressed
+
+    private void registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrosMouseClicked
+         int filaseleccionada; 
+
+        try{
+            filaseleccionada= Bancos.registros.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+              DefaultTableModel modelotabla=(DefaultTableModel) Bancos.registros.getModel();
+             
+              Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 1);
+              Bancos.codigo.setText(""+Codigo);
+              String Name =(String) modelotabla.getValueAt(filaseleccionada, 2);
+              Bancos.nombre.setText(""+Name);
+              String cta =(String) modelotabla.getValueAt(filaseleccionada, 3);
+              Bancos.cuenta.setText(""+cta);
+              Double mi =(Double) modelotabla.getValueAt(filaseleccionada, 5);
+              Bancos.montoi.setText(""+mi);              
+              Double ma =(Double) modelotabla.getValueAt(filaseleccionada, 6);
+              Bancos.montoa.setText(""+ma);                           
+              
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_registrosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -343,13 +456,14 @@ public class Bancos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cmdcancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
+    public static javax.swing.JButton cmdcancelar;
+    public static javax.swing.JTextField codigo;
+    public static javax.swing.JTextField cuenta;
+    public static javax.swing.JComboBox<String> detalle;
+    public static javax.swing.JButton editar;
+    public static javax.swing.JComboBox<String> estado;
+    public static com.toedter.calendar.JDateChooser fecha;
+    public static javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -363,11 +477,30 @@ public class Bancos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    public static javax.swing.JTextField montoa;
+    public static javax.swing.JTextField montoi;
+    public static javax.swing.JTextField nombre;
+    public static javax.swing.JButton nuevo;
+    public static javax.swing.JTable registros;
     // End of variables declaration//GEN-END:variables
+
+    public void Limpiar(){
+    
+        Bancos.codigo.setText("");
+        Bancos.nombre.setText("");
+        Bancos.cuenta.setText("");
+        Bancos.montoi.setText("");
+        Bancos.montoa.setText("");
+           
+}
+
+public void Habilitar(){
+    
+        Bancos.nombre.setEditable(true);
+        Bancos.cuenta.setEditable(true);
+        Bancos.montoi.setEditable(true);
+        Bancos.montoa.setEditable(true);
+           
+}
+
 }

@@ -8,6 +8,7 @@ import Clases.conectar;
 import Interfaces.Bancos;
 import Interfaces.Cheques;
 import Interfaces.Clientes;
+import Interfaces.Conciliacion;
 import Interfaces.Depositos;
 import Interfaces.Entradas;
 import Interfaces.Facturacion;
@@ -375,6 +376,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cow-history-icon.png"))); // NOI18N
         jMenuItem10.setText("Conciliacion");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem10);
 
         jMenuBar1.add(jMenu2);
@@ -596,6 +602,11 @@ fact.setVisible(true);
                            Depositos fact = new Depositos();
 fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+                                  Conciliacion fact = new Conciliacion();
+fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
