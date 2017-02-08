@@ -5,6 +5,9 @@
  */
 package Interfaces;
 
+import Clases.CrearNotas;
+import java.util.Date;
+
 /**
  *
  * @author Juan
@@ -16,6 +19,9 @@ public class NotasDC extends javax.swing.JFrame {
      */
     public NotasDC() {
         initComponents();
+        NotasDC.fecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        NotasDC.fecha.setDate(date); 
     }
 
     /**
@@ -35,17 +41,17 @@ public class NotasDC extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
+        detalle = new javax.swing.JTextArea();
+        ID = new javax.swing.JTextField();
+        monto = new javax.swing.JTextField();
+        fecha = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         SALIR = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
+        nuevo = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        tipo = new javax.swing.JComboBox<>();
+        cuenta = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -95,18 +101,23 @@ public class NotasDC extends javax.swing.JFrame {
         jPanel2.add(jPanel3);
         jPanel3.setBounds(612, 248, 0, 100);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        detalle.setEditable(false);
+        detalle.setColumns(20);
+        detalle.setRows(5);
+        jScrollPane1.setViewportView(detalle);
 
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(22, 195, 544, 50);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(160, 27, 86, 31);
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(414, 77, 152, 31);
-        jPanel2.add(jDateChooserFecha);
-        jDateChooserFecha.setBounds(410, 30, 152, 32);
+
+        ID.setEditable(false);
+        jPanel2.add(ID);
+        ID.setBounds(160, 27, 86, 31);
+
+        monto.setEditable(false);
+        jPanel2.add(monto);
+        monto.setBounds(414, 77, 152, 31);
+        jPanel2.add(fecha);
+        fecha.setBounds(410, 30, 152, 32);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -117,9 +128,19 @@ public class NotasDC extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("GUARDAR");
+        guardar.setText("GUARDAR");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("NUEVO");
+        nuevo.setText("NUEVO");
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -127,9 +148,9 @@ public class NotasDC extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -139,8 +160,8 @@ public class NotasDC extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(guardar, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SALIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -153,15 +174,15 @@ public class NotasDC extends javax.swing.JFrame {
         jPanel2.add(jLabel7);
         jLabel7.setBounds(20, 170, 88, 15);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEBITO", "CREDITO" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(160, 130, 130, 30);
+        tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEBITO", "CREDITO" }));
+        jPanel2.add(tipo);
+        tipo.setBounds(160, 130, 130, 30);
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox2);
-        jComboBox2.setBounds(160, 80, 130, 30);
+        cuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(cuenta);
+        cuenta.setBounds(160, 80, 130, 30);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -216,6 +237,19 @@ public class NotasDC extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SALIRActionPerformed
 
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        CrearNotas Numero = new CrearNotas();
+        Numero.UltimoRg();
+        Habilitar();
+    }//GEN-LAST:event_nuevoActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        CrearNotas user = new CrearNotas();
+        user.guardarnotas();
+        Limpiar();
+        Habilitar();   
+    }//GEN-LAST:event_guardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,12 +286,12 @@ public class NotasDC extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField ID;
     private javax.swing.JButton SALIR;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
+    public static javax.swing.JComboBox<String> cuenta;
+    public static javax.swing.JTextArea detalle;
+    public static com.toedter.calendar.JDateChooser fecha;
+    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,8 +304,27 @@ public class NotasDC extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    public static javax.swing.JTextField monto;
+    private javax.swing.JButton nuevo;
+    public static javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
+public void Limpiar(){
+    
+        NotasDC.ID.setText("");
+        NotasDC.detalle.setText("");
+        NotasDC.monto.setText("");
+           
+}
+
+public void Habilitar(){
+    
+        NotasDC.cuenta.setEditable(true);
+        NotasDC.detalle.setEditable(true);
+        NotasDC.monto.setEditable(true);
+           
+}
+
+
+
+
 }
