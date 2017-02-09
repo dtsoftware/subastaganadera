@@ -588,8 +588,15 @@ public class Clientes extends javax.swing.JFrame {
             Estado=jComboBoxActivo.getSelectedItem().toString();
             Audito1="hhh";
             Audito2="hhh";
-            Fecha1=jDateChooserFecha1.getDate().toString();
-            Fecha2=jDateChooserFecha1.getDate().toString();
+            //-----obtener la fecha----------------------
+      String  dia = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.YEAR));
+     // Fecha1 = (year + "-" + mes+ "-" + dia);    
+      Fecha2 = (year + "-" + mes+ "-" + dia);
+     //---------fin de obtener la fecha
+           // Fecha1=jDateChooserFecha1.getDate().toString();
+            //Fecha2=jDateChooserFecha1.getDate().toString();
             cliente.editarclientes(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito2, Fecha2);
        // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);   
       // JOptionPane.showMessageDialog(null,"REGISTRO EDITADO CORRECTAMENTE " );
