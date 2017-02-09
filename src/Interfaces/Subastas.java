@@ -54,7 +54,7 @@ public class Subastas extends javax.swing.JFrame {
         jTableSubastados = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonListaIndividual = new javax.swing.JButton();
         jButtonNosubastado = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -228,13 +228,18 @@ public class Subastas extends javax.swing.JFrame {
         jPanel2.add(jButtonGuardar);
         jButtonGuardar.setBounds(760, 450, 112, 50);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
-        jButton4.setText("LISTA INDIVIDUAL");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(jButton4);
-        jButton4.setBounds(760, 340, 112, 50);
+        jButtonListaIndividual.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButtonListaIndividual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
+        jButtonListaIndividual.setText("LISTA INDIVIDUAL");
+        jButtonListaIndividual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonListaIndividual.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonListaIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListaIndividualActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonListaIndividual);
+        jButtonListaIndividual.setBounds(760, 340, 112, 50);
 
         jButtonNosubastado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButtonNosubastado.setForeground(new java.awt.Color(0, 0, 255));
@@ -810,6 +815,12 @@ this.dispose();      // TODO add your handling code here:
         nsuba.setVisible(true);
     }//GEN-LAST:event_jButtonNosubastadoActionPerformed
 
+    private void jButtonListaIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListaIndividualActionPerformed
+        // TODO add your handling code here:
+        Reporteventaindividual rep = new Reporteventaindividual();
+        rep.setVisible(true);
+    }//GEN-LAST:event_jButtonListaIndividualActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -848,10 +859,10 @@ this.dispose();      // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonLista;
+    private javax.swing.JButton jButtonListaIndividual;
     private javax.swing.JButton jButtonNosubastado;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
