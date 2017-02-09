@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Clases.CrearCheques;
 import Clases.Numero_a_Letra;
 import java.awt.event.KeyEvent;
 
@@ -20,6 +21,7 @@ public class Cheques extends javax.swing.JFrame {
      */
     public Cheques() {
         initComponents();
+        jComboBox1.removeAllItems();
     }
 
     /**
@@ -67,6 +69,11 @@ public class Cheques extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -147,13 +154,13 @@ public class Cheques extends javax.swing.JFrame {
         jLabel8.setBounds(580, 160, 22, 17);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel11.setText("Cuenta");
+        jLabel11.setText("CTA:");
         jPanel5.add(jLabel11);
-        jLabel11.setBounds(22, 24, 44, 15);
+        jLabel11.setBounds(22, 24, 28, 15);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel5.add(jComboBox1);
-        jComboBox1.setBounds(76, 22, 70, 20);
+        jComboBox1.setBounds(60, 20, 180, 30);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("N O M B R E  D E L  B A N C O");
@@ -193,22 +200,22 @@ public class Cheques extends javax.swing.JFrame {
 
         jRadioButton1.setText("P. a Vendedor");
         jPanel4.add(jRadioButton1);
-        jRadioButton1.setBounds(10, 10, 110, 23);
+        jRadioButton1.setBounds(20, 10, 110, 23);
 
         jRadioButton2.setText("P. de Gastos");
         jPanel4.add(jRadioButton2);
-        jRadioButton2.setBounds(130, 10, 110, 23);
+        jRadioButton2.setBounds(140, 10, 110, 23);
 
         jRadioButton4.setText("P. de Planilla");
         jPanel4.add(jRadioButton4);
-        jRadioButton4.setBounds(250, 10, 100, 23);
+        jRadioButton4.setBounds(260, 10, 100, 23);
 
         jButton4.setText("DETALLE");
         jPanel4.add(jButton4);
-        jButton4.setBounds(390, 10, 190, 23);
+        jButton4.setBounds(370, 10, 130, 23);
 
         jPanel5.add(jPanel4);
-        jPanel4.setBounds(170, 10, 590, 40);
+        jPanel4.setBounds(250, 10, 510, 40);
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -310,6 +317,11 @@ public class Cheques extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextField1KeyPressed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        CrearCheques llenar = new CrearCheques();
+        llenar.llenarcombo();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -352,7 +364,7 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

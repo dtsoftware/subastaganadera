@@ -5,9 +5,9 @@
  */
 package Interfaces;
 
-import Clases.CrearClientes;
+import Clases.CrearProvedor;
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
+import java.util.Date;
 
 /**
  *
@@ -20,6 +20,11 @@ public class Proveedor extends javax.swing.JFrame {
      */
     public Proveedor() {
         initComponents();
+        Proveedor.fecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        Proveedor.fecha.setDate(date); 
+        
+      
     }
 
     /**
@@ -32,13 +37,13 @@ public class Proveedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jTextFieldIDcliente = new javax.swing.JTextField();
-        jTextFieldNombre = new javax.swing.JTextField();
-        jTextFieldApellido = new javax.swing.JTextField();
-        jTextFieldTelefono1 = new javax.swing.JTextField();
-        jTextFieldCedula = new javax.swing.JTextField();
-        jTextFieldTelefono2 = new javax.swing.JTextField();
-        jTextFieldDireccion = new javax.swing.JTextField();
+        codigo = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        dv = new javax.swing.JTextField();
+        tel01 = new javax.swing.JTextField();
+        ruc = new javax.swing.JTextField();
+        tel02 = new javax.swing.JTextField();
+        direccion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -49,20 +54,20 @@ public class Proveedor extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBoxActivo = new javax.swing.JComboBox<>();
-        jDateChooserFecha1 = new com.toedter.calendar.JDateChooser();
+        estado = new javax.swing.JComboBox<>();
+        fecha = new com.toedter.calendar.JDateChooser();
         lbl_foto = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButtonNuevoCliente = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
-        jButtonEliminar = new javax.swing.JButton();
-        jButtonListar = new javax.swing.JButton();
-        jButtonGuardar = new javax.swing.JButton();
-        btn_regresar = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        nuevo = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        listar = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
+        audito = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,96 +75,103 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
 
-        jTextFieldIDcliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldIDcliente.addActionListener(new java.awt.event.ActionListener() {
+        codigo.setEditable(false);
+        codigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIDclienteActionPerformed(evt);
+                codigoActionPerformed(evt);
             }
         });
-        jTextFieldIDcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+        codigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldIDclienteKeyReleased(evt);
+                codigoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldIDclienteKeyTyped(evt);
+                codigoKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextFieldIDcliente);
-        jTextFieldIDcliente.setBounds(131, 13, 209, 21);
+        jPanel2.add(codigo);
+        codigo.setBounds(110, 20, 209, 30);
 
-        jTextFieldNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+        nombre.setEditable(false);
+        nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
+                nombreActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldNombre);
-        jTextFieldNombre.setBounds(111, 51, 209, 21);
+        jPanel2.add(nombre);
+        nombre.setBounds(110, 60, 209, 30);
 
-        jTextFieldApellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldApellido.addActionListener(new java.awt.event.ActionListener() {
+        dv.setEditable(false);
+        dv.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldApellidoActionPerformed(evt);
+                dvActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldApellido);
-        jTextFieldApellido.setBounds(111, 90, 209, 21);
+        jPanel2.add(dv);
+        dv.setBounds(110, 100, 209, 30);
 
-        jTextFieldTelefono1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldTelefono1.addActionListener(new java.awt.event.ActionListener() {
+        tel01.setEditable(false);
+        tel01.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tel01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTelefono1ActionPerformed(evt);
+                tel01ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldTelefono1);
-        jTextFieldTelefono1.setBounds(111, 168, 209, 21);
+        jPanel2.add(tel01);
+        tel01.setBounds(110, 180, 209, 30);
 
-        jTextFieldCedula.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
+        ruc.setEditable(false);
+        ruc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ruc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCedulaActionPerformed(evt);
+                rucActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldCedula);
-        jTextFieldCedula.setBounds(111, 129, 209, 21);
+        jPanel2.add(ruc);
+        ruc.setBounds(110, 140, 209, 30);
 
-        jTextFieldTelefono2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldTelefono2.addActionListener(new java.awt.event.ActionListener() {
+        tel02.setEditable(false);
+        tel02.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tel02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTelefono2ActionPerformed(evt);
+                tel02ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldTelefono2);
-        jTextFieldTelefono2.setBounds(111, 216, 209, 21);
+        jPanel2.add(tel02);
+        tel02.setBounds(111, 216, 209, 30);
 
-        jTextFieldDireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldDireccion.addActionListener(new java.awt.event.ActionListener() {
+        direccion.setEditable(false);
+        direccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDireccionActionPerformed(evt);
+                direccionActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldDireccion);
-        jTextFieldDireccion.setBounds(111, 247, 347, 115);
+        jPanel2.add(direccion);
+        direccion.setBounds(110, 260, 347, 115);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("*ID PROVEEDOR:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(12, 18, 89, 13);
+        jLabel2.setBounds(10, 30, 89, 13);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel3.setText("*NOMBRE:");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(12, 56, 53, 13);
+        jLabel3.setBounds(10, 70, 53, 13);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel4.setText("D.V.");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(12, 90, 21, 13);
+        jLabel4.setBounds(20, 110, 21, 13);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel5.setText("*DIRECCION:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(12, 247, 69, 13);
+        jLabel5.setBounds(10, 280, 69, 13);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel6.setText("TELEFONO 2:");
@@ -169,42 +181,44 @@ public class Proveedor extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel9.setText("E-MAIL:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(491, 194, 41, 13);
+        jLabel9.setBounds(530, 190, 41, 13);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel10.setText("ESTADO:");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(491, 247, 70, 58);
+        jLabel10.setBounds(530, 220, 70, 58);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel11.setText("FECHA");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(491, 334, 35, 28);
+        jLabel11.setBounds(530, 300, 35, 28);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel12.setText("*R.U.C.:");
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(12, 134, 39, 13);
+        jLabel12.setBounds(10, 150, 39, 13);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel13.setText("*TELEFONO 1:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(12, 173, 73, 13);
+        jLabel13.setBounds(10, 190, 73, 13);
 
-        jComboBoxActivo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jComboBoxActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
-        jPanel2.add(jComboBoxActivo);
-        jComboBoxActivo.setBounds(645, 243, 102, 19);
-        jPanel2.add(jDateChooserFecha1);
-        jDateChooserFecha1.setBounds(544, 293, 203, 28);
+        estado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
+        jPanel2.add(estado);
+        estado.setBounds(597, 232, 150, 30);
+        jPanel2.add(fecha);
+        fecha.setBounds(597, 293, 150, 28);
 
         lbl_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Login.png"))); // NOI18N
         lbl_foto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(lbl_foto);
         lbl_foto.setBounds(500, 10, 248, 128);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(550, 190, 189, 20);
+
+        email.setEditable(false);
+        jPanel2.add(email);
+        email.setBounds(599, 180, 150, 30);
 
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -233,80 +247,80 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButtonNuevoCliente.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButtonNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
-        jButtonNuevoCliente.setText("NUEVO");
-        jButtonNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonNuevoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+        nuevo.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
+        nuevo.setText("NUEVO");
+        nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNuevoClienteActionPerformed(evt);
+                nuevoActionPerformed(evt);
             }
         });
 
-        jButtonEditar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
-        jButtonEditar.setText("EDITAR");
-        jButtonEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+        editar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
+        editar.setText("EDITAR");
+        editar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarActionPerformed(evt);
+                editarActionPerformed(evt);
             }
         });
 
-        jButtonEliminar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButtonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
-        jButtonEliminar.setText("ELIMINAR");
-        jButtonEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
+        eliminar.setText("ELIMINAR");
+        eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        eliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
 
-        jButtonListar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButtonListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
-        jButtonListar.setText("LISTAR");
-        jButtonListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonListar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+        listar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
+        listar.setText("LISTAR");
+        listar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        listar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonListarActionPerformed(evt);
+                listarActionPerformed(evt);
             }
         });
 
-        jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
-        jButtonGuardar.setText("GUARDAR");
-        jButtonGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
+        guardar.setText("GUARDAR");
+        guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
 
-        btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
-        btn_regresar.setText("SALIR");
-        btn_regresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_regresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+        salir.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
+        salir.setText("SALIR");
+        salir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        salir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_regresarActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/certificate-icon.png"))); // NOI18N
-        jButton8.setText("AUDITO");
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        audito.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        audito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/certificate-icon.png"))); // NOI18N
+        audito.setText("AUDITO");
+        audito.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        audito.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        audito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                auditoActionPerformed(evt);
             }
         });
 
@@ -316,19 +330,19 @@ public class Proveedor extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(audito, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -336,13 +350,13 @@ public class Proveedor extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(audito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -374,82 +388,73 @@ public class Proveedor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldIDclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDclienteActionPerformed
+    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldNombre.requestFocus();
-    }//GEN-LAST:event_jTextFieldIDclienteActionPerformed
+        nombre.requestFocus();
+    }//GEN-LAST:event_codigoActionPerformed
 
-    private void jTextFieldIDclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDclienteKeyReleased
+    private void codigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIDclienteKeyReleased
+    }//GEN-LAST:event_codigoKeyReleased
 
-    private void jTextFieldIDclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDclienteKeyTyped
+    private void codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if(Character.isLetter(c)){
             evt.consume();
         }
-    }//GEN-LAST:event_jTextFieldIDclienteKeyTyped
+    }//GEN-LAST:event_codigoKeyTyped
 
-    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldApellido.requestFocus();
-    }//GEN-LAST:event_jTextFieldNombreActionPerformed
+        dv.requestFocus();
+    }//GEN-LAST:event_nombreActionPerformed
 
-    private void jTextFieldApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldApellidoActionPerformed
+    private void dvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dvActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldCedula.requestFocus();
-    }//GEN-LAST:event_jTextFieldApellidoActionPerformed
+        ruc.requestFocus();
+    }//GEN-LAST:event_dvActionPerformed
 
-    private void jTextFieldTelefono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefono1ActionPerformed
+    private void tel01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel01ActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldTelefono2.requestFocus();
-    }//GEN-LAST:event_jTextFieldTelefono1ActionPerformed
+        tel02.requestFocus();
+    }//GEN-LAST:event_tel01ActionPerformed
 
-    private void jTextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCedulaActionPerformed
+    private void rucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldTelefono1.requestFocus();
-    }//GEN-LAST:event_jTextFieldCedulaActionPerformed
+        tel01.requestFocus();
+    }//GEN-LAST:event_rucActionPerformed
 
-    private void jTextFieldTelefono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefono2ActionPerformed
+    private void tel02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel02ActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldDireccion.requestFocus();
-    }//GEN-LAST:event_jTextFieldTelefono2ActionPerformed
+        direccion.requestFocus();
+    }//GEN-LAST:event_tel02ActionPerformed
 
-    private void jTextFieldDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDireccionActionPerformed
+    private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
         // TODO add your handling code here:
         evt.setSource((char) KeyEvent.VK_ENTER);
-        jDateChooserFecha1.requestFocus();
-    }//GEN-LAST:event_jTextFieldDireccionActionPerformed
+        fecha.requestFocus();
+    }//GEN-LAST:event_direccionActionPerformed
 
-    private void jButtonNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoClienteActionPerformed
-        // TODO add your handling code here:
-        //this.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
-    //    Date date = new Date();
-     //   jDateChooserFecha1.setDate(date);
-        jTextFieldIDcliente.setText("");
-        jTextFieldNombre.setText("");
-        jTextFieldApellido.setText("");
-        jTextFieldCedula.setText("");
-        jTextFieldDireccion.setText("");
-        jTextFieldTelefono1.setText("");
-        jTextFieldTelefono2.setText("");
-        jTextFieldIDcliente.requestFocus();
-    }//GEN-LAST:event_jButtonNuevoClienteActionPerformed
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        CrearProvedor Numero = new CrearProvedor();
+        Numero.UltimoRg();
+        Habilitar();
+    }//GEN-LAST:event_nuevoActionPerformed
 
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         // TODO add your handling code here:
-        try {
-            if ((Proveedor.jTextFieldIDcliente.getText().trim().length()==0) || (this.jTextFieldNombre.getText().trim().length()==0) || (this.jTextFieldApellido.getText().trim().length()==0)|| (this.jTextFieldCedula.getText().trim().length()==0)|| (this.jTextFieldDireccion.getText().trim().length()==0)  ) {
-                JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
-            }else{
-                CrearClientes cliente = new CrearClientes();
+      //  try {
+         //   if ((Proveedor.codigo.getText().trim().length()==0) || (this.nombre.getText().trim().length()==0) || (this.dv.getText().trim().length()==0)|| (this.ruc.getText().trim().length()==0)|| (this.direccion.getText().trim().length()==0)  ) {
+           //     JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
+          //  }else{
+            //    CrearClientes cliente = new CrearClientes();
          //       idClientes= Integer.parseInt(jTextFieldIDcliente.getText());
           //      Nombre=jTextFieldNombre.getText();
           //      Apellido=jTextFieldApellido.getText();
@@ -467,77 +472,45 @@ public class Proveedor extends javax.swing.JFrame {
             //    cliente.editarclientes(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito2, Fecha2);
                 // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);
                 // JOptionPane.showMessageDialog(null,"REGISTRO EDITADO CORRECTAMENTE " );
-            }
-        }catch(Exception ex) {
-            JOptionPane.showMessageDialog(null,"Error  = " +ex);
-        }
-    }//GEN-LAST:event_jButtonEditarActionPerformed
+          //  }
+      //  }catch(Exception ex) {
+         //   JOptionPane.showMessageDialog(null,"Error  = " +ex);
+       // }
+    }//GEN-LAST:event_editarActionPerformed
 
-    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-        Integer Codigo =  Integer.parseInt(this.jTextFieldIDcliente.getText());
-        CrearClientes crear = new CrearClientes();
-        crear.eliminarcliente(Codigo);
-    }//GEN-LAST:event_jButtonEliminarActionPerformed
+        Integer Codigo =  Integer.parseInt(this.codigo.getText());
+        CrearProvedor crear = new CrearProvedor();
+        crear.eliminarproveedor(Codigo);
+    }//GEN-LAST:event_eliminarActionPerformed
 
-    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        try{
-            buscarclientes list = new buscarclientes();
-            list.setVisible(true);
-            buscarclientes.Validar="1";
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error:"+ex);
-        }
+    private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
+       // try{
+       //     buscarclientes list = new buscarclientes();
+       //     list.setVisible(true);
+       //     buscarclientes.Validar="1";
+       // } catch (Exception ex) {
+       //     JOptionPane.showMessageDialog(null, "Error:"+ex);
+       // }
 
-    }//GEN-LAST:event_jButtonListarActionPerformed
+    }//GEN-LAST:event_listarActionPerformed
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        CrearProvedor user = new CrearProvedor();
+        user.guardarproveedor();
+        Limpiar();
+        Habilitar();   
+    }//GEN-LAST:event_guardarActionPerformed
 
-        try {
-            if ((this.jTextFieldIDcliente.getText().trim().length()==0) || (this.jTextFieldNombre.getText().trim().length()==0) || (this.jTextFieldApellido.getText().trim().length()==0)|| (this.jTextFieldCedula.getText().trim().length()==0)|| (this.jTextFieldDireccion.getText().trim().length()==0)  ) {
-                JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
-            }else{
-                CrearClientes cliente = new CrearClientes();
-             //   idClientes= Integer.parseInt(jTextFieldIDcliente.getText());
-             //   Nombre=jTextFieldNombre.getText();
-             //   Apellido=jTextFieldApellido.getText();
-             //   Cedula=jTextFieldCedula.getText();
-             //   Direccion=jTextFieldDireccion.getText();
-             //   Telefono1=jTextFieldTelefono1.getText();
-             //   Telefono2=jTextFieldTelefono2.getText();
-             //   Credito=jComboBoxCredito.getSelectedItem().toString();
-             //   Imagen=txtRutaimagen.getText();
-             //   Estado=jComboBoxActivo.getSelectedItem().toString();
-             //   Audito1="hhh";
-             //   Audito2="hhh";
-                //-----obtener la fecha----------------------
-            //    String  dia = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.DAY_OF_MONTH));
-             //   String  mes = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.MONTH) + 1);
-             //   String year = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.YEAR));
-             //   Fecha1 = (year + "-" + mes+ "-" + dia);
-             //   Fecha2 = (year + "-" + mes+ "-" + dia);
-                //---------fin de obtener la fecha
-                //Fecha1=jDateChooserFecha1.getDate().toString();
-                //Fecha2=jDateChooserFecha1.getDate().toString();
-               // cliente.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);
-                // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);
-                //JOptionPane.showMessageDialog(null,"REGISTRO GUARDADO" );
-            }
-        }catch(Exception ex) {
-            JOptionPane.showMessageDialog(null,"Error  = " +ex);
-        }
-
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
-
-    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         this.dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_btn_regresarActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void auditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditoActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_auditoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -575,15 +548,16 @@ public class Proveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_regresar;
-    private javax.swing.JButton jButton8;
-    public static javax.swing.JButton jButtonEditar;
-    public static javax.swing.JButton jButtonEliminar;
-    private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonListar;
-    private javax.swing.JButton jButtonNuevoCliente;
-    public static javax.swing.JComboBox<String> jComboBoxActivo;
-    public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
+    private javax.swing.JButton audito;
+    public static javax.swing.JTextField codigo;
+    public static javax.swing.JTextField direccion;
+    public static javax.swing.JTextField dv;
+    public static javax.swing.JButton editar;
+    public static javax.swing.JButton eliminar;
+    public static javax.swing.JTextField email;
+    public static javax.swing.JComboBox<String> estado;
+    public static com.toedter.calendar.JDateChooser fecha;
+    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -598,14 +572,37 @@ public class Proveedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    public static javax.swing.JTextField jTextFieldApellido;
-    public static javax.swing.JTextField jTextFieldCedula;
-    public static javax.swing.JTextField jTextFieldDireccion;
-    public static javax.swing.JTextField jTextFieldIDcliente;
-    public static javax.swing.JTextField jTextFieldNombre;
-    public static javax.swing.JTextField jTextFieldTelefono1;
-    public static javax.swing.JTextField jTextFieldTelefono2;
     private javax.swing.JLabel lbl_foto;
+    private javax.swing.JButton listar;
+    public static javax.swing.JTextField nombre;
+    private javax.swing.JButton nuevo;
+    public static javax.swing.JTextField ruc;
+    private javax.swing.JButton salir;
+    public static javax.swing.JTextField tel01;
+    public static javax.swing.JTextField tel02;
     // End of variables declaration//GEN-END:variables
+
+  public void Limpiar(){
+    
+        Proveedor.codigo.setText("");
+        Proveedor.nombre.setText("");
+        Proveedor.dv.setText("");
+        Proveedor.ruc.setText("");
+        Proveedor.tel01.setText("");
+        Proveedor.tel02.setText("");
+        Proveedor.direccion.setText("");
+        Proveedor.email.setText("");
+        
+}
+
+public void Habilitar(){
+    
+        Proveedor.nombre.setEditable(true);
+        Proveedor.dv.setEditable(true);
+        Proveedor.ruc.setEditable(true);
+        Proveedor.tel01.setEditable(true);
+        Proveedor.tel02.setEditable(true);
+        Proveedor.direccion.setEditable(true);
+        Proveedor.email.setEditable(true);
+}
 }
