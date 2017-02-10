@@ -97,7 +97,7 @@ public class Entradasubasta {
       
       //hasta aki  tabla de entradas
       
-         idEntrada=identra.buscarultimaentrada();
+    idEntrada=identra.buscarultimaentrada();
     //-------aki para guardar el contenido del jtable en la tabla detallesentradas
     for (int i = 0; i < Entradas.jTableEntradaDeAnimales.getRowCount(); i++) {
     
@@ -106,13 +106,12 @@ public class Entradasubasta {
     String sexo =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 2));
     String color =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3));    
     String ferrete =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4));
-    //double peso = Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
-    double peso = Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
-    String observacion =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 6));
+    //double peso = Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5)));
+    String observacion =String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5));
     //int cantidad=Integer.parseInt(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 3)));
     //double costounitario=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 4))); 
     //double total=Double.parseDouble(String.valueOf(Entradas.jTableEntradaDeAnimales.getValueAt(i, 5))); 
-  guardardetallesentradas=conect.con.prepareStatement("INSERT INTO entrada_detalle ( idEntrada,idAnimal, Fecha, CodVendedor, Tipo, Color,Sexo,Ferrete,Peso,Observacion,Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+  guardardetallesentradas=conect.con.prepareStatement("INSERT INTO entrada_detalle ( idEntrada,idAnimal, Fecha, CodVendedor, Tipo, Color,Sexo,Ferrete,Observacion,Estado) VALUES (?,?,?,?,?,?,?,?,?,?)");
   //este es duplicando el numero consultar a juan el uso del codigo
   guardardetallesentradas.setInt(1, idEntrada);
   guardardetallesentradas.setString(2,numero);
@@ -122,9 +121,9 @@ public class Entradasubasta {
   guardardetallesentradas.setString(6, color);
   guardardetallesentradas.setString(7, sexo);
   guardardetallesentradas.setString(8, ferrete);
-  guardardetallesentradas.setDouble(9, peso);
-  guardardetallesentradas.setString(10, observacion);
-  guardardetallesentradas.setString(11, estado);
+  //guardardetallesentradas.setDouble(9, peso);
+  guardardetallesentradas.setString(9, observacion);
+  guardardetallesentradas.setString(10, estado);
  
   guardardetallesentradas.execute();
   
@@ -203,10 +202,13 @@ public class Entradasubasta {
     Entradas.jTextFieldCedula.setText("");
     Entradas.jTextFieldDireccion.setText("");
     Entradas.jTextFieldFerrete.setText("");
-    Entradas.jTextFieldPeso.setText("");
-    Entradas.jTextAreaObservacion.setText("");
+    Entradas.jTextFieldTipo.setText("");
+    Entradas.jTextFieldSexo.setText("");
+    Entradas.jTextFieldColor.setText("");
     Entradas.jTextFieldNumeroanimal.setText("");
+    Entradas.jTextFieldDescripcion.setText("");
     Entradas.jTextFieldCodigoG.requestFocus();
+    
     
         }catch (Exception ex){
         JOptionPane.showMessageDialog(null,"Error" +ex);      

@@ -19,13 +19,13 @@ import java.util.Date;
  * @author Tserng
  */
 public class animalesregistrados {
-    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, ActualizarE;
-    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, InsertFact, ActEdetalle, Completados, ActEntrada;
-    Integer totalmachos,totalhembras, ultimaentrada;;
+    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, ActualizarE,rsexiste;
+    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, InsertFact, ActEdetalle, Completados, ActEntrada,existe;
+    Integer totalmachos,totalhembras, ultimaentrada,totalexiste;
     
     //DefaultTableModel tabla;
     Object[] filas = new Object[6];
-    Object[] filas1 = new Object[9];
+    Object[] filas1 = new Object[8];
     Object[] filas2 = new Object[9];
     public  animalesregistrados(){
     
@@ -61,7 +61,7 @@ public class animalesregistrados {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor,Observacion,idedetalle FROM entrada_detalle  where Fecha ='"+ fecha +"' and TotalBruto IS NULL ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Ferrete,CodVendedor,Observacion,idedetalle FROM entrada_detalle  where Fecha ='"+ fecha +"' and TotalBruto IS NULL ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -73,11 +73,11 @@ public class animalesregistrados {
                     filas1[1]=todos.getString("Tipo");
                     filas1[2]=todos.getString("Sexo");
                     filas1[3]=todos.getString("Color");
-                    filas1[4]=todos.getDouble("Peso");
-                    filas1[5]=todos.getString("Ferrete");
-                    filas1[6]=todos.getInt("CodVendedor");
-                    filas1[7]=todos.getString("Observacion");   
-                    filas1[8]=todos.getInt("idedetalle");
+                    //filas1[4]=todos.getDouble("Peso");
+                    filas1[4]=todos.getString("Ferrete");
+                    filas1[5]=todos.getInt("CodVendedor");
+                    filas1[6]=todos.getString("Observacion");   
+                    filas1[7]=todos.getInt("idedetalle");
        tabla.addRow(filas1);
     }
     todos.close();
@@ -400,6 +400,38 @@ public class animalesregistrados {
      
     }
     
+    public Integer existeanimalentradas(Integer idanimal, String fecha){
+       try {
+     String consulta; 
+     
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
+    
+  
+     // creamos la consulta
+     consulta="SELECT count(*) FROM entrada_detalle  where Fecha ='"+ fecha +"' and idAnimal='"+idanimal+"' ORDER BY idAnimal";
+     //pasamos la consulta al preparestatement
+    existe=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsexiste=existe.executeQuery(consulta);
+     //recorremos el resulset
+    rsexiste.next();
+        
+               totalexiste=rsexiste.getInt(1);
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   existe.close();
+   rsexiste.close();
+   conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }    
+    return totalexiste;
+    }
+    
     public void machos(){
     try {
      String consulta; 
@@ -494,14 +526,14 @@ public void totalmachoshembras(){
    }    
     }
        
-public void guardareditados( Integer numero,Integer idedetalle, String tipo,String sexo,String color,String ferrete,String observacion , double peso ){
+public void guardareditados( Integer numero,Integer idedetalle, String tipo,String sexo,String color,String ferrete,String observacion ){
 try {
      String consulta;  
      conectar conect = new conectar(); 
      conect.conexion();  
     
      // creamos la consulta
-     consulta="UPDATE entrada_detalle SET idAnimal =?,Tipo=?,Sexo=?,Color=?,Ferrete=?,Observacion=? ,Peso=? WHERE idedetalle= ? ";
+     consulta="UPDATE entrada_detalle SET idAnimal =?,Tipo=?,Sexo=?,Color=?,Ferrete=?,Observacion=? WHERE idedetalle= ? ";
     //pasamos la consulta al preparestatement
     editar=conect.con.prepareStatement(consulta);
     editar.setInt(1, numero);
@@ -511,8 +543,8 @@ try {
     editar.setString(4, color);
     editar.setString(5, ferrete);
     editar.setString(6, observacion);
-    editar.setDouble(7, peso);
-    editar.setInt(8, idedetalle);
+    //editar.setDouble(7, peso);
+    editar.setInt(7, idedetalle);
     
     editar.executeUpdate(); 
     conect.desconectar(); 

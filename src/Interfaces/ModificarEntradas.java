@@ -26,11 +26,11 @@ public class ModificarEntradas extends javax.swing.JFrame {
         animal.entradasparamodificar();
        // jTextFieldCod_Vendedor.setVisible(false);
         //ocultando columna del jtable 
-        jTableModificarEntradas.getColumnModel().getColumn(8).setMaxWidth(8);
+        jTableModificarEntradas.getColumnModel().getColumn(7).setMaxWidth(7);
 
-        jTableModificarEntradas.getColumnModel().getColumn(8).setMinWidth(8);
+      jTableModificarEntradas.getColumnModel().getColumn(7).setMinWidth(7);
 
-        jTableModificarEntradas.getColumnModel().getColumn(8).setPreferredWidth(8);
+      jTableModificarEntradas.getColumnModel().getColumn(7).setPreferredWidth(7);
         //hasta aki 
     }
 
@@ -64,8 +64,6 @@ public class ModificarEntradas extends javax.swing.JFrame {
         jComboBoxTipo = new javax.swing.JComboBox<String>();
         jComboBoxColor = new javax.swing.JComboBox<String>();
         jComboBoxSexo = new javax.swing.JComboBox();
-        jLabel17 = new javax.swing.JLabel();
-        jTextFieldPeso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldCod_Vendedor = new javax.swing.JTextField();
@@ -90,7 +88,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "# De Animal", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor", "Observaciones", "ID_DETALLE"
+                "# De Animal", "Tipo", "Sexo", "Color", "Ferrete", "Cod Vendedor", "Observaciones", "ID_DETALLE"
             }
         ));
         jTableModificarEntradas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,18 +165,9 @@ public class ModificarEntradas extends javax.swing.JFrame {
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TE", "TA", "VA", "VF", "NA", "NO", "TO", "YG", "CB" }));
 
-        jComboBoxColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BA", "NE", "CH", "RO", "AZ", "ZA", "AM", "HO", "AR", "PI " }));
+        jComboBoxColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BA", "NE", "CH", "RO", "AZ", "ZA", "AM", "HO", "AR", "PI" }));
 
         jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MACHO", "HEMBRA" }));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel17.setText("*PESO");
-
-        jTextFieldPeso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldPesoKeyTyped(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
@@ -195,29 +184,22 @@ public class ModificarEntradas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextFieldCod_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139)
+                        .addGap(256, 256, 256)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxColor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(35, 35, 35)
+                                .addComponent(jComboBoxColor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldNumeroanimal, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
-                                    .addComponent(jLabel2))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNumeroanimal, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel2)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -225,18 +207,20 @@ public class ModificarEntradas extends javax.swing.JFrame {
                                 .addGap(126, 126, 126)
                                 .addComponent(jLabel13))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addGap(33, 33, 33))
+                                .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel11)
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCod_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +231,6 @@ public class ModificarEntradas extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel17)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,44 +238,42 @@ public class ModificarEntradas extends javax.swing.JFrame {
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxColor, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(138, 138, 138))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCod_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(83, Short.MAX_VALUE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldCod_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(160, 160, 160))))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(2, 2, 2)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(369, 369, 369)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+            .addGap(0, 236, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -328,25 +309,22 @@ public class ModificarEntradas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1087, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1087, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addComponent(jButtonRefrezcar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addGap(36, 36, 36)
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -363,11 +341,11 @@ public class ModificarEntradas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonRefrezcar, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                    .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRefrezcar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -383,8 +361,8 @@ public class ModificarEntradas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -394,9 +372,9 @@ public class ModificarEntradas extends javax.swing.JFrame {
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
         ///Numero =?,Tipo=?,Sexo=?,Color=?,Ferrete=?,Peso=?,CodCliente=?,Codigo=?,Fecha=?,Observacion=?
-        Integer numero,iddetalle,idEntradas;
+        Integer numero,idedetalle,idEntradas;
         String tipo,sexo,color,ferrete,observacion;
-        double peso;
+        //double peso;
         //-----obtener la fecha----------------------
       String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
@@ -404,7 +382,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
       String fecha = (year + "-" + mes+ "-" + dia);         
      //---------fin de obtener la fecha
         try {
-           if ((this.jTextFieldNumeroanimal.getText().trim().length()==0) || (this.jTextFieldFerrete.getText().trim().length()==0) || (this.jTextFieldPeso.getText().trim().length()==0)|| (this.jTextFieldCod_Vendedor.getText().trim().length()==0)|| (this.jTextFieldCod_Vendedor.getText().trim().length()==0)  ) {
+           if ((this.jTextFieldNumeroanimal.getText().trim().length()==0) || (this.jTextFieldFerrete.getText().trim().length()==0) || (this.jTextFieldCod_Vendedor.getText().trim().length()==0)|| (this.jTextFieldCod_Vendedor.getText().trim().length()==0)  ) {
          JOptionPane.showMessageDialog(null, "La Operacion No Se Puede Realizar( Debe Seleccionar Un Registro Y Editarlo )");
          }else{ 
             
@@ -415,11 +393,11 @@ public class ModificarEntradas extends javax.swing.JFrame {
          color=jComboBoxColor.getSelectedItem().toString();
          ferrete=this.jTextFieldFerrete.getText();
          observacion=jTextAreaObservacion.getText();
-         peso= Double.parseDouble(jTextFieldPeso.getText());
-         iddetalle= Integer.parseInt(this.jTextFieldCod_Vendedor.getText());
+        // peso= Double.parseDouble(jTextFieldPeso.getText());
+         idedetalle= Integer.parseInt(this.jTextFieldCod_Vendedor.getText());
          //idEntradas= Integer.parseInt(this.jTextFieldID_Entradas.getText());
          animalesregistrados editar = new   animalesregistrados();
-         editar.guardareditados(numero, iddetalle, tipo, sexo, color, ferrete, observacion, peso);
+         editar.guardareditados(numero, idedetalle, tipo, sexo, color, ferrete, observacion);
          
            }
         }catch (Exception ex){
@@ -433,14 +411,6 @@ public class ModificarEntradas extends javax.swing.JFrame {
         animalesregistrados animal = new animalesregistrados();
         animal.entradasparamodificar();
     }//GEN-LAST:event_jButtonRefrezcarActionPerformed
-
-    private void jTextFieldPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesoKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if(Character.isLetter(c)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldPesoKeyTyped
 
     private void jTextFieldNumeroanimalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroanimalKeyTyped
         // TODO add your handling code here:
@@ -462,10 +432,10 @@ public class ModificarEntradas extends javax.swing.JFrame {
         this.jComboBoxTipo.setSelectedItem(ModificarEntradas.jTableModificarEntradas.getValueAt(i,1));
         this.jComboBoxSexo.setSelectedItem(ModificarEntradas.jTableModificarEntradas.getValueAt(i,2));
         this.jComboBoxColor.setSelectedItem(ModificarEntradas.jTableModificarEntradas.getValueAt(i,3));
-        this.jTextFieldPeso.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 4).toString()); 
-        this.jTextFieldFerrete.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 5).toString());         
-        this.jTextAreaObservacion.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 7).toString()); 
-        this.jTextFieldCod_Vendedor.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 8).toString()); 
+        //this.jTextFieldPeso.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 4).toString()); 
+        this.jTextFieldFerrete.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 4).toString());        
+        this.jTextFieldCod_Vendedor.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 7).toString()); 
+        this.jTextAreaObservacion.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 6).toString()); 
         //this.jTextFieldID_Entradas.setText(ModificarEntradas.jTableModificarEntradas.getValueAt(i, 8).toString()); 
     }//GEN-LAST:event_jTableModificarEntradasMouseClicked
 
@@ -557,7 +527,6 @@ public class ModificarEntradas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -573,6 +542,5 @@ public class ModificarEntradas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCodigodebusqueda;
     public static javax.swing.JTextField jTextFieldFerrete;
     public static javax.swing.JTextField jTextFieldNumeroanimal;
-    public static javax.swing.JTextField jTextFieldPeso;
     // End of variables declaration//GEN-END:variables
 }

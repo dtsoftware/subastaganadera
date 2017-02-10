@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import Clases.Entradasubasta;
 import javax.swing.table.DefaultTableModel;
 import Clases.animalesregistrados;
+import java.util.Calendar;
 /**
  *
  * @author Juan
@@ -25,7 +26,7 @@ DefaultTableModel tabla1;
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
-             
+        this.jTextFieldCodigoG.requestFocus();
     }
 
     /**
@@ -60,12 +61,8 @@ DefaultTableModel tabla1;
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaObservacion = new javax.swing.JTextArea();
         jTextFieldNumeroanimal = new javax.swing.JTextField();
         jTextFieldFerrete = new javax.swing.JTextField();
-        jComboBoxTipo = new javax.swing.JComboBox<>();
-        jComboBoxColor = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableEntradaDeAnimales = new javax.swing.JTable();
         jButtonEliminarAnimal = new javax.swing.JButton();
@@ -78,10 +75,11 @@ DefaultTableModel tabla1;
         jTextFieldTotalAnimales = new javax.swing.JTextField();
         jTextFieldTotalHembras = new javax.swing.JTextField();
         jTextFieldTotalMachos = new javax.swing.JTextField();
-        jComboBoxSexo = new javax.swing.JComboBox();
-        jLabel17 = new javax.swing.JLabel();
-        jTextFieldPeso = new javax.swing.JTextField();
         jButtonAgregarAnimal = new javax.swing.JButton();
+        jTextFieldTipo = new javax.swing.JTextField();
+        jTextFieldSexo = new javax.swing.JTextField();
+        jTextFieldColor = new javax.swing.JTextField();
+        jTextFieldDescripcion = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -166,8 +164,14 @@ DefaultTableModel tabla1;
         jLabel8.setText("DIRECCION");
 
         jTextFieldNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextFieldNombre.setEnabled(false);
 
         jTextFieldApellido.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextFieldApellido.setEnabled(false);
+
+        jTextFieldCedula.setEnabled(false);
+
+        jTextFieldDireccion.setEnabled(false);
 
         jButtonListar.setText("Lista");
         jButtonListar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +185,7 @@ DefaultTableModel tabla1;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +219,7 @@ DefaultTableModel tabla1;
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                        .addComponent(jTextFieldDireccion)
                         .addGap(132, 132, 132))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,26 +278,31 @@ DefaultTableModel tabla1;
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel13.setText("SEXO");
 
-        jTextAreaObservacion.setColumns(20);
-        jTextAreaObservacion.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaObservacion);
-
+        jTextFieldNumeroanimal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldNumeroanimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumeroanimalActionPerformed(evt);
+            }
+        });
         jTextFieldNumeroanimal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNumeroanimalKeyTyped(evt);
             }
         });
 
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TE", "TA", "VA", "VF", "NA", "NO", "TO", "YG", "CB" }));
-
-        jComboBoxColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BA", "NE", "CH", "RO", "AZ", "ZA", "AM", "HO", "AR", "PI " }));
+        jTextFieldFerrete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldFerrete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFerreteActionPerformed(evt);
+            }
+        });
 
         jTableEntradaDeAnimales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "# De llegada", "Tipo", "Sexo", "Color", "Ferrete", "Peso", "Descripción"
+                "# De llegada", "Tipo", "Sexo", "Color", "Ferrete", "Descripción"
             }
         ));
         jScrollPane2.setViewportView(jTableEntradaDeAnimales);
@@ -324,6 +333,12 @@ DefaultTableModel tabla1;
         jLabel15.setText("MACHOS");
 
         jLabel16.setText("HEMBRAS");
+
+        jTextFieldTotalAnimales.setEnabled(false);
+
+        jTextFieldTotalHembras.setEnabled(false);
+
+        jTextFieldTotalMachos.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -370,21 +385,38 @@ DefaultTableModel tabla1;
                 .addContainerGap())
         );
 
-        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MACHO", "HEMBRA" }));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel17.setText("*PESO");
-
-        jTextFieldPeso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldPesoKeyTyped(evt);
-            }
-        });
-
         jButtonAgregarAnimal.setText("AGREGAR");
         jButtonAgregarAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAgregarAnimalActionPerformed(evt);
+            }
+        });
+        jButtonAgregarAnimal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAgregarAnimalKeyPressed(evt);
+            }
+        });
+
+        jTextFieldTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTipoActionPerformed(evt);
+            }
+        });
+
+        jTextFieldSexo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldSexo.setEnabled(false);
+
+        jTextFieldColor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldColorActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDescripcionActionPerformed(evt);
             }
         });
 
@@ -399,34 +431,31 @@ DefaultTableModel tabla1;
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldNumeroanimal, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jTextFieldNumeroanimal, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12))
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13))
-                                .addGap(18, 18, 18)
+                                .addGap(35, 35, 35)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
-                                    .addComponent(jComboBoxColor, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
+                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldPeso)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
@@ -443,37 +472,27 @@ DefaultTableModel tabla1;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel17))
-                                .addGap(47, 47, 47))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldNumeroanimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jComboBoxColor)
-                                        .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNumeroanimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButtonAgregarAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
                     .addComponent(jButtonEliminarAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -659,29 +678,41 @@ DefaultTableModel tabla1;
 
     private void jTextFieldCodigoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoGActionPerformed
         // TODO add your handling code here:
-        Integer cod;
+        try{
+         Integer cod;
         cod= Integer.parseInt(this.jTextFieldCodigoG.getText());
         evt.setSource((char) KeyEvent.VK_ENTER);
         Entradasubasta busca = new Entradasubasta();
         busca.buscarcliente(cod);
+        jTextFieldNumeroanimal.requestFocus();
+        }catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "Error:"+ex);
+        }
+       
       
     }//GEN-LAST:event_jTextFieldCodigoGActionPerformed
 
     private void jButtonAgregarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarAnimalActionPerformed
         // TODO add your handling code here:
         try{
+            evt.setSource((char) KeyEvent.VK_ENTER);
         if (this.jTextFieldCodigoG.getText().trim().length()==0){
-         JOptionPane.showMessageDialog(null, "Debe Realizar La Busqueda Del Ganadero");   
+         JOptionPane.showMessageDialog(null, "Debe Realizar La Busqueda Del Ganadero"); 
+         this.jTextFieldCodigoG.requestFocus();
         }else{   
-        if ((this.jTextFieldNumeroanimal.getText().trim().length()==0) || (this.jTextFieldFerrete.getText().trim().length()==0) || (this.jTextFieldPeso.getText().trim().length()==0)) {
+        if (((this.jTextFieldNumeroanimal.getText().trim().length()==0) || (this.jTextFieldFerrete.getText().trim().length()==0)|| (this.jTextFieldTipo.getText().trim().length()==0))|| (this.jTextFieldSexo.getText().trim().length()==0) || (this.jTextFieldColor.getText().trim().length()==0) ) {
          JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
-         }else{             
+         jTextFieldNumeroanimal.requestFocus();
+         }else{ 
+        
         DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();
-        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),jComboBoxTipo.getSelectedItem(),jComboBoxSexo.getSelectedItem(),jComboBoxColor.getSelectedItem(),jTextFieldFerrete.getText(),jTextFieldPeso.getText(),jTextAreaObservacion.getText()});
+        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),jTextFieldDescripcion.getText()});
         this.jTextFieldNumeroanimal.setText("");
         this.jTextFieldFerrete.setText("");
-        this.jTextAreaObservacion.setText("");
-        this.jTextFieldPeso.setText("");
+        this.jTextFieldDescripcion.setText("");
+        this.jTextFieldColor.setText("");
+        this.jTextFieldSexo.setText("");
+        this.jTextFieldTipo.setText("");
         jButtonGuardar.setEnabled(true);
         jTextFieldNumeroanimal.requestFocus();
         }
@@ -703,7 +734,7 @@ DefaultTableModel tabla1;
                 tabla1.removeRow(fila);
                 }
         }catch (Exception ex){
-        
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);
         }
     }//GEN-LAST:event_jButtonEliminarAnimalActionPerformed
 
@@ -765,14 +796,6 @@ DefaultTableModel tabla1;
           }
     }//GEN-LAST:event_jTextFieldNumeroanimalKeyTyped
 
-    private void jTextFieldPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesoKeyTyped
-        // TODO add your handling code here:
-         char c = evt.getKeyChar();
-          if(Character.isLetter(c)){
-              evt.consume();
-          }
-    }//GEN-LAST:event_jTextFieldPesoKeyTyped
-
     private void jTextFieldCodigoGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoGKeyTyped
         // TODO add your handling code here:
          char c = evt.getKeyChar();
@@ -780,6 +803,119 @@ DefaultTableModel tabla1;
               evt.consume();
           }
     }//GEN-LAST:event_jTextFieldCodigoGKeyTyped
+
+    private void jTextFieldNumeroanimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroanimalActionPerformed
+        // TODO add your handling code here:
+        try{
+      evt.setSource((char) KeyEvent.VK_ENTER);   
+        //-----obtener la fecha----------------------
+      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha    
+     Integer idanimal,valor;
+     idanimal= Integer.parseInt(jTextFieldNumeroanimal.getText());      
+     animalesregistrados an = new animalesregistrados();
+       valor=an.existeanimalentradas(idanimal, fecha);
+       if (valor >=1){
+        JOptionPane.showMessageDialog(null, "Ya Existe Registrado Un Animal Con Este Codigo" );  
+        jTextFieldNumeroanimal.selectAll();
+        jTextFieldNumeroanimal.requestFocus();
+       }else{
+        jTextFieldTipo.requestFocus();
+       }
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        }
+    }//GEN-LAST:event_jTextFieldNumeroanimalActionPerformed
+
+    private void jTextFieldTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTipoActionPerformed
+        // TODO add your handling code here:
+         try{
+       
+        if((jTextFieldTipo.getText().equals("TE")) || (jTextFieldTipo.getText().equals("NO" )) || (jTextFieldTipo.getText().equals("TO" )) || (jTextFieldTipo.getText().equals("CB" ) ) ){
+        jTextFieldSexo.setText("MACHO");
+        jTextFieldColor.requestFocus();
+        }else if( (jTextFieldTipo.getText().equals("TA")) || (jTextFieldTipo.getText().equals("VA" )) || (jTextFieldTipo.getText().equals("VF" )) || (jTextFieldTipo.getText().equals("NA" )) || (jTextFieldTipo.getText().equals("YG" )) ){ 
+        jTextFieldSexo.setText("HEMBRA");
+        jTextFieldColor.requestFocus();
+        }else{
+        JOptionPane.showMessageDialog(null, "EL TIPO INTRODUCIDO NO EXISTE"); 
+        jTextFieldTipo.selectAll();
+        jTextFieldTipo.requestFocus();
+        }
+        
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        }
+    }//GEN-LAST:event_jTextFieldTipoActionPerformed
+
+    private void jTextFieldColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldColorActionPerformed
+        // TODO add your handling code here:
+         try{
+       // evt.setSource((char) KeyEvent.VK_ENTER);
+        if((jTextFieldColor.getText().equals("BA")) || (jTextFieldColor.getText().equals("NE" )) || (jTextFieldColor.getText().equals("CH" )) || (jTextFieldColor.getText().equals("RO" ) ) || (jTextFieldColor.getText().equals("AZ" ) ) || (jTextFieldColor.getText().equals("ZA" ))|| (jTextFieldColor.getText().equals("AM" ))|| (jTextFieldColor.getText().equals("HO" ))|| (jTextFieldColor.getText().equals("AR" ))|| (jTextFieldColor.getText().equals("PI" ) ) ){
+        jTextFieldFerrete.requestFocus();
+        }else{
+        JOptionPane.showMessageDialog(null, "EL COLOR INTRODUCIDO NO EXISTE"); 
+        jTextFieldColor.selectAll();
+        jTextFieldColor.requestFocus();
+        }
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        }
+    }//GEN-LAST:event_jTextFieldColorActionPerformed
+
+    private void jTextFieldFerreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFerreteActionPerformed
+        // TODO add your handling code here:
+         try{
+        evt.setSource((char) KeyEvent.VK_ENTER);
+        jTextFieldDescripcion.requestFocus();
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        }
+    }//GEN-LAST:event_jTextFieldFerreteActionPerformed
+
+    private void jTextFieldDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionActionPerformed
+        // TODO add your handling code here:
+         try{
+        evt.setSource((char) KeyEvent.VK_ENTER);
+        jButtonAgregarAnimal.requestFocus();
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        }
+    }//GEN-LAST:event_jTextFieldDescripcionActionPerformed
+
+    private void jButtonAgregarAnimalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAgregarAnimalKeyPressed
+        // TODO add your handling code here:
+           try{
+        evt.setSource((char) KeyEvent.VK_ENTER);
+        if (this.jTextFieldCodigoG.getText().trim().length()==0){
+         JOptionPane.showMessageDialog(null, "Debe Realizar La Busqueda Del Ganadero");   
+         this.jTextFieldCodigoG.requestFocus();
+        }else{   
+        if (((this.jTextFieldNumeroanimal.getText().trim().length()==0) || (this.jTextFieldFerrete.getText().trim().length()==0)|| (this.jTextFieldTipo.getText().trim().length()==0))|| (this.jTextFieldSexo.getText().trim().length()==0) || (this.jTextFieldColor.getText().trim().length()==0) ) {
+         JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
+         jTextFieldNumeroanimal.requestFocus();
+         }else{ 
+        
+        DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();
+        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),jTextFieldDescripcion.getText()});
+        this.jTextFieldNumeroanimal.setText("");
+        this.jTextFieldFerrete.setText("");
+        this.jTextFieldDescripcion.setText("");
+        this.jTextFieldColor.setText("");
+        this.jTextFieldSexo.setText("");
+        this.jTextFieldTipo.setText("");
+        jButtonGuardar.setEnabled(true);
+        jTextFieldNumeroanimal.requestFocus();
+        }
+        }
+        }catch (Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);
+        }
+    }//GEN-LAST:event_jButtonAgregarAnimalKeyPressed
     
     /**
      * @param args the command line arguments
@@ -827,9 +963,6 @@ DefaultTableModel tabla1;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonModifica;
     private javax.swing.JButton jButtonNuevo;
-    public static javax.swing.JComboBox<String> jComboBoxColor;
-    public static javax.swing.JComboBox jComboBoxSexo;
-    public static javax.swing.JComboBox<String> jComboBoxTipo;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -839,7 +972,6 @@ DefaultTableModel tabla1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -853,20 +985,21 @@ DefaultTableModel tabla1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     public static javax.swing.JTable jTableAnimalesRegistrados;
     public static javax.swing.JTable jTableEntradaDeAnimales;
-    public static javax.swing.JTextArea jTextAreaObservacion;
     public static javax.swing.JTextField jTextFieldApellido;
     public static javax.swing.JTextField jTextFieldCedula;
     public static javax.swing.JTextField jTextFieldCodigoG;
+    public static javax.swing.JTextField jTextFieldColor;
+    public static javax.swing.JTextField jTextFieldDescripcion;
     public static javax.swing.JTextField jTextFieldDireccion;
     public static javax.swing.JTextField jTextFieldFerrete;
     public static javax.swing.JTextField jTextFieldNombre;
     public static javax.swing.JTextField jTextFieldNumeroanimal;
-    public static javax.swing.JTextField jTextFieldPeso;
+    public static javax.swing.JTextField jTextFieldSexo;
+    public static javax.swing.JTextField jTextFieldTipo;
     public static javax.swing.JTextField jTextFieldTotalAnimales;
     public static javax.swing.JTextField jTextFieldTotalHembras;
     public static javax.swing.JTextField jTextFieldTotalMachos;
