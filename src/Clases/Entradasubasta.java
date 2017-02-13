@@ -6,6 +6,7 @@
 package Clases;
 
 import Interfaces.Entradas;
+import static Interfaces.Entradas.jTextFieldNumeroanimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -46,6 +47,8 @@ public class Entradasubasta {
             Entradas.jTextFieldNombre.setText(rs2.getString("Nombre"));
             Entradas.jTextFieldApellido.setText(rs2.getString("Apellido"));
             Entradas.jTextFieldDireccion.setText(rs2.getString("Direccion"));
+            Entradas.jTextFieldCodigoG.setEnabled(false);
+            Entradas.jTextFieldNumeroanimal.requestFocus();
           
             //imagen pendiente 
        
@@ -53,6 +56,8 @@ public class Entradasubasta {
     conect.desconectar();
            }else{
            JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
+            Entradas.jTextFieldCodigoG.selectAll();
+            Entradas.jTextFieldCodigoG.requestFocus();
            conect.desconectar();
             }
     
@@ -208,7 +213,7 @@ public class Entradasubasta {
     Entradas.jTextFieldNumeroanimal.setText("");
     Entradas.jTextFieldDescripcion.setText("");
     Entradas.jTextFieldCodigoG.requestFocus();
-    
+    Entradas.jTextFieldCodigoG.setEnabled(true);
     
         }catch (Exception ex){
         JOptionPane.showMessageDialog(null,"Error" +ex);      

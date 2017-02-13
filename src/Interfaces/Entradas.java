@@ -17,6 +17,11 @@ import java.util.Calendar;
  */
 public class Entradas extends javax.swing.JFrame {
 DefaultTableModel tabla1;
+//variables para validad el contenido del imput
+ String fer2="", fer3="", fer4="",fer5="",fer6="",fer7="";
+//variables para validar si hay extras de ferretes
+ // Integer c2=0,c3=0,c4=0,c5=0,c6=0;
+
     /**
      * Creates new form Entradas
      */
@@ -80,6 +85,7 @@ DefaultTableModel tabla1;
         jTextFieldSexo = new javax.swing.JTextField();
         jTextFieldColor = new javax.swing.JTextField();
         jTextFieldDescripcion = new javax.swing.JTextField();
+        jTextFieldPuebra = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -449,21 +455,22 @@ DefaultTableModel tabla1;
                                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jTextFieldPuebra, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel9)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(jButtonEliminarAnimal)
                                 .addGap(1, 1, 1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAgregarAnimal)))))
+                            .addComponent(jButtonAgregarAnimal, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -484,11 +491,10 @@ DefaultTableModel tabla1;
                             .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButtonAgregarAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPuebra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonAgregarAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonEliminarAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -684,7 +690,7 @@ DefaultTableModel tabla1;
         evt.setSource((char) KeyEvent.VK_ENTER);
         Entradasubasta busca = new Entradasubasta();
         busca.buscarcliente(cod);
-        jTextFieldNumeroanimal.requestFocus();
+       // jTextFieldNumeroanimal.requestFocus();
         }catch(Exception ex){
           JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
@@ -870,8 +876,80 @@ DefaultTableModel tabla1;
     private void jTextFieldFerreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFerreteActionPerformed
         // TODO add your handling code here:
          try{
-        evt.setSource((char) KeyEvent.VK_ENTER);
-        jTextFieldDescripcion.requestFocus();
+      evt.setSource((char) KeyEvent.VK_ENTER);
+      Integer c2=0,c3=0,c4=0,c5=0,c6=0;
+      //primer ferrete adicional
+      fer2=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
+      if(fer2==null||fer2.equals("")){  
+      jTextFieldDescripcion.requestFocus();
+      }else{
+      jTextFieldPuebra.setText(fer2);
+      jTextFieldDescripcion.requestFocus();
+      c2=1;
+      }  
+      //1
+      //segundo adicional
+      if(c2==1){
+      fer3=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
+      if(fer3==null||fer3.equals("")){  
+      jTextFieldDescripcion.requestFocus();
+      }else{
+      jTextFieldPuebra.setText(fer3);
+      jTextFieldDescripcion.requestFocus();
+      c3=1;
+      } 
+      }
+      //2
+      //tercero adicional
+      if(c3==1){
+      fer4=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
+      if(fer4==null||fer4.equals("")){  
+      jTextFieldDescripcion.requestFocus();
+      }else{
+      jTextFieldPuebra.setText(fer4);
+      jTextFieldDescripcion.requestFocus();
+      c4=1;
+      } 
+      }
+      //3
+      //cuarto adicional
+      if(c4==1){
+      fer5=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
+      if(fer5==null||fer5.equals("")){  
+      jTextFieldDescripcion.requestFocus();
+      }else{
+      jTextFieldPuebra.setText(fer5);
+      jTextFieldDescripcion.requestFocus();
+      c5=1;
+      } 
+      }
+      //4
+       //quinto adicional
+      if(c5==1){
+      fer6=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
+      if(fer6==null||fer6.equals("")){  
+      jTextFieldDescripcion.requestFocus();
+      }else{
+      jTextFieldPuebra.setText(fer6);
+      jTextFieldDescripcion.requestFocus();
+      c6=1;
+      } 
+      }
+      //5
+       //sexto adicional
+      if(c6==1){
+      fer7=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
+      if(fer7==null||fer7.equals("")){  
+      jTextFieldDescripcion.requestFocus();
+      }else{
+      jTextFieldPuebra.setText(fer7);
+      jTextFieldDescripcion.requestFocus();
+     // c6=1;
+      } 
+      }
+      //5
+      
+      
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null, "Error:   " +ex);        
         }
@@ -998,6 +1076,7 @@ DefaultTableModel tabla1;
     public static javax.swing.JTextField jTextFieldFerrete;
     public static javax.swing.JTextField jTextFieldNombre;
     public static javax.swing.JTextField jTextFieldNumeroanimal;
+    private javax.swing.JTextField jTextFieldPuebra;
     public static javax.swing.JTextField jTextFieldSexo;
     public static javax.swing.JTextField jTextFieldTipo;
     public static javax.swing.JTextField jTextFieldTotalAnimales;
