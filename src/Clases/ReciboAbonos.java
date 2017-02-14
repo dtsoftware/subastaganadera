@@ -21,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, todos, todos2;
-    PreparedStatement cargar2, cargar3, guardarrecibo, facturas, facturas2;
+      ResultSet rs2, todos, todos2, rs5, aux;
+    PreparedStatement cargar2, cargar3, guardarrecibo, facturas, facturas2, factmax, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -319,7 +319,72 @@ public void guardarrecibo(){
         }
        
     }
-        
+ 
+public void BuscarUltFact(){
+    try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+     
+     // creamos la consulta
+     consulta="SELECT MAX(idRecibos) AS 'Ultimo' FROM recibos";
+   
+     //pasamos la consulta al preparestatement
+    
+     factmax=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+    
+     rs5=factmax.executeQuery(consulta);
+
+           if (rs5.next()){               
+ 
+                int Ultimo= Integer.parseInt(rs5.getString("Ultimo"));
+                int FactProx= (Ultimo + 1);
+                Recibos.recibo.setText(""+Integer.valueOf(FactProx));
+           }else{
+                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
+                conect.desconectar();
+           }
+
+                rs5.close(); 
+                factmax.close();
+                
+                conect.desconectar();
+           
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+}    
+
+    public void llenarcombo(){
+        try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+     
+     // creamos la consulta
+     consulta="SELECT Nombre FROM cuentas Where idCuentas !='"+'0'+"'";
+   
+     //pasamos la consulta al preparestatement
+    
+     UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+    
+     aux=UltimoRg.executeQuery(consulta);
+
+          while(aux.next()){               
+ 
+                Recibos.banco.addItem(aux.getString("Nombre"));
+                     
+               
+           }
+           
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+    }
 
 }
 

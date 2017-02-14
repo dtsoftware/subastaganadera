@@ -85,6 +85,11 @@ public class Recibos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -254,6 +259,10 @@ public class Recibos extends javax.swing.JFrame {
             }
         });
 
+        recibo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        recibo.setEnabled(false);
+
+        txtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyPressed(evt);
@@ -261,6 +270,7 @@ public class Recibos extends javax.swing.JFrame {
         });
 
         saldo.setEditable(false);
+        saldo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         saldo.setText("0.0");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -328,7 +338,7 @@ public class Recibos extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("LISTA DE BANCO:");
 
-        banco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        banco.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
 
         jTableFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -487,7 +497,7 @@ public class Recibos extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(banco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(banco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -669,7 +679,16 @@ public class Recibos extends javax.swing.JFrame {
         Recibos.saldo.setText("");
         Recibos.txtBeneficiario.setText("");
         Recibos.Suma.setText("");
+         ReciboAbonos busca = new ReciboAbonos();
+        busca.BuscarUltFact();  
     }//GEN-LAST:event_clientes1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ReciboAbonos busca = new ReciboAbonos();
+        busca.BuscarUltFact();  
+        ReciboAbonos llenar = new ReciboAbonos();
+        llenar.llenarcombo();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

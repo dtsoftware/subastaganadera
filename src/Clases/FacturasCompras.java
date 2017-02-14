@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -181,17 +183,29 @@ public void guardarfactura(){
     int codigo= Integer.parseInt(Facturacion.NumFactura.getText());
     int codigocliente= Integer.parseInt(Facturacion.idcomprador.getText());
     redondear redon  = new redondear();
-    Double Monto = redon.redondearDecimales(Double.parseDouble(Facturacion.txtmonto.getText()), 2);
+    //Double Monto = redon.redondearDecimales(Double.parseDouble(Facturacion.txtmonto.getText()), 2);
     String Tipo = String.valueOf(Facturacion.tipo.getSelectedItem());
-    String Estado = "POR PAGAR";    
+    String Estado = "POR PAGAR";  
+    Double Acumulado=0.00;
+    for (int i = 0; i < Facturacion.jTableAnimalesVendidos.getRowCount(); i++) {
+
+    if( Facturacion.jTableAnimalesVendidos.getValueAt(i, 0)!=null){ 
+        Double Monto = Double.parseDouble(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 8)));
+        Acumulado = Acumulado + Monto; 
+                        }else{
+                            continue;
+                        }   
+    }
+    
+    Acumulado = redon.redondearDecimales(Acumulado, 2);
 
   facturas=conect.con.prepareStatement("INSERT INTO facturas ( idFacturas, Monto, CodCliente, Saldo, Fecha, Tipo, Estado) VALUES (?,?,?,?,?,?,?)");
   //este es duplicando el numero consultar a juan el uso del codigo
 
   facturas.setInt(1,codigo);
-  facturas.setDouble(2, Monto);
+  facturas.setDouble(2, Acumulado);
   facturas.setInt(3, codigocliente);
-  facturas.setDouble(4, Monto);
+  facturas.setDouble(4, Acumulado);
   facturas.setString(5, fecha);
   facturas.setString(6, Tipo);
   facturas.setString(7, Estado);
@@ -220,6 +234,36 @@ public void guardarfactura(){
         Facturacion.txtcedula.setText("");
         Facturacion.txtdireccion.setText("");
         Facturacion.idcomprador.setText("");
-        Facturacion.txtmachos.setText("");       
+        Facturacion.txtmachos.setText("");  
+        Facturacion.guardar.setEnabled(false);
+        Facturacion.manual.setEnabled(false);
+        Facturacion.tipo.setEnabled(false);
+        Facturacion.seleccion.setEnabled(false);
+        Facturacion.todos.setEnabled(false);
+        Facturacion.guardar.setEnabled(false);
+        Facturacion.idcomprador.setText("0");
     }
+  
+  public void centrar_datos(){  
+    
+    DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); 
+    modelocentrar.setHorizontalAlignment(SwingConstants.CENTER); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(1).setCellRenderer(modelocentrar); 
+    DefaultTableCellRenderer modelocentrar1 = new DefaultTableCellRenderer(); 
+    modelocentrar1.setHorizontalAlignment(SwingConstants.CENTER); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(3).setCellRenderer(modelocentrar1); 
+    DefaultTableCellRenderer modelocentrar2 = new DefaultTableCellRenderer(); 
+    modelocentrar2.setHorizontalAlignment(SwingConstants.CENTER); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(4).setCellRenderer(modelocentrar2); 
+    DefaultTableCellRenderer modelocentrar3 = new DefaultTableCellRenderer(); 
+    modelocentrar3.setHorizontalAlignment(SwingConstants.CENTER); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(5).setCellRenderer(modelocentrar3); 
+    DefaultTableCellRenderer modelocentrar4 = new DefaultTableCellRenderer(); 
+    modelocentrar4.setHorizontalAlignment(SwingConstants.CENTER); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(9).setCellRenderer(modelocentrar4); 
+    DefaultTableCellRenderer modelocentrar5 = new DefaultTableCellRenderer(); 
+    modelocentrar5.setHorizontalAlignment(SwingConstants.LEFT); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(2).setCellRenderer(modelocentrar5); 
+    DefaultTableCellRenderer modelocentrar6 = new DefaultTableCellRenderer(); 
+    modelocentrar6.setHorizontalAlignment(SwingConstants.RIGHT); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(6).setCellRenderer(modelocentrar6); 
+    DefaultTableCellRenderer modelocentrar7 = new DefaultTableCellRenderer(); 
+    modelocentrar7.setHorizontalAlignment(SwingConstants.RIGHT); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(7).setCellRenderer(modelocentrar7); 
+    DefaultTableCellRenderer modelocentrar8 = new DefaultTableCellRenderer(); 
+    modelocentrar8.setHorizontalAlignment(SwingConstants.RIGHT); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(8).setCellRenderer(modelocentrar8); 
+
+ }
 }

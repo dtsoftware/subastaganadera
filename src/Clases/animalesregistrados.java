@@ -14,19 +14,23 @@ import java.sql.PreparedStatement;
 import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
+import java.util.Objects;
 /**
  *
  * @author Tserng
  */
 public class animalesregistrados {
-    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, ActualizarE,rsexiste;
-    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, InsertFact, ActEdetalle, Completados, ActEntrada,existe;
+    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, ActualizarE,rsexiste, TVendidos, TVendedor;
+    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, InsertFact, ActEdetalle, Completados, ActEntrada,existe, TV01, TV02;
     Integer totalmachos,totalhembras, ultimaentrada,totalexiste;
     
     //DefaultTableModel tabla;
     Object[] filas = new Object[6];
-    Object[] filas1 = new Object[8];
-    Object[] filas2 = new Object[9];
+    Object[] filas1 = new Object[9];
+    Object[] filas2 = new Object[10];
+       
+      
+    
     public  animalesregistrados(){
     
     }
@@ -243,7 +247,7 @@ public class animalesregistrados {
     }
     
     
-    public void cargaracomprados(){
+   public void cargaracomprados(){
     
     try {
             DefaultTableModel tabla= (DefaultTableModel) Facturacion.jTableAnimalesVendidos.getModel();   
@@ -256,7 +260,7 @@ public class animalesregistrados {
             String year = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
             String fecha = (year + "-" + mes+ "-" + dia);
             String Estado = "Subastado";
-
+             
             try {
                 if (tabla != null) {
                     while (tabla.getRowCount() > 0) {
@@ -267,19 +271,40 @@ public class animalesregistrados {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,"Error" +ex);
                 }
-            if (Facturacion.Orden == "1"){
-                consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY idAnimal";
-            }else if (Facturacion.Orden == "2"){
-                consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY CodVendedor";
+            
+            
+    
+            if(Integer.parseInt(Facturacion.idcomprador.getText())==0)
+            {
+                if (Facturacion.Orden == "1"){
+
+                    consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso, TotalBruto, CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY idAnimal";
+                }else if (Facturacion.Orden == "2"){
+                    consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso, TotalBruto, CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY CodVendedor";
+                }else{
+                    consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso, TotalBruto, CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY idComprador";
+                }
+                
             }else{
-                consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso,CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' Order BY idComprador";
+                Integer code = Integer.parseInt(Facturacion.idcomprador.getText());
+                 if (Facturacion.Orden == "1"){
+                    consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso, TotalBruto, CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+code+"' Order BY idAnimal";
+                }else if (Facturacion.Orden == "2"){
+                    consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso, TotalBruto, CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+code+"' Order BY CodVendedor";
+                }else{
+                    consulta="SELECT idAnimal,Observacion,Sexo,Color,idComprador,Precio,Peso, TotalBruto, CodVendedor FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+code+"' Order BY idComprador";
+                }
             }
+
+            
+            
             
             comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             buy=comprados.executeQuery(consulta);
-   
+
             while (buy.next()){
+                    filas2[0]= true;
                     filas2[1]=buy.getString("idAnimal");
                     filas2[2]=buy.getString("Observacion");
                     filas2[3]=buy.getString("Sexo");
@@ -287,7 +312,8 @@ public class animalesregistrados {
                     filas2[5]=buy.getString("idComprador");
                     filas2[6]=buy.getDouble("Precio");
                     filas2[7]=buy.getDouble("Peso");
-                    filas2[8]=buy.getString("CodVendedor"); 
+                    filas2[8]=buy.getDouble("TotalBruto");
+                    filas2[9]=buy.getString("CodVendedor"); 
                     tabla.addRow(filas2);
             }
             buy.close();
@@ -305,7 +331,7 @@ public class animalesregistrados {
     
     try {
             DefaultTableModel tabla= (DefaultTableModel) Facturacion.jTableAnimalesVendidos.getModel();   
-            String consulta, CActualizar, Consulta2, EActualizar;    
+            String consulta, CActualizar, Consulta2,Consulta3,Consulta4, EActualizar;    
             conectar conect = new conectar(); 
             conect.conexion();
 
@@ -335,11 +361,11 @@ public class animalesregistrados {
                           }
                 }
             
-                consulta="SELECT idAnimal,Precio, Peso FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And idAnimal = '"+Animal+"' ";
+                consulta="SELECT CodVendedor, idAnimal,Precio, Peso FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And idAnimal = '"+Animal+"' ";
            
                 comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
                 cargall=comprados.executeQuery(consulta);
-
+                Integer CodVen = 0;
                 Double comision, TotalReal, TotalBruto, Valor;
 
                 while (cargall.next()){
@@ -365,27 +391,45 @@ public class animalesregistrados {
                     ActEdetalle.setDouble(4, TotalReal);
                     ActEdetalle.setInt(5, cargall.getInt("idAnimal"));
                     ActEdetalle.executeUpdate();  
-
+                   CodVen = cargall.getInt("CodVendedor");
                 }
-            }
-            
-            Consulta2="SELECT SUM(TotalReal) AS Total FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+"Completado"+"' And idComprador = '"+Codigo+"'";
+                  
+                
+                    Integer Vendidos = 0;
+                    Integer Totales = 0;
+                    
+                    Consulta2 = " SELECT count(idEntrada) AS 'Vendidos' FROM entrada_detalle Where Estado = '"+"Completado"+"' AND Fecha = '"+fecha+"' AND CodVendedor = '"+CodVen+"'";
+                    TV01=conect.con.prepareStatement(Consulta2,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    TVendidos=TV01.executeQuery(Consulta2);
+                    while (TVendidos.next()){
+                        Vendidos = TVendidos.getInt("Vendidos");
+                    }
+                    Consulta3 = " SELECT count(idEntrada) AS 'Total' FROM entrada_detalle Where Fecha = '"+fecha+"' AND CodVendedor = '"+CodVen+"'";
+                    TV02=conect.con.prepareStatement(Consulta3,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    TVendedor=TV02.executeQuery(Consulta3);
+                    while (TVendedor.next()){
+                        Totales = TVendedor.getInt("Total");
+                    }
+   
+                    if (Objects.equals(Vendidos, Totales)){
+                        
+                        Consulta4="SELECT SUM(TotalReal) AS Total FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+"Completado"+"' And CodVendedor = '"+CodVen+"'";
+                        
+                        Completados=conect.con.prepareStatement(Consulta4,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                        ActualizarE=Completados.executeQuery(Consulta4);
+
+                            while (ActualizarE.next()){
+                                EActualizar="UPDATE entradas SET Estado =?,Total=? WHERE CodCliente= '"+CodVen+"' And Fecha = '"+fecha+"'";
+                                ActEntrada=conect.con.prepareStatement(EActualizar);
+                                ActEntrada.setString(1, "Completado");
+                                ActEntrada.setDouble(2, ActualizarE.getDouble("Total"));
+                                ActEntrada.executeUpdate();  
+
+                            }
+                            
+                        }
            
-                Completados=conect.con.prepareStatement(Consulta2,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                ActualizarE=Completados.executeQuery(Consulta2);
-
-
-                while (ActualizarE.next()){
-                    
-                    
-                    EActualizar="UPDATE entradas SET Estado =?,Total=? WHERE CodCliente= '"+Codigo+"' And Fecha = '"+fecha+"'";
-                    //pasamos la consulta al preparestatement
-                    ActEntrada=conect.con.prepareStatement(EActualizar);
-                    ActEntrada.setString(1, "Completado");
-                    ActEntrada.setDouble(2, ActualizarE.getDouble("Total"));
-                    ActEntrada.executeUpdate();  
-
-                }
+            }
             
             
             
