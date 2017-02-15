@@ -85,7 +85,6 @@ DefaultTableModel tabla1;
         jTextFieldSexo = new javax.swing.JTextField();
         jTextFieldColor = new javax.swing.JTextField();
         jTextFieldDescripcion = new javax.swing.JTextField();
-        jTextFieldPuebra = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -308,10 +307,34 @@ DefaultTableModel tabla1;
 
             },
             new String [] {
-                "# De llegada", "Tipo", "Sexo", "Color", "Ferrete", "Descripción"
+                "# De llegada", "Tipo", "Sexo", "Color", "Ferre1", "Ferre2", "Ferre3", "Ferre4", "Ferre5", "Ferre6", "Ferre7", "Descripción"
             }
         ));
         jScrollPane2.setViewportView(jTableEntradaDeAnimales);
+        if (jTableEntradaDeAnimales.getColumnModel().getColumnCount() > 0) {
+            jTableEntradaDeAnimales.getColumnModel().getColumn(0).setMinWidth(80);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(1).setMinWidth(60);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(1).setMaxWidth(60);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(2).setMinWidth(70);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(2).setMaxWidth(70);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(3).setMinWidth(70);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(3).setMaxWidth(70);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(4).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(4).setMaxWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(5).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(5).setMaxWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(6).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(6).setMaxWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(7).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(7).setMaxWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(8).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(8).setMaxWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(9).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(9).setMaxWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(10).setMinWidth(50);
+            jTableEntradaDeAnimales.getColumnModel().getColumn(10).setMaxWidth(50);
+        }
 
         jButtonEliminarAnimal.setText("ELIMINAR");
         jButtonEliminarAnimal.addActionListener(new java.awt.event.ActionListener() {
@@ -455,10 +478,7 @@ DefaultTableModel tabla1;
                                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(jTextFieldPuebra, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -491,8 +511,7 @@ DefaultTableModel tabla1;
                             .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPuebra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldFerrete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButtonAgregarAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,14 +730,20 @@ DefaultTableModel tabla1;
          jTextFieldNumeroanimal.requestFocus();
          }else{ 
         
-        DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();
-        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),jTextFieldDescripcion.getText()});
+        DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();        
+        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),fer2,fer3,fer4,fer5,fer6,fer7,jTextFieldDescripcion.getText()});
         this.jTextFieldNumeroanimal.setText("");
         this.jTextFieldFerrete.setText("");
         this.jTextFieldDescripcion.setText("");
         this.jTextFieldColor.setText("");
         this.jTextFieldSexo.setText("");
         this.jTextFieldTipo.setText("");
+        fer2="";
+        fer3=""; 
+        fer4="";
+        fer5="";
+        fer6="";
+        fer7="";
         jButtonGuardar.setEnabled(true);
         jTextFieldNumeroanimal.requestFocus();
         }
@@ -883,7 +908,7 @@ DefaultTableModel tabla1;
       if(fer2==null||fer2.equals("")){  
       jTextFieldDescripcion.requestFocus();
       }else{
-      jTextFieldPuebra.setText(fer2);
+      //jTextFieldPuebra.setText(fer2);
       jTextFieldDescripcion.requestFocus();
       c2=1;
       }  
@@ -894,7 +919,7 @@ DefaultTableModel tabla1;
       if(fer3==null||fer3.equals("")){  
       jTextFieldDescripcion.requestFocus();
       }else{
-      jTextFieldPuebra.setText(fer3);
+      //jTextFieldPuebra.setText(fer3);
       jTextFieldDescripcion.requestFocus();
       c3=1;
       } 
@@ -906,7 +931,7 @@ DefaultTableModel tabla1;
       if(fer4==null||fer4.equals("")){  
       jTextFieldDescripcion.requestFocus();
       }else{
-      jTextFieldPuebra.setText(fer4);
+     // jTextFieldPuebra.setText(fer4);
       jTextFieldDescripcion.requestFocus();
       c4=1;
       } 
@@ -918,7 +943,7 @@ DefaultTableModel tabla1;
       if(fer5==null||fer5.equals("")){  
       jTextFieldDescripcion.requestFocus();
       }else{
-      jTextFieldPuebra.setText(fer5);
+      //jTextFieldPuebra.setText(fer5);
       jTextFieldDescripcion.requestFocus();
       c5=1;
       } 
@@ -930,24 +955,25 @@ DefaultTableModel tabla1;
       if(fer6==null||fer6.equals("")){  
       jTextFieldDescripcion.requestFocus();
       }else{
-      jTextFieldPuebra.setText(fer6);
+      //jTextFieldPuebra.setText(fer6);
       jTextFieldDescripcion.requestFocus();
       c6=1;
       } 
       }
       //5
-       //sexto adicional
+     // sexto adicional
       if(c6==1){
       fer7=JOptionPane.showInputDialog (null,"Introdusca Los Ferretes Adicionales:");
       if(fer7==null||fer7.equals("")){  
       jTextFieldDescripcion.requestFocus();
       }else{
-      jTextFieldPuebra.setText(fer7);
+     // jTextFieldPuebra.setText(fer7);
       jTextFieldDescripcion.requestFocus();
      // c6=1;
       } 
+    
       }
-      //5
+      
       
       
         }catch(Exception ex){
@@ -979,13 +1005,20 @@ DefaultTableModel tabla1;
          }else{ 
         
         DefaultTableModel tabla1= (DefaultTableModel) this.jTableEntradaDeAnimales.getModel();
-        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),jTextFieldDescripcion.getText()});
+        tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),fer2,fer3,fer4,fer5,fer6,fer7,jTextFieldDescripcion.getText()});
+        //tabla1.addRow(new Object []{jTextFieldNumeroanimal.getText(),this.jTextFieldTipo.getText(),this.jTextFieldSexo.getText(),this.jTextFieldColor.getText(),jTextFieldFerrete.getText(),jTextFieldDescripcion.getText()});
         this.jTextFieldNumeroanimal.setText("");
         this.jTextFieldFerrete.setText("");
         this.jTextFieldDescripcion.setText("");
         this.jTextFieldColor.setText("");
         this.jTextFieldSexo.setText("");
         this.jTextFieldTipo.setText("");
+        fer2="";
+        fer3=""; 
+        fer4="";
+        fer5="";
+        fer6="";
+        fer7="";
         jButtonGuardar.setEnabled(true);
         jTextFieldNumeroanimal.requestFocus();
         }
@@ -1076,7 +1109,6 @@ DefaultTableModel tabla1;
     public static javax.swing.JTextField jTextFieldFerrete;
     public static javax.swing.JTextField jTextFieldNombre;
     public static javax.swing.JTextField jTextFieldNumeroanimal;
-    private javax.swing.JTextField jTextFieldPuebra;
     public static javax.swing.JTextField jTextFieldSexo;
     public static javax.swing.JTextField jTextFieldTipo;
     public static javax.swing.JTextField jTextFieldTotalAnimales;
