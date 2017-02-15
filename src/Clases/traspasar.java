@@ -130,7 +130,7 @@ public class traspasar {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor,idEntrada FROM entrada_detalle  where CodVendedor LIKE '"+ codigo +"%' and Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor,idEntrada FROM entrada_detalle  where CodVendedor LIKE '"+ codigo +"%' and Fecha ='"+ fecha +"'  ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -224,7 +224,7 @@ public class traspasar {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor, idEntrada FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Por Subastar' ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor, idEntrada FROM entrada_detalle  where Fecha ='"+ fecha +"' ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
