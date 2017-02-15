@@ -8,10 +8,10 @@ package Clases;
 import Interfaces.Entradas;
 import Interfaces.Subastas;
 import Interfaces.Nosubastados;
-import static Interfaces.Subastas.jTextAreaDetalle;
 import static Interfaces.Subastas.jTextFieldCeduladelcomprador;
 import static Interfaces.Subastas.jTextFieldCodigoComprador;
 import static Interfaces.Subastas.jTextFieldColor;
+import static Interfaces.Subastas.jTextFieldDetalle;
 import static Interfaces.Subastas.jTextFieldFerrete;
 import static Interfaces.Subastas.jTextFieldMontoTotal;
 import static Interfaces.Subastas.jTextFieldNanimal;
@@ -63,13 +63,17 @@ public class subastas {
             Subastas.jTextFieldNombredelcomprador.setText(rs2.getString("Nombre") + " " + rs2.getString("Apellido"));
             //Subastas.jTextFieldApellido.setText(rs2.getString("Apellido"));
            // Entradas.jTextFieldDireccion.setText(rs2.getString("Direccion"));
-          
+            jTextFieldCodigoComprador.setEnabled(false);
+           jTextFieldDetalle.requestFocus();
             //imagen pendiente 
        
       rs2.close();
+      cargar2.close();
     conect.desconectar();
            }else{
            JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar: El Cliente No Esta Registrado"  ); 
+           Subastas.jTextFieldCodigoComprador.selectAll();
+           Subastas.jTextFieldCodigoComprador.requestFocus();
            conect.desconectar();
             }
     
@@ -338,7 +342,7 @@ public class subastas {
     numeroa= Integer.parseInt(Subastas.jTextFieldNanimal.getText());
     peso= Double.parseDouble(Subastas.jTextFieldPesoNeto.getText());
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
-    detalle=Subastas.jTextAreaDetalle.getText();
+    detalle=Subastas.jTextFieldDetalle.getText();
     valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
     
     //-----obtener la fecha----------------------
@@ -366,20 +370,21 @@ public class subastas {
  //hasta aki
     
  //codigo para actualizar el estado en entrada detalle a subastado   
- consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?  WHERE idAnimal= ? and Fecha=?";
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?  WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
     estado =conect.con.prepareStatement(consulta);
     estado.setString(1, estados);
     estado.setInt(2, codcomprador);
     estado.setDouble(3, valortotal);
     estado.setDouble(4, precio);
-    estado.setInt(5, numeroa);
-    estado.setString(6, fecha);
+    estado.setDouble(5, peso);
+    estado.setInt(6, numeroa);
+    estado.setString(7, fecha);
     estado.executeUpdate(); 
  //hasta aki     
-        jTextAreaDetalle.setText("");
-        jTextFieldNanimal.setText("0");
-        jTextFieldCodigoComprador.setText("0");
+        Subastas.jTextFieldDetalle.setText("");
+        jTextFieldNanimal.setText("");
+        jTextFieldCodigoComprador.setText("");
         jTextFieldTipo.setText("");
         jTextFieldColor.setText("");
         jTextFieldSexo.setText("");
@@ -392,6 +397,8 @@ public class subastas {
         Subastas.jTextFieldPrecio.setText("");
         jTextFieldPeso.setText("");
         Subastas.jTextFieldNanimal.requestFocus();
+        jTextFieldNanimal.setEnabled(true);
+        jTextFieldCodigoComprador.setEnabled(true);
     
     JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
     
@@ -418,7 +425,7 @@ public class subastas {
     
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo, Color, Sexo,Ferrete,Peso FROM entrada_detalle where idAnimal ='"+ Codigo +"' and Fecha ='"+ fecha +"' and Estado='Por Subastar'  ";
+     consulta="SELECT idAnimal,Tipo, Color, Sexo,Ferrete FROM entrada_detalle where idAnimal ='"+ Codigo +"' and Fecha ='"+ fecha +"' and Estado='Por Subastar'  ";
      //pasamos la consulta al preparestatement
     
      cargaranimal=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -431,17 +438,21 @@ public class subastas {
             Subastas.jTextFieldColor.setText(animal.getString("Color"));
             Subastas.jTextFieldSexo.setText(animal.getString("Sexo"));
             Subastas.jTextFieldFerrete.setText(animal.getString("Ferrete"));
-            Subastas.jTextFieldPeso.setText(String.valueOf(animal.getDouble("Peso")));
-            Subastas.jTextFieldPesoNeto.setText(String.valueOf(animal.getDouble("Peso")));
+            //Subastas.jTextFieldPeso.setText(String.valueOf(animal.getDouble("Peso")));
+            //Subastas.jTextFieldPesoNeto.setText(String.valueOf(animal.getDouble("Peso")));
             //Subastas.jTextFieldApellido.setText(rs2.getString("Apellido"));
            // Entradas.jTextFieldDireccion.setText(rs2.getString("Direccion"));
-          
+            jTextFieldNanimal.setEnabled(false);
+          jTextFieldCodigoComprador.requestFocus();
             //imagen pendiente 
        
     animal.close();
+    cargaranimal.close();
     conect.desconectar();
            }else{
            JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar: El Animal Ha Sido Subastado O no se a Realizado Su Registro De Entada"  ); 
+           Subastas.jTextFieldNanimal.selectAll();
+           Subastas.jTextFieldNanimal.requestFocus();
            conect.desconectar();
             }
     
