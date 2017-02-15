@@ -26,7 +26,7 @@ public class animalesregistrados {
     
     //DefaultTableModel tabla;
     Object[] filas = new Object[6];
-    Object[] filas1 = new Object[9];
+    Object[] filas1 = new Object[14];
     Object[] filas2 = new Object[10];
        
       
@@ -65,23 +65,29 @@ public class animalesregistrados {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Ferrete,CodVendedor,Observacion,idedetalle FROM entrada_detalle  where Fecha ='"+ fecha +"' and TotalBruto IS NULL ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Ferrete,ferre2,ferre3,ferre4,ferre5,ferre6,ferre7,CodVendedor,Observacion,idedetalle FROM entrada_detalle  where Fecha ='"+ fecha +"' ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
      todos=animales.executeQuery(consulta);
      //recorremos el resulset
     while (todos.next()){
-        
-                    filas1[0]=todos.getInt("idAnimal");
+        filas1[0]=todos.getInt("idAnimal");
                     filas1[1]=todos.getString("Tipo");
                     filas1[2]=todos.getString("Sexo");
                     filas1[3]=todos.getString("Color");
                     //filas1[4]=todos.getDouble("Peso");
                     filas1[4]=todos.getString("Ferrete");
-                    filas1[5]=todos.getInt("CodVendedor");
-                    filas1[6]=todos.getString("Observacion");   
-                    filas1[7]=todos.getInt("idedetalle");
+                     filas1[5]=todos.getString("ferre2");
+                      filas1[6]=todos.getString("ferre3");
+                       filas1[7]=todos.getString("ferre4");
+                        filas1[8]=todos.getString("ferre5");
+                         filas1[9]=todos.getString("ferre6");
+                          filas1[10]=todos.getString("ferre7");
+                    filas1[11]=todos.getInt("CodVendedor");
+                    filas1[12]=todos.getString("Observacion");   
+                    filas1[13]=todos.getInt("idedetalle");
+                  
        tabla.addRow(filas1);
     }
     todos.close();
@@ -122,23 +128,29 @@ public class animalesregistrados {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,CodVendedor,Observacion,idedetalle FROM entrada_detalle  where CodVendedor LIKE '"+ codigo +"%' and  Fecha ='"+ fecha +"' ORDER BY idedetalle";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,ferre2,ferre3,ferre4,ferre5,ferre6,ferre7,CodVendedor,Observacion,idedetalle FROM entrada_detalle  where CodVendedor LIKE '"+ codigo +"%' and  Fecha ='"+ fecha +"' ORDER BY idedetalle";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
      todos=animales.executeQuery(consulta);
      //recorremos el resulset
     while (todos.next()){
-        
-                    filas1[0]=todos.getInt("idAnimal");
+        filas1[0]=todos.getInt("idAnimal");
                     filas1[1]=todos.getString("Tipo");
                     filas1[2]=todos.getString("Sexo");
                     filas1[3]=todos.getString("Color");
-                    filas1[4]=todos.getDouble("Peso");
-                    filas1[5]=todos.getString("Ferrete");
-                    filas1[6]=todos.getInt("CodVendedor");
-                    filas1[7]=todos.getString("Observacion");   
-                    filas1[8]=todos.getInt("idedetalle");
+                    //filas1[4]=todos.getDouble("Peso");
+                    filas1[4]=todos.getString("Ferrete");
+                     filas1[5]=todos.getString("ferre2");
+                      filas1[6]=todos.getString("ferre3");
+                       filas1[7]=todos.getString("ferre4");
+                        filas1[8]=todos.getString("ferre5");
+                         filas1[9]=todos.getString("ferre6");
+                          filas1[10]=todos.getString("ferre7");
+                    filas1[11]=todos.getInt("CodVendedor");
+                    filas1[12]=todos.getString("Observacion");   
+                    filas1[13]=todos.getInt("idedetalle");
+                   
        tabla.addRow(filas1);
     }
     todos.close();
@@ -570,14 +582,14 @@ public void totalmachoshembras(){
    }    
     }
        
-public void guardareditados( Integer numero,Integer idedetalle, String tipo,String sexo,String color,String ferrete,String observacion ){
+public void guardareditados ( Integer numero,Integer idedetalle, String tipo,String sexo,String color,String ferrete,String ferre2,String ferre3,String ferre4,String ferre5,String ferre6,String ferre7,String observacion ){
 try {
      String consulta;  
      conectar conect = new conectar(); 
      conect.conexion();  
     
      // creamos la consulta
-     consulta="UPDATE entrada_detalle SET idAnimal =?,Tipo=?,Sexo=?,Color=?,Ferrete=?,Observacion=? WHERE idedetalle= ? ";
+     consulta="UPDATE entrada_detalle SET idAnimal =?,Tipo=?,Sexo=?,Color=?,Ferrete=?,ferre2=?,ferre3=?,ferre4=?,ferre5=?,ferre6=?,ferre7=?,Observacion=? WHERE idedetalle= ? ";
     //pasamos la consulta al preparestatement
     editar=conect.con.prepareStatement(consulta);
     editar.setInt(1, numero);
@@ -586,9 +598,15 @@ try {
     editar.setString(3, sexo);
     editar.setString(4, color);
     editar.setString(5, ferrete);
-    editar.setString(6, observacion);
+    editar.setString(6, ferre2);
+    editar.setString(7, ferre3);
+    editar.setString(8, ferre4);
+    editar.setString(9, ferre5);
+    editar.setString(10, ferre6);
+    editar.setString(11, ferre7);
+    editar.setString(12, observacion);
     //editar.setDouble(7, peso);
-    editar.setInt(7, idedetalle);
+    editar.setInt(13, idedetalle);
     
     editar.executeUpdate(); 
     conect.desconectar(); 
