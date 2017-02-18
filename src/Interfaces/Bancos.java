@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class Bancos extends javax.swing.JFrame {
-
+public static Integer Edicion;
     /**
      * Creates new form Bancos
      */
@@ -26,6 +26,7 @@ public class Bancos extends javax.swing.JFrame {
         Bancos.fecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         Bancos.fecha.setDate(date); 
+        Edicion = 0;
     }
 
     /**
@@ -74,7 +75,7 @@ public class Bancos extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Codigo:");
@@ -126,6 +127,7 @@ public class Bancos extends javax.swing.JFrame {
         detalle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         detalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuenta Corriente", "Cuenta Ahorro" }));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         registros.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,22 +153,26 @@ public class Bancos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(registros);
         if (registros.getColumnModel().getColumnCount() > 0) {
-            registros.getColumnModel().getColumn(0).setMinWidth(60);
-            registros.getColumnModel().getColumn(0).setMaxWidth(60);
+            registros.getColumnModel().getColumn(0).setMinWidth(70);
+            registros.getColumnModel().getColumn(0).setMaxWidth(70);
             registros.getColumnModel().getColumn(1).setMinWidth(60);
             registros.getColumnModel().getColumn(1).setMaxWidth(60);
             registros.getColumnModel().getColumn(2).setMinWidth(150);
             registros.getColumnModel().getColumn(2).setMaxWidth(150);
-            registros.getColumnModel().getColumn(3).setMinWidth(100);
-            registros.getColumnModel().getColumn(3).setMaxWidth(100);
-            registros.getColumnModel().getColumn(4).setMinWidth(100);
-            registros.getColumnModel().getColumn(4).setMaxWidth(100);
+            registros.getColumnModel().getColumn(3).setMinWidth(110);
+            registros.getColumnModel().getColumn(3).setMaxWidth(110);
+            registros.getColumnModel().getColumn(4).setMinWidth(120);
+            registros.getColumnModel().getColumn(4).setMaxWidth(120);
+            registros.getColumnModel().getColumn(5).setMinWidth(70);
+            registros.getColumnModel().getColumn(5).setMaxWidth(70);
             registros.getColumnModel().getColumn(6).setMinWidth(75);
             registros.getColumnModel().getColumn(6).setMaxWidth(75);
-            registros.getColumnModel().getColumn(7).setMinWidth(75);
-            registros.getColumnModel().getColumn(7).setMaxWidth(75);
+            registros.getColumnModel().getColumn(7).setMinWidth(65);
+            registros.getColumnModel().getColumn(7).setMaxWidth(65);
         }
 
+        nuevo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-icon.png"))); // NOI18N
         nuevo.setText("Nuevo");
         nuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -179,15 +185,27 @@ public class Bancos extends javax.swing.JFrame {
             }
         });
 
+        editar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
         editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
 
+        guardar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
         guardar.setText("Guardar");
+        guardar.setEnabled(false);
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
             }
         });
 
+        cmdcancelar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        cmdcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         cmdcancelar.setText("Cancelar");
         cmdcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,11 +223,11 @@ public class Bancos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(36, 36, 36)
                         .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(35, 35, 35)
                         .addComponent(cmdcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -220,11 +238,11 @@ public class Bancos extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmdcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
+                        .addComponent(cmdcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -252,7 +270,7 @@ public class Bancos extends javax.swing.JFrame {
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                             .addComponent(cuenta))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel6)
@@ -310,7 +328,7 @@ public class Bancos extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 255));
@@ -320,10 +338,10 @@ public class Bancos extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
                 .addComponent(jLabel9)
-                .addGap(146, 146, 146))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,13 +384,28 @@ public class Bancos extends javax.swing.JFrame {
         CrearBancos Numero = new CrearBancos();
         Numero.UltimoRg();
         Habilitar();
+        this.guardar.setEnabled(true);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+
+if (((Bancos.codigo.getText().trim().length()==0) || (Bancos.nombre.getText().trim().length()==0)|| (Bancos.cuenta.getText().trim().length()==0))){
+         JOptionPane.showMessageDialog(null, "Los Campos No pueden Estar En Blanco");
+
+         }else{ 
+
         CrearBancos user = new CrearBancos();
         user.guardarbanco();
         Limpiar();
-        Habilitar();    
+        Habilitar();
+        Edicion = 0;
+        this.guardar.setEnabled(false);
+        CrearBancos buscar = new CrearBancos();
+        buscar.buscarregistros();
+}
+
+
+
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMouseClicked
@@ -411,7 +444,11 @@ public class Bancos extends javax.swing.JFrame {
               Bancos.montoi.setText(""+mi);              
               Double ma =(Double) modelotabla.getValueAt(filaseleccionada, 6);
               Bancos.montoa.setText(""+ma);                           
-              
+
+              Bancos.nombre.setEditable(false);
+              Bancos.cuenta.setEditable(false);
+              Bancos.montoi.setEditable(false);         
+              Bancos.montoa.setEditable(false);   
             }
 
         }catch (Exception ex){
@@ -419,6 +456,12 @@ public class Bancos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_registrosMouseClicked
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+       Habilitar();
+       this.guardar.setEnabled(true);
+       Edicion = 1;
+    }//GEN-LAST:event_editarActionPerformed
 
     /**
      * @param args the command line arguments

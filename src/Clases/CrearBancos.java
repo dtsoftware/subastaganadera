@@ -51,18 +51,33 @@ public void guardarbanco(){
        
         conectar conexcio = new conectar(); 
         conexcio.conexion();
+        if (Bancos.Edicion == 0)
+        {
+            guardarbanco=conexcio.con.prepareStatement("INSERT INTO cuentas (idCuentas, Fecha, Nombre, Numero, Tipo, SaldoInicial, SaldoActual, Estado) VALUES (?,?,?,?,?,?,?,?)");
+            guardarbanco.setString(1, idbanco);
+            guardarbanco.setString(2, fecha);
+            guardarbanco.setString(3, nombre);
+            guardarbanco.setString(4, cuenta);
+            guardarbanco.setString(5, detalle);
+            guardarbanco.setDouble(6, montoi);
+            guardarbanco.setDouble(7, montoa);
+            guardarbanco.setString(8, estado);
+            guardarbanco.execute();
+                JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            guardarbanco=conexcio.con.prepareStatement("UPDATE cuentas SET Fecha=?, Nombre=?, Numero=?, Tipo=?, SaldoInicial=?, SaldoActual=?, Estado=? WHERE idCuentas = '"+idbanco+"'");   
+            guardarbanco.setString(1, fecha);
+            guardarbanco.setString(2, nombre);
+            guardarbanco.setString(3, cuenta);
+            guardarbanco.setString(4, detalle);
+            guardarbanco.setDouble(5, montoi);
+            guardarbanco.setDouble(6, montoa);
+            guardarbanco.setString(7, estado);
+            guardarbanco.execute();
+                JOptionPane.showMessageDialog(null, "Registro Actualizado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+        
 
-        guardarbanco=conexcio.con.prepareStatement("INSERT INTO cuentas (idCuentas, Fecha, Nombre, Numero, Tipo, SaldoInicial, SaldoActual, Estado) VALUES (?,?,?,?,?,?,?,?)");
-        guardarbanco.setString(1, idbanco);
-        guardarbanco.setString(2, fecha);
-        guardarbanco.setString(3, nombre);
-        guardarbanco.setString(4, cuenta);
-        guardarbanco.setString(5, detalle);
-        guardarbanco.setDouble(6, montoi);
-        guardarbanco.setDouble(7, montoa);
-        guardarbanco.setString(8, estado);
-        guardarbanco.execute();
-        JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);

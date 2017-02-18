@@ -62,23 +62,35 @@ public class MantChk extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(910, 720));
         getContentPane().setLayout(null);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
         jPanel1.add(jDateChooserFecha);
         jDateChooserFecha.setBounds(500, 70, 152, 32);
         jPanel1.add(jDateChooserFecha1);
         jDateChooserFecha1.setBounds(700, 70, 152, 32);
 
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 
+        jRadioButton1.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton1.setText("Todos");
 
+        jRadioButton2.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton2.setText("Conciliado");
 
+        jRadioButton3.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton3.setText("Impresos");
 
+        jRadioButton4.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton4.setText("Anulado");
 
+        jRadioButton5.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton5.setText("Trancito");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -96,7 +108,7 @@ public class MantChk extends javax.swing.JFrame {
                 .addComponent(jRadioButton5)
                 .addGap(10, 10, 10)
                 .addComponent(jRadioButton2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,14 +126,36 @@ public class MantChk extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(420, 10, 430, 50);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
         jButton1.setText("Buscar");
         jPanel1.add(jButton1);
-        jButton1.setBounds(10, 10, 70, 49);
+        jButton1.setBounds(10, 10, 110, 49);
         jPanel1.add(jTextField1);
         jTextField1.setBounds(160, 70, 204, 32);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -144,44 +178,47 @@ public class MantChk extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(12, 132, 840, 412);
 
+        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 
+        jRadioButton10.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton10.setText("Numero");
 
+        jRadioButton11.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton11.setText("Nombre");
 
+        jRadioButton12.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton12.setText("Tipo");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 318, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(jRadioButton10)
-                    .addGap(10, 10, 10)
-                    .addComponent(jRadioButton11)
-                    .addGap(18, 18, 18)
-                    .addComponent(jRadioButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jRadioButton10)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton11)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 47, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(12, 12, 12)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton10)
-                        .addComponent(jRadioButton11)
-                        .addComponent(jRadioButton12))
-                    .addContainerGap(12, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton10)
+                    .addComponent(jRadioButton11)
+                    .addComponent(jRadioButton12))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(90, 10, 320, 49);
+        jPanel4.setBounds(130, 10, 280, 49);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("(Nombre/Numero):");
@@ -198,6 +235,8 @@ public class MantChk extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(670, 80, 12, 15);
 
+        cmdcancelar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        cmdcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         cmdcancelar.setText("Cancelar");
         cmdcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,13 +244,16 @@ public class MantChk extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cmdcancelar);
-        cmdcancelar.setBounds(720, 550, 132, 47);
+        cmdcancelar.setBounds(720, 550, 140, 47);
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         jButton3.setText("ACTUALIZAR");
         jPanel1.add(jButton3);
-        jButton3.setBounds(12, 550, 132, 47);
+        jButton3.setBounds(12, 550, 137, 47);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Impreso", "Anulado", "Transito", "Conciliado" }));
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(211, 550, 115, 47);
@@ -227,6 +269,7 @@ public class MantChk extends javax.swing.JFrame {
         jLabel6.setBounds(344, 567, 33, 15);
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Venta", "Gasto", "Deposito" }));
         jPanel1.add(jComboBox2);
         jComboBox2.setBounds(381, 550, 115, 47);
@@ -234,6 +277,7 @@ public class MantChk extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 60, 870, 610);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

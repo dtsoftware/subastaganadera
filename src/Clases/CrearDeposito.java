@@ -43,7 +43,7 @@ public class CrearDeposito {
         String fecha = (year + "-" + mes+ "-" + dia); 
         
         int idbanco=Integer.parseInt(Depositos.ID.getText());
-        cuenta=Depositos.cuenta.getText();
+        cuenta=String.valueOf(Depositos.cuenta.getSelectedItem());
         detalle= Depositos.detalle.getText();
         Double monto = Double.parseDouble(Depositos.monto.getText());
         conectar conexcio = new conectar(); 
@@ -102,7 +102,37 @@ public void UltimoRg(){
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }
     
-}    
+}   
+
+
+ public void llenarcombo(){
+        try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+     
+     // creamos la consulta
+     consulta="SELECT Nombre FROM cuentas Where idCuentas !='"+'0'+"'";
+   
+     //pasamos la consulta al preparestatement
+    
+     UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+    
+     aux=UltimoRg.executeQuery(consulta);
+
+          while(aux.next()){               
+ 
+                Depositos.cuenta.addItem(aux.getString("Nombre"));
+                     
+               
+           }
+           
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+    }
 }
 
 

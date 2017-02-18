@@ -106,7 +106,7 @@ public class Usuarios extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(java.awt.Color.white);
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -117,7 +117,7 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(183, Short.MAX_VALUE)
+                .addContainerGap(185, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(178, 178, 178))
         );
@@ -130,10 +130,10 @@ public class Usuarios extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 11, 910, 43);
+        jPanel1.setBounds(10, 11, 910, 41);
 
         jPanel2.setBackground(java.awt.Color.white);
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(null);
 
         txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -331,7 +331,7 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel2.setBounds(10, 60, 910, 305);
 
         jPanel3.setBackground(java.awt.Color.white);
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(null);
 
         btn_agregar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N

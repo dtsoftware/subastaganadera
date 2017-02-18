@@ -48,19 +48,41 @@ public class MantNotas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
         jPanel1.add(jDateChooserFecha);
-        jDateChooserFecha.setBounds(140, 20, 152, 32);
+        jDateChooserFecha.setBounds(210, 20, 120, 32);
         jPanel1.add(jDateChooserFecha1);
-        jDateChooserFecha1.setBounds(340, 20, 152, 32);
+        jDateChooserFecha1.setBounds(372, 20, 120, 32);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
         jButton1.setText("Buscar");
         jPanel1.add(jButton1);
-        jButton1.setBounds(10, 10, 70, 49);
+        jButton1.setBounds(10, 10, 130, 49);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -86,13 +108,15 @@ public class MantNotas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Del:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(110, 30, 30, 15);
+        jLabel2.setBounds(170, 30, 30, 15);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Al");
+        jLabel3.setText("Cuenta:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(520, 30, 12, 15);
+        jLabel3.setBounds(520, 30, 48, 15);
 
+        cmdcancelar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        cmdcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         cmdcancelar.setText("Cancelar");
         cmdcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,35 +124,40 @@ public class MantNotas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cmdcancelar);
-        cmdcancelar.setBounds(590, 500, 132, 47);
+        cmdcancelar.setBounds(570, 500, 150, 47);
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         jButton3.setText("ACTUALIZAR");
         jPanel1.add(jButton3);
-        jButton3.setBounds(150, 500, 132, 50);
+        jButton3.setBounds(150, 500, 150, 50);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrado", "Conciliado" }));
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(370, 500, 115, 47);
+        jComboBox1.setBounds(370, 500, 140, 47);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("ESTADO:");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(310, 510, 53, 47);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
         jButton2.setText("ELIMINAR");
         jPanel1.add(jButton2);
-        jButton2.setBounds(10, 500, 130, 50);
+        jButton2.setBounds(10, 500, 140, 50);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Al");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(310, 30, 12, 15);
+        jLabel7.setBounds(340, 30, 12, 15);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox3);
-        jComboBox3.setBounds(550, 20, 170, 30);
+        jComboBox3.setBounds(580, 20, 140, 30);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -140,16 +169,16 @@ public class MantNotas extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+                .addGap(133, 133, 133)
                 .addComponent(jLabel5)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap())
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

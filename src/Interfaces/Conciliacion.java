@@ -89,6 +89,21 @@ public class Conciliacion extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -99,6 +114,21 @@ public class Conciliacion extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -116,6 +146,11 @@ public class Conciliacion extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -169,6 +204,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(0, 0, 255));
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField3.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField3.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField3.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -176,6 +212,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(0, 0, 255));
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField4.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField4.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField4.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -183,6 +220,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(0, 0, 255));
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField5.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField5.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField5.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -190,6 +228,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(0, 0, 255));
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField6.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField6.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField6.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -197,6 +236,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(0, 0, 255));
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField7.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField7.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField7.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -204,6 +244,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(0, 0, 255));
         jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField8.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField8.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField8.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -211,6 +252,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField9.setForeground(new java.awt.Color(0, 0, 255));
         jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField9.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField9.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField9.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -242,6 +284,7 @@ public class Conciliacion extends javax.swing.JFrame {
         jTextField10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField10.setForeground(new java.awt.Color(0, 0, 255));
         jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField10.setMaximumSize(new java.awt.Dimension(6, 30));
         jTextField10.setMinimumSize(new java.awt.Dimension(6, 30));
         jTextField10.setPreferredSize(new java.awt.Dimension(6, 30));
@@ -356,25 +399,29 @@ public class Conciliacion extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(153, 255, 255));
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
 
         jComboBox2.setBackground(new java.awt.Color(153, 255, 255));
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018", "2019", "2020", "2021. 2022", "2023", "2024", "2025" }));
 
         jComboBox3.setBackground(new java.awt.Color(153, 255, 255));
         jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 255, 0));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("0.00");
 
         jTextField2.setBackground(new java.awt.Color(0, 0, 0));
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(0, 255, 0));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("0.00");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("SALDO LIBRO:");
@@ -382,16 +429,33 @@ public class Conciliacion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("SALDO BANCO");
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/load2-upload-icon (1).png"))); // NOI18N
         jButton2.setText("CARGAR DATOS");
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Calculator-2-icon.png"))); // NOI18N
         jButton4.setText("CALCULAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/pan-icon.png"))); // NOI18N
         jButton3.setText("LIMPIAR");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
         jButton1.setText("GUARDAR");
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/print-icon (2)_1.png"))); // NOI18N
         jButton5.setText("IMPRIMIR");
 
+        CANCELAR.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        CANCELAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         CANCELAR.setText("CANCELAR");
         CANCELAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,19 +473,20 @@ public class Conciliacion extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(18, 18, 18))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(19, 19, 19)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
                                             .addComponent(jLabel10))
-                                        .addGap(37, 37, 37)))
+                                        .addGap(26, 26, 26))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 121, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -491,20 +556,25 @@ public class Conciliacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -596,6 +666,10 @@ public class Conciliacion extends javax.swing.JFrame {
     private void CANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELARActionPerformed
       this.dispose();
     }//GEN-LAST:event_CANCELARActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

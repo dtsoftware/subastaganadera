@@ -5,8 +5,10 @@
  */
 package Interfaces;
 
+import Clases.CrearCheques;
 import Clases.CrearDeposito;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,18 +48,23 @@ public class Depositos extends javax.swing.JFrame {
         detalle = new javax.swing.JTextArea();
         ID = new javax.swing.JTextField();
         monto = new javax.swing.JTextField();
-        cuenta = new javax.swing.JTextField();
         fecha = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         SALIR = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         nuevo = new javax.swing.JButton();
+        cuenta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 255));
@@ -68,20 +75,20 @@ public class Depositos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel6)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -138,15 +145,13 @@ public class Depositos extends javax.swing.JFrame {
         monto.setEditable(false);
         jPanel2.add(monto);
         monto.setBounds(414, 77, 152, 31);
-
-        cuenta.setEditable(false);
-        jPanel2.add(cuenta);
-        cuenta.setBounds(160, 77, 173, 31);
         jPanel2.add(fecha);
         fecha.setBounds(410, 30, 152, 32);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        SALIR.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         SALIR.setText("CANCELAR");
         SALIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +159,8 @@ public class Depositos extends javax.swing.JFrame {
             }
         });
 
+        guardar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
         guardar.setText("GUARDAR");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +168,8 @@ public class Depositos extends javax.swing.JFrame {
             }
         });
 
+        nuevo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-icon.png"))); // NOI18N
         nuevo.setText("NUEVO");
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,15 +204,18 @@ public class Depositos extends javax.swing.JFrame {
         jPanel2.add(jPanel5);
         jPanel5.setBounds(20, 260, 550, 70);
 
+        jPanel2.add(cuenta);
+        cuenta.setBounds(160, 70, 160, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,10 +237,16 @@ public class Depositos extends javax.swing.JFrame {
     }//GEN-LAST:event_SALIRActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-               CrearDeposito user = new CrearDeposito();
+ if (((Depositos.detalle.getText().trim().length()==0) || (Depositos.monto.getText().trim().length()==0)|| (Depositos.ID.getText().trim().length()==0))){
+         JOptionPane.showMessageDialog(null, "Los Campos No pueden Estar En Blanco");
+
+         }else{ 
+
+        CrearDeposito user = new CrearDeposito();
         user.guardardeposito();
         Limpiar();
         Habilitar();    
+}
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -236,6 +254,11 @@ public class Depositos extends javax.swing.JFrame {
         Numero.UltimoRg();
         Habilitar();
     }//GEN-LAST:event_nuevoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        CrearDeposito llenar = new CrearDeposito();
+        llenar.llenarcombo();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -275,7 +298,7 @@ public class Depositos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField ID;
     private javax.swing.JButton SALIR;
-    public static javax.swing.JTextField cuenta;
+    public static javax.swing.JComboBox<String> cuenta;
     public static javax.swing.JTextArea detalle;
     public static com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
@@ -297,7 +320,6 @@ public class Depositos extends javax.swing.JFrame {
 public void Limpiar(){
     
         Depositos.ID.setText("");
-        Depositos.cuenta.setText("");
         Depositos.detalle.setText("");
         Depositos.monto.setText("");
            

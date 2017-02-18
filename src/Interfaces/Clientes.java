@@ -75,7 +75,7 @@ public class Clientes extends javax.swing.JFrame {
         jTextFieldCedula = new javax.swing.JTextField();
         jTextFieldTelefono2 = new javax.swing.JTextField();
         jTextFieldDireccion = new javax.swing.JTextField();
-        jComboBoxCredito = new javax.swing.JComboBox<String>();
+        jComboBoxCredito = new javax.swing.JComboBox<>();
         jButtonExaminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -88,12 +88,13 @@ public class Clientes extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBoxActivo = new javax.swing.JComboBox<String>();
+        jComboBoxActivo = new javax.swing.JComboBox<>();
         jDateChooserFecha1 = new com.toedter.calendar.JDateChooser();
         txtRutaimagen = new javax.swing.JTextField();
         lbl_foto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(java.awt.SystemColor.window);
         setResizable(false);
 
         jPanel1.setBackground(java.awt.Color.white);
@@ -179,7 +180,7 @@ public class Clientes extends javax.swing.JFrame {
         });
 
         btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         btn_regresar.setText("SALIR");
         btn_regresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_regresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -297,7 +298,7 @@ public class Clientes extends javax.swing.JFrame {
         });
 
         jComboBoxCredito.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jComboBoxCredito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sí", "No" }));
+        jComboBoxCredito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
 
         jButtonExaminar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonExaminar.setText("EXAMINAR");
@@ -341,7 +342,7 @@ public class Clientes extends javax.swing.JFrame {
         jLabel14.setText("FOTOGRAFIA");
 
         jComboBoxActivo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jComboBoxActivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ACTIVO", "INACTIVO" }));
+        jComboBoxActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
 
         txtRutaimagen.setEnabled(false);
 

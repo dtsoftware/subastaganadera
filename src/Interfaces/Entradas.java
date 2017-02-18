@@ -595,7 +595,7 @@ DefaultTableModel tabla1;
         jButtonModifica.setBounds(11, 265, 115, 58);
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         jButton9.setText("SALIR");
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton9.setMaximumSize(new java.awt.Dimension(115, 15));

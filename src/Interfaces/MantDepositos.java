@@ -53,21 +53,32 @@ public class MantDepositos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
         jPanel1.add(jDateChooserFecha);
         jDateChooserFecha.setBounds(550, 20, 152, 32);
         jPanel1.add(jDateChooserFecha1);
         jDateChooserFecha1.setBounds(550, 70, 152, 32);
 
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 
+        jRadioButton1.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Todos");
 
+        jRadioButton2.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton2.setText("Conciliado");
 
+        jRadioButton3.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton3.setText("Depositado");
 
+        jRadioButton5.setBackground(new java.awt.Color(204, 255, 255));
+        jRadioButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButton5.setText("Trancito");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -81,7 +92,7 @@ public class MantDepositos extends javax.swing.JFrame {
                 .addComponent(jRadioButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jRadioButton2)
                 .addGap(21, 21, 21))
         );
@@ -94,18 +105,36 @@ public class MantDepositos extends javax.swing.JFrame {
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton5)
                     .addComponent(jRadioButton2))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(90, 10, 380, 50);
+        jPanel3.setBounds(120, 10, 380, 50);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
         jButton1.setText("Buscar");
         jPanel1.add(jButton1);
-        jButton1.setBounds(10, 10, 70, 49);
+        jButton1.setBounds(10, 10, 101, 49);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -138,6 +167,8 @@ public class MantDepositos extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(520, 80, 12, 15);
 
+        cmdcancelar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        cmdcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Login-icon.png"))); // NOI18N
         cmdcancelar.setText("Cancelar");
         cmdcancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,11 +178,14 @@ public class MantDepositos extends javax.swing.JFrame {
         jPanel1.add(cmdcancelar);
         cmdcancelar.setBounds(560, 500, 132, 47);
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         jButton3.setText("ACTUALIZAR");
         jPanel1.add(jButton3);
-        jButton3.setBounds(150, 500, 132, 50);
+        jButton3.setBounds(150, 500, 140, 50);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depositado", "Transito", "Conciliado" }));
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(370, 500, 115, 47);
@@ -161,6 +195,8 @@ public class MantDepositos extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jLabel4.setBounds(310, 510, 53, 47);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
         jButton2.setText("ELIMINAR");
         jPanel1.add(jButton2);
         jButton2.setBounds(10, 500, 130, 50);
@@ -170,10 +206,10 @@ public class MantDepositos extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(520, 30, 30, 15);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox2);
         jComboBox2.setBounds(150, 70, 210, 30);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -185,9 +221,9 @@ public class MantDepositos extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(94, 94, 94)
                 .addComponent(jLabel5)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
