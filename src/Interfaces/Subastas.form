@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupLotes">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -514,11 +518,11 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButtonIndividual" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButtonPorlote" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextField10" min="-2" pref="87" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNumerodelote" min="-2" pref="87" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -545,9 +549,9 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButtonIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButtonPorlote" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldNumerodelote" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jDateChooserFecha" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -615,29 +619,52 @@
                 <Property name="text" type="java.lang.String" value="TIPO SUBASTA:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+            <Component class="javax.swing.JRadioButton" name="jRadioButtonIndividual">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupLotes"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="10" style="1"/>
                 </Property>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="INDUVIDUAL"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonIndividualActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="jRadioButtonPorlote">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupLotes"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="POR LOTE   -   No. LOTE"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonPorloteActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField10">
+            <Component class="javax.swing.JTextField" name="jTextFieldNumerodelote">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNumerodeloteActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNumerodeloteKeyPressed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>

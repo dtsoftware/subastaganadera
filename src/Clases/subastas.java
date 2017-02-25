@@ -33,12 +33,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Tserng
  */
 public class subastas {
-    ResultSet rs2,animal,rsmachos,rssubastados,rshembras,todos,ntodos;
-    PreparedStatement cargar2,cargaranimal,guardarsubastas,machos,subastados,hembra,estado,animales,nanimales;
+    ResultSet rs2,animal,rsmachos,rssubastados,rshembras,todos,ntodos,rsverificar;
+    PreparedStatement cargar2,cargaranimal,guardarsubastas,machos,subastados,hembra,estado,animales,nanimales,verificaranimal;
     DefaultTableModel tabla;
     Integer totalmachos,totalhembra,totalporsubastar;
+    Integer verificacion;
     Object[] filas = new Object[7];
     Object[] filas1 = new Object[7];
+    String sexo,idanimal,tipo,color;
     public subastas(){
     }
     
@@ -64,7 +66,7 @@ public class subastas {
             //Subastas.jTextFieldApellido.setText(rs2.getString("Apellido"));
            // Entradas.jTextFieldDireccion.setText(rs2.getString("Direccion"));
             jTextFieldCodigoComprador.setEnabled(false);
-           jTextFieldDetalle.requestFocus();
+            jTextFieldDetalle.requestFocus();
             //imagen pendiente 
        
       rs2.close();
@@ -328,6 +330,96 @@ public class subastas {
      
      } 
       
+     public void guardarsubastaporlote(){
+      try {
+    String consulta,tipo,detalle;
+    Double peso,precio,valortotal;
+    Integer numeroa,codcomprador;
+  
+    conectar conect = new conectar(); 
+    conect.conexion();
+    subastas s = new subastas();
+    codcomprador= Integer.parseInt(Subastas.jTextFieldCodigoComprador.getText());
+    tipo= s.buscaranimalporlote(Subastas.idaimal, Subastas.fecha);
+    numeroa= Subastas.idaimal;
+    peso= Double.parseDouble(Subastas.jTextFieldPesoNeto.getText());
+    precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
+    detalle=Subastas.jTextFieldDetalle.getText();
+    valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
+    
+    //-----obtener la fecha----------------------
+      String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+          
+      String estados="Subastado";
+     //String condicion="Contado";
+   
+      //codigo para guardar en tabla subastas.
+  guardarsubastas=conect.con.prepareStatement("INSERT INTO subastas ( Fecha, Tipo, NumeroA,CodComprador,Peso,Precio,Detalle,ValorTotal) VALUES (?,?,?,?,?,?,?,?)");
+  //este es duplicando el numero consultar a juan el uso del codigo
+  guardarsubastas.setString(1, fecha);
+  guardarsubastas.setString(2, tipo);
+  guardarsubastas.setInt(3, numeroa);
+  guardarsubastas.setInt(4, codcomprador);
+  guardarsubastas.setDouble(5, peso);
+  guardarsubastas.setDouble(6, precio);
+  guardarsubastas.setString(7, detalle);
+  guardarsubastas.setDouble(8, valortotal);
+  guardarsubastas.execute();
+ //hasta aki
+    
+ //codigo para actualizar el estado en entrada detalle a subastado   
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?  WHERE idAnimal= ? and Fecha=?";
+    //pasamos la consulta al preparestatement
+    estado =conect.con.prepareStatement(consulta);
+    estado.setString(1, estados);
+    estado.setInt(2, codcomprador);
+    estado.setDouble(3, valortotal);
+    estado.setDouble(4, precio);
+    estado.setDouble(5, peso);
+    estado.setInt(6, numeroa);
+    estado.setString(7, fecha);
+    estado.executeUpdate(); 
+ //hasta aki
+    /*
+        Subastas.jTextFieldDetalle.setText("");
+        jTextFieldNanimal.setText("");
+        jTextFieldCodigoComprador.setText("");
+        jTextFieldTipo.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldSexo.setText("");
+        jTextFieldFerrete.setText("");
+        jTextFieldNombredelcomprador.setText("");
+        jTextFieldCeduladelcomprador.setText("");
+        jTextFieldPesoNeto.setText("");
+        jTextFieldPrecioPactado.setText("");
+        jTextFieldMontoTotal.setText("");
+        Subastas.jTextFieldPrecio.setText("");
+        jTextFieldPeso.setText("");
+        Subastas.jTextFieldNanimal.requestFocus();
+        jTextFieldNanimal.setEnabled(true);
+        jTextFieldCodigoComprador.setEnabled(true);
+    */
+    JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+    
+    
+    guardarsubastas.close();
+    estado.close();
+    conect.desconectar();
+    
+        }catch(SQLException ex){
+           
+        JOptionPane.showMessageDialog(null, "Error" + ex);
+        
+        }
+        
+     
+     }
+     
+     
      public void guardarsubasta(){
     try {
     String consulta,tipo,detalle;
@@ -416,8 +508,46 @@ public class subastas {
      
     
     }    
+     
+     public Integer verificaranimal(String Codigo, String fecha){
+     try {
+    
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    
+     
+     // creamos la consulta
+     consulta="SELECT idAnimal FROM entrada_detalle where idAnimal ='"+ Codigo +"' and Fecha ='"+ fecha +"' and Estado='Por Subastar'  ";
+     //pasamos la consulta al preparestatement
+    
+     verificaranimal=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    
+     rsverificar=verificaranimal.executeQuery(consulta);
+     if ( rsverificar.next()==true){
+           
+    verificacion=1;   
+    rsverificar.close();
+    verificaranimal.close();
+    conect.desconectar();
+           }else{
+           JOptionPane.showMessageDialog(null,"El   Animal No Esta Registrado o Ya Ha Sido Subastado"  );
+           verificacion=0;   
+           Subastas.jTextFieldNumerodelote.selectAll();
+           Subastas.jTextFieldNumerodelote.requestFocus();
+           conect.desconectar();
+            }
+      
+      }catch(Exception ex){
+      
+      JOptionPane.showMessageDialog(null, "Error" + ex);
+      }   
          
-     public void buscaranimal(Integer Codigo, String fecha){
+     return verificacion;
+     }
+     
+      public void buscaranimal(Integer Codigo, String fecha){
      try {
      String consulta;  
      conectar conect = new conectar(); 
@@ -461,6 +591,44 @@ public class subastas {
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }
      
+     }
+     
+     
+     
+     public String buscaranimalporlote(Integer Codigo, String fecha){
+     try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    
+     
+     // creamos la consulta
+     consulta="SELECT idAnimal,Tipo, Color, Sexo,Ferrete FROM entrada_detalle where idAnimal ='"+ Codigo +"' and Fecha ='"+ fecha +"' and Estado='Por Subastar'  ";
+     //pasamos la consulta al preparestatement
+    
+     cargaranimal=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    
+     animal=cargaranimal.executeQuery(consulta);
+           if (animal.next()==true){
+            //idanimal=(String.valueOf(animal.getInt("idAnimal")) );                
+           tipo=animal.getString("Tipo");
+               
+    animal.close();
+    cargaranimal.close();
+    conect.desconectar();
+           }else{
+           JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar: El Animal Ha Sido Subastado O no se a Realizado Su Registro De Entada"  ); 
+           //Subastas.jTextFieldNanimal.selectAll();
+           //Subastas.jTextFieldNanimal.requestFocus();
+           conect.desconectar();
+            }
+    
+   
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+     return tipo;
      }
      
 }

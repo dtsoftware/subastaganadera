@@ -11,16 +11,23 @@ import javax.swing.JOptionPane;
 import Clases.subastas;
 import Clases.redondear;
 import static Interfaces.Clientes.jDateChooserFecha1;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Iterator;
+import java.util.Random;
 /**
  *
  * @author Juan
  */
 public class Subastas extends javax.swing.JFrame {
-     Integer cod,codigo;
-     String fecha;
-    /**
+     Integer cod,codigo,cant;
+   public static String fecha;
+     String fer2="", fer3="", fer4="",fer5="",fer6="",fer7="";
+   public static Integer idaimal;
+   public static List<String> Lista = new ArrayList<String>();
+     
+       /**
      * Creates new form Subastas
      */
     public Subastas() {
@@ -28,6 +35,12 @@ public class Subastas extends javax.swing.JFrame {
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
+        //-----obtener la fecha----------------------
+      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      fecha = (year + "-" + mes+ "-" + dia);    
+     //---------fin de obtener la fecha 
     }
 
     /**
@@ -39,6 +52,7 @@ public class Subastas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupLotes = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -60,9 +74,9 @@ public class Subastas extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField10 = new javax.swing.JTextField();
+        jRadioButtonIndividual = new javax.swing.JRadioButton();
+        jRadioButtonPorlote = new javax.swing.JRadioButton();
+        jTextFieldNumerodelote = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldNanimal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -281,13 +295,38 @@ public class Subastas extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel3.setText("TIPO SUBASTA:");
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton1.setText("INDUVIDUAL");
+        jRadioButtonIndividual.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupLotes.add(jRadioButtonIndividual);
+        jRadioButtonIndividual.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jRadioButtonIndividual.setSelected(true);
+        jRadioButtonIndividual.setText("INDUVIDUAL");
+        jRadioButtonIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonIndividualActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton2.setText("POR LOTE   -   No. LOTE");
+        jRadioButtonPorlote.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupLotes.add(jRadioButtonPorlote);
+        jRadioButtonPorlote.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jRadioButtonPorlote.setText("POR LOTE   -   No. LOTE");
+        jRadioButtonPorlote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPorloteActionPerformed(evt);
+            }
+        });
+
+        jTextFieldNumerodelote.setEnabled(false);
+        jTextFieldNumerodelote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumerodeloteActionPerformed(evt);
+            }
+        });
+        jTextFieldNumerodelote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNumerodeloteKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("No. ANIMAL:");
@@ -486,11 +525,11 @@ public class Subastas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioButtonIndividual)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2)
+                                .addComponent(jRadioButtonPorlote)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(40, 40, 40)
@@ -509,9 +548,9 @@ public class Subastas extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jRadioButtonIndividual)
+                        .addComponent(jRadioButtonPorlote)
+                        .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,11 +721,13 @@ this.dispose();      // TODO add your handling code here:
 
     private void jTextFieldCodigoCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoCompradorActionPerformed
         // TODO add your handling code here:
-        try{            
+        try{
+      
        evt.setSource((char) KeyEvent.VK_ENTER);
        cod= Integer.parseInt(jTextFieldCodigoComprador.getText());     
        subastas sub = new subastas();
        sub.buscarcliente(cod);
+      
       
         }catch (Exception ex){
         JOptionPane.showMessageDialog(null, "Error:"+ex);
@@ -696,13 +737,15 @@ this.dispose();      // TODO add your handling code here:
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         try{
-            
+           
+           if (jRadioButtonIndividual.isSelected()==true){
            if ((jTextFieldNanimal.getText().trim().length()==0) || (jTextFieldCodigoComprador.getText().trim().length()==0)|| (jTextFieldTipo.getText().trim().length()==0) || (jTextFieldColor.getText().trim().length()==0)
                  || (jTextFieldSexo.getText().trim().length()==0) || (jTextFieldFerrete.getText().trim().length()==0) || (jTextFieldNombredelcomprador.getText().trim().length()==0)|| (jTextFieldCeduladelcomprador.getText().trim().length()==0)
                    || (jTextFieldPesoNeto.getText().trim().length()==0)|| (jTextFieldPrecioPactado.getText().trim().length()==0)|| (jTextFieldMontoTotal.getText().trim().length()==0)){
             JOptionPane.showMessageDialog(null,"Para Poder realizar Esta Operacion Debe Completar La Informacion En Las Cajas De Textos");
             jTextFieldNanimal.requestFocus();
            }else{
+                        
            subastas suba = new subastas();
            suba.guardarsubasta();
            suba.machos();
@@ -711,6 +754,39 @@ this.dispose();      // TODO add your handling code here:
            suba.buscarporsubastar();
            suba.tablesubastado();
             }
+               
+           }
+           
+           if (this.jRadioButtonPorlote.isSelected()==true){
+           if ((jTextFieldCodigoComprador.getText().trim().length()==0)|| (jTextFieldNombredelcomprador.getText().trim().length()==0)|| (jTextFieldCeduladelcomprador.getText().trim().length()==0)
+              || (jTextFieldPesoNeto.getText().trim().length()==0)|| (jTextFieldPrecioPactado.getText().trim().length()==0)|| (jTextFieldMontoTotal.getText().trim().length()==0)){
+            JOptionPane.showMessageDialog(null,"Para Poder realizar Esta Operacion Debe Completar La Informacion");
+          
+           }else{
+           subastas suba = new subastas();
+             Iterator i = Lista.iterator();
+         while(i.hasNext())
+        {
+            idaimal= Integer.parseInt(i.next().toString());
+            suba.guardarsubastaporlote();
+        }
+             /*
+       for (int i = 0; i <= Lista.size(); i++) {
+          idaimal= Integer.parseInt(Lista.get(i));
+          System.out.println(idaimal);
+           suba.guardarsubastaporlote();
+        }
+          */
+           
+           suba.machos();
+           suba.hembras();
+           suba.totalmachoshembras();
+           suba.buscarporsubastar();
+           suba.tablesubastado();
+            }
+               
+           } 
+           
         }catch(Exception ex){
        
         JOptionPane.showMessageDialog(null, "Error:"+ex);
@@ -721,12 +797,14 @@ this.dispose();      // TODO add your handling code here:
     private void jTextFieldNanimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNanimalActionPerformed
         // TODO add your handling code here:
         try{
+            /*
       //-----obtener la fecha----------------------
       String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
       String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
       fecha = (year + "-" + mes+ "-" + dia);    
-     //---------fin de obtener la fecha      
+     //---------fin de obtener la fecha 
+            */
        evt.setSource((char) KeyEvent.VK_ENTER);
        codigo= Integer.parseInt(jTextFieldNanimal.getText());     
        subastas sub = new subastas();
@@ -783,6 +861,8 @@ this.dispose();      // TODO add your handling code here:
     private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
         // TODO add your handling code here:
         try{
+       jTextFieldPeso.setText("0");
+       jTextFieldPeso.selectAll();
        jTextFieldPeso.requestFocus();
        
         }catch(Exception ex){
@@ -810,7 +890,11 @@ this.dispose();      // TODO add your handling code here:
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
       try{
-      jTextFieldDetalle.setText("");
+        Lista.clear();  
+        jRadioButtonIndividual.setSelected(true);
+        jTextFieldNumerodelote.setEnabled(false);
+        jTextFieldNumerodelote.setText("");
+        jTextFieldDetalle.setText("");
         jTextFieldNanimal.setText("");
         jTextFieldCodigoComprador.setText("");
         jTextFieldTipo.setText("");
@@ -824,6 +908,8 @@ this.dispose();      // TODO add your handling code here:
         jTextFieldMontoTotal.setText("");
         jTextFieldPrecio.setText("");
         jTextFieldPeso.setText("");
+        jTextFieldNanimal.setEnabled(true);
+        jTextFieldCodigoComprador.setEnabled(true);
         jTextFieldNanimal.requestFocus();
       }catch(Exception ex){
       JOptionPane.showMessageDialog(null,"Error" +ex); 
@@ -857,17 +943,18 @@ this.dispose();      // TODO add your handling code here:
     private void jTextFieldPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesoActionPerformed
         // TODO add your handling code here:
         try{
-         double preciopactado,peso,montototal,total;   
+        double preciopactado,peso,montototal,total;   
         String montotal;
-        preciopactado= Double.parseDouble(jTextFieldPrecio.getText());
-        peso= Double.parseDouble(this.jTextFieldPeso.getText());
+        //Double pesopromedio; 
+        preciopactado= Double.parseDouble(jTextFieldPrecioPactado.getText());
+        peso= Double.parseDouble(this.jTextFieldPesoNeto.getText());
         montototal=preciopactado * peso;
         redondear redon = new redondear();
         total=redon.redondearDecimales(montototal, 2);
         montotal=String.valueOf(total);
        this.jTextFieldMontoTotal.setText(montotal);
-      jButtonGuardar.requestFocus();
-        
+       jButtonGuardar.requestFocus();
+       
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null,"Error" +ex); 
         }
@@ -876,9 +963,54 @@ this.dispose();      // TODO add your handling code here:
     private void jTextFieldPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesoKeyReleased
         // TODO add your handling code here:
         try{
-        jTextFieldPesoNeto.setText(jTextFieldPeso.getText());
+         Double pesopromedio,pesodellote,pesoindividual; 
+          if(jTextFieldPeso.getText()==null){
+          jTextFieldPeso.setText("0");
+          jTextFieldPeso.selectAll();
+          jTextFieldPeso.requestFocus();
+          }else{
+         if(jRadioButtonIndividual.isSelected()==true){   
+         jTextFieldPesoNeto.setText(jTextFieldPeso.getText());
+         }else{
+         if (Lista.size()==1){
+         JOptionPane.showMessageDialog(null,"El Proceso Que Desea Realizar No es Una Subasta Por Lote, Para Ello Deben Haber mas de Dos Animales"); 
+         Lista.clear();
+        jRadioButtonIndividual.setSelected(true);
+        jTextFieldNumerodelote.setEnabled(false);
+        jTextFieldNumerodelote.setText("");
+        jTextFieldDetalle.setText("");
+        jTextFieldNanimal.setText("");
+        jTextFieldCodigoComprador.setText("");
+        jTextFieldTipo.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldSexo.setText("");
+        jTextFieldFerrete.setText("");
+        jTextFieldNombredelcomprador.setText("");
+        jTextFieldCeduladelcomprador.setText("");
+        jTextFieldPesoNeto.setText("");
+        jTextFieldPrecioPactado.setText("");
+        jTextFieldMontoTotal.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldPeso.setText("");
+        jTextFieldNanimal.setEnabled(true);
+        jTextFieldCodigoComprador.setEnabled(true);
+        jTextFieldNanimal.requestFocus();
+         }else{   
+         pesodellote= Double.parseDouble(jTextFieldPeso.getText());
+         redondear redon = new redondear();
+         pesopromedio=pesodellote/cant;
+         pesoindividual=redon.redondearDecimales(pesopromedio, 2);
+         jTextFieldPesoNeto.setText(pesoindividual.toString());
+         }
+         }
+          }
+         
         }catch(Exception ex){
-         JOptionPane.showMessageDialog(null,"Error" +ex); 
+         //JOptionPane.showMessageDialog(null,"Error" +ex); 
+          jTextFieldPeso.setText("0");
+          jTextFieldPeso.selectAll();
+          jTextFieldPeso.requestFocus();
+          jTextFieldMontoTotal.setText("");
         }
         
     }//GEN-LAST:event_jTextFieldPesoKeyReleased
@@ -886,7 +1018,11 @@ this.dispose();      // TODO add your handling code here:
     private void jTextFieldDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDetalleActionPerformed
         // TODO add your handling code here:
         try{
-         jTextFieldPrecio.requestFocus();
+           if  (jRadioButtonIndividual.isSelected()==true){  
+                jTextFieldPrecio.requestFocus();
+           }else{
+           jTextFieldNumerodelote.requestFocus();
+           }
         }catch(Exception ex){
          JOptionPane.showMessageDialog(null,"Error" +ex); 
         }
@@ -914,6 +1050,132 @@ this.dispose();      // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
     }//GEN-LAST:event_jButtonGuardarKeyPressed
+
+    private void jRadioButtonPorloteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPorloteActionPerformed
+        // TODO add your handling code here:
+        try{
+        jTextFieldNanimal.setEnabled(false);
+        jTextFieldCodigoComprador.requestFocus();
+        jTextFieldNumerodelote.setEnabled(true);
+       // jTextFieldNumerodelote.requestFocus();
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:"+ex);
+        }
+    }//GEN-LAST:event_jRadioButtonPorloteActionPerformed
+
+    private void jRadioButtonIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonIndividualActionPerformed
+        // TODO add your handling code here:
+        try{
+        jTextFieldNumerodelote.setEnabled(false);
+        jTextFieldNanimal.setEnabled(true);
+        jTextFieldNanimal.selectAll();
+        jTextFieldNanimal.requestFocus();
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:"+ex);
+        }
+    }//GEN-LAST:event_jRadioButtonIndividualActionPerformed
+
+    private void jTextFieldNumerodeloteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumerodeloteActionPerformed
+        // TODO add your handling code here:
+          try{
+      Integer c2=0,c3=0,c4=0,c5=0,c6=0;
+      Integer v1=0,v2=0,v3=0,v4=0,v5=0,v6=0;
+      subastas su = new subastas();
+      cant=0;
+      fer2=JOptionPane.showInputDialog (null,"Introdusca El Codigo Del Animal:");
+      if(fer2==null||fer2.equals("")){  
+      jTextFieldPrecio.requestFocus();
+      }else{
+      v1=su.verificaranimal(fer2, fecha);
+      if (v1==1){
+      Lista.add(fer2);   
+      c2=1;
+      }
+      }  
+      //segundo adicional
+      if(c2==1){
+       fer3=JOptionPane.showInputDialog (null,"Introdusca El Codigo Del Animal:");
+      if(fer3==null||fer3.equals("")){  
+      jTextFieldPrecio.requestFocus();
+      }else{
+      v2=su.verificaranimal(fer3, fecha);
+      if (v2==1){
+      Lista.add(fer3);
+      c3=1;
+      } 
+      }
+      }
+      //2
+      //tercero adicional
+      if(c3==1){
+      fer4=JOptionPane.showInputDialog (null,"Introdusca El Codigo Del Animal:");
+      if(fer4==null||fer4.equals("")){  
+      jTextFieldPrecio.requestFocus();
+      }else{
+     v3=su.verificaranimal(fer4, fecha);
+      if (v3==1){
+      Lista.add(fer4);
+      c4=1;
+      } 
+      }
+      }
+      //3
+      //cuarto adicional
+      if(c4==1){
+      fer5=JOptionPane.showInputDialog (null,"Introdusca El Codigo Del Animal:");
+      if(fer5==null||fer5.equals("")){  
+      jTextFieldPrecio.requestFocus();
+      }else{
+      v4=su.verificaranimal(fer5, fecha);
+      if (v4==1){
+      Lista.add(fer5);
+      c5=1;
+      } 
+      }
+      }
+      //4
+       //quinto adicional
+      if(c5==1){
+      fer6=JOptionPane.showInputDialog (null,"Introdusca El Codigo Del Animal:");
+      if(fer6==null||fer6.equals("")){  
+      jTextFieldPrecio.requestFocus();
+      }else{
+      v5=su.verificaranimal(fer6, fecha);
+      if (v5==1){
+      Lista.add(fer6);
+      c6=1;
+      } 
+      }
+      }
+      // sexto adicional
+      if(c6==1){
+      fer7=JOptionPane.showInputDialog (null,"Introdusca El Codigo Del Animal:");
+      if(fer7==null||fer7.equals("")){  
+      jTextFieldPrecio.requestFocus();
+      }else{
+      v6=su.verificaranimal(fer7, fecha);
+      if (v6==1){
+      Lista.add(fer7);
+      jTextFieldPrecio.requestFocus();
+      //c6=1;
+      } 
+      }
+      }
+     cant=Lista.size();
+      
+      System.out.println(cant);
+      System.out.println(Lista);
+     // Lista.clear();
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        }
+    }//GEN-LAST:event_jTextFieldNumerodeloteActionPerformed
+
+    private void jTextFieldNumerodeloteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumerodeloteKeyPressed
+        // TODO add your handling code here:
+      
+        
+    }//GEN-LAST:event_jTextFieldNumerodeloteKeyPressed
 
     /**
      * @param args the command line arguments
@@ -952,6 +1214,7 @@ this.dispose();      // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_salir;
+    private javax.swing.ButtonGroup buttonGroupLotes;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonLimpiar;
@@ -986,13 +1249,12 @@ this.dispose();      // TODO add your handling code here:
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonIndividual;
+    private javax.swing.JRadioButton jRadioButtonPorlote;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     public static javax.swing.JTable jTableSubastados;
-    private javax.swing.JTextField jTextField10;
     public static javax.swing.JTextField jTextFieldCeduladelcomprador;
     public static javax.swing.JTextField jTextFieldCheques;
     public static javax.swing.JTextField jTextFieldCodigoComprador;
@@ -1004,6 +1266,7 @@ this.dispose();      // TODO add your handling code here:
     public static javax.swing.JTextField jTextFieldMontoTotal;
     public static javax.swing.JTextField jTextFieldNanimal;
     public static javax.swing.JTextField jTextFieldNombredelcomprador;
+    public static javax.swing.JTextField jTextFieldNumerodelote;
     public static javax.swing.JTextField jTextFieldPeso;
     public static javax.swing.JTextField jTextFieldPesoNeto;
     public static javax.swing.JTextField jTextFieldPorsubastar;
