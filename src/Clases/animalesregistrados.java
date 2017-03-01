@@ -245,7 +245,7 @@ public class animalesregistrados {
      //recorremos el resulset
     rsentradas.next();
         
-               ultimaentrada=rsentradas.getInt(1);
+               ultimaentrada=rsentradas.getInt(1)+1;
           //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
   
    numeroentrada.close();

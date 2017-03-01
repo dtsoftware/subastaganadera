@@ -764,19 +764,13 @@ this.dispose();      // TODO add your handling code here:
           
            }else{
            subastas suba = new subastas();
-             Iterator i = Lista.iterator();
-         while(i.hasNext())
-        {
-            idaimal= Integer.parseInt(i.next().toString());
+             //Iterator i = Lista.iterator();
+        // while(i.hasNext())
+        //{
+            //idaimal= Integer.parseInt(i.next().toString());
             suba.guardarsubastaporlote();
-        }
-             /*
-       for (int i = 0; i <= Lista.size(); i++) {
-          idaimal= Integer.parseInt(Lista.get(i));
-          System.out.println(idaimal);
-           suba.guardarsubastaporlote();
-        }
-          */
+        //}
+        
            
            suba.machos();
            suba.hembras();
@@ -1249,7 +1243,7 @@ this.dispose();      // TODO add your handling code here:
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButtonIndividual;
+    public static javax.swing.JRadioButton jRadioButtonIndividual;
     private javax.swing.JRadioButton jRadioButtonPorlote;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

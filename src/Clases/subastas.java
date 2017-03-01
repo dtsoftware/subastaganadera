@@ -8,6 +8,8 @@ package Clases;
 import Interfaces.Entradas;
 import Interfaces.Subastas;
 import Interfaces.Nosubastados;
+import static Interfaces.Subastas.Lista;
+import static Interfaces.Subastas.jRadioButtonIndividual;
 import static Interfaces.Subastas.jTextFieldCeduladelcomprador;
 import static Interfaces.Subastas.jTextFieldCodigoComprador;
 import static Interfaces.Subastas.jTextFieldColor;
@@ -16,8 +18,10 @@ import static Interfaces.Subastas.jTextFieldFerrete;
 import static Interfaces.Subastas.jTextFieldMontoTotal;
 import static Interfaces.Subastas.jTextFieldNanimal;
 import static Interfaces.Subastas.jTextFieldNombredelcomprador;
+import static Interfaces.Subastas.jTextFieldNumerodelote;
 import static Interfaces.Subastas.jTextFieldPeso;
 import static Interfaces.Subastas.jTextFieldPesoNeto;
+import static Interfaces.Subastas.jTextFieldPrecio;
 import static Interfaces.Subastas.jTextFieldPrecioPactado;
 import static Interfaces.Subastas.jTextFieldSexo;
 import static Interfaces.Subastas.jTextFieldTipo;
@@ -27,7 +31,9 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author Tserng
@@ -330,18 +336,18 @@ public class subastas {
      
      } 
       
-     public void guardarsubastaporlote(){
+     public void guardarsubastaporlote() throws SQLException{
+         
+    conectar conect = new conectar(); 
+    conect.conexion();
       try {
+          
     String consulta,tipo,detalle;
     Double peso,precio,valortotal;
     Integer numeroa,codcomprador;
-  
-    conectar conect = new conectar(); 
-    conect.conexion();
+    conect.con.setAutoCommit(false);
     subastas s = new subastas();
     codcomprador= Integer.parseInt(Subastas.jTextFieldCodigoComprador.getText());
-    tipo= s.buscaranimalporlote(Subastas.idaimal, Subastas.fecha);
-    numeroa= Subastas.idaimal;
     peso= Double.parseDouble(Subastas.jTextFieldPesoNeto.getText());
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
     detalle=Subastas.jTextFieldDetalle.getText();
@@ -354,10 +360,16 @@ public class subastas {
       String fecha = (year + "-" + mes+ "-" + dia);         
      //---------fin de obtener la fecha
           
-      String estados="Subastado";
+   String estados="Subastado";
      //String condicion="Contado";
-   
-      //codigo para guardar en tabla subastas.
+   Iterator i = Lista.iterator();
+        while(i.hasNext())
+        {
+            numeroa= Integer.parseInt(i.next().toString());
+            tipo= s.buscaranimalporlote(numeroa, Subastas.fecha);
+            //numeroa= Subastas.idaimal;
+            
+           //codigo para guardar en tabla subastas.
   guardarsubastas=conect.con.prepareStatement("INSERT INTO subastas ( Fecha, Tipo, NumeroA,CodComprador,Peso,Precio,Detalle,ValorTotal) VALUES (?,?,?,?,?,?,?,?)");
   //este es duplicando el numero consultar a juan el uso del codigo
   guardarsubastas.setString(1, fecha);
@@ -383,9 +395,17 @@ public class subastas {
     estado.setInt(6, numeroa);
     estado.setString(7, fecha);
     estado.executeUpdate(); 
- //hasta aki
-    /*
-        Subastas.jTextFieldDetalle.setText("");
+ //hasta aki 
+       }           
+    conect.con.commit();
+    JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+  
+    //limipiando
+    Lista.clear();  
+        jRadioButtonIndividual.setSelected(true);
+        jTextFieldNumerodelote.setEnabled(false);
+        jTextFieldNumerodelote.setText("");
+        jTextFieldDetalle.setText("");
         jTextFieldNanimal.setText("");
         jTextFieldCodigoComprador.setText("");
         jTextFieldTipo.setText("");
@@ -397,38 +417,47 @@ public class subastas {
         jTextFieldPesoNeto.setText("");
         jTextFieldPrecioPactado.setText("");
         jTextFieldMontoTotal.setText("");
-        Subastas.jTextFieldPrecio.setText("");
+        jTextFieldPrecio.setText("");
         jTextFieldPeso.setText("");
-        Subastas.jTextFieldNanimal.requestFocus();
         jTextFieldNanimal.setEnabled(true);
         jTextFieldCodigoComprador.setEnabled(true);
-    */
-    JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
-    
-    
-    guardarsubastas.close();
-    estado.close();
-    conect.desconectar();
-    
-        }catch(SQLException ex){
+        jTextFieldNanimal.requestFocus();
+    //hasta aki
            
-        JOptionPane.showMessageDialog(null, "Error" + ex);
-        
-        }
-        
-     
+        }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error" + ex.getMessage());   
+        if (conect.con!=null){
+        try{
+        conect.con.rollback();
+        JOptionPane.showMessageDialog(null, "La Operacion No Pudo Realizarce, Se Restableceran Los Datos");
+         }catch(SQLException ex1){
+         JOptionPane.showMessageDialog(null, "Error" + ex1.getMessage());
+         }   
+         }
+                
+        }finally{
+         try{
+         guardarsubastas.close();
+         estado.close();  
+         conect.con.setAutoCommit(true);
+         conect.desconectar();
+         }catch(SQLException ex){
+          JOptionPane.showMessageDialog(null, "Error" + ex.getMessage());   
+         }         
+         }
      }
      
      
-     public void guardarsubasta(){
-    try {
+     public void guardarsubasta() throws SQLException{
     String consulta,tipo,detalle;
     Double peso,precio,valortotal;
-    Integer numeroa,codcomprador;
-  
-    conectar conect = new conectar(); 
+    Integer numeroa,codcomprador;  
+    conectar conect = new conectar();  
     conect.conexion();
-    
+    try {
+   
+    //se deshabilita el modo de confirmación automática
+    conect.con.setAutoCommit(false);
     codcomprador= Integer.parseInt(Subastas.jTextFieldCodigoComprador.getText());
     tipo= Subastas.jTextFieldTipo.getText();
     numeroa= Integer.parseInt(Subastas.jTextFieldNanimal.getText());
@@ -460,7 +489,7 @@ public class subastas {
   guardarsubastas.setDouble(8, valortotal);
   guardarsubastas.execute();
  //hasta aki
-    
+  
  //codigo para actualizar el estado en entrada detalle a subastado   
  consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?  WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
@@ -474,6 +503,10 @@ public class subastas {
     estado.setString(7, fecha);
     estado.executeUpdate(); 
  //hasta aki     
+    
+    //se indica que se deben aplicar los cambios en la base de datos
+    conect.con.commit();  
+    
         Subastas.jTextFieldDetalle.setText("");
         jTextFieldNanimal.setText("");
         jTextFieldCodigoComprador.setText("");
@@ -500,8 +533,11 @@ public class subastas {
     conect.desconectar();
     
         }catch(SQLException ex){
-           
-        JOptionPane.showMessageDialog(null, "Error" + ex);
+        conect.con.rollback();
+        guardarsubastas.close();
+        estado.close();
+        conect.desconectar();
+        JOptionPane.showMessageDialog(null, "Error" + ex.getMessage());
         
         }
         
@@ -541,7 +577,7 @@ public class subastas {
       
       }catch(Exception ex){
       
-      JOptionPane.showMessageDialog(null, "Error" + ex);
+      JOptionPane.showMessageDialog(null, "Error" + ex.getMessage());
       }   
          
      return verificacion;
@@ -588,7 +624,7 @@ public class subastas {
     
     
    }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
    }
      
      }
@@ -626,7 +662,7 @@ public class subastas {
     
    
    }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
    }
      return tipo;
      }
