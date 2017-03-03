@@ -68,7 +68,7 @@ public class Entradasubasta {
     
     }
     
-    public void guardarentradas() throws SQLException {
+    public void guardarentradas(){
    
     conectar conect = new conectar(); 
     conect.conexion();

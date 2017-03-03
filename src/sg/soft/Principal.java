@@ -667,7 +667,7 @@ fact.setVisible(true);
 
     private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
        MantNotas fact = new MantNotas();
-fact.setVisible(true); 
+       fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem36ActionPerformed
 
     /**

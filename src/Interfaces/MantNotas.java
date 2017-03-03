@@ -5,17 +5,27 @@
  */
 package Interfaces;
 
+import Clases.CrearNotas;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
  */
 public class MantNotas extends javax.swing.JFrame {
-
+public static String Orden;
     /**
      * Creates new form MantNotas
      */
     public MantNotas() {
         initComponents();
+        DefaultTableModel tabla1= (DefaultTableModel) MantNotas.jTablenotas.getModel();
+        MantNotas.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
+        MantNotas.jDateChooserFecha2.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        MantNotas.jDateChooserFecha1.setDate(date); 
+        MantNotas.jDateChooserFecha2.setDate(date); 
     }
 
     /**
@@ -28,82 +38,111 @@ public class MantNotas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jDateChooserFecha1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        jDateChooserFecha2 = new com.toedter.calendar.JDateChooser();
+        Buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablenotas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cmdcancelar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cuenta = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        debito = new javax.swing.JRadioButton();
+        credito = new javax.swing.JRadioButton();
+        todas = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
-        jPanel1.add(jDateChooserFecha);
-        jDateChooserFecha.setBounds(210, 20, 120, 32);
         jPanel1.add(jDateChooserFecha1);
-        jDateChooserFecha1.setBounds(372, 20, 120, 32);
+        jDateChooserFecha1.setBounds(210, 20, 150, 32);
+        jPanel1.add(jDateChooserFecha2);
+        jDateChooserFecha2.setBounds(210, 60, 150, 32);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(10, 10, 130, 49);
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Buscar);
+        Buscar.setBounds(10, 20, 130, 70);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablenotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Fecha", "Cuenta", "Descripcion", "Monto", "Estado", "Actualizar"
+                "Fecha", "Cuenta", "Descripcion", "Monto", "Tipo", "Estado", "Actualizar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablenotas);
+        if (jTablenotas.getColumnModel().getColumnCount() > 0) {
+            jTablenotas.getColumnModel().getColumn(0).setMinWidth(80);
+            jTablenotas.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(1).setMinWidth(130);
+            jTablenotas.getColumnModel().getColumn(1).setMaxWidth(130);
+            jTablenotas.getColumnModel().getColumn(2).setMinWidth(230);
+            jTablenotas.getColumnModel().getColumn(2).setMaxWidth(230);
+            jTablenotas.getColumnModel().getColumn(3).setMinWidth(80);
+            jTablenotas.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(4).setMinWidth(80);
+            jTablenotas.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(5).setMinWidth(80);
+            jTablenotas.getColumnModel().getColumn(5).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(6).setMinWidth(70);
+            jTablenotas.getColumnModel().getColumn(6).setMaxWidth(70);
+        }
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 70, 710, 412);
+        jScrollPane1.setBounds(10, 112, 750, 370);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Del:");
@@ -113,7 +152,7 @@ public class MantNotas extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Cuenta:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(520, 30, 48, 15);
+        jLabel3.setBounds(480, 80, 48, 15);
 
         cmdcancelar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         cmdcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
@@ -124,38 +163,107 @@ public class MantNotas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cmdcancelar);
-        cmdcancelar.setBounds(570, 500, 150, 47);
+        cmdcancelar.setBounds(640, 500, 120, 47);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
-        jButton3.setText("ACTUALIZAR");
-        jPanel1.add(jButton3);
-        jButton3.setBounds(150, 500, 150, 50);
+        Actualizar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
+        Actualizar.setText("ACTUALIZAR");
+        jPanel1.add(Actualizar);
+        Actualizar.setBounds(150, 500, 150, 50);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrado", "Conciliado" }));
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(370, 500, 140, 47);
+        jComboBox1.setBounds(370, 500, 100, 47);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("ESTADO:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(310, 510, 53, 47);
+        jLabel4.setBounds(310, 500, 53, 47);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
-        jButton2.setText("ELIMINAR");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(10, 500, 140, 50);
+        Eliminar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
+        Eliminar.setText("ELIMINAR");
+        jPanel1.add(Eliminar);
+        Eliminar.setBounds(10, 500, 130, 50);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("Al");
+        jLabel7.setText("AL:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(340, 30, 12, 15);
+        jLabel7.setBounds(170, 70, 20, 15);
 
-        jPanel1.add(jComboBox3);
-        jComboBox3.setBounds(580, 20, 140, 30);
+        jPanel1.add(cuenta);
+        cuenta.setBounds(560, 70, 200, 30);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        debito.setText("Debito");
+        debito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debitoActionPerformed(evt);
+            }
+        });
+
+        credito.setText("Credito");
+        credito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditoActionPerformed(evt);
+            }
+        });
+
+        todas.setSelected(true);
+        todas.setText("Todas");
+        todas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                todasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addComponent(credito)
+                .addGap(29, 29, 29)
+                .addComponent(debito)
+                .addGap(28, 28, 28))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(todas)
+                    .addContainerGap(197, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(debito)
+                    .addComponent(credito))
+                .addContainerGap())
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(8, Short.MAX_VALUE)
+                    .addComponent(todas)
+                    .addContainerGap()))
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(480, 20, 280, 40);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("TIPO:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(490, 500, 40, 47);
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(0, 0, 255));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Debito", "Credito" }));
+        jPanel1.add(jComboBox2);
+        jComboBox2.setBounds(530, 500, 100, 47);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -169,9 +277,9 @@ public class MantNotas extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(151, 151, 151)
                 .addComponent(jLabel5)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,10 +295,10 @@ public class MantNotas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,6 +317,36 @@ public class MantNotas extends javax.swing.JFrame {
     private void cmdcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cmdcancelarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        CrearNotas carga = new CrearNotas();
+        Orden = "1";
+        carga.llenarcombo();
+        carga.cargarnotas();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void todasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todasActionPerformed
+        MantNotas.todas.setSelected(true);
+        MantNotas.credito.setSelected(false);
+        MantNotas.debito.setSelected(false);
+    }//GEN-LAST:event_todasActionPerformed
+
+    private void creditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditoActionPerformed
+        MantNotas.todas.setSelected(false);
+        MantNotas.credito.setSelected(true);
+        MantNotas.debito.setSelected(false);
+    }//GEN-LAST:event_creditoActionPerformed
+
+    private void debitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debitoActionPerformed
+        MantNotas.todas.setSelected(false);
+        MantNotas.credito.setSelected(false);
+        MantNotas.debito.setSelected(true);
+    }//GEN-LAST:event_debitoActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        CrearNotas carga1 = new CrearNotas();
+        carga1.cargarnotas();
+    }//GEN-LAST:event_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,30 +376,34 @@ public class MantNotas extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MantNotas().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MantNotas().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    public static javax.swing.JButton Buscar;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton cmdcancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
-    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
+    public static javax.swing.JRadioButton credito;
+    public static javax.swing.JComboBox<String> cuenta;
+    public static javax.swing.JRadioButton debito;
+    public static javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBox2;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
+    public static com.toedter.calendar.JDateChooser jDateChooserFecha2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTablenotas;
+    public static javax.swing.JRadioButton todas;
     // End of variables declaration//GEN-END:variables
 }

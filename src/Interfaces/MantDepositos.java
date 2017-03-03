@@ -5,17 +5,27 @@
  */
 package Interfaces;
 
+import Clases.CrearDeposito;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
  */
 public class MantDepositos extends javax.swing.JFrame {
-
+public static String Orden;
     /**
      * Creates new form MantDepositos
      */
     public MantDepositos() {
         initComponents();
+        DefaultTableModel tabla1= (DefaultTableModel) this.jTabledepositos.getModel();
+        MantDepositos.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
+        MantDepositos.jDateChooserFecha2.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        MantDepositos.jDateChooserFecha1.setDate(date); 
+        MantDepositos.jDateChooserFecha2.setDate(date); 
     }
 
     /**
@@ -28,16 +38,16 @@ public class MantDepositos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jDateChooserFecha1 = new com.toedter.calendar.JDateChooser();
+        jDateChooserFecha2 = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        todos = new javax.swing.JRadioButton();
+        conciliado = new javax.swing.JRadioButton();
+        depositado = new javax.swing.JRadioButton();
+        transito = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabledepositos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cmdcancelar = new javax.swing.JButton();
@@ -46,40 +56,65 @@ public class MantDepositos extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cuenta = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
-        jPanel1.add(jDateChooserFecha);
-        jDateChooserFecha.setBounds(550, 20, 152, 32);
         jPanel1.add(jDateChooserFecha1);
-        jDateChooserFecha1.setBounds(550, 70, 152, 32);
+        jDateChooserFecha1.setBounds(550, 20, 152, 32);
+        jPanel1.add(jDateChooserFecha2);
+        jDateChooserFecha2.setBounds(550, 70, 152, 32);
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 
-        jRadioButton1.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Todos");
+        todos.setBackground(new java.awt.Color(204, 255, 255));
+        todos.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        todos.setSelected(true);
+        todos.setText("Todos");
+        todos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                todosActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton2.setText("Conciliado");
+        conciliado.setBackground(new java.awt.Color(204, 255, 255));
+        conciliado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        conciliado.setText("Conciliado");
+        conciliado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conciliadoActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton3.setText("Depositado");
+        depositado.setBackground(new java.awt.Color(204, 255, 255));
+        depositado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        depositado.setText("Depositado");
+        depositado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositadoActionPerformed(evt);
+            }
+        });
 
-        jRadioButton5.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton5.setText("Trancito");
+        transito.setBackground(new java.awt.Color(204, 255, 255));
+        transito.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        transito.setText("Transito");
+        transito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transitoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -87,13 +122,13 @@ public class MantDepositos extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jRadioButton1)
+                .addComponent(todos)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(depositado)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton5)
+                .addComponent(transito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jRadioButton2)
+                .addComponent(conciliado)
                 .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
@@ -101,10 +136,10 @@ public class MantDepositos extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton2))
+                    .addComponent(todos)
+                    .addComponent(depositado)
+                    .addComponent(transito)
+                    .addComponent(conciliado))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -113,10 +148,15 @@ public class MantDepositos extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 10, 101, 49);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabledepositos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -152,7 +192,21 @@ public class MantDepositos extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTabledepositos);
+        if (jTabledepositos.getColumnModel().getColumnCount() > 0) {
+            jTabledepositos.getColumnModel().getColumn(0).setMinWidth(80);
+            jTabledepositos.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTabledepositos.getColumnModel().getColumn(1).setMinWidth(150);
+            jTabledepositos.getColumnModel().getColumn(1).setMaxWidth(150);
+            jTabledepositos.getColumnModel().getColumn(2).setMinWidth(230);
+            jTabledepositos.getColumnModel().getColumn(2).setMaxWidth(230);
+            jTabledepositos.getColumnModel().getColumn(3).setMinWidth(80);
+            jTabledepositos.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTabledepositos.getColumnModel().getColumn(4).setMinWidth(80);
+            jTabledepositos.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTabledepositos.getColumnModel().getColumn(5).setMinWidth(80);
+            jTabledepositos.getColumnModel().getColumn(5).setMaxWidth(80);
+        }
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(10, 112, 690, 370);
@@ -206,8 +260,8 @@ public class MantDepositos extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(520, 30, 30, 15);
 
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(150, 70, 210, 30);
+        jPanel1.add(cuenta);
+        cuenta.setBounds(150, 70, 210, 30);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -262,6 +316,46 @@ public class MantDepositos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cmdcancelarActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        CrearDeposito carga = new CrearDeposito();
+        Orden = "1";
+        carga.llenarcombo();
+        carga.cargardepositos();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CrearDeposito carga1 = new CrearDeposito();
+        carga1.cargardepositos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosActionPerformed
+        MantDepositos.todos.setSelected(true);
+        MantDepositos.depositado.setSelected(false);
+        MantDepositos.transito.setSelected(false);
+        MantDepositos.conciliado.setSelected(false);     
+    }//GEN-LAST:event_todosActionPerformed
+
+    private void depositadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositadoActionPerformed
+        MantDepositos.todos.setSelected(false);
+        MantDepositos.depositado.setSelected(true);
+        MantDepositos.transito.setSelected(false);
+        MantDepositos.conciliado.setSelected(false);    
+    }//GEN-LAST:event_depositadoActionPerformed
+
+    private void transitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transitoActionPerformed
+        MantDepositos.todos.setSelected(false);
+        MantDepositos.depositado.setSelected(false);
+        MantDepositos.transito.setSelected(true);
+        MantDepositos.conciliado.setSelected(false); 
+    }//GEN-LAST:event_transitoActionPerformed
+
+    private void conciliadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conciliadoActionPerformed
+        MantDepositos.todos.setSelected(false);
+        MantDepositos.depositado.setSelected(false);
+        MantDepositos.transito.setSelected(false);
+        MantDepositos.conciliado.setSelected(true); 
+    }//GEN-LAST:event_conciliadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,13 +393,15 @@ public class MantDepositos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdcancelar;
+    public static javax.swing.JRadioButton conciliado;
+    public static javax.swing.JComboBox<String> cuenta;
+    public static javax.swing.JRadioButton depositado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
+    public static com.toedter.calendar.JDateChooser jDateChooserFecha2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -314,11 +410,10 @@ public class MantDepositos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTabledepositos;
+    public static javax.swing.JRadioButton todos;
+    public static javax.swing.JRadioButton transito;
     // End of variables declaration//GEN-END:variables
 }
+

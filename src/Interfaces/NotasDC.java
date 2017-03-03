@@ -57,6 +57,11 @@ public class NotasDC extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -183,7 +188,6 @@ public class NotasDC extends javax.swing.JFrame {
         tipo.setBounds(160, 130, 130, 30);
 
         cuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(cuenta);
         cuenta.setBounds(160, 80, 130, 30);
 
@@ -252,6 +256,11 @@ public class NotasDC extends javax.swing.JFrame {
         Limpiar();
         Habilitar();   
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        CrearNotas tap = new CrearNotas();
+        tap.llenarcombo();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
