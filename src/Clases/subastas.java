@@ -432,9 +432,10 @@ public class subastas {
         JOptionPane.showMessageDialog(null, "La Operacion No Pudo Realizarce, Se Restableceran Los Datos");
          }catch(SQLException ex1){
          JOptionPane.showMessageDialog(null, "Error" + ex1.getMessage());
-         }   
+         }catch(Exception exx){  
+          JOptionPane.showMessageDialog(null, "Error" + exx.getMessage());   
          }
-                
+        }       
         }finally{
          try{
          guardarsubastas.close();

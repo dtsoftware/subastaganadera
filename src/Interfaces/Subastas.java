@@ -1026,6 +1026,7 @@ this.dispose();      // TODO add your handling code here:
     private void jButtonGuardarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonGuardarKeyPressed
         // TODO add your handling code here:
         try{
+            /*
             evt.setSource((char) KeyEvent.VK_ENTER);
            if ((jTextFieldNanimal.getText().trim().length()==0) || (jTextFieldCodigoComprador.getText().trim().length()==0)|| (jTextFieldTipo.getText().trim().length()==0) || (jTextFieldColor.getText().trim().length()==0)
                  || (jTextFieldSexo.getText().trim().length()==0) || (jTextFieldFerrete.getText().trim().length()==0) || (jTextFieldNombredelcomprador.getText().trim().length()==0)|| (jTextFieldCeduladelcomprador.getText().trim().length()==0)
@@ -1040,6 +1041,44 @@ this.dispose();      // TODO add your handling code here:
            suba.buscarporsubastar();
            suba.tablesubastado();
             }
+            */
+            if (jRadioButtonIndividual.isSelected()==true){
+           if ((jTextFieldNanimal.getText().trim().length()==0) || (jTextFieldCodigoComprador.getText().trim().length()==0)|| (jTextFieldTipo.getText().trim().length()==0) || (jTextFieldColor.getText().trim().length()==0)
+                 || (jTextFieldSexo.getText().trim().length()==0) || (jTextFieldFerrete.getText().trim().length()==0) || (jTextFieldNombredelcomprador.getText().trim().length()==0)|| (jTextFieldCeduladelcomprador.getText().trim().length()==0)
+                   || (jTextFieldPesoNeto.getText().trim().length()==0)|| (jTextFieldPrecioPactado.getText().trim().length()==0)|| (jTextFieldMontoTotal.getText().trim().length()==0)){
+            JOptionPane.showMessageDialog(null,"Para Poder realizar Esta Operacion Debe Completar La Informacion En Las Cajas De Textos");
+            jTextFieldNanimal.requestFocus();
+           }else{
+                        
+           subastas suba = new subastas();
+           suba.guardarsubasta();
+           suba.machos();
+           suba.hembras();
+           suba.totalmachoshembras();
+           suba.buscarporsubastar();
+           suba.tablesubastado();
+            }
+               
+           }
+           
+           if (this.jRadioButtonPorlote.isSelected()==true){
+           if ((jTextFieldCodigoComprador.getText().trim().length()==0)|| (jTextFieldNombredelcomprador.getText().trim().length()==0)|| (jTextFieldCeduladelcomprador.getText().trim().length()==0)
+              || (jTextFieldPesoNeto.getText().trim().length()==0)|| (jTextFieldPrecioPactado.getText().trim().length()==0)|| (jTextFieldMontoTotal.getText().trim().length()==0)){
+            JOptionPane.showMessageDialog(null,"Para Poder realizar Esta Operacion Debe Completar La Informacion");
+          
+           }else{
+           subastas suba = new subastas();
+            
+            suba.guardarsubastaporlote();
+       
+           suba.machos();
+           suba.hembras();
+           suba.totalmachoshembras();
+           suba.buscarporsubastar();
+           suba.tablesubastado();
+            }
+               
+           } 
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null, "Error:"+ex);
         }

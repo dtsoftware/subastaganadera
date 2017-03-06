@@ -26,9 +26,9 @@ public static String fecha;
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
         //ocultando columna del jtable 
-        jTableTraspasos.getColumnModel().getColumn(7).setMaxWidth(7);
-        jTableTraspasos.getColumnModel().getColumn(7).setMinWidth(7);
-        jTableTraspasos.getColumnModel().getColumn(7).setPreferredWidth(7);
+        jTableTraspasos.getColumnModel().getColumn(8).setMaxWidth(8);
+        jTableTraspasos.getColumnModel().getColumn(8).setMinWidth(8);
+        jTableTraspasos.getColumnModel().getColumn(8).setPreferredWidth(8);
         //hasta aki 
     }
 
@@ -41,12 +41,16 @@ public static String fecha;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldCodigodebusqueda = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableTraspasos = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        jRadioButtonTodos = new javax.swing.JRadioButton();
+        jRadioButtonNinguno = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldDueno = new javax.swing.JTextField();
@@ -107,15 +111,42 @@ public static String fecha;
 
             },
             new String [] {
-                "# De Animal", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor", "# De Entrada"
+                "# De Animal", "Tipo", "Sexo", "Color", "Peso", "Ferrete", "Cod Vendedor", "Seleccionar", "# De Entrada"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTableTraspasos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableTraspasosMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(jTableTraspasos);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel12.setText("Seleccionar:");
+
+        buttonGroup1.add(jRadioButtonTodos);
+        jRadioButtonTodos.setText("Todos Los Seleccionados");
+        jRadioButtonTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonTodosActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonNinguno);
+        jRadioButtonNinguno.setText("Ninguno");
+        jRadioButtonNinguno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNingunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,23 +155,37 @@ public static String fecha;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButtonTodos)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButtonNinguno)
+                        .addGap(49, 49, 49))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldCodigodebusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButtonNinguno)
+                        .addComponent(jRadioButtonTodos)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -447,7 +492,7 @@ public static String fecha;
       //nuevocodigo= Integer.parseInt(jTextFieldCodigonuevodueno.getText());
       idanimal=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 0);
       codigo = (Integer) Traspaso.jTableTraspasos.getValueAt(i, 6);
-      identrada=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 7);      
+      identrada=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 8);      
       traspasar tras=new traspasar();
       tras.buscardueno(codigo);
       
@@ -462,6 +507,7 @@ public static String fecha;
         // TODO add your handling code here:
         traspasar tras = new traspasar();
         tras.buscarparatraspaso();
+        jRadioButtonNinguno.setSelected(true);
     }//GEN-LAST:event_formWindowOpened
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
@@ -508,7 +554,14 @@ public static String fecha;
     private void jButtonTraspasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTraspasarActionPerformed
         // TODO add your handling code here:
         try{
-            traspasar tra = new traspasar();
+            
+         if (jTextFieldDueno.getText().trim().length()==0 || jTextFieldCodigonuevodueno.getText().trim().length()==0){
+         JOptionPane.showMessageDialog(null, "No se Puede Realizar EL Proceso Verifique Los Datos");
+         }else{               
+        traspasar tras=new traspasar();   
+        if(jRadioButtonNinguno.isSelected()==true){
+         traspasar tra = new traspasar();
+        
         tra.guardartraspaso(identrada, fecha, idanimal, codigonuevo);
         tra.buscarparatraspaso();
             jTextFieldDueno.setText("");
@@ -520,10 +573,73 @@ public static String fecha;
             jTextFieldCedulanuevodueno.setText("");
             jTextFieldCodigonuevodueno.setText("");
             jTextFieldCodigonuevodueno.setEnabled(true);
+            
+        }else if (jRadioButtonTodos.isSelected()==true){
+            
+    for (int i = 0; i < jTableTraspasos.getRowCount(); i++) {
+    
+     boolean seleccion = (boolean)  (jTableTraspasos.getValueAt(i, 7));
+   // String estado = String.valueOf(jTableTraspasos.getValueAt(i, 7));
+   // boolean seleccion = Boolean.valueOf(estado);
+    if(seleccion==true){
+       Integer codigo;    
+      //Integer i =Traspaso.jTableTraspasos.getSelectedRow();
+      //-----obtener la fecha----------------------
+      String  dia = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+      //nuevocodigo= Integer.parseInt(jTextFieldCodigonuevodueno.getText());
+      idanimal=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 0);
+      codigo = (Integer) Traspaso.jTableTraspasos.getValueAt(i, 6);
+      identrada=(Integer)Traspaso.jTableTraspasos.getValueAt(i, 8);      
+      
+      tras.buscardueno(codigo);
+      tras.guardartraspasoselecionados(identrada, fecha, idanimal, codigonuevo);
+      
+            
+    }else{
+        //JOptionPane.showMessageDialog(null,"No Hay Elementos Seleccionados Para Traspazar");
+    }
+      }
+    tras.buscarparatraspaso();
+    JOptionPane.showMessageDialog(null, "Registro De Traspaso Realizado Satisfactoriamente");
+    jRadioButtonNinguno.setSelected(true);
+        }    
+         }
         }catch(Exception ex){        
-         JOptionPane.showMessageDialog(null,"Error" +ex);
+         JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
         }
+        
     }//GEN-LAST:event_jButtonTraspasarActionPerformed
+   
+    private void jRadioButtonTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTodosActionPerformed
+        // TODO add your handling code here:
+        try{
+       traspasar tras = new traspasar();
+       Integer codigo = (Integer) Traspaso.jTableTraspasos.getValueAt(0, 6);       
+      
+      tras.buscardueno(codigo);    
+        for (int i = 0; i < jTableTraspasos.getRowCount(); i++) {
+          jTableTraspasos.setValueAt(true,i, 7);
+        }
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_jRadioButtonTodosActionPerformed
+
+    private void jRadioButtonNingunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNingunoActionPerformed
+        // TODO add your handling code here:
+         try{
+        for (int i = 0; i < jTableTraspasos.getRowCount(); i++) {
+          jTableTraspasos.setValueAt(null,i, 7);
+        }
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        }
+    }//GEN-LAST:event_jRadioButtonNingunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -561,6 +677,7 @@ public static String fecha;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonTraspasar;
@@ -568,6 +685,7 @@ public static String fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -580,6 +698,8 @@ public static String fecha;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButtonNinguno;
+    private javax.swing.JRadioButton jRadioButtonTodos;
     private javax.swing.JScrollPane jScrollPane3;
     public static javax.swing.JTable jTableTraspasos;
     public static javax.swing.JTextField jTextFieldApellidodueno;

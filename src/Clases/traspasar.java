@@ -22,8 +22,8 @@ public class traspasar {
     PreparedStatement animales,cargar2,cargar,entradas,detentradas;
      //DefaultTableModel tabla;
    
-    Object[] filas1 = new Object[8]; 
-    
+    Object[] filas1 = new Object[9]; 
+    Object[] filas2 = new Object[9]; 
     public traspasar(){}
     
     public void buscarnuevodueno(Integer Codigo){
@@ -59,7 +59,7 @@ public class traspasar {
     
     
    }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
    }
     
     }
@@ -96,7 +96,7 @@ public class traspasar {
     
     
    }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
    }
     
     }
@@ -125,7 +125,7 @@ public class traspasar {
             }
            
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Error" +ex);
+            JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
         }
         //-----hasta aki limpiar tabla-----
      
@@ -138,43 +138,58 @@ public class traspasar {
      //recorremos el resulset
     while (todos.next()){
         
-                    filas1[0]=todos.getInt("idAnimal");
-                    filas1[1]=todos.getString("Tipo");
-                    filas1[2]=todos.getString("Sexo");
-                    filas1[3]=todos.getString("Color");
-                    filas1[4]=todos.getDouble("Peso");
-                    filas1[5]=todos.getString("Ferrete");
-                    filas1[6]=todos.getInt("CodVendedor");
-                    filas1[7]=todos.getInt("idEntrada");
-       tabla.addRow(filas1);
+                    filas2[0]=todos.getInt("idAnimal");
+                    filas2[1]=todos.getString("Tipo");
+                    filas2[2]=todos.getString("Sexo");
+                    filas2[3]=todos.getString("Color");
+                    filas2[4]=todos.getDouble("Peso");
+                    filas2[5]=todos.getString("Ferrete");
+                    filas2[6]=todos.getInt("CodVendedor");
+                    filas2[7]=false;
+                    filas2[8]=todos.getInt("idEntrada");
+       tabla.addRow(filas2);
     }
     todos.close();
     animales.close();
     conect.desconectar();
            
    }catch (Exception ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
    }
     
     }
     
-    public void guardartraspaso(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
+     public void guardartraspasoselecionados(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
     try{
-    String consulta,consulta2;  
+    String consulta2;  
      conectar conect = new conectar(); 
      conect.conexion();  
-    /*
-     public void guardartraspaso(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
-     // para traspaso en entradas
-     consulta="UPDATE entradas SET CodCliente =? WHERE Fecha =? and idEntradas=?";
+    consulta2="UPDATE entrada_detalle SET traspasado='si', CodVendedor =? WHERE Fecha =? and idAnimal=?";
     //pasamos la consulta al preparestatement
-    entradas=conect.con.prepareStatement(consulta);
-    entradas.setInt(1, nuevocodigo);
-    entradas.setString(2, fecha);
-    entradas.setInt(3, identrada);    
-    entradas.executeUpdate(); 
-    entradas.close(); 
-    */
+    detentradas=conect.con.prepareStatement(consulta2);
+    detentradas.setInt(1, nuevocodigo);
+    detentradas.setString(2, fecha);
+    detentradas.setInt(3, idanimal);    
+    detentradas.executeUpdate(); 
+    detentradas.close(); 
+    
+    conect.desconectar(); 
+    //JOptionPane.showMessageDialog(null, "Registro De Traspaso Realizado Satisfactoriamente");
+    
+    
+    }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());    
+    }
+        
+    
+    }
+    
+    
+    public void guardartraspaso(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
+    try{
+    String consulta2;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
     consulta2="UPDATE entrada_detalle SET traspasado='si', CodVendedor =? WHERE Fecha =? and idAnimal=?";
     //pasamos la consulta al preparestatement
     detentradas=conect.con.prepareStatement(consulta2);
@@ -189,7 +204,7 @@ public class traspasar {
     
     
     }catch(Exception ex){
-     JOptionPane.showMessageDialog(null,"Error" +ex);    
+     JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());    
     }
         
     
@@ -219,7 +234,7 @@ public class traspasar {
             }
            
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Error" +ex);
+            JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
         }
         //-----hasta aki limpiar tabla-----
      
@@ -239,7 +254,8 @@ public class traspasar {
                     filas1[4]=todos.getDouble("Peso");
                     filas1[5]=todos.getString("Ferrete");
                     filas1[6]=todos.getInt("CodVendedor");
-                    filas1[7]=todos.getInt("idEntrada");
+                    filas1[7]=false;
+                    filas1[8]=todos.getInt("idEntrada");
        tabla.addRow(filas1);
     }
     todos.close();
@@ -247,7 +263,7 @@ public class traspasar {
     conect.desconectar();
            
    }catch (Exception ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
    }
     }
     
