@@ -19,6 +19,7 @@ import Interfaces.MantDepositos;
 import Interfaces.MantNotas;
 import Interfaces.NotasDC;
 import Interfaces.Proveedor;
+import Interfaces.ReciboCaja;
 import Interfaces.Recibos;
 import Interfaces.Subastas;
 import Interfaces.Traspaso;
@@ -93,6 +94,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenu11 = new javax.swing.JMenu();
@@ -346,6 +348,15 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Banco     ");
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Money-icon.png"))); // NOI18N
+        jMenuItem7.setText("Caja Menuda");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/money-icon (1).png"))); // NOI18N
         jMenuItem6.setText("Cuentas");
@@ -670,6 +681,11 @@ fact.setVisible(true);
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem36ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+       ReciboCaja fact = new ReciboCaja();
+       fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -766,6 +782,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;

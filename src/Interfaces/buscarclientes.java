@@ -354,7 +354,7 @@ public class buscarclientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
         }        
         }
-  
+        
     }//GEN-LAST:event_SeleccionarActionPerformed
 
     /**

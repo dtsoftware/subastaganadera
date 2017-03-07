@@ -7,7 +7,9 @@ package Interfaces;
 
 import Clases.CrearProvedor;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,7 +69,6 @@ public class Proveedor extends javax.swing.JFrame {
         listar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
-        audito = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,17 +182,17 @@ public class Proveedor extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel9.setText("E-MAIL:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(530, 190, 41, 13);
+        jLabel9.setBounds(490, 80, 41, 13);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel10.setText("ESTADO:");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(530, 220, 70, 58);
+        jLabel10.setBounds(490, 110, 70, 58);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel11.setText("FECHA");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(530, 300, 35, 28);
+        jLabel11.setBounds(490, 30, 35, 28);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel12.setText("*R.U.C.:");
@@ -206,19 +207,19 @@ public class Proveedor extends javax.swing.JFrame {
         estado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
         jPanel2.add(estado);
-        estado.setBounds(597, 232, 150, 30);
+        estado.setBounds(560, 120, 150, 30);
         jPanel2.add(fecha);
-        fecha.setBounds(597, 293, 150, 28);
+        fecha.setBounds(560, 30, 150, 28);
 
         lbl_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Login.png"))); // NOI18N
-        lbl_foto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/proveedores.png"))); // NOI18N
+        lbl_foto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel2.add(lbl_foto);
-        lbl_foto.setBounds(500, 10, 248, 128);
+        lbl_foto.setBounds(500, 170, 248, 200);
 
         email.setEditable(false);
         jPanel2.add(email);
-        email.setBounds(599, 180, 150, 30);
+        email.setBounds(560, 70, 150, 30);
 
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -261,6 +262,7 @@ public class Proveedor extends javax.swing.JFrame {
         editar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
         editar.setText("EDITAR");
+        editar.setEnabled(false);
         editar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         editar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +274,7 @@ public class Proveedor extends javax.swing.JFrame {
         eliminar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
         eliminar.setText("ELIMINAR");
+        eliminar.setEnabled(false);
         eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -313,35 +316,22 @@ public class Proveedor extends javax.swing.JFrame {
             }
         });
 
-        audito.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        audito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/certificate-icon.png"))); // NOI18N
-        audito.setText("AUDITO");
-        audito.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        audito.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        audito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                auditoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(audito, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -355,7 +345,6 @@ public class Proveedor extends javax.swing.JFrame {
                     .addComponent(eliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(listar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(audito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -449,33 +438,38 @@ public class Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        // TODO add your handling code here:
-      //  try {
-         //   if ((Proveedor.codigo.getText().trim().length()==0) || (this.nombre.getText().trim().length()==0) || (this.dv.getText().trim().length()==0)|| (this.ruc.getText().trim().length()==0)|| (this.direccion.getText().trim().length()==0)  ) {
-           //     JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
-          //  }else{
-            //    CrearClientes cliente = new CrearClientes();
-         //       idClientes= Integer.parseInt(jTextFieldIDcliente.getText());
-          //      Nombre=jTextFieldNombre.getText();
-          //      Apellido=jTextFieldApellido.getText();
-           //     Cedula=jTextFieldCedula.getText();
-           //     Direccion=jTextFieldDireccion.getText();
-           //     Telefono1=jTextFieldTelefono1.getText();
-           //     Telefono2=jTextFieldTelefono2.getText();
-           //     Credito=jComboBoxCredito.getSelectedItem().toString();
-            //    Imagen=txtRutaimagen.getText();
-            //    Estado=jComboBoxActivo.getSelectedItem().toString();
-            //    Audito1="hhh";
-            //    Audito2="hhh";
-            //    Fecha1=jDateChooserFecha1.getDate().toString();
-            //    Fecha2=jDateChooserFecha1.getDate().toString();
-            //    cliente.editarclientes(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito2, Fecha2);
-                // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);
-                // JOptionPane.showMessageDialog(null,"REGISTRO EDITADO CORRECTAMENTE " );
-          //  }
-      //  }catch(Exception ex) {
-         //   JOptionPane.showMessageDialog(null,"Error  = " +ex);
-       // }
+      String idproveedor,nombre,Dv,Direccion,Ruc, Telefono01, Telefono02, Email, estado, Fecha;
+      Integer codigox;
+      try {
+         if ((this.codigo.getText().trim().length()==0) || (this.nombre.getText().trim().length()==0) || (this.direccion.getText().trim().length()==0)|| (this.tel01.getText().trim().length()==0)|| (this.email.getText().trim().length()==0)  ) {
+         JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
+         }else{    
+            CrearProvedor cliente = new CrearProvedor();
+            codigox= Integer.parseInt(codigo.getText());
+            nombre=Proveedor.nombre.getText();
+            Dv=Proveedor.dv.getText();
+            Direccion= Proveedor.direccion.getText();
+            estado=Proveedor.estado.getSelectedItem().toString();
+            Email=Proveedor.email.getText();
+            Ruc=Proveedor.ruc.getText();
+            Telefono01=Proveedor.tel01.getText();
+            Telefono02=Proveedor.tel02.getText();
+            //-----obtener la fecha----------------------
+      String  dia = Integer.toString(fecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(fecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(fecha.getCalendar().get(Calendar.YEAR));
+     // Fecha1 = (year + "-" + mes+ "-" + dia);    
+      Fecha = (year + "-" + mes+ "-" + dia);
+     //---------fin de obtener la fecha
+           // Fecha1=jDateChooserFecha1.getDate().toString();
+            //Fecha2=jDateChooserFecha1.getDate().toString();
+            cliente.editarproveedor(codigox, nombre, Dv, Ruc, Direccion, Telefono01, Telefono02, Email, estado, Fecha);
+       // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);   
+      // JOptionPane.showMessageDialog(null,"REGISTRO EDITADO CORRECTAMENTE " );
+         }
+        }catch(Exception ex) {
+       JOptionPane.showMessageDialog(null,"Error  = " +ex);
+       }
     }//GEN-LAST:event_editarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -486,13 +480,12 @@ public class Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
-       // try{
-       //     buscarclientes list = new buscarclientes();
-       //     list.setVisible(true);
-       //     buscarclientes.Validar="1";
-       // } catch (Exception ex) {
-       //     JOptionPane.showMessageDialog(null, "Error:"+ex);
-       // }
+        try{
+           BuscarProveedor list = new BuscarProveedor();
+            list.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error:"+ex);
+        }
 
     }//GEN-LAST:event_listarActionPerformed
 
@@ -506,11 +499,6 @@ public class Proveedor extends javax.swing.JFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
-
-    private void auditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditoActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_auditoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -548,7 +536,6 @@ public class Proveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton audito;
     public static javax.swing.JTextField codigo;
     public static javax.swing.JTextField direccion;
     public static javax.swing.JTextField dv;
@@ -557,7 +544,7 @@ public class Proveedor extends javax.swing.JFrame {
     public static javax.swing.JTextField email;
     public static javax.swing.JComboBox<String> estado;
     public static com.toedter.calendar.JDateChooser fecha;
-    private javax.swing.JButton guardar;
+    public static javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
