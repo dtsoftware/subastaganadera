@@ -235,6 +235,7 @@ public class CrearClientes {
                             Clientes.jComboBoxCredito.setSelectedItem(rs2.getString("Credito"));
                             //imagen pendiente 
                             Clientes.jButtonEditar.setEnabled(true);
+                            Clientes.jButtonGuardar.setEnabled(false);
                             Clientes.jButtonEliminar.setEnabled(true);
                             rs2.close();
                             conect.desconectar();
