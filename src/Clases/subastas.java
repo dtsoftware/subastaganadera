@@ -344,7 +344,7 @@ public class subastas {
           
     String consulta,tipo,detalle;
     Double peso,precio,valortotal;
-    Integer numeroa,codcomprador;
+    Integer numeroa,codcomprador,nlote;
     conect.con.setAutoCommit(false);
     subastas s = new subastas();
     codcomprador= Integer.parseInt(Subastas.jTextFieldCodigoComprador.getText());
@@ -352,7 +352,7 @@ public class subastas {
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
     detalle=Subastas.jTextFieldDetalle.getText();
     valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
-    
+    nlote= Integer.parseInt(Subastas.jTextFieldNumerodelote.getText());
     //-----obtener la fecha----------------------
       String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
@@ -370,7 +370,7 @@ public class subastas {
             //numeroa= Subastas.idaimal;
             
            //codigo para guardar en tabla subastas.
-  guardarsubastas=conect.con.prepareStatement("INSERT INTO subastas ( Fecha, Tipo, NumeroA,CodComprador,Peso,Precio,Detalle,ValorTotal) VALUES (?,?,?,?,?,?,?,?)");
+  guardarsubastas=conect.con.prepareStatement("INSERT INTO subastas ( Fecha, Tipo, NumeroA,CodComprador,Peso,Precio,Detalle,ValorTotal,nlote) VALUES (?,?,?,?,?,?,?,?,?)");
   //este es duplicando el numero consultar a juan el uso del codigo
   guardarsubastas.setString(1, fecha);
   guardarsubastas.setString(2, tipo);
@@ -380,11 +380,12 @@ public class subastas {
   guardarsubastas.setDouble(6, precio);
   guardarsubastas.setString(7, detalle);
   guardarsubastas.setDouble(8, valortotal);
+  guardarsubastas.setInt(9, nlote);
   guardarsubastas.execute();
  //hasta aki
     
  //codigo para actualizar el estado en entrada detalle a subastado   
- consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?  WHERE idAnimal= ? and Fecha=?";
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?,nlote=?   WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
     estado =conect.con.prepareStatement(consulta);
     estado.setString(1, estados);
@@ -392,8 +393,9 @@ public class subastas {
     estado.setDouble(3, valortotal);
     estado.setDouble(4, precio);
     estado.setDouble(5, peso);
-    estado.setInt(6, numeroa);
-    estado.setString(7, fecha);
+    estado.setInt(6, nlote);
+    estado.setInt(7, numeroa);
+    estado.setString(8, fecha);
     estado.executeUpdate(); 
  //hasta aki 
        }           
@@ -454,7 +456,7 @@ public class subastas {
     Double peso,precio,valortotal;
     Integer numeroa,codcomprador;  
     conectar conect = new conectar();  
-    conect.conexion();
+     conect.conexion();
     try {
    
     //se deshabilita el modo de confirmación automática
@@ -466,7 +468,8 @@ public class subastas {
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
     detalle=Subastas.jTextFieldDetalle.getText();
     valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
-    
+    //numero=Subastas.jTextFieldNumerodelote.getText();
+   // nlote= Integer.parseInt(numero);
     //-----obtener la fecha----------------------
       String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
@@ -488,11 +491,12 @@ public class subastas {
   guardarsubastas.setDouble(6, precio);
   guardarsubastas.setString(7, detalle);
   guardarsubastas.setDouble(8, valortotal);
+  //guardarsubastas.setInt(9, nlote);
   guardarsubastas.execute();
  //hasta aki
   
  //codigo para actualizar el estado en entrada detalle a subastado   
- consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?  WHERE idAnimal= ? and Fecha=?";
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=? WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
     estado =conect.con.prepareStatement(consulta);
     estado.setString(1, estados);
@@ -500,8 +504,10 @@ public class subastas {
     estado.setDouble(3, valortotal);
     estado.setDouble(4, precio);
     estado.setDouble(5, peso);
+   // estado.setInt(6, nlote);
     estado.setInt(6, numeroa);
     estado.setString(7, fecha);
+   
     estado.executeUpdate(); 
  //hasta aki     
     

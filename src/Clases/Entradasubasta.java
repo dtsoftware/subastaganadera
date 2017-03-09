@@ -68,6 +68,8 @@ public class Entradasubasta {
     
     }
     
+       
+    
     public void guardarentradas(){
    
     conectar conect = new conectar(); 

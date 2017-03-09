@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import Clases.subastas;
 import Clases.redondear;
+import Clases.lotes;
 import static Interfaces.Clientes.jDateChooserFecha1;
 import java.util.List;
 import java.util.ArrayList;
@@ -1016,6 +1017,8 @@ this.dispose();      // TODO add your handling code here:
                 jTextFieldPrecio.requestFocus();
            }else{
            jTextFieldNumerodelote.requestFocus();
+           lotes lote = new lotes();
+           jTextFieldNumerodelote.setText(lote.buscarultimolote().toString());
            }
         }catch(Exception ex){
          JOptionPane.showMessageDialog(null,"Error" +ex); 
