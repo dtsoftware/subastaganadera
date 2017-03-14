@@ -10,6 +10,7 @@ import Clases.CrearClientes;
 import javax.swing.table.DefaultTableModel;
 import Clases.Entradasubasta;
 import Clases.FacturasCompras;
+import Clases.Cheque;
 import Clases.ReciboAbonos;
 import Clases.subastas;
 /**
@@ -355,6 +356,24 @@ public class buscarclientes extends javax.swing.JFrame {
         }        
         }
         
+        if (Validar=="5"){   // LLAMADO DESDE VENTANA CHEQUES
+             try{
+           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+             Cheque buscar = new  Cheque();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              buscar.buscarcliente(Codigo);
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }        
+        }
     }//GEN-LAST:event_SeleccionarActionPerformed
 
     /**

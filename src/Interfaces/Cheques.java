@@ -5,9 +5,13 @@
  */
 package Interfaces;
 
+import Clases.Cheque;
 import Clases.CrearCheques;
 import Clases.Numero_a_Letra;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +26,9 @@ public class Cheques extends javax.swing.JFrame {
     public Cheques() {
         initComponents();
         jComboBox1.removeAllItems();
+        this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        this.jDateChooserFecha.setDate(date);
     }
 
     /**
@@ -44,14 +51,14 @@ public class Cheques extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelCliente = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonListarCliente = new javax.swing.JButton();
         txtmonto = new javax.swing.JTextField();
         Numero = new javax.swing.JTextField();
         montoletras = new javax.swing.JLabel();
@@ -61,10 +68,10 @@ public class Cheques extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
@@ -139,9 +146,9 @@ public class Cheques extends javax.swing.JFrame {
         jPanel5.add(jLabel2);
         jLabel2.setBounds(110, 240, 630, 14);
 
-        jLabel5.setText("_____________________________________________________________________________");
-        jPanel5.add(jLabel5);
-        jLabel5.setBounds(110, 170, 462, 20);
+        jLabelCliente.setText("_____________________________________________________________________________");
+        jPanel5.add(jLabelCliente);
+        jLabelCliente.setBounds(110, 170, 462, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Paguese a la Orden de:");
@@ -158,7 +165,7 @@ public class Cheques extends javax.swing.JFrame {
         jPanel5.add(jLabel11);
         jLabel11.setBounds(22, 24, 28, 15);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel5.add(jComboBox1);
         jComboBox1.setBounds(60, 20, 180, 30);
 
@@ -172,14 +179,14 @@ public class Cheques extends javax.swing.JFrame {
         jPanel5.add(jLabel13);
         jLabel13.setBounds(20, 90, 229, 13);
 
-        jButton1.setText("Client/Prov");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonListarCliente.setText("Client/Prov");
+        jButtonListarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonListarClienteActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1);
-        jButton1.setBounds(20, 160, 90, 23);
+        jPanel5.add(jButtonListarCliente);
+        jButtonListarCliente.setBounds(20, 160, 90, 23);
 
         txtmonto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -216,14 +223,8 @@ public class Cheques extends javax.swing.JFrame {
 
         jPanel5.add(jPanel4);
         jPanel4.setBounds(250, 10, 510, 40);
-
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
-            }
-        });
-        jPanel5.add(jTextField1);
-        jTextField1.setBounds(610, 110, 140, 30);
+        jPanel5.add(jDateChooserFecha);
+        jDateChooserFecha.setBounds(610, 110, 140, 30);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
@@ -243,17 +244,17 @@ public class Cheques extends javax.swing.JFrame {
         jPanel3.add(jButton2);
         jButton2.setBounds(642, 16, 118, 41);
 
-        jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.activeTitleGradient"));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 255));
-        jButton3.setText("I n i c i a r   I m p r e c i ó n   d e   C h  e q u e s ");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonImprimir.setBackground(javax.swing.UIManager.getDefaults().getColor("InternalFrame.activeTitleGradient"));
+        jButtonImprimir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonImprimir.setForeground(new java.awt.Color(0, 0, 255));
+        jButtonImprimir.setText("I n i c i a r   I m p r e c i ó n   d e   C h  e q u e s ");
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonImprimirActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3);
-        jButton3.setBounds(12, 13, 530, 41);
+        jPanel3.add(jButtonImprimir);
+        jButtonImprimir.setBounds(12, 13, 530, 41);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,10 +288,24 @@ public class Cheques extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       FormatoCheques imp = new FormatoCheques();
-    imp.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+    //FormatoCheques imp = new FormatoCheques();
+    //imp.setVisible(true);
+        Integer codigo=10;
+      Cheque ch = new Cheque();
+      ch.imprimircheque2(codigo);
+    
+    codigo= Integer.parseInt(this.Numero.getText());
+     //-----obtener la fecha----------------------
+      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+      
+   
+      
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void txtmontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyPressed
        char cTeclaPresionada=evt.getKeyChar();
@@ -301,21 +316,15 @@ public class Cheques extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtmontoKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        int caracteres = 30;
-        
-        if(jTextField1.getText().length()>=caracteres){
-            evt.consume();
-            
-        }else{
-            jTextField1.setText(jTextField1.getText()+"   ");
+    private void jButtonListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarClienteActionPerformed
+     try {
+        buscarclientes list = new buscarclientes();
+        list.setVisible(true); 
+        buscarclientes.Validar="5";
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
-        
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_jButtonListarClienteActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         CrearCheques llenar = new CrearCheques();
@@ -360,11 +369,12 @@ public class Cheques extends javax.swing.JFrame {
     public static javax.swing.JScrollPane Detalle;
     public static javax.swing.JTextArea Detalle01;
     public static javax.swing.JTextField Numero;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonImprimir;
+    private javax.swing.JButton jButtonListarCliente;
     public static javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -372,11 +382,11 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public static javax.swing.JLabel jLabelCliente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -385,7 +395,6 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField1;
     public static javax.swing.JLabel montoletras;
     public static javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables

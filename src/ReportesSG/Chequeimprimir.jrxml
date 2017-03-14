@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9af61e50-7395-4794-ab99-771ddbaf7e8b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from cheques;]]>
+	</queryString>
+	<field name="idCheques" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Numero" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Beneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Monto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cuenta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Detalle" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Audito1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Audito2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="29" width="100" height="20" uuid="c2c1d836-3719-45c9-bba0-de228298476f"/>
+				<text><![CDATA[Cheques]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="424" y="29" width="100" height="20" uuid="14e9756d-00db-4d9f-b1d5-130676d98731"/>
+				<textFieldExpression><![CDATA[$P{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="49" width="100" height="20" uuid="e22c9f40-a5e5-44bd-b60f-fc242eae19c9"/>
+				<textFieldExpression><![CDATA[$F{Numero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="22" width="100" height="20" uuid="555fd3eb-c627-4c41-9a52-b5c568c87e8e"/>
+				<text><![CDATA[idCheques]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="22" width="100" height="20" uuid="5555f441-8801-45ed-b13b-30d3a3a76362"/>
+				<text><![CDATA[Beneficiario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="22" width="100" height="20" uuid="9399f8dd-1b24-446c-9b28-95ae0fa70ef6"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="14" width="100" height="20" uuid="1325d030-fef2-4a5e-9ab7-368922396dee"/>
+				<textFieldExpression><![CDATA[$F{idCheques}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="205" y="14" width="100" height="20" uuid="38e21fa2-a13a-4808-bc98-1f55d448401e"/>
+				<textFieldExpression><![CDATA[$F{Beneficiario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="14" width="100" height="20" uuid="cadbc391-ef4a-4f37-aa9f-990951d0649c"/>
+				<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
