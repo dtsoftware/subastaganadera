@@ -27,7 +27,7 @@ public class CrearDeposito {
     ResultSet aux, rs, aux1;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[8];  
-    Object[] filas1 = new Object[5];  
+    Object[] filas1 = new Object[6];  
     
     
     
@@ -175,37 +175,29 @@ public void UltimoRg(){
     String Cuenta = MantDepositos.cuenta.getSelectedItem().toString();
     if (MantDepositos.todos.isSelected()) 
     {   
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' ORDER BY Fecha";
+        consulta="SELECT idDepositos, Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' ORDER BY Fecha";
     }else if (MantDepositos.depositado.isSelected()) {
         Estado = "Depositado";
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";
+        consulta="SELECT idDepositos, Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";
     }else if (MantDepositos.transito.isSelected()){
         Estado = "Transito";
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT idDepositos, Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
     } else if (MantDepositos.conciliado.isSelected()) {
         Estado = "Conciliado";
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT idDepositos, Fecha, Cuenta, Detalle, Monto, Estado FROM depositos where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
     }
-        
-        
-        
-        
-        
-        
-     // creamos la consulta
-     
-     //pasamos la consulta al preparestatement
+
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
      aux1=cargar.executeQuery(consulta);
      //recorremos el resulset
     while (aux1.next()){
-        
-                    filas1[0]=aux1.getString("Fecha");
-                    filas1[1]=aux1.getString("Cuenta");
-                    filas1[2]=aux1.getString("Detalle");
-                    filas1[3]=aux1.getDouble("Monto");
-                    filas1[4]=aux1.getString("Estado");                    
+                    filas1[0]=aux1.getString("idDepositos");
+                    filas1[1]=aux1.getString("Fecha");
+                    filas1[2]=aux1.getString("Cuenta");
+                    filas1[3]=aux1.getString("Detalle");
+                    filas1[4]=aux1.getDouble("Monto");
+                    filas1[5]=aux1.getString("Estado");                    
        tabla.addRow(filas1);
     }
     cargar.close();
@@ -217,7 +209,83 @@ public void UltimoRg(){
    }
  }
  
+ public void eliminardeposito(){
+  try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    // creamos la consulta
+    
+     DefaultTableModel tabla = (DefaultTableModel) MantDepositos.jTabledepositos.getModel();
+     consulta="DELETE FROM DEPOSITOS where idDepositos = ?";
+     
+    for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
+
+    if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){ 
+         //pasamos la consulta al preparestatement
+         int Codigo;
+         Codigo = Integer.parseInt(MantDepositos.jTabledepositos.getValueAt(i, 0).toString());
+     cargar=conect.con.prepareStatement(consulta);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     cargar.setInt(1, Codigo);  
+     cargar.execute(); 
+                        }else{
+                            continue;
+                        }
+    cargar.close();
+    }
+    
+    
+    
+    
+    conect.desconectar();          
+    JOptionPane.showMessageDialog(null,"Registro Eliminado Satisfactoriamente");
+  
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+  
+  
+  }
  
+ public void ActualizarDepositos(){
+       
+        try {
+     String consulta, Estado;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
+    
+     // creamos la consulta
+     consulta="UPDATE depositos SET Estado =?  WHERE idDepositos= ? ";
+    //pasamos la consulta al preparestatement
+    
+    for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
+
+    if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){ 
+         //pasamos la consulta al preparestatement
+         int Codigo;
+         Estado = MantDepositos.Estado.getSelectedItem().toString();
+         Codigo = Integer.parseInt(MantDepositos.jTabledepositos.getValueAt(i, 0).toString());
+     cargar=conect.con.prepareStatement(consulta);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     cargar.setString(1, Estado); 
+     cargar.setInt(2, Codigo);
+      cargar.executeUpdate();  
+                        }else{
+                            continue;
+                        }
+    cargar.close();
+    }
+      
+    conect.desconectar(); 
+    JOptionPane.showMessageDialog(null, "Registro Actualizado Satisfactoriamente");
+        }catch(SQLException ex){
+            
+       JOptionPane.showMessageDialog(null,"Error" +ex);  
+        
+        }
+       
+   } 
 }
 
 

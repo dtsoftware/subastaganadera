@@ -7,6 +7,7 @@ package Interfaces;
 
 import Clases.CrearDeposito;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -52,7 +53,7 @@ public static String Orden;
         jLabel3 = new javax.swing.JLabel();
         cmdcancelar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Estado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -72,9 +73,9 @@ public static String Orden;
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
         jPanel1.add(jDateChooserFecha1);
-        jDateChooserFecha1.setBounds(550, 20, 152, 32);
+        jDateChooserFecha1.setBounds(570, 20, 152, 32);
         jPanel1.add(jDateChooserFecha2);
-        jDateChooserFecha2.setBounds(550, 70, 152, 32);
+        jDateChooserFecha2.setBounds(570, 70, 152, 32);
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
@@ -158,34 +159,34 @@ public static String Orden;
 
         jTabledepositos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Fecha", "Cuenta", "Descripcion", "Monto", "Estado", "Actualizar"
+                "ID", "Fecha", "Cuenta", "Descripcion", "Monto", "Estado", "Actualizar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -194,22 +195,24 @@ public static String Orden;
         });
         jScrollPane1.setViewportView(jTabledepositos);
         if (jTabledepositos.getColumnModel().getColumnCount() > 0) {
-            jTabledepositos.getColumnModel().getColumn(0).setMinWidth(80);
-            jTabledepositos.getColumnModel().getColumn(0).setMaxWidth(80);
-            jTabledepositos.getColumnModel().getColumn(1).setMinWidth(150);
-            jTabledepositos.getColumnModel().getColumn(1).setMaxWidth(150);
-            jTabledepositos.getColumnModel().getColumn(2).setMinWidth(230);
-            jTabledepositos.getColumnModel().getColumn(2).setMaxWidth(230);
-            jTabledepositos.getColumnModel().getColumn(3).setMinWidth(80);
-            jTabledepositos.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTabledepositos.getColumnModel().getColumn(0).setMinWidth(50);
+            jTabledepositos.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTabledepositos.getColumnModel().getColumn(1).setMinWidth(80);
+            jTabledepositos.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTabledepositos.getColumnModel().getColumn(2).setMinWidth(150);
+            jTabledepositos.getColumnModel().getColumn(2).setMaxWidth(150);
+            jTabledepositos.getColumnModel().getColumn(3).setMinWidth(210);
+            jTabledepositos.getColumnModel().getColumn(3).setMaxWidth(210);
             jTabledepositos.getColumnModel().getColumn(4).setMinWidth(80);
             jTabledepositos.getColumnModel().getColumn(4).setMaxWidth(80);
             jTabledepositos.getColumnModel().getColumn(5).setMinWidth(80);
             jTabledepositos.getColumnModel().getColumn(5).setMaxWidth(80);
+            jTabledepositos.getColumnModel().getColumn(6).setMinWidth(80);
+            jTabledepositos.getColumnModel().getColumn(6).setMaxWidth(80);
         }
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 112, 690, 370);
+        jScrollPane1.setBounds(10, 112, 720, 370);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("CUENTA BANCARIA:");
@@ -219,7 +222,7 @@ public static String Orden;
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Al");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(520, 80, 12, 15);
+        jLabel3.setBounds(540, 80, 12, 15);
 
         cmdcancelar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         cmdcancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Login-icon.png"))); // NOI18N
@@ -230,19 +233,24 @@ public static String Orden;
             }
         });
         jPanel1.add(cmdcancelar);
-        cmdcancelar.setBounds(560, 500, 132, 47);
+        cmdcancelar.setBounds(600, 500, 132, 47);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         jButton3.setText("ACTUALIZAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
         jButton3.setBounds(150, 500, 140, 50);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depositado", "Transito", "Conciliado" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(370, 500, 115, 47);
+        Estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Estado.setForeground(new java.awt.Color(0, 0, 255));
+        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depositado", "Transito", "Conciliado" }));
+        jPanel1.add(Estado);
+        Estado.setBounds(370, 500, 115, 47);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("ESTADO:");
@@ -252,13 +260,18 @@ public static String Orden;
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
         jButton2.setText("ELIMINAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(10, 500, 130, 50);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Del:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(520, 30, 30, 15);
+        jLabel6.setBounds(530, 30, 30, 15);
 
         jPanel1.add(cuenta);
         cuenta.setBounds(150, 70, 210, 30);
@@ -274,10 +287,10 @@ public static String Orden;
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(129, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(108, 108, 108))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,10 +306,10 @@ public static String Orden;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,6 +369,51 @@ public static String Orden;
         MantDepositos.conciliado.setSelected(true); 
     }//GEN-LAST:event_conciliadoActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      int contador=0;
+      
+      for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
+
+            if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){ 
+                contador = contador + 1;  
+            }else{
+                continue;
+            }
+      }   
+        if (contador!=0){
+            if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente eliminar el registro?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){  
+                CrearDeposito crear = new CrearDeposito();
+                crear.eliminardeposito();
+                crear.cargardepositos();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "NO HAY UN REGISTRO SELECCIONADO PARA ELIMINAR", "Eliminacion", JOptionPane.WARNING_MESSAGE);   
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            int contador=0;
+      
+      for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
+
+            if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){ 
+                contador = contador + 1;  
+            }else{
+                continue;
+            }
+      }   
+        if (contador!=0){
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente actualizar el registro?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            CrearDeposito actualiza = new CrearDeposito();
+            actualiza.ActualizarDepositos();
+            actualiza.cargardepositos();
+        }     
+         }else{
+            JOptionPane.showMessageDialog(null, "NO HAY REGISTRO SELECCIONADO PARA ACTUALIZAR", "Actualizacion", JOptionPane.WARNING_MESSAGE); 
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,6 +450,7 @@ public static String Orden;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JComboBox<String> Estado;
     private javax.swing.JButton cmdcancelar;
     public static javax.swing.JRadioButton conciliado;
     public static javax.swing.JComboBox<String> cuenta;
@@ -399,7 +458,6 @@ public static String Orden;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha2;
     private javax.swing.JLabel jLabel2;
