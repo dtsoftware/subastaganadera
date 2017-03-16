@@ -6,11 +6,13 @@
 package Clases;
 
 import Interfaces.Cheques;
+import Interfaces.Clientes;
 import java.awt.print.PrinterJob;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.print.PrintService;
@@ -33,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Tserng
  */
 public class Cheque {
-    PreparedStatement cargar2;
+    PreparedStatement cargar2,guardar;
     ResultSet rs2;
     public Cheque(){}
     
@@ -74,8 +76,7 @@ public class Cheque {
     
     }
     
-    
-    
+  
     public void imprimircheque(Integer codigo){
        // JOptionPane.showMessageDialog(null,"Se Genero");
     conectar conect = new conectar(); 
@@ -112,8 +113,44 @@ public class Cheque {
                JOptionPane.showMessageDialog(null,"no hay impresora");
            }
         }
-      public void imprimircheque2(Integer codigo){
-       // JOptionPane.showMessageDialog(null,"Se Genero");
+    
+    
+      public void guardarcheque(String numero,String beneficiario, Double monto,String fecha,String montoletras,String observacion,String a1,String a2,String a3,String a4,String m1,String m2,String d1,String d2) throws SQLException{
+                 conectar conect = new conectar(); 
+                 conect.conexion();
+          try {
+               
+            guardar=conect.con.prepareStatement("INSERT INTO cheques (Numero,Beneficiario,Monto,Fecha,montoletras,observacion,a1,a2,a3,a4,m1,m2,d1,d2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            guardar.setString(1, numero);
+            guardar.setString(2, beneficiario);
+            guardar.setDouble(3, monto);
+            guardar.setString(4, fecha);
+            guardar.setString(5, montoletras);
+            guardar.setString(6, observacion);
+            guardar.setString(7, a1);
+            guardar.setString(8, a2);
+            guardar.setString(9, a3);
+            guardar.setString(10, a4);
+            guardar.setString(11, m1);
+            guardar.setString(12, m2);
+            guardar.setString(13, d1);
+            guardar.setString(14, d2);
+            
+            guardar.execute();
+            Cheque ch = new Cheque();
+            ch.imprimircheque2(numero);
+            JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente");
+          
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex.getMessage());
+                
+            }finally{
+           guardar.close();
+           conect.desconectar();
+          }
+      }
+       public void imprimircheque2(String ncheque){
+    // JOptionPane.showMessageDialog(null,"Se Genero");
     conectar conect = new conectar(); 
     conect.conexion();
     PrintService[] printService = PrintServiceLookup.lookupPrintServices(null, null);
@@ -131,9 +168,9 @@ public class Cheque {
                      Map<String, Object> params = new HashMap<String, Object>();
                     String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Chequeimprimir.jrxml";  
                     jasperReport =JasperCompileManager.compileReport(ruta);
-                    params.put("codigo", codigo);
+                    params.put("ncheque", ncheque);
                     jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
-                  //JasperViewer.viewReport(jasperPrint, false);
+                  JasperViewer.viewReport(jasperPrint, false);
                    //se manda a la impresora
                    JRPrintServiceExporter jrprintServiceExporter = new JRPrintServiceExporter();
                    jrprintServiceExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint );
