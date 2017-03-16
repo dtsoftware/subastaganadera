@@ -7,6 +7,7 @@ package Interfaces;
 
 import Clases.CrearNotas;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,7 +48,7 @@ public static String Orden;
         jLabel3 = new javax.swing.JLabel();
         cmdcancelar = new javax.swing.JButton();
         Actualizar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Estado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         Eliminar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -57,7 +58,7 @@ public static String Orden;
         credito = new javax.swing.JRadioButton();
         todas = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        Tipo = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -89,34 +90,34 @@ public static String Orden;
 
         jTablenotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Fecha", "Cuenta", "Descripcion", "Monto", "Tipo", "Estado", "Actualizar"
+                "ID", "Fecha", "Cuenta", "Descripcion", "Monto", "Tipo", "Estado", "Actualizar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -125,24 +126,26 @@ public static String Orden;
         });
         jScrollPane1.setViewportView(jTablenotas);
         if (jTablenotas.getColumnModel().getColumnCount() > 0) {
-            jTablenotas.getColumnModel().getColumn(0).setMinWidth(80);
-            jTablenotas.getColumnModel().getColumn(0).setMaxWidth(80);
-            jTablenotas.getColumnModel().getColumn(1).setMinWidth(130);
-            jTablenotas.getColumnModel().getColumn(1).setMaxWidth(130);
-            jTablenotas.getColumnModel().getColumn(2).setMinWidth(230);
-            jTablenotas.getColumnModel().getColumn(2).setMaxWidth(230);
-            jTablenotas.getColumnModel().getColumn(3).setMinWidth(80);
-            jTablenotas.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(0).setMinWidth(50);
+            jTablenotas.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTablenotas.getColumnModel().getColumn(1).setMinWidth(80);
+            jTablenotas.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(2).setMinWidth(130);
+            jTablenotas.getColumnModel().getColumn(2).setMaxWidth(130);
+            jTablenotas.getColumnModel().getColumn(3).setMinWidth(210);
+            jTablenotas.getColumnModel().getColumn(3).setMaxWidth(210);
             jTablenotas.getColumnModel().getColumn(4).setMinWidth(80);
             jTablenotas.getColumnModel().getColumn(4).setMaxWidth(80);
             jTablenotas.getColumnModel().getColumn(5).setMinWidth(80);
             jTablenotas.getColumnModel().getColumn(5).setMaxWidth(80);
-            jTablenotas.getColumnModel().getColumn(6).setMinWidth(70);
-            jTablenotas.getColumnModel().getColumn(6).setMaxWidth(70);
+            jTablenotas.getColumnModel().getColumn(6).setMinWidth(80);
+            jTablenotas.getColumnModel().getColumn(6).setMaxWidth(80);
+            jTablenotas.getColumnModel().getColumn(7).setMinWidth(70);
+            jTablenotas.getColumnModel().getColumn(7).setMaxWidth(70);
         }
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 112, 750, 370);
+        jScrollPane1.setBounds(10, 112, 770, 370);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Del:");
@@ -168,14 +171,19 @@ public static String Orden;
         Actualizar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         Actualizar.setText("ACTUALIZAR");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Actualizar);
         Actualizar.setBounds(150, 500, 150, 50);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrado", "Conciliado" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(370, 500, 100, 47);
+        Estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Estado.setForeground(new java.awt.Color(0, 0, 255));
+        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrado", "Conciliado" }));
+        jPanel1.add(Estado);
+        Estado.setBounds(370, 500, 100, 47);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("ESTADO:");
@@ -185,6 +193,11 @@ public static String Orden;
         Eliminar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
         Eliminar.setText("ELIMINAR");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Eliminar);
         Eliminar.setBounds(10, 500, 130, 50);
 
@@ -194,7 +207,7 @@ public static String Orden;
         jLabel7.setBounds(170, 70, 20, 15);
 
         jPanel1.add(cuenta);
-        cuenta.setBounds(560, 70, 200, 30);
+        cuenta.setBounds(580, 70, 200, 30);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -252,18 +265,18 @@ public static String Orden;
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(480, 20, 280, 40);
+        jPanel3.setBounds(500, 20, 280, 40);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("TIPO:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(490, 500, 40, 47);
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(0, 0, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Debito", "Credito" }));
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(530, 500, 100, 47);
+        Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Tipo.setForeground(new java.awt.Color(0, 0, 255));
+        Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Debito", "Credito" }));
+        jPanel1.add(Tipo);
+        Tipo.setBounds(530, 500, 100, 47);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -279,7 +292,7 @@ public static String Orden;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(151, 151, 151)
                 .addComponent(jLabel5)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,6 +361,50 @@ public static String Orden;
         carga1.cargarnotas();
     }//GEN-LAST:event_BuscarActionPerformed
 
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+             int contador=0;
+      
+      for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
+
+            if( MantNotas.jTablenotas.isCellSelected(i, 7)){ 
+                contador = contador + 1;  
+            }else{
+                continue;
+            }
+      }   
+        if (contador!=0){
+            if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente eliminar el registro?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){  
+                CrearNotas crear = new CrearNotas();
+                crear.eliminarnotas();
+                crear.cargarnotas();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "NO HAY UN REGISTRO SELECCIONADO PARA ELIMINAR", "Eliminacion", JOptionPane.WARNING_MESSAGE);   
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+               int contador=0;
+      
+      for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
+
+            if( MantNotas.jTablenotas.isCellSelected(i, 7)){ 
+                contador = contador + 1;  
+            }else{
+                continue;
+            }
+      }   
+        if (contador!=0){
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente actualizar el registro?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            CrearNotas actualiza = new CrearNotas();
+            actualiza.ActualizarNotas();
+            actualiza.cargarnotas();
+        }     
+         }else{
+            JOptionPane.showMessageDialog(null, "NO HAY REGISTRO SELECCIONADO PARA ACTUALIZAR", "Actualizacion", JOptionPane.WARNING_MESSAGE); 
+        }
+    }//GEN-LAST:event_ActualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -385,12 +442,12 @@ public static String Orden;
     private javax.swing.JButton Actualizar;
     public static javax.swing.JButton Buscar;
     private javax.swing.JButton Eliminar;
+    public static javax.swing.JComboBox<String> Estado;
+    public static javax.swing.JComboBox<String> Tipo;
     private javax.swing.JButton cmdcancelar;
     public static javax.swing.JRadioButton credito;
     public static javax.swing.JComboBox<String> cuenta;
     public static javax.swing.JRadioButton debito;
-    public static javax.swing.JComboBox<String> jComboBox1;
-    public static javax.swing.JComboBox<String> jComboBox2;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha2;
     private javax.swing.JLabel jLabel2;

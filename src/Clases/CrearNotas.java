@@ -25,7 +25,7 @@ public class CrearNotas {
     String idbanco,nombre,cuenta,detalle,estado, tipo;
     Double montoi, montoa;
     ResultSet aux, rs, aux1;
-    Object[] filas1 = new Object[6];  
+    Object[] filas1 = new Object[7];  
     
    public CrearNotas() {
     
@@ -173,11 +173,11 @@ public void llenarcombo(){
     String Cuenta = MantNotas.cuenta.getSelectedItem().toString();
     if (MantNotas.todas.isSelected()) 
     {   
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Tipo, Estado FROM notas where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' ORDER BY Fecha";
+        consulta="SELECT idNotas, Fecha, Cuenta, Detalle, Monto, Tipo, Estado FROM notas where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' ORDER BY Fecha";
     }else if (MantNotas.credito.isSelected()) {
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Tipo, Estado FROM notas where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Tipo = '"+ "Credito" +"' ORDER BY Fecha";
+        consulta="SELECT idNotas, Fecha, Cuenta, Detalle, Monto, Tipo, Estado FROM notas where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Tipo = '"+ "Credito" +"' ORDER BY Fecha";
     }else if (MantNotas.debito.isSelected()){
-        consulta="SELECT Fecha, Cuenta, Detalle, Monto, Tipo, Estado FROM notas where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Tipo = '"+ "Debito" +"' ORDER BY Fecha";    
+        consulta="SELECT idNotas, Fecha, Cuenta, Detalle, Monto, Tipo, Estado FROM notas where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Tipo = '"+ "Debito" +"' ORDER BY Fecha";    
     }
         
 
@@ -189,13 +189,13 @@ public void llenarcombo(){
      aux1=cargar.executeQuery(consulta);
      //recorremos el resulset
     while (aux1.next()){
-        
-                    filas1[0]=aux1.getString("Fecha");
-                    filas1[1]=aux1.getString("Cuenta");
-                    filas1[2]=aux1.getString("Detalle");
-                    filas1[3]=aux1.getDouble("Monto");
-                    filas1[4]=aux1.getString("Tipo");
-                    filas1[5]=aux1.getString("Estado");                    
+                    filas1[0]=aux1.getInt("idNotas");
+                    filas1[1]=aux1.getString("Fecha");
+                    filas1[2]=aux1.getString("Cuenta");
+                    filas1[3]=aux1.getString("Detalle");
+                    filas1[4]=aux1.getDouble("Monto");
+                    filas1[5]=aux1.getString("Tipo");
+                    filas1[6]=aux1.getString("Estado");                    
        tabla.addRow(filas1);
     }
     cargar.close();
@@ -206,4 +206,87 @@ public void llenarcombo(){
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }
  }
+ 
+ 
+ public void eliminarnotas(){
+  try {
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    // creamos la consulta
+    
+     DefaultTableModel tabla = (DefaultTableModel) MantNotas.jTablenotas.getModel();
+     
+     
+    for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
+         int Codigo;
+         Codigo = Integer.parseInt(MantNotas.jTablenotas.getValueAt(i, 0).toString());
+    if( MantNotas.jTablenotas.isCellSelected(i, 7)){ 
+         //pasamos la consulta al preparestatement
+
+         consulta="DELETE FROM notas where idNotas = ?";
+     cargar=conect.con.prepareStatement(consulta);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     cargar.setInt(1, Codigo);  
+     cargar.execute(); 
+                        }else{
+                            continue;
+                        }
+
+    }
+    
+    
+    
+        cargar.close();
+    conect.desconectar();          
+    JOptionPane.showMessageDialog(null,"Registro Eliminado Satisfactoriamente");
+  
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+  
+  
+  }
+ 
+ public void ActualizarNotas(){
+       
+        try {
+     String consulta, Estado;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
+    
+ 
+    //pasamos la consulta al preparestatement
+    
+    for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
+
+    if( MantNotas.jTablenotas.isCellSelected(i, 7)){ 
+             // creamos la consulta
+     consulta="UPDATE notas SET Estado =?, Tipo =?  WHERE idNotas= ? ";
+         int Codigo;
+         String Tipo;
+         Estado = MantNotas.Estado.getSelectedItem().toString();
+         Codigo = Integer.parseInt(MantNotas.jTablenotas.getValueAt(i, 0).toString());
+         Tipo = MantNotas.jTablenotas.getValueAt(i, 5).toString();
+     cargar=conect.con.prepareStatement(consulta);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     cargar.setString(1, Estado); 
+     cargar.setString(2, Tipo); 
+     cargar.setInt(3, Codigo);
+      cargar.executeUpdate();  
+                        }else{
+                            continue;
+                        }
+    cargar.close();
+    }
+      
+    conect.desconectar(); 
+    JOptionPane.showMessageDialog(null, "Registro Actualizado Satisfactoriamente");
+        }catch(SQLException ex){
+            
+       JOptionPane.showMessageDialog(null,"Error" +ex);  
+        
+        }
+       
+   } 
 }
