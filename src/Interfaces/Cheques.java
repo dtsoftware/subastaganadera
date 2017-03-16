@@ -61,7 +61,7 @@ public class Cheques extends javax.swing.JFrame {
         jButtonListarCliente = new javax.swing.JButton();
         txtmonto = new javax.swing.JTextField();
         Numero = new javax.swing.JTextField();
-        montoletras = new javax.swing.JLabel();
+        montoletra = new javax.swing.JLabel();
         Beneficiario = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -69,6 +69,7 @@ public class Cheques extends javax.swing.JFrame {
         jRadioButton4 = new javax.swing.JRadioButton();
         jButton4 = new javax.swing.JButton();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButtonImprimir = new javax.swing.JButton();
@@ -142,13 +143,12 @@ public class Cheques extends javax.swing.JFrame {
         jLabel9.setBounds(30, 210, 73, 15);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("__________________________________________________________________________________________");
         jPanel5.add(jLabel2);
-        jLabel2.setBounds(110, 240, 630, 14);
+        jLabel2.setBounds(110, 240, 630, 0);
 
         jLabelCliente.setText("_____________________________________________________________________________");
         jPanel5.add(jLabelCliente);
-        jLabelCliente.setBounds(110, 170, 462, 20);
+        jLabelCliente.setBounds(110, 180, 462, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Paguese a la Orden de:");
@@ -197,10 +197,10 @@ public class Cheques extends javax.swing.JFrame {
         txtmonto.setBounds(610, 150, 140, 30);
         jPanel5.add(Numero);
         Numero.setBounds(610, 70, 140, 30);
-        jPanel5.add(montoletras);
-        montoletras.setBounds(110, 220, 470, 19);
+        jPanel5.add(montoletra);
+        montoletra.setBounds(120, 220, 470, 19);
         jPanel5.add(Beneficiario);
-        Beneficiario.setBounds(110, 150, 460, 20);
+        Beneficiario.setBounds(120, 170, 450, 20);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(null);
@@ -225,6 +225,10 @@ public class Cheques extends javax.swing.JFrame {
         jPanel4.setBounds(250, 10, 510, 40);
         jPanel5.add(jDateChooserFecha);
         jDateChooserFecha.setBounds(610, 110, 140, 30);
+
+        jLabel5.setText("__________________________________________________________________________________");
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(110, 230, 510, 14);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
@@ -289,21 +293,63 @@ public class Cheques extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-    //FormatoCheques imp = new FormatoCheques();
-    //imp.setVisible(true);
-        Integer codigo=10;
-      Cheque ch = new Cheque();
-      ch.imprimircheque2(codigo);
-    
-    codigo= Integer.parseInt(this.Numero.getText());
-     //-----obtener la fecha----------------------
+    String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque;
+    double monto;
+      
+    try{
+      nombre=jLabelCliente.getText();
+      montoletras=montoletra.getText();
+      monto= Double.parseDouble(txtmonto.getText());
+      observacion=Detalle01.getText();  
+     
+      ncheque= this.Numero.getText();
+     //-----obtener la fecha-------- --------------
       String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
       String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-      String fecha = (year + "-" + mes+ "-" + dia);         
-     //---------fin de obtener la fecha
-      
-   
+      String fecha = (year +"-"+ mes+ "-"+ dia); 
+     //---------fin de obtener la fecha 20170314
+ 
+   a =year;
+  // m=mes;
+   //d=dia;  
+ 
+   //validando si el mes es de una cifra
+   if (mes.length()==1) {
+   m="0"+mes;
+   }else{
+   m=mes;
+   }
+   //validando si el dia es de una cifra
+    if (dia.length()==1) {
+   d="0"+dia;
+   }else{
+   d=dia;
+   }   
+     //separando el año
+   a1 = a.substring(0,1);
+   a2 = a.substring(1,2);
+   a3= a.substring(2,3);
+   a4 = a.substring(3,4);   
+   //separando el mes
+  m1 = m.substring(0,1);
+  m2 = m.substring(1,2);   
+   //separando el dia
+    d1 = d.substring(0,1);
+    d2 = d.substring(1,2);
+   // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
+     
+   Cheque ch = new Cheque();
+   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, a1, a2, a3, a4, m1, m2, d1, d2);
+   //ch.imprimircheque2(ncheque);
+    
+    }catch(Exception ex){    
+    JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
+    }finally{
+    
+    }
+    
+     
       
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
@@ -312,7 +358,7 @@ public class Cheques extends javax.swing.JFrame {
         if (cTeclaPresionada==KeyEvent.VK_ENTER){
             Numero_a_Letra NumLetra = new Numero_a_Letra();
       String numero = txtmonto.getText();
-      Cheques.montoletras.setText(NumLetra.Convertir(numero,true));
+      Cheques.montoletra.setText(NumLetra.Convertir(numero,true));
         }
     }//GEN-LAST:event_txtmontoKeyPressed
 
@@ -322,7 +368,7 @@ public class Cheques extends javax.swing.JFrame {
         list.setVisible(true); 
         buscarclientes.Validar="5";
         } catch (Exception ex) {
-           JOptionPane.showMessageDialog(null, "Error:"+ex);
+           JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
         }
     }//GEN-LAST:event_jButtonListarClienteActionPerformed
 
@@ -382,6 +428,7 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -395,7 +442,7 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton4;
-    public static javax.swing.JLabel montoletras;
+    public static javax.swing.JLabel montoletra;
     public static javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
 }
