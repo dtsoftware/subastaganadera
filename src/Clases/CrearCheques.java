@@ -49,8 +49,14 @@ public class CrearCheques {
 
           while(aux.next()){               
  
-                Cheques.jComboBox1.addItem(aux.getString("Nombre"));
-                     
+               
+                if (MantChk.Orden == "1"){
+                
+                MantChk.cuenta.addItem(aux.getString("Nombre"));
+                }else{
+                    Cheques.jComboBox1.addItem(aux.getString("Nombre"));
+                }
+                    
                
            }
            
@@ -143,7 +149,7 @@ public class CrearCheques {
     // creamos la consulta
     
      DefaultTableModel tabla = (DefaultTableModel) MantChk.jTable1.getModel();
-     consulta="DELETE FROM DEPOSITOS where idDepositos = ?";
+     consulta="DELETE FROM cheques where idCheques = ?";
      
     for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
@@ -174,28 +180,30 @@ public class CrearCheques {
   
   }
  
- public void ActualizarDepositos(){
-       
-        try {
+ public void ActualizarCheques(){
+         try {
      String consulta, Estado;  
      conectar conect = new conectar(); 
      conect.conexion();  
     
-     // creamos la consulta
-     consulta="UPDATE depositos SET Estado =?  WHERE idDepositos= ? ";
+ 
     //pasamos la consulta al preparestatement
     
     for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
-    if( MantChk.jTable1.isCellSelected(i, 6)){ 
-         //pasamos la consulta al preparestatement
+    if( MantChk.jTable1.isCellSelected(i, 7)){ 
+             // creamos la consulta
+     consulta="UPDATE cheques SET Estado =?, Tipo =?  WHERE idCheques= ? ";
          int Codigo;
+         String Tipo;
          Estado = MantChk.Estado.getSelectedItem().toString();
          Codigo = Integer.parseInt(MantChk.jTable1.getValueAt(i, 0).toString());
+         Tipo = MantChk.Tipo.getSelectedItem().toString();
      cargar=conect.con.prepareStatement(consulta);
      //pasamos al resulset la consulta preparada y ejecutamos
      cargar.setString(1, Estado); 
-     cargar.setInt(2, Codigo);
+     cargar.setString(2, Tipo); 
+     cargar.setInt(3, Codigo);
       cargar.executeUpdate();  
                         }else{
                             continue;

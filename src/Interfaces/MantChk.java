@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class MantChk extends javax.swing.JFrame {
-
+public static String Orden;
     /**
      * Creates new form MantChk
      */
@@ -50,11 +50,6 @@ public class MantChk extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,7 +77,7 @@ public class MantChk extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(null);
         jPanel1.add(jDateChooserFecha1);
-        jDateChooserFecha1.setBounds(500, 70, 152, 32);
+        jDateChooserFecha1.setBounds(700, 20, 152, 32);
         jPanel1.add(jDateChooserFecha2);
         jDateChooserFecha2.setBounds(700, 70, 152, 32);
 
@@ -141,11 +136,16 @@ public class MantChk extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(420, 10, 430, 50);
+        jPanel3.setBounds(130, 10, 430, 50);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 10, 110, 49);
 
@@ -209,55 +209,6 @@ public class MantChk extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(12, 132, 840, 412);
 
-        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-
-        jRadioButton10.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton10.setSelected(true);
-        jRadioButton10.setText("Numero");
-
-        jRadioButton11.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton11.setText("Nombre");
-
-        jRadioButton12.setBackground(new java.awt.Color(204, 255, 255));
-        jRadioButton12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jRadioButton12.setText("Tipo");
-
-        jLabel7.setText("ORDENAR POR:");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jRadioButton10)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton11)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton10)
-                    .addComponent(jRadioButton11)
-                    .addComponent(jRadioButton12))
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel4);
-        jPanel4.setBounds(130, 10, 280, 49);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Cuenta Bancaria:");
         jPanel1.add(jLabel1);
@@ -266,7 +217,7 @@ public class MantChk extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("x Fecha del:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(410, 80, 71, 15);
+        jLabel2.setBounds(610, 30, 71, 15);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Al");
@@ -287,6 +238,11 @@ public class MantChk extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         jButton3.setText("ACTUALIZAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
         jButton3.setBounds(160, 550, 137, 50);
 
@@ -324,7 +280,7 @@ public class MantChk extends javax.swing.JFrame {
         jButton2.setBounds(10, 550, 130, 50);
 
         cuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BANCO GENERAL" }));
+        cuenta.setToolTipText("");
         jPanel1.add(cuenta);
         cuenta.setBounds(130, 70, 250, 30);
 
@@ -369,9 +325,9 @@ public class MantChk extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int contador=0;
 
-        for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
+        for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
-            if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){
+            if( MantChk.jTable1.isCellSelected(i, 6)){
                 contador = contador + 1;
             }else{
                 continue;
@@ -390,10 +346,37 @@ public class MantChk extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
                 CrearCheques carga = new CrearCheques();
-        //Orden = "1";
-        //carga.llenarcombo();
+        Orden = "1";
+        carga.llenarcombo();
         carga.cargarcheques();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+              CrearCheques carga1 = new CrearCheques();
+        carga1.cargarcheques();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                   int contador=0;
+      
+      for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
+
+            if( MantChk.jTable1.isCellSelected(i, 6)){ 
+                contador = contador + 1;  
+            }else{
+                continue;
+            }
+      }   
+        if (contador!=0){
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente actualizar el registro?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            CrearCheques actualiza = new CrearCheques();
+            actualiza.ActualizarCheques();
+            actualiza.cargarcheques();
+        }     
+         }else{
+            JOptionPane.showMessageDialog(null, "NO HAY REGISTRO SELECCIONADO PARA ACTUALIZAR", "Actualizacion", JOptionPane.WARNING_MESSAGE); 
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,14 +432,9 @@ public class MantChk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTable1;
     public static javax.swing.JRadioButton todos;
