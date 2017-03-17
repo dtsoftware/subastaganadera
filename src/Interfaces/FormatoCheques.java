@@ -21,7 +21,7 @@ public class FormatoCheques extends javax.swing.JFrame implements Printable{
         initComponents();
         FormatoCheques.Beneficiario.setText(Cheques.Beneficiario.getText());
         FormatoCheques.MontoLetras.setText(Cheques.montoletra.getText());
-        FormatoCheques.MontoNumeros.setText(Cheques.txtmonto.getText());
+        //FormatoCheques.MontoNumeros.setText(Cheques.txtmonto.getText());
         FormatoCheques.Detalle.setText(Cheques.Detalle01.getText());
         FormatoCheques.Numero.setText(Cheques.Numero.getText());
          

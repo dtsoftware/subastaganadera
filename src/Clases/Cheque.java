@@ -35,8 +35,9 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Tserng
  */
 public class Cheque {
-    PreparedStatement cargar2,guardar;
-    ResultSet rs2;
+    PreparedStatement cargar2,guardar,numerocheque;
+    ResultSet rs2,rscheque;
+    Integer ultimocheque;
     public Cheque(){}
     
     public void buscarcliente(Integer Codigo){
@@ -54,9 +55,9 @@ public class Cheque {
      rs2=cargar2.executeQuery(consulta);
            if (rs2.next()){
             
-            Cheques.jLabelCliente.setText(rs2.getString("Nombre")+ "  " + rs2.getString("Apellido"));
+            Cheques.Beneficiario.setText(rs2.getString("Nombre")+ "  " + rs2.getString("Apellido"));
            
-             Cheques.jLabelCliente.requestFocus();
+            Cheques.txtmonto.requestFocus();
           
             //imagen pendiente 
        
@@ -114,6 +115,41 @@ public class Cheque {
            }
         }
     
+    public Integer buscarultimocheque(){
+    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
+     // creamos la consulta
+     consulta="SELECT MAX(Numero) FROM cheques ";
+     //pasamos la consulta al preparestatement
+   numerocheque=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rscheque=numerocheque.executeQuery(consulta);
+     //recorremos el resulset
+    rscheque.next();
+        
+               ultimocheque=rscheque.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
+           
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             numerocheque.close();
+             rscheque.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimocheque;
+    }
     
       public void guardarcheque(String numero,String beneficiario, Double monto,String fecha,String montoletras,String observacion,String a1,String a2,String a3,String a4,String m1,String m2,String d1,String d2) throws SQLException{
                  conectar conect = new conectar(); 
@@ -135,11 +171,11 @@ public class Cheque {
             guardar.setString(12, m2);
             guardar.setString(13, d1);
             guardar.setString(14, d2);
-            
             guardar.execute();
+            JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente");
             Cheque ch = new Cheque();
             ch.imprimircheque2(numero);
-            JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente");
+            
           
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex.getMessage());

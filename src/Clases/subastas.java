@@ -352,7 +352,9 @@ public class subastas {
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
     detalle=Subastas.jTextFieldDetalle.getText();
     valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
-    nlote= Integer.parseInt(Subastas.jTextFieldNumerodelote.getText());
+   // nlote= Integer.parseInt(Subastas.jTextFieldNumerodelote.getText());
+    lotes lo = new lotes();
+    nlote= lo.buscarultimolote();
     //-----obtener la fecha----------------------
       String  dia = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(Subastas.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);

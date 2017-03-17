@@ -488,6 +488,7 @@ public class ModificarEntradas extends javax.swing.JFrame {
          animalesregistrados editar = new   animalesregistrados();
          //editar.guardareditados(numero, idedetalle, tipo, sexo, color, ferrete, observacion);
          editar.guardareditados(numero, idedetalle, tipo, sexo, color, ferrete, ferre2, ferre3, ferre4, ferre5, ferre6, ferre7, observacion);
+         editar.entradasparamodificar();
            }
         }catch (Exception ex){
         JOptionPane.showMessageDialog(null,"Error" +ex);  

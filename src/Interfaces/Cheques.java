@@ -29,6 +29,9 @@ public class Cheques extends javax.swing.JFrame {
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date);
+        Cheque ch = new Cheque();        
+        this.Numero.setText(ch.buscarultimocheque().toString());
+        jButtonListarCliente.requestFocus();
     }
 
     /**
@@ -127,6 +130,11 @@ public class Cheques extends javax.swing.JFrame {
 
         Detalle01.setColumns(20);
         Detalle01.setRows(5);
+        Detalle01.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Detalle01KeyPressed(evt);
+            }
+        });
         Detalle.setViewportView(Detalle01);
 
         jPanel5.add(Detalle);
@@ -183,6 +191,11 @@ public class Cheques extends javax.swing.JFrame {
         jButtonListarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonListarClienteActionPerformed(evt);
+            }
+        });
+        jButtonListarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonListarClienteKeyPressed(evt);
             }
         });
         jPanel5.add(jButtonListarCliente);
@@ -257,6 +270,11 @@ public class Cheques extends javax.swing.JFrame {
                 jButtonImprimirActionPerformed(evt);
             }
         });
+        jButtonImprimir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonImprimirKeyPressed(evt);
+            }
+        });
         jPanel3.add(jButtonImprimir);
         jButtonImprimir.setBounds(12, 13, 530, 41);
 
@@ -297,12 +315,17 @@ public class Cheques extends javax.swing.JFrame {
     double monto;
       
     try{
-      nombre=jLabelCliente.getText();
+     
+    if ((this.Numero.getText().trim().length()==0) || txtmonto.getText().trim().length()==0 || Beneficiario.getText().trim().length()==0 || montoletra.getText().trim().length()==0 ){
+    JOptionPane.showMessageDialog(null,"Para Realizar La Impresion Del Cheque, Debe Completar Los Datos");
+    }else{ 
+      
+      nombre=Beneficiario.getText();
       montoletras=montoletra.getText();
       monto= Double.parseDouble(txtmonto.getText());
       observacion=Detalle01.getText();  
-     
-      ncheque= this.Numero.getText();
+      Cheque ch = new Cheque(); 
+      ncheque= ch.buscarultimocheque().toString();
      //-----obtener la fecha-------- --------------
       String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
@@ -338,10 +361,12 @@ public class Cheques extends javax.swing.JFrame {
     d1 = d.substring(0,1);
     d2 = d.substring(1,2);
    // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
-     
-   Cheque ch = new Cheque();
+   //Cheque ch = new Cheque();
    ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, a1, a2, a3, a4, m1, m2, d1, d2);
    //ch.imprimircheque2(ncheque);
+   this.Numero.setText(ch.buscarultimocheque().toString());
+    }
+  
     
     }catch(Exception ex){    
     JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
@@ -349,18 +374,9 @@ public class Cheques extends javax.swing.JFrame {
     
     }
     
-     
-      
+       
+    
     }//GEN-LAST:event_jButtonImprimirActionPerformed
-
-    private void txtmontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyPressed
-       char cTeclaPresionada=evt.getKeyChar();
-        if (cTeclaPresionada==KeyEvent.VK_ENTER){
-            Numero_a_Letra NumLetra = new Numero_a_Letra();
-      String numero = txtmonto.getText();
-      Cheques.montoletra.setText(NumLetra.Convertir(numero,true));
-        }
-    }//GEN-LAST:event_txtmontoKeyPressed
 
     private void jButtonListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarClienteActionPerformed
      try {
@@ -376,6 +392,107 @@ public class Cheques extends javax.swing.JFrame {
         CrearCheques llenar = new CrearCheques();
         llenar.llenarcombo();
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtmontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyPressed
+        char cTeclaPresionada=evt.getKeyChar();
+        if (cTeclaPresionada==KeyEvent.VK_ENTER){
+            Numero_a_Letra NumLetra = new Numero_a_Letra();
+            String numero = txtmonto.getText();
+            Cheques.montoletra.setText(NumLetra.Convertir(numero,true));
+            Detalle01.requestFocus();
+        }
+    }//GEN-LAST:event_txtmontoKeyPressed
+
+    private void Detalle01KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Detalle01KeyPressed
+        // TODO add your handling code here:
+         char cTeclaPresionada=evt.getKeyChar();
+        if (cTeclaPresionada==KeyEvent.VK_ENTER){
+           jButtonImprimir.requestFocus();
+        }
+    }//GEN-LAST:event_Detalle01KeyPressed
+
+    private void jButtonListarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonListarClienteKeyPressed
+        // TODO add your handling code here:
+        try {
+        buscarclientes list = new buscarclientes();
+        list.setVisible(true); 
+        buscarclientes.Validar="5";
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
+        }
+    }//GEN-LAST:event_jButtonListarClienteKeyPressed
+
+    private void jButtonImprimirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonImprimirKeyPressed
+        // TODO add your handling code here:
+          String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque;
+    double monto;
+      
+    try{
+     
+    if ((this.Numero.getText().trim().length()==0) || txtmonto.getText().trim().length()==0 || Beneficiario.getText().trim().length()==0 || montoletra.getText().trim().length()==0 ){
+    JOptionPane.showMessageDialog(null,"Para Realizar La Impresion Del Cheque, Debe Completar Los Datos");
+    }else{ 
+      
+      nombre=Beneficiario.getText();
+      montoletras=montoletra.getText();
+      monto= Double.parseDouble(txtmonto.getText());
+      observacion=Detalle01.getText();  
+      Cheque ch = new Cheque(); 
+      ncheque= ch.buscarultimocheque().toString();
+     //-----obtener la fecha-------- --------------
+      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year +"-"+ mes+ "-"+ dia); 
+     //---------fin de obtener la fecha 20170314
+ 
+   a =year;
+  // m=mes;
+   //d=dia;  
+ 
+   //validando si el mes es de una cifra
+   if (mes.length()==1) {
+   m="0"+mes;
+   }else{
+   m=mes;
+   }
+   //validando si el dia es de una cifra
+    if (dia.length()==1) {
+   d="0"+dia;
+   }else{
+   d=dia;
+   }   
+     //separando el año
+   a1 = a.substring(0,1);
+   a2 = a.substring(1,2);
+   a3= a.substring(2,3);
+   a4 = a.substring(3,4);   
+   //separando el mes
+  m1 = m.substring(0,1);
+  m2 = m.substring(1,2);   
+   //separando el dia
+    d1 = d.substring(0,1);
+    d2 = d.substring(1,2);
+   // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
+   //Cheque ch = new Cheque();
+   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, a1, a2, a3, a4, m1, m2, d1, d2);
+   //ch.imprimircheque2(ncheque);
+   this.Numero.setText(ch.buscarultimocheque().toString());
+   txtmonto.setText("");
+   Beneficiario.setText("");
+   montoletra.setText("");
+   Detalle01.setText("");
+   jButtonListarCliente.requestFocus();
+    }
+  
+    
+    }catch(Exception ex){    
+    JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
+    }finally{
+    
+    }
+    
+    }//GEN-LAST:event_jButtonImprimirKeyPressed
 
     /**
      * @param args the command line arguments
