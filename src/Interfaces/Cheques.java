@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.Cheque;
 import Clases.CrearCheques;
 import Clases.Numero_a_Letra;
+import static Interfaces.MantChk.Orden;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,14 +19,14 @@ import javax.swing.JOptionPane;
  * @author Juan
  */
 public class Cheques extends javax.swing.JFrame {
-
+public static String Orden;
 
     /**
      * Creates new form Cheques
      */
     public Cheques() {
         initComponents();
-        jComboBox1.removeAllItems();
+        cuenta.removeAllItems();
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date);
@@ -58,21 +59,21 @@ public class Cheques extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        cuenta = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButtonListarCliente = new javax.swing.JButton();
         txtmonto = new javax.swing.JTextField();
         Numero = new javax.swing.JTextField();
         montoletra = new javax.swing.JLabel();
-        Beneficiario = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        venta = new javax.swing.JRadioButton();
+        gasto = new javax.swing.JRadioButton();
+        planilla = new javax.swing.JRadioButton();
         jButton4 = new javax.swing.JButton();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
+        Beneficiario = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButtonImprimir = new javax.swing.JButton();
@@ -173,9 +174,8 @@ public class Cheques extends javax.swing.JFrame {
         jPanel5.add(jLabel11);
         jLabel11.setBounds(22, 24, 28, 15);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(jComboBox1);
-        jComboBox1.setBounds(60, 20, 180, 30);
+        jPanel5.add(cuenta);
+        cuenta.setBounds(60, 20, 180, 30);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("N O M B R E  D E L  B A N C O");
@@ -199,7 +199,7 @@ public class Cheques extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButtonListarCliente);
-        jButtonListarCliente.setBounds(20, 160, 90, 23);
+        jButtonListarCliente.setBounds(20, 160, 90, 30);
 
         txtmonto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -212,25 +212,44 @@ public class Cheques extends javax.swing.JFrame {
         Numero.setBounds(610, 70, 140, 30);
         jPanel5.add(montoletra);
         montoletra.setBounds(120, 220, 470, 19);
-        jPanel5.add(Beneficiario);
-        Beneficiario.setBounds(120, 170, 450, 20);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(null);
 
-        jRadioButton1.setText("P. a Vendedor");
-        jPanel4.add(jRadioButton1);
-        jRadioButton1.setBounds(20, 10, 110, 23);
+        venta.setSelected(true);
+        venta.setText("P. a Vendedor");
+        venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ventaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(venta);
+        venta.setBounds(20, 10, 110, 23);
 
-        jRadioButton2.setText("P. de Gastos");
-        jPanel4.add(jRadioButton2);
-        jRadioButton2.setBounds(140, 10, 110, 23);
+        gasto.setText("P. de Gastos");
+        gasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gastoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(gasto);
+        gasto.setBounds(140, 10, 110, 23);
 
-        jRadioButton4.setText("P. de Planilla");
-        jPanel4.add(jRadioButton4);
-        jRadioButton4.setBounds(260, 10, 100, 23);
+        planilla.setText("P. de Planilla");
+        planilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                planillaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(planilla);
+        planilla.setBounds(260, 10, 100, 23);
 
-        jButton4.setText("DETALLE");
+        jButton4.setText("LIMPIAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton4);
         jButton4.setBounds(370, 10, 130, 23);
 
@@ -242,6 +261,13 @@ public class Cheques extends javax.swing.JFrame {
         jLabel5.setText("__________________________________________________________________________________");
         jPanel5.add(jLabel5);
         jLabel5.setBounds(110, 230, 510, 14);
+
+        Beneficiario.setEditable(false);
+        Beneficiario.setBackground(new java.awt.Color(255, 255, 255));
+        Beneficiario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Beneficiario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel5.add(Beneficiario);
+        Beneficiario.setBounds(120, 160, 440, 30);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
@@ -311,7 +337,7 @@ public class Cheques extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-    String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque;
+    String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque, CuentaB,Tipo;
     double monto;
       
     try{
@@ -362,9 +388,24 @@ public class Cheques extends javax.swing.JFrame {
     d2 = d.substring(1,2);
    // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
    //Cheque ch = new Cheque();
-   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, a1, a2, a3, a4, m1, m2, d1, d2);
+   CuentaB = this.cuenta.getSelectedItem().toString();
+   
+   if(this.venta.isSelected()){
+       Tipo = "Venta";
+   }else if(this.gasto.isSelected()){
+       Tipo = "Gasto";
+   }else{
+       Tipo = "Planilla";
+   }
+   
+   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, CuentaB, Tipo, a1, a2, a3, a4, m1, m2, d1, d2);
    //ch.imprimircheque2(ncheque);
    this.Numero.setText(ch.buscarultimocheque().toString());
+   txtmonto.setText("");
+   Beneficiario.setText("");
+   montoletra.setText("");
+   Detalle01.setText("");
+   jButtonListarCliente.requestFocus();
     }
   
     
@@ -390,6 +431,7 @@ public class Cheques extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         CrearCheques llenar = new CrearCheques();
+                Orden = "1";
         llenar.llenarcombo();
     }//GEN-LAST:event_formWindowOpened
 
@@ -424,7 +466,7 @@ public class Cheques extends javax.swing.JFrame {
 
     private void jButtonImprimirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonImprimirKeyPressed
         // TODO add your handling code here:
-          String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque;
+          String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque,CuentaB,Tipo;
     double monto;
       
     try{
@@ -475,7 +517,15 @@ public class Cheques extends javax.swing.JFrame {
     d2 = d.substring(1,2);
    // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
    //Cheque ch = new Cheque();
-   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, a1, a2, a3, a4, m1, m2, d1, d2);
+   CuentaB = this.cuenta.getSelectedItem().toString();
+    if(this.venta.isSelected()){
+       Tipo = "Venta";
+   }else if(this.gasto.isSelected()){
+       Tipo = "Gasto";
+   }else{
+       Tipo = "Planilla";
+   }
+   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, CuentaB, Tipo, a1, a2, a3, a4, m1, m2, d1, d2);
    //ch.imprimircheque2(ncheque);
    this.Numero.setText(ch.buscarultimocheque().toString());
    txtmonto.setText("");
@@ -493,6 +543,40 @@ public class Cheques extends javax.swing.JFrame {
     }
     
     }//GEN-LAST:event_jButtonImprimirKeyPressed
+
+    private void ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventaActionPerformed
+         Cheques.venta.setSelected(true);
+         Cheques.gasto.setSelected(false);
+         Cheques.planilla.setSelected(false);
+         Cheques.jButtonListarCliente.setEnabled(true);
+         Cheques.Beneficiario.setEditable(false);
+    }//GEN-LAST:event_ventaActionPerformed
+
+    private void gastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gastoActionPerformed
+         Cheques.venta.setSelected(false);
+         Cheques.gasto.setSelected(true);
+         Cheques.planilla.setSelected(false);
+         Cheques.jButtonListarCliente.setEnabled(false);
+         Cheques.Beneficiario.setEditable(true);
+         Cheques.Beneficiario.setFocusable(true);
+    }//GEN-LAST:event_gastoActionPerformed
+
+    private void planillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planillaActionPerformed
+         Cheques.venta.setSelected(false);
+         Cheques.gasto.setSelected(false);
+         Cheques.planilla.setSelected(true);
+         Cheques.jButtonListarCliente.setEnabled(false);
+         Cheques.Beneficiario.setEditable(true);
+         Cheques.Beneficiario.setFocusable(true);
+    }//GEN-LAST:event_planillaActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        txtmonto.setText("");
+        Beneficiario.setText("");
+        montoletra.setText("");
+        Detalle01.setText("");
+        jButtonListarCliente.requestFocus();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,15 +612,16 @@ public class Cheques extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel Beneficiario;
+    public static javax.swing.JTextField Beneficiario;
     public static javax.swing.JScrollPane Detalle;
     public static javax.swing.JTextArea Detalle01;
     public static javax.swing.JTextField Numero;
+    public static javax.swing.JComboBox<String> cuenta;
+    public static javax.swing.JRadioButton gasto;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonImprimir;
-    private javax.swing.JButton jButtonListarCliente;
-    public static javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JButton jButtonListarCliente;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -556,10 +641,10 @@ public class Cheques extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton4;
     public static javax.swing.JLabel montoletra;
+    public static javax.swing.JRadioButton planilla;
     public static javax.swing.JTextField txtmonto;
+    public static javax.swing.JRadioButton venta;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -88,22 +88,47 @@ public static String Orden;
         todos.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         todos.setSelected(true);
         todos.setText("Todos");
+        todos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                todosActionPerformed(evt);
+            }
+        });
 
         conciliado.setBackground(new java.awt.Color(204, 255, 255));
         conciliado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         conciliado.setText("Conciliado");
+        conciliado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conciliadoActionPerformed(evt);
+            }
+        });
 
         impreso.setBackground(new java.awt.Color(204, 255, 255));
         impreso.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         impreso.setText("Impresos");
+        impreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                impresoActionPerformed(evt);
+            }
+        });
 
         anulado.setBackground(new java.awt.Color(204, 255, 255));
         anulado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         anulado.setText("Anulado");
+        anulado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anuladoActionPerformed(evt);
+            }
+        });
 
         trancito.setBackground(new java.awt.Color(204, 255, 255));
         trancito.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         trancito.setText("Trancito");
+        trancito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trancitoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -377,6 +402,46 @@ public static String Orden;
             JOptionPane.showMessageDialog(null, "NO HAY REGISTRO SELECCIONADO PARA ACTUALIZAR", "Actualizacion", JOptionPane.WARNING_MESSAGE); 
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosActionPerformed
+        MantChk.todos.setSelected(true);
+        MantChk.impreso.setSelected(false);
+        MantChk.trancito.setSelected(false);
+        MantChk.anulado.setSelected(false);
+        MantChk.conciliado.setSelected(false);  
+    }//GEN-LAST:event_todosActionPerformed
+
+    private void impresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_impresoActionPerformed
+        MantChk.todos.setSelected(false);
+        MantChk.impreso.setSelected(true);
+        MantChk.trancito.setSelected(false);
+        MantChk.anulado.setSelected(false);
+        MantChk.conciliado.setSelected(false);  
+    }//GEN-LAST:event_impresoActionPerformed
+
+    private void anuladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anuladoActionPerformed
+        MantChk.todos.setSelected(false);
+        MantChk.impreso.setSelected(false);
+        MantChk.trancito.setSelected(false);
+        MantChk.anulado.setSelected(true);
+        MantChk.conciliado.setSelected(false);  
+    }//GEN-LAST:event_anuladoActionPerformed
+
+    private void trancitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trancitoActionPerformed
+        MantChk.todos.setSelected(false);
+        MantChk.impreso.setSelected(false);
+        MantChk.trancito.setSelected(true);
+        MantChk.anulado.setSelected(false);
+        MantChk.conciliado.setSelected(false);  
+    }//GEN-LAST:event_trancitoActionPerformed
+
+    private void conciliadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conciliadoActionPerformed
+        MantChk.todos.setSelected(false);
+        MantChk.impreso.setSelected(false);
+        MantChk.trancito.setSelected(false);
+        MantChk.anulado.setSelected(false);
+        MantChk.conciliado.setSelected(true);  
+    }//GEN-LAST:event_conciliadoActionPerformed
 
     /**
      * @param args the command line arguments

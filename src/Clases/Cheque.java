@@ -151,26 +151,29 @@ public class Cheque {
     return ultimocheque;
     }
     
-      public void guardarcheque(String numero,String beneficiario, Double monto,String fecha,String montoletras,String observacion,String a1,String a2,String a3,String a4,String m1,String m2,String d1,String d2) throws SQLException{
+      public void guardarcheque(String numero,String beneficiario, Double monto,String fecha,String montoletras,String observacion, String CuentaB, String Tipo, String a1,String a2,String a3,String a4,String m1,String m2,String d1,String d2) throws SQLException{
                  conectar conect = new conectar(); 
                  conect.conexion();
           try {
-               
-            guardar=conect.con.prepareStatement("INSERT INTO cheques (Numero,Beneficiario,Monto,Fecha,montoletras,observacion,a1,a2,a3,a4,m1,m2,d1,d2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+          String Estado = "Impreso";     
+            guardar=conect.con.prepareStatement("INSERT INTO cheques (Numero,Beneficiario,Monto,Fecha,montoletras,observacion,Cuenta,Estado,Tipo,a1,a2,a3,a4,m1,m2,d1,d2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             guardar.setString(1, numero);
             guardar.setString(2, beneficiario);
             guardar.setDouble(3, monto);
             guardar.setString(4, fecha);
             guardar.setString(5, montoletras);
             guardar.setString(6, observacion);
-            guardar.setString(7, a1);
-            guardar.setString(8, a2);
-            guardar.setString(9, a3);
-            guardar.setString(10, a4);
-            guardar.setString(11, m1);
-            guardar.setString(12, m2);
-            guardar.setString(13, d1);
-            guardar.setString(14, d2);
+            guardar.setString(7, CuentaB);
+            guardar.setString(8, Estado);
+            guardar.setString(9, Tipo);
+            guardar.setString(10, a1);
+            guardar.setString(11, a2);
+            guardar.setString(12, a3);
+            guardar.setString(13, a4);
+            guardar.setString(14, m1);
+            guardar.setString(15, m2);
+            guardar.setString(16, d1);
+            guardar.setString(17, d2);
             guardar.execute();
             JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente");
             Cheque ch = new Cheque();

@@ -53,8 +53,9 @@ public class CrearCheques {
                 if (MantChk.Orden == "1"){
                 
                 MantChk.cuenta.addItem(aux.getString("Nombre"));
-                }else{
-                    Cheques.jComboBox1.addItem(aux.getString("Nombre"));
+                }
+                if (Cheques.Orden == "1"){
+                    Cheques.cuenta.addItem(aux.getString("Nombre"));
                 }
                     
                
@@ -102,20 +103,20 @@ public class CrearCheques {
     String Cuenta = MantChk.cuenta.getSelectedItem().toString();
     if (MantChk.todos.isSelected()) 
     {   
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' ORDER BY Fecha";
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, observacion, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' ORDER BY Fecha";
     }else if (MantChk.impreso.isSelected()) {
         Estado = "Impreso";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, observacion, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";
     }else if (MantChk.trancito.isSelected()){
         Estado = "Transito";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, observacion, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
     }else if (MantChk.anulado.isSelected()){
         Estado = "Anulado";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, observacion, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
 
     } else if (MantChk.conciliado.isSelected()) {
         Estado = "Conciliado";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, observacion, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
     }
 
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -127,7 +128,7 @@ public class CrearCheques {
                     filas1[1]=aux1.getString("Fecha");
                     filas1[2]=aux1.getString("Tipo");
                     filas1[3]=aux1.getString("Beneficiario");
-                    filas1[4]=aux1.getString("Detalle");
+                    filas1[4]=aux1.getString("observacion");
                     filas1[5]=aux1.getDouble("Monto");
                     filas1[6]=aux1.getString("Estado");                    
        tabla.addRow(filas1);
@@ -149,7 +150,7 @@ public class CrearCheques {
     // creamos la consulta
     
      DefaultTableModel tabla = (DefaultTableModel) MantChk.jTable1.getModel();
-     consulta="DELETE FROM cheques where idCheques = ?";
+     consulta="DELETE FROM cheques where Numero = ?";
      
     for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
@@ -193,7 +194,7 @@ public class CrearCheques {
 
     if( MantChk.jTable1.isCellSelected(i, 7)){ 
              // creamos la consulta
-     consulta="UPDATE cheques SET Estado =?, Tipo =?  WHERE idCheques= ? ";
+     consulta="UPDATE cheques SET Estado =?, Tipo =?  WHERE Numero= ? ";
          int Codigo;
          String Tipo;
          Estado = MantChk.Estado.getSelectedItem().toString();
