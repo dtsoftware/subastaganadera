@@ -7,6 +7,7 @@ package Clases;
 
 import Interfaces.Cheques;
 import Interfaces.MantChk;
+import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,9 +68,9 @@ public class CrearCheques {
                  conect.conexion();
                  
 
-      String  dia1 = Integer.toString(MantChk.jDateChooserFecha2.getCalendar().get(Calendar.DAY_OF_MONTH));
-      String  mes1 = Integer.toString(MantChk.jDateChooserFecha2.getCalendar().get(Calendar.MONTH) + 1);
-      String year1 = Integer.toString(MantChk.jDateChooserFecha2.getCalendar().get(Calendar.YEAR));
+      String  dia1 = Integer.toString(MantChk.jDateChooserFecha1.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes1 = Integer.toString(MantChk.jDateChooserFecha1.getCalendar().get(Calendar.MONTH) + 1);
+      String year1 = Integer.toString(MantChk.jDateChooserFecha1.getCalendar().get(Calendar.YEAR));
       String fecha1 = (year1 + "-" + mes1+ "-" + dia1);   
 
       String  dia2 = Integer.toString(MantChk.jDateChooserFecha2.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -95,20 +96,20 @@ public class CrearCheques {
     String Cuenta = MantChk.cuenta.getSelectedItem().toString();
     if (MantChk.todos.isSelected()) 
     {   
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' ORDER BY Fecha";
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' ORDER BY Fecha";
     }else if (MantChk.impreso.isSelected()) {
         Estado = "Impreso";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";
     }else if (MantChk.trancito.isSelected()){
         Estado = "Transito";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
     }else if (MantChk.anulado.isSelected()){
         Estado = "Anulado";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
 
     } else if (MantChk.conciliado.isSelected()) {
         Estado = "Conciliado";
-        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
+        consulta="SELECT Numero, Fecha, Tipo, Beneficiario, Detalle, Monto, Estado FROM cheques where Fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"' AND Estado = '"+ Estado +"' ORDER BY Fecha";    
     }
 
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -129,7 +130,7 @@ public class CrearCheques {
     aux1.close();
     conect.desconectar();
            
-   }catch (Exception ex){
+   }catch (SQLException ex){
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }
  }

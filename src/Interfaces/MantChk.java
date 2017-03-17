@@ -6,7 +6,9 @@
 package Interfaces;
 
 import Clases.CrearCheques;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +21,12 @@ public class MantChk extends javax.swing.JFrame {
      */
     public MantChk() {
         initComponents();
+        DefaultTableModel tabla= (DefaultTableModel) MantChk.jTable1.getModel();
+        MantChk.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
+        MantChk.jDateChooserFecha2.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        MantChk.jDateChooserFecha1.setDate(date); 
+        MantChk.jDateChooserFecha2.setDate(date); 
     }
 
     /**
