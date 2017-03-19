@@ -220,8 +220,7 @@ public void UltimoRg(){
      consulta="DELETE FROM DEPOSITOS where idDepositos = ?";
      
     for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
-
-    if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){ 
+    if( MantDepositos.jTabledepositos.getValueAt(i, 6)!=null){ 
          //pasamos la consulta al preparestatement
          int Codigo;
          Codigo = Integer.parseInt(MantDepositos.jTabledepositos.getValueAt(i, 0).toString());
@@ -261,7 +260,7 @@ public void UltimoRg(){
     
     for (int i = 0; i < MantDepositos.jTabledepositos.getRowCount(); i++) {
 
-    if( MantDepositos.jTabledepositos.isCellSelected(i, 6)){ 
+    if( MantDepositos.jTabledepositos.getValueAt(i, 6)!=null){ 
          //pasamos la consulta al preparestatement
          int Codigo;
          Estado = MantDepositos.Estado.getSelectedItem().toString();

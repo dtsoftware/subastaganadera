@@ -221,7 +221,7 @@ public void llenarcombo(){
     for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
          int Codigo;
          Codigo = Integer.parseInt(MantNotas.jTablenotas.getValueAt(i, 0).toString());
-    if( MantNotas.jTablenotas.isCellSelected(i, 7)){ 
+    if( MantNotas.jTablenotas.getValueAt(i, 7)!=null){ 
          //pasamos la consulta al preparestatement
 
          consulta="DELETE FROM notas where idNotas = ?";
@@ -260,7 +260,7 @@ public void llenarcombo(){
     
     for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
 
-    if( MantNotas.jTablenotas.isCellSelected(i, 7)){ 
+    if( MantNotas.jTablenotas.getValueAt(i, 7)!=null){ 
              // creamos la consulta
      consulta="UPDATE notas SET Estado =?, Tipo =?  WHERE idNotas= ? ";
          int Codigo;

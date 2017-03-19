@@ -5,6 +5,10 @@
  */
 package Interfaces;
 
+import Clases.Conciliar;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
@@ -16,6 +20,15 @@ public class Conciliacion extends javax.swing.JFrame {
      */
     public Conciliacion() {
         initComponents();
+        DefaultTableModel tabla1= (DefaultTableModel) this.cheques.getModel();
+        DefaultTableModel tabla2= (DefaultTableModel) this.depositos.getModel();
+        DefaultTableModel tabla3= (DefaultTableModel) this.creditos.getModel();
+        DefaultTableModel tabla4= (DefaultTableModel) this.debitos.getModel();
+        Conciliacion.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
+        Conciliacion.jDateChooserFecha2.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        Conciliacion.jDateChooserFecha1.setDate(date); 
+        Conciliacion.jDateChooserFecha2.setDate(date); 
     }
 
     /**
@@ -28,63 +41,68 @@ public class Conciliacion extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        cheques = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        depositos = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        creditos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        Sndebitos = new javax.swing.JTextField();
+        Sdepositos = new javax.swing.JTextField();
+        SL = new javax.swing.JTextField();
+        Sdepositost = new javax.swing.JTextField();
+        Schequest = new javax.swing.JTextField();
+        Sncreditos = new javax.swing.JTextField();
+        Schequesg = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        SB = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jDateChooserFecha1 = new com.toedter.calendar.JDateChooser();
+        jDateChooserFecha2 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cuenta = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        SaldoLibro = new javax.swing.JTextField();
+        SaldoBanco = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Cargar = new javax.swing.JButton();
+        Calcular = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         CANCELAR = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        debitos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        cheques.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -110,9 +128,9 @@ public class Conciliacion extends javax.swing.JFrame {
                 "Fecha", "N° Cheque", "Monto", "Estado"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(cheques);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        depositos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -138,13 +156,13 @@ public class Conciliacion extends javax.swing.JFrame {
                 "Fecha", "Monto", "Estado"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(2).setMinWidth(200);
-            jTable2.getColumnModel().getColumn(2).setMaxWidth(200);
+        jScrollPane2.setViewportView(depositos);
+        if (depositos.getColumnModel().getColumnCount() > 0) {
+            depositos.getColumnModel().getColumn(2).setMinWidth(200);
+            depositos.getColumnModel().getColumn(2).setMaxWidth(200);
         }
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        creditos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -160,10 +178,10 @@ public class Conciliacion extends javax.swing.JFrame {
                 "Fecha", "Monto", "Detalle"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(2).setMinWidth(200);
-            jTable4.getColumnModel().getColumn(2).setMaxWidth(200);
+        jScrollPane4.setViewportView(creditos);
+        if (creditos.getColumnModel().getColumnCount() > 0) {
+            creditos.getColumnModel().getColumn(2).setMinWidth(200);
+            creditos.getColumnModel().getColumn(2).setMaxWidth(200);
         }
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -201,61 +219,61 @@ public class Conciliacion extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("CK GIRADOS");
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField3.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField3.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField3.setPreferredSize(new java.awt.Dimension(6, 30));
+        Sndebitos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sndebitos.setForeground(new java.awt.Color(0, 0, 255));
+        Sndebitos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Sndebitos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sndebitos.setMaximumSize(new java.awt.Dimension(6, 30));
+        Sndebitos.setMinimumSize(new java.awt.Dimension(6, 30));
+        Sndebitos.setPreferredSize(new java.awt.Dimension(6, 30));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField4.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField4.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField4.setPreferredSize(new java.awt.Dimension(6, 30));
+        Sdepositos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sdepositos.setForeground(new java.awt.Color(0, 0, 255));
+        Sdepositos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Sdepositos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sdepositos.setMaximumSize(new java.awt.Dimension(6, 30));
+        Sdepositos.setMinimumSize(new java.awt.Dimension(6, 30));
+        Sdepositos.setPreferredSize(new java.awt.Dimension(6, 30));
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField5.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField5.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField5.setPreferredSize(new java.awt.Dimension(6, 30));
+        SL.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        SL.setForeground(new java.awt.Color(0, 0, 255));
+        SL.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        SL.setMaximumSize(new java.awt.Dimension(6, 30));
+        SL.setMinimumSize(new java.awt.Dimension(6, 30));
+        SL.setPreferredSize(new java.awt.Dimension(6, 30));
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField6.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField6.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField6.setPreferredSize(new java.awt.Dimension(6, 30));
+        Sdepositost.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sdepositost.setForeground(new java.awt.Color(0, 0, 255));
+        Sdepositost.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Sdepositost.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sdepositost.setMaximumSize(new java.awt.Dimension(6, 30));
+        Sdepositost.setMinimumSize(new java.awt.Dimension(6, 30));
+        Sdepositost.setPreferredSize(new java.awt.Dimension(6, 30));
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField7.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField7.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField7.setPreferredSize(new java.awt.Dimension(6, 30));
+        Schequest.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Schequest.setForeground(new java.awt.Color(0, 0, 255));
+        Schequest.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Schequest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Schequest.setMaximumSize(new java.awt.Dimension(6, 30));
+        Schequest.setMinimumSize(new java.awt.Dimension(6, 30));
+        Schequest.setPreferredSize(new java.awt.Dimension(6, 30));
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField8.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField8.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField8.setPreferredSize(new java.awt.Dimension(6, 30));
+        Sncreditos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sncreditos.setForeground(new java.awt.Color(0, 0, 255));
+        Sncreditos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Sncreditos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sncreditos.setMaximumSize(new java.awt.Dimension(6, 30));
+        Sncreditos.setMinimumSize(new java.awt.Dimension(6, 30));
+        Sncreditos.setPreferredSize(new java.awt.Dimension(6, 30));
 
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField9.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField9.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField9.setPreferredSize(new java.awt.Dimension(6, 30));
+        Schequesg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Schequesg.setForeground(new java.awt.Color(0, 0, 255));
+        Schequesg.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Schequesg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Schequesg.setMaximumSize(new java.awt.Dimension(6, 30));
+        Schequesg.setMinimumSize(new java.awt.Dimension(6, 30));
+        Schequesg.setPreferredSize(new java.awt.Dimension(6, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 0));
@@ -281,13 +299,13 @@ public class Conciliacion extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 0, 0));
         jLabel19.setText("S. B. CONCILIADO");
 
-        jTextField10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField10.setMaximumSize(new java.awt.Dimension(6, 30));
-        jTextField10.setMinimumSize(new java.awt.Dimension(6, 30));
-        jTextField10.setPreferredSize(new java.awt.Dimension(6, 30));
+        SB.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        SB.setForeground(new java.awt.Color(0, 0, 255));
+        SB.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        SB.setMaximumSize(new java.awt.Dimension(6, 30));
+        SB.setMinimumSize(new java.awt.Dimension(6, 30));
+        SB.setPreferredSize(new java.awt.Dimension(6, 30));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -308,28 +326,28 @@ public class Conciliacion extends javax.swing.JFrame {
                         .addComponent(jLabel16))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Sdepositos, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Schequesg, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Schequest, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Sdepositost, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Sncreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Sndebitos, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SL, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SB, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel18)
@@ -352,14 +370,14 @@ public class Conciliacion extends javax.swing.JFrame {
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Sdepositos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Schequesg, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Schequest, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sdepositost, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sncreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sndebitos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SL, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SB, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -397,9 +415,9 @@ public class Conciliacion extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("MES:");
 
-        jComboBox1.setBackground(new java.awt.Color(153, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 255));
+        cuenta.setBackground(new java.awt.Color(153, 255, 255));
+        cuenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cuenta.setForeground(new java.awt.Color(0, 0, 255));
 
         jComboBox2.setBackground(new java.awt.Color(153, 255, 255));
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -411,17 +429,17 @@ public class Conciliacion extends javax.swing.JFrame {
         jComboBox3.setForeground(new java.awt.Color(0, 0, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 255, 0));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("0.00");
+        SaldoLibro.setBackground(new java.awt.Color(0, 0, 0));
+        SaldoLibro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        SaldoLibro.setForeground(new java.awt.Color(0, 255, 0));
+        SaldoLibro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SaldoLibro.setText("0.00");
 
-        jTextField2.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 255, 0));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("0.00");
+        SaldoBanco.setBackground(new java.awt.Color(0, 0, 0));
+        SaldoBanco.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        SaldoBanco.setForeground(new java.awt.Color(0, 255, 0));
+        SaldoBanco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SaldoBanco.setText("0.00");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("SALDO LIBRO:");
@@ -429,16 +447,21 @@ public class Conciliacion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("SALDO BANCO");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/load2-upload-icon (1).png"))); // NOI18N
-        jButton2.setText("CARGAR DATOS");
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Calculator-2-icon.png"))); // NOI18N
-        jButton4.setText("CALCULAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Cargar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        Cargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/load2-upload-icon (1).png"))); // NOI18N
+        Cargar.setText("CARGAR DATOS");
+        Cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                CargarActionPerformed(evt);
+            }
+        });
+
+        Calcular.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        Calcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Calculator-2-icon.png"))); // NOI18N
+        Calcular.setText("CALCULAR");
+        Calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalcularActionPerformed(evt);
             }
         });
 
@@ -486,34 +509,34 @@ public class Conciliacion extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(SaldoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addComponent(jLabel4))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jDateChooserFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(jDateChooserFecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jDateChooserFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(SaldoBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Cargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Calcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -527,7 +550,7 @@ public class Conciliacion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -540,23 +563,23 @@ public class Conciliacion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jDateChooserFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaldoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SaldoBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -568,7 +591,7 @@ public class Conciliacion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        debitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -584,10 +607,10 @@ public class Conciliacion extends javax.swing.JFrame {
                 "Fecha", "Monto", "Detalle"
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
-        if (jTable5.getColumnModel().getColumnCount() > 0) {
-            jTable5.getColumnModel().getColumn(2).setMinWidth(200);
-            jTable5.getColumnModel().getColumn(2).setMaxWidth(200);
+        jScrollPane5.setViewportView(debitos);
+        if (debitos.getColumnModel().getColumnCount() > 0) {
+            debitos.getColumnModel().getColumn(2).setMinWidth(200);
+            debitos.getColumnModel().getColumn(2).setMaxWidth(200);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -667,9 +690,20 @@ public class Conciliacion extends javax.swing.JFrame {
       this.dispose();
     }//GEN-LAST:event_CANCELARActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularActionPerformed
+        Conciliar aux = new Conciliar();
+       aux.Calculos();
+    }//GEN-LAST:event_CalcularActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       Conciliar aux = new Conciliar();
+       aux.llenarcombo();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void CargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarActionPerformed
+        Conciliar aux = new Conciliar();
+        aux.cargardepositos();
+    }//GEN-LAST:event_CargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -708,16 +742,30 @@ public class Conciliacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CANCELAR;
+    private javax.swing.JButton Calcular;
+    private javax.swing.JButton Cargar;
+    public static javax.swing.JTextField SB;
+    public static javax.swing.JTextField SL;
+    public static javax.swing.JTextField SaldoBanco;
+    public static javax.swing.JTextField SaldoLibro;
+    public static javax.swing.JTextField Schequesg;
+    public static javax.swing.JTextField Schequest;
+    public static javax.swing.JTextField Sdepositos;
+    public static javax.swing.JTextField Sdepositost;
+    public static javax.swing.JTextField Sncreditos;
+    public static javax.swing.JTextField Sndebitos;
+    public static javax.swing.JTable cheques;
+    public static javax.swing.JTable creditos;
+    public static javax.swing.JComboBox<String> cuenta;
+    public static javax.swing.JTable debitos;
+    public static javax.swing.JTable depositos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
+    public static javax.swing.JComboBox<String> jComboBox2;
+    public static javax.swing.JComboBox<String> jComboBox3;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
+    public static com.toedter.calendar.JDateChooser jDateChooserFecha2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -745,19 +793,5 @@ public class Conciliacion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

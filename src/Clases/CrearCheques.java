@@ -154,7 +154,7 @@ public class CrearCheques {
      
     for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
-    if( MantChk.jTable1.isCellSelected(i, 6)){ 
+    if( MantChk.jTable1.getValueAt(i, 6)!=null){ 
          //pasamos la consulta al preparestatement
          int Codigo;
          Codigo = Integer.parseInt(MantChk.jTable1.getValueAt(i, 0).toString());
@@ -192,7 +192,7 @@ public class CrearCheques {
     
     for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
-    if( MantChk.jTable1.isCellSelected(i, 7)){ 
+    if( MantChk.jTable1.getValueAt(i, 6)!=null){ 
              // creamos la consulta
      consulta="UPDATE cheques SET Estado =?, Tipo =?  WHERE Numero= ? ";
          int Codigo;
