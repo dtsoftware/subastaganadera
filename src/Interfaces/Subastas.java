@@ -100,6 +100,7 @@ public class Subastas extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jTextFieldDetalle = new javax.swing.JTextField();
+        jButtonVerLote = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -493,6 +494,13 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
 
+        jButtonVerLote.setText("Ver Lote");
+        jButtonVerLote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerLoteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -520,25 +528,28 @@ public class Subastas extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel8)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButtonIndividual)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButtonPorlote)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(40, 40, 40)
                                 .addComponent(jTextFieldNanimal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                            .addComponent(jTextFieldPrecio))))
+                            .addComponent(jTextFieldPrecio)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButtonIndividual)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButtonPorlote)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonVerLote)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -551,9 +562,10 @@ public class Subastas extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(jRadioButtonIndividual)
                         .addComponent(jRadioButtonPorlote)
-                        .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonVerLote))
                     .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -993,7 +1005,7 @@ this.dispose();      // TODO add your handling code here:
          }else{   
          pesodellote= Double.parseDouble(jTextFieldPeso.getText());
          redondear redon = new redondear();
-         pesopromedio=pesodellote/cant;
+         pesopromedio=pesodellote/Lista.size();
          pesoindividual=redon.redondearDecimales(pesopromedio, 2);
          jTextFieldPesoNeto.setText(pesoindividual.toString());
          }
@@ -1203,7 +1215,7 @@ this.dispose();      // TODO add your handling code here:
       System.out.println(Lista);
      // Lista.clear();
         }catch(Exception ex){
-        JOptionPane.showMessageDialog(null, "Error:   " +ex);        
+        JOptionPane.showMessageDialog(null, "Error:   " +ex.getMessage());        
         }
     }//GEN-LAST:event_jTextFieldNumerodeloteActionPerformed
 
@@ -1212,6 +1224,24 @@ this.dispose();      // TODO add your handling code here:
       
         
     }//GEN-LAST:event_jTextFieldNumerodeloteKeyPressed
+
+    private void jButtonVerLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerLoteActionPerformed
+        // TODO add your handling code here:
+       try{
+       if (Lista.size()<=1){
+       JOptionPane.showMessageDialog(null, "El Proceso No Es Una Venta Por Lote, Para Ello Debe Tener Minimo Dos Animales");
+       Lista.clear();
+       }else{    
+       Veranimalesenlote ver = new Veranimalesenlote();
+       ver.setVisible(true);       
+       lotes lo =new lotes();
+       lo.mostrarlotes(fecha);
+       }
+       }catch(Exception ex){
+       JOptionPane.showMessageDialog(null, "Error:   " +ex.getMessage());
+       }
+       
+    }//GEN-LAST:event_jButtonVerLoteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1257,6 +1287,7 @@ this.dispose();      // TODO add your handling code here:
     private javax.swing.JButton jButtonLista;
     private javax.swing.JButton jButtonListaIndividual;
     private javax.swing.JButton jButtonNosubastado;
+    private javax.swing.JButton jButtonVerLote;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

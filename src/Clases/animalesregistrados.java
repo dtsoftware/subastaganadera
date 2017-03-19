@@ -60,7 +60,7 @@ public class animalesregistrados {
             }
            
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Error" +ex);
+            JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
         }
         //-----hasta aki limpiar tabla-----
      
