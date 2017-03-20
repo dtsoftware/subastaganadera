@@ -548,7 +548,7 @@ public class Subastas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldNumerodelote, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jButtonVerLote)
+                        .addComponent(jButtonVerLote, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -637,6 +637,11 @@ public class Subastas extends javax.swing.JFrame {
 
         jTextFieldMontoTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldMontoTotal.setEnabled(false);
+        jTextFieldMontoTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldMontoTotalActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextFieldMontoTotal);
         jTextFieldMontoTotal.setBounds(460, 340, 100, 30);
 
@@ -683,7 +688,8 @@ public class Subastas extends javax.swing.JFrame {
         jSeparator2.setBounds(20, 258, 850, 10);
 
         jButtonLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButtonLimpiar.setText("LIMPIAR");
+        jButtonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-icon.png"))); // NOI18N
+        jButtonLimpiar.setText("NUEVO");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLimpiarActionPerformed(evt);
@@ -1114,6 +1120,8 @@ this.dispose();      // TODO add your handling code here:
     private void jRadioButtonIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonIndividualActionPerformed
         // TODO add your handling code here:
         try{
+        jTextFieldNumerodelote.setText("");
+        Lista.clear();
         jTextFieldNumerodelote.setEnabled(false);
         jTextFieldNanimal.setEnabled(true);
         jTextFieldNanimal.selectAll();
@@ -1236,12 +1244,22 @@ this.dispose();      // TODO add your handling code here:
        ver.setVisible(true);       
        lotes lo =new lotes();
        lo.mostrarlotes(fecha);
+       jTextFieldPrecio.setText("");
+       jTextFieldPeso.setText("");
+       jTextFieldPesoNeto.setText("");
+       jTextFieldPrecioPactado.setText("");
+       jTextFieldMontoTotal.setText("");
+       jTextFieldPrecio.requestFocus();
        }
        }catch(Exception ex){
        JOptionPane.showMessageDialog(null, "Error:   " +ex.getMessage());
        }
        
     }//GEN-LAST:event_jButtonVerLoteActionPerformed
+
+    private void jTextFieldMontoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMontoTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldMontoTotalActionPerformed
 
     /**
      * @param args the command line arguments

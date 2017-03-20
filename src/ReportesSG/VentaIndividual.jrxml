@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e68387c3-facf-4e28-a2f4-e0911d9bcb4c">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="68"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="codigo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -30,42 +30,42 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="115" y="0" width="346" height="20" uuid="31992380-f01b-4ca7-a364-ed18197e8125"/>
+				<reportElement x="161" y="-1" width="346" height="20" uuid="31992380-f01b-4ca7-a364-ed18197e8125"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="16" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SUBASTA GANADERA VERAGUENSE, S.A.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="27" width="56" height="20" uuid="604340a7-541d-4764-aa34-d03dbc577890"/>
+				<reportElement x="226" y="26" width="56" height="20" uuid="604340a7-541d-4764-aa34-d03dbc577890"/>
 				<textElement>
 					<font size="10" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SUBASTA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="57" width="176" height="20" uuid="c940d26a-e173-4e61-a8e5-944d9f27bf28"/>
+				<reportElement x="67" y="56" width="176" height="20" uuid="c940d26a-e173-4e61-a8e5-944d9f27bf28"/>
 				<textElement>
 					<font isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Vía Carretera Panamericana]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="387" y="27" width="131" height="20" uuid="c095bc47-830e-4b58-842e-79e414b92c7d"/>
+				<reportElement x="433" y="26" width="131" height="20" uuid="c095bc47-830e-4b58-842e-79e414b92c7d"/>
 				<textElement>
 					<font isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono: 959-0112]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="359" y="48" width="180" height="20" uuid="3ee204c0-df91-4d43-8606-7b521e7f656f"/>
+				<reportElement x="405" y="47" width="180" height="20" uuid="3ee204c0-df91-4d43-8606-7b521e7f656f"/>
 				<textElement>
 					<font isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Ing. Maximino Cedeño: 6676-5918]]></text>
 			</staticText>
 			<image>
-				<reportElement x="21" y="0" width="42" height="43" uuid="fb2479dd-5edd-46da-91b7-8d7ea5ee5b62"/>
+				<reportElement x="67" y="-1" width="42" height="43" uuid="fb2479dd-5edd-46da-91b7-8d7ea5ee5b62"/>
 				<imageExpression><![CDATA["C:\\SG-SOFT\\imagen\\photo.jpg"]]></imageExpression>
 			</image>
 			<textField>

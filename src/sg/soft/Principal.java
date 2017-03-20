@@ -29,8 +29,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -448,6 +455,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu9.setText("Listas de Maestros");
 
         jMenuItem26.setText("Lista de Clientes");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem26);
 
         jMenuItem27.setText("Lista de Proveedores");
@@ -685,6 +697,26 @@ fact.setVisible(true);
        ReciboCaja fact = new ReciboCaja();
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        // TODO add your handling code here:
+         try{
+       
+    conectar conect = new conectar(); 
+    conect.conexion();
+         
+   // Map<String, Object> params = new HashMap<String, Object>();
+    //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
+    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Clientes.jrxml";  
+    JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+    JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport,null, conect.con);
+    JasperViewer.viewReport(jasperPrint, false);
+            
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex);
+        
+        }
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     /**
      * @param args the command line arguments
