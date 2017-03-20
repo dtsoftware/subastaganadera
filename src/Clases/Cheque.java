@@ -194,7 +194,7 @@ public class Cheque {
     conect.conexion();
     PrintService[] printService = PrintServiceLookup.lookupPrintServices(null, null);
     PrintService impresora = (PrintService) JOptionPane.showInputDialog(null, "Eliga impresora:",
-                "Imprimir Reporte", JOptionPane.QUESTION_MESSAGE, null, printService, printService[5]);       
+                "Imprimir Reporte", JOptionPane.QUESTION_MESSAGE, null, printService, printService[1]);       
        //JOptionPane.showMessageDialog(null,"Se Genero en la66 " + printService);
        // PrinterJob job = PrinterJob.getPrinterJob();
     if( impresora!= null)//si existen impresoras

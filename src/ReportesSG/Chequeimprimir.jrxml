@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9af61e50-7395-4794-ab99-771ddbaf7e8b">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="90"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="ncheque" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -93,16 +93,16 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="84" y="10" width="294" height="20" uuid="76edb30b-b7cb-4343-aa2b-713f9712ee8d"/>
+				<textFieldExpression><![CDATA[$F{Beneficiario}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<textField>
-				<reportElement x="84" y="3" width="294" height="20" uuid="76edb30b-b7cb-4343-aa2b-713f9712ee8d"/>
-				<textFieldExpression><![CDATA[$F{Beneficiario}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="84" y="30" width="338" height="20" uuid="f9dc8751-7e27-4ea3-b25f-220a1c578c47"/>
+				<reportElement x="84" y="10" width="338" height="20" uuid="f9dc8751-7e27-4ea3-b25f-220a1c578c47"/>
 				<textFieldExpression><![CDATA[$F{montoletras}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -110,7 +110,7 @@
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="52" y="28" width="425" height="69" uuid="60cc092d-8d62-4cfe-99f6-a724d92ef7d6"/>
+				<reportElement x="84" y="22" width="425" height="69" uuid="60cc092d-8d62-4cfe-99f6-a724d92ef7d6"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
