@@ -178,7 +178,7 @@ public class Conciliar {
          try {
         conectar conect = new conectar(); 
         conect.conexion();
-        String consulta1, consulta2;
+        String consulta1, consulta2, consulta3;
         String Cuenta = Conciliacion.cuenta.getSelectedItem().toString();
         double SumaCheques, SumaDepositos, SumaNCreditos, SumaNDebitos, SBancoA, SLibroA, SBancoF, SLibroF, DT, CHKT;
         
@@ -214,7 +214,8 @@ public class Conciliar {
         
     consulta1="SELECT Monto FROM cheques where Fecha <= '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ "Transito" +"'";
     consulta2="SELECT Monto FROM depositos where Fecha <= '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ "Transito" +"'";
-   
+    consulta3="SELECT SaldoConciliado FROM cuentas where Nombre <= '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ "Transito" +"'";
+
 
      cargar1=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
