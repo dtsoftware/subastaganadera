@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="46ca2414-6d23-4a13-b0fd-f8d1cec9e000">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="46ca2414-6d23-4a13-b0fd-f8d1cec9e000">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -35,48 +35,48 @@
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="4" y="0" width="748" height="74" uuid="6e64b08b-6c4c-4b23-8b8c-de39b35b4e4e"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="596" y="23" width="131" height="20" uuid="40686925-219e-49f7-96f1-8715476b0f9c"/>
+				<reportElement x="570" y="28" width="131" height="20" uuid="40686925-219e-49f7-96f1-8715476b0f9c"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono: 959-0112]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="78" y="3" width="677" height="33" uuid="bf3f6e4d-335e-4e96-b4d6-3b9415124564"/>
+				<reportElement x="121" y="3" width="606" height="33" uuid="bf3f6e4d-335e-4e96-b4d6-3b9415124564"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SUBASTA GANADERA VERAGUENSE, S.A.]]></text>
 			</staticText>
 			<image>
-				<reportElement x="13" y="0" width="55" height="43" uuid="6e718266-59fb-4f8f-bf4b-9b36cb8e1101"/>
+				<reportElement x="24" y="3" width="55" height="43" uuid="6e718266-59fb-4f8f-bf4b-9b36cb8e1101"/>
 				<imageExpression><![CDATA["C:\\SG-SOFT\\imagen\\photo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="13" y="54" width="176" height="20" uuid="721b49f3-fc08-477e-850e-be6d483f6b48"/>
+				<reportElement x="24" y="55" width="176" height="20" uuid="721b49f3-fc08-477e-850e-be6d483f6b48"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Vía Carretera Panamericana]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="312" y="36" width="199" height="20" uuid="84631abe-b6d5-4069-a2ea-00af9a8282aa"/>
+				<reportElement x="287" y="36" width="199" height="20" uuid="84631abe-b6d5-4069-a2ea-00af9a8282aa"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[LISTADO DE CLIENTES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="575" y="54" width="214" height="20" uuid="8b311f21-80e4-4ea4-b44a-0b6ed9284670"/>
+				<reportElement x="519" y="54" width="214" height="20" uuid="8b311f21-80e4-4ea4-b44a-0b6ed9284670"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Ing. Maximino Cedeño: 6676-5918]]></text>
 			</staticText>
-			<rectangle radius="10">
-				<reportElement mode="Transparent" x="1" y="0" width="788" height="74" uuid="6e64b08b-6c4c-4b23-8b8c-de39b35b4e4e"/>
-			</rectangle>
 		</band>
 	</title>
 	<columnHeader>
@@ -117,17 +117,17 @@
 				<text><![CDATA[Telefonos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="555" y="11" width="100" height="20" uuid="e3920b14-8216-4699-9933-214c30b72587"/>
+				<reportElement x="523" y="11" width="100" height="20" uuid="e3920b14-8216-4699-9933-214c30b72587"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Direccion]]></text>
 			</staticText>
 			<line>
-				<reportElement x="3" y="8" width="786" height="2" uuid="332397b6-a7dd-4839-a2f1-6619184719a5"/>
+				<reportElement x="3" y="8" width="749" height="2" uuid="332397b6-a7dd-4839-a2f1-6619184719a5"/>
 			</line>
 			<line>
-				<reportElement x="3" y="32" width="786" height="2" uuid="2fdc1eda-03f7-42b0-89d3-f41b10352bbe"/>
+				<reportElement x="3" y="32" width="749" height="2" uuid="2fdc1eda-03f7-42b0-89d3-f41b10352bbe"/>
 			</line>
 		</band>
 	</columnHeader>
@@ -154,11 +154,11 @@
 				<textFieldExpression><![CDATA[$F{Telefono1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="450" y="0" width="73" height="20" uuid="355f3eb6-f35f-4701-91b3-0b96bc13ddc3"/>
+				<reportElement x="442" y="0" width="73" height="20" uuid="355f3eb6-f35f-4701-91b3-0b96bc13ddc3"/>
 				<textFieldExpression><![CDATA[$F{Telefono2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="555" y="0" width="234" height="20" uuid="5e9cfb8e-64c6-4c73-a0a3-dec8487478cb"/>
+				<reportElement x="521" y="0" width="231" height="20" uuid="5e9cfb8e-64c6-4c73-a0a3-dec8487478cb"/>
 				<textFieldExpression><![CDATA[$F{Direccion}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -169,7 +169,10 @@
 	<pageFooter>
 		<band height="28" splitType="Stretch">
 			<textField>
-				<reportElement x="689" y="6" width="100" height="20" uuid="76eecb7a-1606-4af5-83f3-1002f6bc9729"/>
+				<reportElement x="627" y="6" width="100" height="20" uuid="76eecb7a-1606-4af5-83f3-1002f6bc9729"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>

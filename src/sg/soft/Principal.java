@@ -117,10 +117,10 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem26 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
-        jMenuItem28 = new javax.swing.JMenuItem();
-        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenuItemClientes = new javax.swing.JMenuItem();
+        jMenuItemProveedores = new javax.swing.JMenuItem();
+        jMenuItemCuentasbancarias = new javax.swing.JMenuItem();
+        jMenuItemListadeusuarios = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -454,22 +454,37 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenu9.setText("Listas de Maestros");
 
-        jMenuItem26.setText("Lista de Clientes");
-        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemClientes.setText("Lista de Clientes");
+        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem26ActionPerformed(evt);
+                jMenuItemClientesActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem26);
+        jMenu9.add(jMenuItemClientes);
 
-        jMenuItem27.setText("Lista de Proveedores");
-        jMenu9.add(jMenuItem27);
+        jMenuItemProveedores.setText("Lista de Proveedores");
+        jMenuItemProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemProveedoresActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItemProveedores);
 
-        jMenuItem28.setText("Lista de Cuentas Bancarias");
-        jMenu9.add(jMenuItem28);
+        jMenuItemCuentasbancarias.setText("Lista de Cuentas Bancarias");
+        jMenuItemCuentasbancarias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCuentasbancariasActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItemCuentasbancarias);
 
-        jMenuItem29.setText("Lista de Usuarios");
-        jMenu9.add(jMenuItem29);
+        jMenuItemListadeusuarios.setText("Lista de Usuarios");
+        jMenuItemListadeusuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListadeusuariosActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItemListadeusuarios);
 
         jMenu4.add(jMenu9);
 
@@ -698,25 +713,83 @@ fact.setVisible(true);
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+    private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
         // TODO add your handling code here:
+         conectar conect = new conectar(); 
+         conect.conexion();
          try{
-       
-    conectar conect = new conectar(); 
-    conect.conexion();
-         
+           
    // Map<String, Object> params = new HashMap<String, Object>();
-    //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
-    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Clientes.jrxml";  
+      String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Clientes.jrxml";  
     JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
     JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport,null, conect.con);
     JasperViewer.viewReport(jasperPrint, false);
             
         }catch(Exception ex){
-        JOptionPane.showMessageDialog(null,"Error" +ex);
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
         
+        }finally{
+         conect.desconectar();
+         }
+    }//GEN-LAST:event_jMenuItemClientesActionPerformed
+
+    private void jMenuItemProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProveedoresActionPerformed
+        // TODO add your handling code here:
+        conectar conect = new conectar(); 
+        conect.conexion();
+        try{      
+    // Map<String, Object> params = new HashMap<String, Object>();  
+    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Proveedores.jrxml";  
+    JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+    JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport,null, conect.con);
+    JasperViewer.viewReport(jasperPrint, false);
+            
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        
+        }finally{
+        conect.desconectar();
         }
-    }//GEN-LAST:event_jMenuItem26ActionPerformed
+    }//GEN-LAST:event_jMenuItemProveedoresActionPerformed
+
+    private void jMenuItemCuentasbancariasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCuentasbancariasActionPerformed
+        // TODO add your handling code here:
+         conectar conect = new conectar(); 
+        conect.conexion();
+        try{      
+    // Map<String, Object> params = new HashMap<String, Object>();  
+    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Cuentasbancarias.jrxml";  
+    JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+    JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport,null, conect.con);
+    JasperViewer.viewReport(jasperPrint, false);
+            
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        
+        }finally{
+        conect.desconectar();
+        }
+        
+    }//GEN-LAST:event_jMenuItemCuentasbancariasActionPerformed
+
+    private void jMenuItemListadeusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListadeusuariosActionPerformed
+        // TODO add your handling code here:
+        conectar conect = new conectar(); 
+        conect.conexion();
+        try{      
+    // Map<String, Object> params = new HashMap<String, Object>();  
+    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Usuarios.jrxml";  
+    JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+    JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport,null, conect.con);
+    JasperViewer.viewReport(jasperPrint, false);
+            
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        
+        }finally{
+        conect.desconectar();
+        }
+    }//GEN-LAST:event_jMenuItemListadeusuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -799,10 +872,6 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
-    private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
-    private javax.swing.JMenuItem jMenuItem28;
-    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
@@ -815,6 +884,10 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemCuentasbancarias;
+    private javax.swing.JMenuItem jMenuItemListadeusuarios;
+    private javax.swing.JMenuItem jMenuItemProveedores;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
