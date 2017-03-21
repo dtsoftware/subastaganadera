@@ -24,6 +24,8 @@ public class Depositos extends javax.swing.JFrame {
         Depositos.fecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         Depositos.fecha.setDate(date); 
+        CrearDeposito ch = new CrearDeposito();        
+        this.ID.setText(ch.buscarultimodeposito().toString());
     }
 
     /**
@@ -244,14 +246,14 @@ public class Depositos extends javax.swing.JFrame {
 
         CrearDeposito user = new CrearDeposito();
         user.guardardeposito();
+        CrearDeposito ch = new CrearDeposito();        
+        this.ID.setText(ch.buscarultimodeposito().toString());
         Limpiar();
         Habilitar();    
 }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-                CrearDeposito Numero = new CrearDeposito();
-        Numero.UltimoRg();
         Habilitar();
     }//GEN-LAST:event_nuevoActionPerformed
 

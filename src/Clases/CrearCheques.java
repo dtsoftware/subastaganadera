@@ -192,7 +192,7 @@ public class CrearCheques {
     
     for (int i = 0; i < MantChk.jTable1.getRowCount(); i++) {
 
-    if( MantChk.jTable1.getValueAt(i, 6)!=null){ 
+    if( MantChk.jTable1.getValueAt(i, 7)!=null){ 
              // creamos la consulta
      consulta="UPDATE cheques SET Estado =?, Tipo =?  WHERE Numero= ? ";
          int Codigo;

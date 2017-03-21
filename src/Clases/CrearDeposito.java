@@ -24,7 +24,8 @@ public class CrearDeposito {
    PreparedStatement guardarbanco, UltimoRg, cargar;
     String idbanco,nombre,cuenta,detalle,estado;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1;
+    ResultSet aux, rs, aux1, rsdeposito;
+    Integer ultimodeposito;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[8];  
     Object[] filas1 = new Object[6];  
@@ -69,42 +70,41 @@ public class CrearDeposito {
 
 
 
-public void UltimoRg(){
-    try {
-     String consulta;  
+public Integer buscarultimodeposito(){
+    
      conectar conect = new conectar(); 
-     conect.conexion();
-     
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
      // creamos la consulta
-     consulta="SELECT MAX(idDepositos) AS 'Ultimo' FROM depositos";
-   
+     consulta="SELECT MAX(idDepositos) FROM depositos ";
      //pasamos la consulta al preparestatement
-    
-     UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
-     aux=UltimoRg.executeQuery(consulta);
-
-           if (aux.next()){               
- 
-                int Ultimo= Integer.parseInt(aux.getString("Ultimo"));
-                int URG= (Ultimo + 1);
-                Depositos.ID.setText(""+URG);
-           }else{
-                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
-                conect.desconectar();
-           }
-
-                aux.close(); 
-                UltimoRg.close();
-                
-                conect.desconectar();
+   UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsdeposito=UltimoRg.executeQuery(consulta);
+     //recorremos el resulset
+    rsdeposito.next();
+        
+               ultimodeposito=rsdeposito.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
            
-   }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
-   }
-    
-}   
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             UltimoRg.close();
+             rsdeposito.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimodeposito;
+    }
 
 
  public void llenarcombo(){

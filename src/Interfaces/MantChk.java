@@ -123,7 +123,7 @@ public static String Orden;
 
         trancito.setBackground(new java.awt.Color(204, 255, 255));
         trancito.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        trancito.setText("Trancito");
+        trancito.setText("Transito");
         trancito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trancitoActionPerformed(evt);

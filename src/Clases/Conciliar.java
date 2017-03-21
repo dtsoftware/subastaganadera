@@ -174,8 +174,19 @@ public class Conciliar {
    }
  }
     
-    public void Calculos(){
+    public void Calculos() {
+         try {
+        conectar conect = new conectar(); 
+        conect.conexion();
+        String consulta1, consulta2;
+        String Cuenta = Conciliacion.cuenta.getSelectedItem().toString();
         double SumaCheques, SumaDepositos, SumaNCreditos, SumaNDebitos, SBancoA, SLibroA, SBancoF, SLibroF, DT, CHKT;
+        
+        String  dia2 = Integer.toString(Conciliacion.jDateChooserFecha2.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String  mes2 = Integer.toString(Conciliacion.jDateChooserFecha2.getCalendar().get(Calendar.MONTH) + 1);
+        String year2 = Integer.toString(Conciliacion.jDateChooserFecha2.getCalendar().get(Calendar.YEAR));
+        String fecha2 = (year2 + "-" + mes2+ "-" + dia2); 
+      
         SumaCheques = 0;
         SumaDepositos = 0;
         SumaNCreditos= 0;
@@ -199,19 +210,45 @@ public class Conciliar {
         for (int i = 0; i < Conciliacion.debitos.getRowCount(); i++) {
             SumaNDebitos = SumaNDebitos + Double.parseDouble(Conciliacion.debitos.getValueAt(i, 1).toString());
         }
+        
+        
+    consulta1="SELECT Monto FROM cheques where Fecha <= '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ "Transito" +"'";
+    consulta2="SELECT Monto FROM depositos where Fecha <= '"+ fecha2 +"' AND Cuenta = '"+ Cuenta +"' AND Estado = '"+ "Transito" +"'";
+   
+
+     cargar1=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     aux1=cargar1.executeQuery(consulta1);
+     //recorremos el resulset
+    while (aux1.next()){
+                    CHKT= CHKT + aux1.getDouble("Monto");
+    }
+    
+     cargar2=conect.con.prepareStatement(consulta2,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     aux2=cargar2.executeQuery(consulta2);
+     //recorremos el resulset
+    while (aux2.next()){
+                    DT=DT + aux2.getDouble("Monto");
+    }
+    JOptionPane.showMessageDialog(null,"DEPOSITOS GENERADOS");
+        redondear redon  = new redondear(); 
         Conciliacion.Schequesg.setText(String.valueOf(SumaCheques));
         Conciliacion.Sdepositos.setText(String.valueOf(SumaDepositos));
         Conciliacion.Sncreditos.setText(String.valueOf(SumaNCreditos));
         Conciliacion.Sndebitos.setText(String.valueOf(SumaNDebitos));
-       // Conciliacion.Schequest.setText(String.valueOf(xxx));
-       //  Conciliacion.Sdepositost.setText(String.valueOf(xxx));
+        Conciliacion.Schequest.setText(String.valueOf(CHKT));
+        Conciliacion.Sdepositost.setText(String.valueOf(DT));
        
        SBancoA = Double.parseDouble(Conciliacion.SaldoBanco.getText());
-       SBancoF = (SBancoA + DT - CHKT);
+       SBancoF = redon.redondearDecimales((SBancoA + DT - CHKT), 2);
        Conciliacion.SB.setText(String.valueOf(SBancoF));
-       
-       SLibroA = Double.parseDouble(Conciliacion.SaldoLibro.getText());
-       SLibroF = (SumaDepositos + SumaNCreditos - SumaCheques - SumaNDebitos);
+
+       SLibroA = Double.parseDouble(Conciliacion.SaldoLibro.getText());  
+       SLibroF = redon.redondearDecimales((SLibroA + SumaDepositos + SumaNCreditos - SumaCheques - SumaNDebitos), 2);
        Conciliacion.SL.setText(String.valueOf(SLibroF));
+       }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
     }
 }

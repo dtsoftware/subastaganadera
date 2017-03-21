@@ -26,7 +26,8 @@ public static String Orden;
         MantDepositos.jDateChooserFecha2.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         MantDepositos.jDateChooserFecha1.setDate(date); 
-        MantDepositos.jDateChooserFecha2.setDate(date); 
+        MantDepositos.jDateChooserFecha2.setDate(date);
+ 
     }
 
     /**
