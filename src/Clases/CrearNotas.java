@@ -24,7 +24,8 @@ public class CrearNotas {
      PreparedStatement guardarbanco, UltimoRg, cargar;
     String idbanco,nombre,cuenta,detalle,estado, tipo;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1;
+    ResultSet aux, rs, aux1, rsnotas;
+    Integer ultimo;
     Object[] filas1 = new Object[7];  
     
    public CrearNotas() {
@@ -68,42 +69,41 @@ public class CrearNotas {
 
 
 
-public void UltimoRg(){
-    try {
-     String consulta;  
+public Integer buscarultimanota(){
+    
      conectar conect = new conectar(); 
-     conect.conexion();
-     
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
      // creamos la consulta
-     consulta="SELECT MAX(idNotas) AS 'Ultimo' FROM notas";
-   
+     consulta="SELECT MAX(idNotas) FROM notas ";
      //pasamos la consulta al preparestatement
-    
-     UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
-     aux=UltimoRg.executeQuery(consulta);
-
-           if (aux.next()){               
- 
-                int Ultimo= Integer.parseInt(aux.getString("Ultimo"));
-                int URG= (Ultimo + 1);
-                NotasDC.ID.setText(""+URG);
-           }else{
-                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
-                conect.desconectar();
-           }
-
-                aux.close(); 
-                UltimoRg.close();
-                
-                conect.desconectar();
+   UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsnotas=UltimoRg.executeQuery(consulta);
+     //recorremos el resulset
+    rsnotas.next();
+        
+               ultimo=rsnotas.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
            
-   }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
-   }
-    
-}      
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             UltimoRg.close();
+             rsnotas.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimo;
+    }
  
 public void llenarcombo(){
         try {

@@ -22,6 +22,8 @@ public class NotasDC extends javax.swing.JFrame {
         NotasDC.fecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         NotasDC.fecha.setDate(date); 
+        CrearNotas ch = new CrearNotas();        
+        this.ID.setText(ch.buscarultimanota().toString());
     }
 
     /**
@@ -246,7 +248,6 @@ public class NotasDC extends javax.swing.JFrame {
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         CrearNotas Numero = new CrearNotas();
-        Numero.UltimoRg();
         Habilitar();
     }//GEN-LAST:event_nuevoActionPerformed
 
@@ -254,7 +255,9 @@ public class NotasDC extends javax.swing.JFrame {
         CrearNotas user = new CrearNotas();
         user.guardarnotas();
         Limpiar();
-        Habilitar();   
+        Habilitar(); 
+        CrearNotas ch = new CrearNotas();        
+        this.ID.setText(ch.buscarultimanota().toString());
     }//GEN-LAST:event_guardarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
