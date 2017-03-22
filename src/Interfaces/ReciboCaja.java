@@ -5,6 +5,10 @@
  */
 package Interfaces;
 
+import Clases.Caja;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan
@@ -16,6 +20,11 @@ public class ReciboCaja extends javax.swing.JFrame {
      */
     public ReciboCaja() {
         initComponents();
+        ReciboCaja.fecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        ReciboCaja.fecha.setDate(date); 
+        Caja ch = new Caja();        
+        this.ID.setText(ch.buscarultimo().toString());
     }
 
     /**
@@ -135,6 +144,7 @@ public class ReciboCaja extends javax.swing.JFrame {
         listar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
         listar.setText("LISTAR");
+        listar.setEnabled(false);
         listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarActionPerformed(evt);
@@ -162,6 +172,7 @@ public class ReciboCaja extends javax.swing.JFrame {
         editar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
         editar.setText("EDITAR");
+        editar.setEnabled(false);
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -171,6 +182,7 @@ public class ReciboCaja extends javax.swing.JFrame {
         eliminar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
         eliminar.setText("ELIMINAR");
+        eliminar.setEnabled(false);
         eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarActionPerformed(evt);
@@ -256,11 +268,22 @@ public class ReciboCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_listarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.monto.getText().trim().length()==0)|| (ReciboCaja.ID.getText().trim().length()==0))){
+         JOptionPane.showMessageDialog(null, "Los Campos No pueden Estar En Blanco");
 
+         }else{ 
+
+        Caja user = new Caja();
+        user.guardarrecibo();
+        Caja ch = new Caja();        
+        this.ID.setText(ch.buscarultimo().toString());
+        Limpiar();
+        Habilitar();    
+}
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-
+        Habilitar();
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -332,4 +355,17 @@ public class ReciboCaja extends javax.swing.JFrame {
     private javax.swing.JButton nuevo;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
+public void Limpiar(){
+    
+        ReciboCaja.detalle.setText("");
+        ReciboCaja.monto.setText("");
+           
+}
+
+public void Habilitar(){
+    
+        ReciboCaja.detalle.setEditable(true);
+        ReciboCaja.monto.setEditable(true);
+           
+}
 }

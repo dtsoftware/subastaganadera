@@ -309,6 +309,7 @@
                   <Image iconType="3" name="/Graficos/Distributor-report-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="LISTAR"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listarActionPerformed"/>
@@ -351,6 +352,7 @@
                   <Image iconType="3" name="/Graficos/Apps-system-software-update-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="EDITAR"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarActionPerformed"/>
@@ -365,6 +367,7 @@
                   <Image iconType="3" name="/Graficos/Misc-Delete-Database-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ELIMINAR"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarActionPerformed"/>
