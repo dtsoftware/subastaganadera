@@ -6,6 +6,7 @@
 package Clases;
 
 import Interfaces.Cheques;
+import Interfaces.ReporteCheques;
 import Interfaces.MantChk;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
@@ -20,17 +21,47 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class CrearCheques {
-    PreparedStatement guardarbanco, UltimoRg, cargar;
+    PreparedStatement guardarbanco, UltimoRg, cargar,reporte;
     String idbanco,nombre,cuenta,detalle,estado;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1;
+    ResultSet aux, rs, aux1,rsreporte;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[8];
     Object[] filas1 = new Object[7];
     public CrearCheques() {
   
 }
+    public void llenarcomboreporte(){
+        
+     String consulta;  
+     conectar conect = new conectar(); 
+     conect.conexion();
+        try {
     
+     
+     // creamos la consulta
+     consulta="SELECT Nombre FROM cuentas Where idCuentas !='"+'0'+"'";
+   
+     //pasamos la consulta al preparestatement
+    
+    reporte=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+    
+     rsreporte=reporte.executeQuery(consulta);
+
+          while(rsreporte.next()){               
+                
+                    ReporteCheques.cuenta.addItem(rsreporte.getString("Nombre"));                                 
+               }
+           
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+   }finally{
+        conect.desconectar();
+        
+        }
+    
+    } 
     public void llenarcombo(){
         try {
      String consulta;  
