@@ -301,10 +301,13 @@
                 <Property name="text" type="java.lang.String" value="Banco"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem22">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarcheques">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Listas Cheques"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemListarchequesActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem21">
                   <Properties>
@@ -589,11 +592,12 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Desarrollado por: Lic. Juan C. Ducreux; Cel. 67309619; email: juanducreux@hotmail.com"/>
+        <Property name="text" type="java.lang.String" value="Desarrollado por: Lic. Juan C. Ducreux; Joseph Yn Tserng; Cel. 67309619; email: juanducreux@hotmail.com"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="680" width="500" height="-1"/>
+          <AbsoluteConstraints x="40" y="680" width="580" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

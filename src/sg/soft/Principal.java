@@ -24,6 +24,7 @@ import Interfaces.Recibos;
 import Interfaces.Subastas;
 import Interfaces.Traspaso;
 import Interfaces.Usuarios;
+import Interfaces.ReporteCheques;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -124,7 +125,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
-        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItemListarcheques = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
@@ -252,9 +253,10 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel2.setText("Desarrollado por: Lic. Juan C. Ducreux; Cel. 67309619; email: juanducreux@hotmail.com");
+        jLabel2.setText("Desarrollado por: Lic. Juan C. Ducreux; Joseph Yn Tserng; Cel. 67309619; email: juanducreux@hotmail.com");
+        jLabel2.setToolTipText("");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 680, 500, 14);
+        jLabel2.setBounds(40, 680, 580, 14);
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -496,8 +498,13 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenu8.setText("Banco");
 
-        jMenuItem22.setText("Listas Cheques");
-        jMenu8.add(jMenuItem22);
+        jMenuItemListarcheques.setText("Listas Cheques");
+        jMenuItemListarcheques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarchequesActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItemListarcheques);
 
         jMenuItem21.setText("Listas Depositos");
         jMenu8.add(jMenuItem21);
@@ -791,6 +798,13 @@ fact.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItemListadeusuariosActionPerformed
 
+    private void jMenuItemListarchequesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarchequesActionPerformed
+        // TODO add your handling code here:
+        ReporteCheques re = new ReporteCheques();
+        re.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItemListarchequesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -868,7 +882,6 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
-    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
@@ -887,6 +900,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemCuentasbancarias;
     private javax.swing.JMenuItem jMenuItemListadeusuarios;
+    private javax.swing.JMenuItem jMenuItemListarcheques;
     private javax.swing.JMenuItem jMenuItemProveedores;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
