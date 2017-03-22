@@ -57,9 +57,13 @@ public class ReporteCheques extends javax.swing.JFrame {
         jComboBoxEstado = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         cuenta = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        jCheckBoxTodoscheques = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reporte De Cheques");
+        setBackground(new java.awt.Color(0, 0, 0));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -96,6 +100,17 @@ public class ReporteCheques extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Cuenta Bancaria");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Todos");
+
+        jCheckBoxTodoscheques.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxTodoscheques.setText("Cheques");
+        jCheckBoxTodoscheques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTodoschequesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,9 +139,14 @@ public class ReporteCheques extends javax.swing.JFrame {
                                 .addComponent(jLabel4)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxTodoscheques))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,14 +157,16 @@ public class ReporteCheques extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cuenta))
+                    .addComponent(cuenta)
+                    .addComponent(jCheckBoxTodoscheques, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButtonImprimir)
                 .addGap(21, 21, 21))
@@ -156,8 +178,8 @@ public class ReporteCheques extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,6 +215,18 @@ public class ReporteCheques extends javax.swing.JFrame {
             estado=this.jComboBoxEstado.getSelectedItem().toString();
             tipo=this.jComboBoxTipo.getSelectedItem().toString();
             cuent=cuenta.getSelectedItem().toString();
+            
+            if (this.jCheckBoxTodoscheques.isSelected()==true){
+             Map<String, Object> params = new HashMap<String, Object>();
+            //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
+            String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "chequesreportetodos.jrxml";  
+            JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+            params.put("fechainicio", fechainicio);
+            params.put("fechafin", fechafin);
+            params.put("cuent", cuent);
+            JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
+            JasperViewer.viewReport(jasperPrint, false);
+            }else{
             Map<String, Object> params = new HashMap<String, Object>();
             //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
             String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "chequesreporte.jrxml";  
@@ -204,6 +238,8 @@ public class ReporteCheques extends javax.swing.JFrame {
             params.put("cuent", cuent);
             JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
             JasperViewer.viewReport(jasperPrint, false);
+            }
+            
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
 
@@ -217,6 +253,27 @@ public class ReporteCheques extends javax.swing.JFrame {
         CrearCheques cr = new CrearCheques();
         cr.llenarcomboreporte();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jCheckBoxTodoschequesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTodoschequesActionPerformed
+        // TODO add your handling code here:
+        
+        
+        try{
+        if (this.jCheckBoxTodoscheques.isSelected()==true){
+        jComboBoxTipo.setEnabled(false);
+        this.jComboBoxEstado.setEnabled(false);            
+        }else{
+         jComboBoxTipo.setEnabled(true);
+        this.jComboBoxEstado.setEnabled(true);
+        }
+        
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        }finally{
+        
+        
+        }
+    }//GEN-LAST:event_jCheckBoxTodoschequesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,6 +313,7 @@ public class ReporteCheques extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox cuenta;
     private javax.swing.JButton jButtonImprimir;
+    private javax.swing.JCheckBox jCheckBoxTodoscheques;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxTipo;
     private com.toedter.calendar.JDateChooser jDateChooserFechaFin;
@@ -265,6 +323,7 @@ public class ReporteCheques extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
