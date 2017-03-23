@@ -72,7 +72,7 @@ public class CrearClientes {
         
     }
     
-  public void buscarpornombre(String nombre){
+  public void buscarpornombre(String nombre, String apellido){
      try {
          tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
      String consulta;    
@@ -92,7 +92,7 @@ public class CrearClientes {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where Nombre LIKE'"+ nombre +"%' ORDER BY Nombre";
+     consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM clientes where Nombre LIKE'"+ nombre +"%' OR Apellido LIKE'"+ apellido +"%' ORDER BY Nombre";
      //pasamos la consulta al preparestatement
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos

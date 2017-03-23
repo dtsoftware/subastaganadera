@@ -22,9 +22,10 @@ import javax.swing.table.DefaultTableModel;
 public class FacturasCompras {
     Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-    ResultSet rs1, rs2, rs3, rs4, rs5,  todos;
-    PreparedStatement cargar2, cargar3, cargar4, cargar5, factmax, guardarrecibo, facturas;
-    DefaultTableModel tabla;    
+    ResultSet rs1, rs2, rs3, rs4, rs5,  todos, rsfact;
+    PreparedStatement cargar2, cargar3, cargar4, cargar5, factmax, guardarrecibo, facturas, numerofact;
+    DefaultTableModel tabla; 
+    Integer ultimo;
     
     
     public FacturasCompras(){
@@ -128,41 +129,41 @@ public class FacturasCompras {
 }
 
     
-public void BuscarUltFact(){
-    try {
-     String consulta;  
+public Integer BuscarUltFact(){
+    
      conectar conect = new conectar(); 
-     conect.conexion();
-     
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
      // creamos la consulta
-     consulta="SELECT MAX(idFacturas) AS 'Ultimo' FROM facturas";
-   
+     consulta="SELECT MAX(idFacturas) FROM facturas ";
      //pasamos la consulta al preparestatement
-    
-     factmax=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
-     rs5=factmax.executeQuery(consulta);
-
-           if (rs5.next()){               
- 
-                int Ultimo= Integer.parseInt(rs5.getString("Ultimo"));
-                int FactProx= (Ultimo + 1);
-                Facturacion.NumFactura.setText(""+Integer.valueOf(FactProx));
-           }else{
-                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
-                conect.desconectar();
-           }
-
-                rs5.close(); 
-                factmax.close();
-                
-                conect.desconectar();
+   numerofact=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsfact=numerofact.executeQuery(consulta);
+     //recorremos el resulset
+    rsfact.next();
+        
+               ultimo=rsfact.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
            
-   }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
-   }
-    
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             numerofact.close();
+             rsfact.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimo;
+
 }    
     
 public void guardarfactura(){    

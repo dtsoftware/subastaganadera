@@ -18,7 +18,7 @@ import Clases.subastas;
  * @author Tserng
  */
 public class buscarclientes extends javax.swing.JFrame {
-    String Nombre,Cedula;
+    String Nombre,Cedula, Apellido;
     public static Integer Aux;
    public static String Validar;
    // DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
@@ -112,7 +112,7 @@ public class buscarclientes extends javax.swing.JFrame {
         jRadioButtonNombre.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButtonNombre.setForeground(new java.awt.Color(0, 0, 255));
         jRadioButtonNombre.setSelected(true);
-        jRadioButtonNombre.setText("Nombre");
+        jRadioButtonNombre.setText("Nombre / Apellido");
         jRadioButtonNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonNombreActionPerformed(evt);
@@ -140,32 +140,31 @@ public class buscarclientes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(180, Short.MAX_VALUE)
                 .addComponent(jRadioButtonNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonCedula)
-                .addGap(132, 132, 132))
+                .addGap(8, 8, 8)
+                .addComponent(jButtonRealizarBusqueda)
+                .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(148, 148, 148)
-                    .addComponent(jButtonRealizarBusqueda)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(319, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRealizarBusqueda)
                     .addComponent(jRadioButtonCedula)
                     .addComponent(jRadioButtonNombre))
-                .addGap(26, 26, 26))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonRealizarBusqueda))
-                    .addGap(18, 18, 18)))
+                    .addGap(27, 27, 27)
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(29, 29, 29)))
         );
 
         Seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/login-icon (1).png"))); // NOI18N
@@ -199,7 +198,7 @@ public class buscarclientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -228,7 +227,8 @@ public class buscarclientes extends javax.swing.JFrame {
                 
                 CrearClientes busc = new CrearClientes();
                 Nombre=this.jTextFieldBuscar.getText();
-                busc.buscarpornombre(Nombre);
+                Apellido=this.jTextFieldBuscar.getText();
+                busc.buscarpornombre(Nombre, Apellido);
                 
                 }else if (this.jRadioButtonCedula.isSelected()==true){
                 CrearClientes busc = new CrearClientes();
@@ -260,7 +260,8 @@ public class buscarclientes extends javax.swing.JFrame {
                 
                 CrearClientes busc = new CrearClientes();
                 Nombre=this.jTextFieldBuscar.getText();
-                busc.buscarpornombre(Nombre);
+                Apellido=this.jTextFieldBuscar.getText();
+                busc.buscarpornombre(Nombre, Apellido);
                 
                 }else if (this.jRadioButtonCedula.isSelected()==true){
                 CrearClientes busc = new CrearClientes();

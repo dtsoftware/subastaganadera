@@ -209,7 +209,7 @@ public class Cheque {
                     jasperReport =JasperCompileManager.compileReport(ruta);
                     params.put("ncheque", ncheque);
                     jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
-                  JasperViewer.viewReport(jasperPrint, false);
+                  //JasperViewer.viewReport(jasperPrint, false);
                    //se manda a la impresora
                    JRPrintServiceExporter jrprintServiceExporter = new JRPrintServiceExporter();
                    jrprintServiceExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint );

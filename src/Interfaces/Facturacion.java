@@ -37,6 +37,8 @@ public class Facturacion extends javax.swing.JFrame {
         this.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         this.jDateChooserFecha.setDate(date); 
+        FacturasCompras ch = new FacturasCompras();        
+        this.NumFactura.setText(ch.BuscarUltFact().toString());
        
     }
 
@@ -748,12 +750,12 @@ public class Facturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_idcompradorActionPerformed
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-        if (Double.parseDouble(this.txtmonto.getText())==0.0){
+        if (Double.parseDouble(Facturacion.txtmonto.getText())==0.0){
             JOptionPane.showMessageDialog(null, "No hay Registros Para Facturar a Este Cliente");
         }else{   FacturasCompras guardaf = new FacturasCompras ();
             guardaf.guardarfactura();
     Integer codigo;
-    codigo= Integer.parseInt(this.idcomprador.getText());
+    codigo= Integer.parseInt(Facturacion.idcomprador.getText());
             animalesregistrados detallefact = new animalesregistrados();
             detallefact.cargartodasfacturas();
 
@@ -761,44 +763,45 @@ public class Facturacion extends javax.swing.JFrame {
             limpiarFinal.LimpiarCampos();
 
             JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
-             this.oph.setEnabled(false);
-              this.opm.setEnabled(false);
-              this.oph.setSelected(false);
-              this.opm.setSelected(false);
+             Facturacion.oph.setEnabled(false);
+              Facturacion.opm.setEnabled(false);
+              Facturacion.oph.setSelected(false);
+              Facturacion.opm.setSelected(false);
                 Facturacion.seleccion.setSelected(false);
               Facturacion.todos.setSelected(true);
                Facturacion.idcomprador.setText("0");
                      animalesregistrados Acomprados = new animalesregistrados();
         Acomprados.cargaracomprados();
-        
+        FacturasCompras ch = new FacturasCompras();        
+        Facturacion.NumFactura.setText(ch.BuscarUltFact().toString());    
         // imprimir Reporte
         
                 // TODO add your handling code here:
-        try{
+    //    try{
 
     //-----obtener la fecha----------------------
-      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
-      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
-      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-      String  fecha = (year + "-" + mes+ "-" + dia);    
+    //  String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+    //  String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+   //   String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+   //   String  fecha = (year + "-" + mes+ "-" + dia);    
      //---------fin de obtener la fecha  
     
-    conectar conect = new conectar(); 
-    conect.conexion();
+   // conectar conect = new conectar(); 
+   // conect.conexion();
          
-    Map<String, Object> params = new HashMap<String, Object>();
+  //  Map<String, Object> params = new HashMap<String, Object>();
     //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
-    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "FacturaCompras.jrxml";
-    JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
-    params.put("codigo", codigo);
-     params.put("fecha", fecha);
-    JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
-    JasperViewer.viewReport(jasperPrint, false);
+   // String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "FacturaCompras.jrxml";
+   // JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+    //params.put("codigo", codigo);
+    // params.put("fecha", fecha);
+    //JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
+   // JasperViewer.viewReport(jasperPrint, false);
             
-        }catch(Exception ex){
-        JOptionPane.showMessageDialog(null,"Error" +ex);
+    //    }catch(Exception ex){
+     //   JOptionPane.showMessageDialog(null,"Error" +ex);
         
-        }
+     //   }
         
     }//GEN-LAST:event_guardarMouseClicked
     }

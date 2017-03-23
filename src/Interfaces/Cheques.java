@@ -9,7 +9,9 @@ import Clases.Cheque;
 import Clases.CrearCheques;
 import Clases.Numero_a_Letra;
 import static Interfaces.MantChk.Orden;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -342,7 +344,7 @@ public static String Orden;
       
     try{
      
-    if ((this.Numero.getText().trim().length()==0) || txtmonto.getText().trim().length()==0 || Beneficiario.getText().trim().length()==0 || montoletra.getText().trim().length()==0 ){
+    if ((Cheques.Numero.getText().trim().length()==0) || Cheques.txtmonto.getText().trim().length()==0 || Cheques.Beneficiario.getText().trim().length()==0 || Cheques.montoletra.getText().trim().length()==0 ){
     JOptionPane.showMessageDialog(null,"Para Realizar La Impresion Del Cheque, Debe Completar Los Datos");
     }else{ 
       
@@ -388,11 +390,11 @@ public static String Orden;
     d2 = d.substring(1,2);
    // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
    //Cheque ch = new Cheque();
-   CuentaB = this.cuenta.getSelectedItem().toString();
+   CuentaB = Cheques.cuenta.getSelectedItem().toString();
    
-   if(this.venta.isSelected()){
+   if(Cheques.venta.isSelected()){
        Tipo = "Venta";
-   }else if(this.gasto.isSelected()){
+   }else if(Cheques.gasto.isSelected()){
        Tipo = "Gasto";
    }else{
        Tipo = "Planilla";
@@ -400,7 +402,7 @@ public static String Orden;
    
    ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, CuentaB, Tipo, a1, a2, a3, a4, m1, m2, d1, d2);
    //ch.imprimircheque2(ncheque);
-   this.Numero.setText(ch.buscarultimocheque().toString());
+   Cheques.Numero.setText(ch.buscarultimocheque().toString());
    txtmonto.setText("");
    Beneficiario.setText("");
    montoletra.setText("");
@@ -409,7 +411,7 @@ public static String Orden;
     }
   
     
-    }catch(Exception ex){    
+    }catch(HeadlessException | NumberFormatException | SQLException ex){    
     JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
     }finally{
     
@@ -471,7 +473,7 @@ public static String Orden;
       
     try{
      
-    if ((this.Numero.getText().trim().length()==0) || txtmonto.getText().trim().length()==0 || Beneficiario.getText().trim().length()==0 || montoletra.getText().trim().length()==0 ){
+    if ((Cheques.Numero.getText().trim().length()==0) || Cheques.txtmonto.getText().trim().length()==0 || Cheques.Beneficiario.getText().trim().length()==0 || Cheques.montoletra.getText().trim().length()==0 ){
     JOptionPane.showMessageDialog(null,"Para Realizar La Impresion Del Cheque, Debe Completar Los Datos");
     }else{ 
       
@@ -517,17 +519,17 @@ public static String Orden;
     d2 = d.substring(1,2);
    // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
    //Cheque ch = new Cheque();
-   CuentaB = this.cuenta.getSelectedItem().toString();
-    if(this.venta.isSelected()){
+   CuentaB = Cheques.cuenta.getSelectedItem().toString();
+    if(Cheques.venta.isSelected()){
        Tipo = "Venta";
-   }else if(this.gasto.isSelected()){
+   }else if(Cheques.gasto.isSelected()){
        Tipo = "Gasto";
    }else{
        Tipo = "Planilla";
    }
    ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, CuentaB, Tipo, a1, a2, a3, a4, m1, m2, d1, d2);
    //ch.imprimircheque2(ncheque);
-   this.Numero.setText(ch.buscarultimocheque().toString());
+   Cheques.Numero.setText(ch.buscarultimocheque().toString());
    txtmonto.setText("");
    Beneficiario.setText("");
    montoletra.setText("");
@@ -536,7 +538,7 @@ public static String Orden;
     }
   
     
-    }catch(Exception ex){    
+    }catch(HeadlessException | NumberFormatException | SQLException ex){    
     JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());
     }finally{
     
