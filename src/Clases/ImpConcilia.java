@@ -37,7 +37,7 @@ public class ImpConcilia {
         
     }
     
-           public void imprimircheque2(String cuenta1, String ano1, String mes){
+           public void imprimircheque2(String cuenta1, String ano1, String mes1){
     // JOptionPane.showMessageDialog(null,"Se Genero");
     conectar conect = new conectar(); 
     conect.conexion();
@@ -53,12 +53,12 @@ public class ImpConcilia {
                     JasperReport jasperReport;
                     JasperPrint jasperPrint;
                 
-                     Map<String, Object> params = new HashMap<String, Object>();
-                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "RConciliacion.jrxml";  
+                     Map<String, Object> params = new HashMap<>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "RptConciliacion.jrxml";  
                     jasperReport =JasperCompileManager.compileReport(ruta);
-                    params.put("cuenta1", cuenta1);
-                    params.put("ano1", ano1);
-                    params.put("mes", mes);
+                    params.put("cuenta", cuenta1);
+                    params.put("ano", ano1);
+                    params.put("mes", mes1);
                     jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
                   JasperViewer.viewReport(jasperPrint, false);
                    //se manda a la impresora
