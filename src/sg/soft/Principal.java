@@ -14,6 +14,7 @@ import Interfaces.Entradas;
 import Interfaces.Facturacion;
 import Interfaces.FacturarC;
 import Interfaces.FacturarV;
+import Interfaces.ImprimirConciliacion;
 import Interfaces.MantChk;
 import Interfaces.MantDepositos;
 import Interfaces.MantNotas;
@@ -513,6 +514,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu8.add(jMenuItem23);
 
         jMenuItem24.setText("Conciliaciones Bancarias");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem24);
 
         jMenu4.add(jMenu8);
@@ -804,6 +810,11 @@ fact.setVisible(true);
         re.setVisible(true);
         
     }//GEN-LAST:event_jMenuItemListarchequesActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+               ImprimirConciliacion fact = new ImprimirConciliacion ();
+       fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     /**
      * @param args the command line arguments
