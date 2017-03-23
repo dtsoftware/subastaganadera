@@ -19,10 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class CrearBancos {
-    PreparedStatement guardarbanco, UltimoRg, cargar;
+    PreparedStatement guardarbanco, UltimoRg, cargar, numerobanco;
     String idbanco,nombre,cuenta,detalle,estado;
+    Integer ultimobanco;
     Double montoi, montoa;
-    ResultSet aux, rs;
+    ResultSet aux, rs, rsbanco;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[8];
 
@@ -134,40 +135,39 @@ public void buscarregistros(){
      
      }
 
-public void UltimoRg(){
-    try {
-     String consulta;  
+public Integer buscarultimo(){
+    
      conectar conect = new conectar(); 
-     conect.conexion();
-     
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
      // creamos la consulta
-     consulta="SELECT MAX(idCuentas) AS 'Ultimo' FROM cuentas";
-   
+     consulta="SELECT MAX(idCuentas) FROM cuentas ";
      //pasamos la consulta al preparestatement
-    
-     UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
-     aux=UltimoRg.executeQuery(consulta);
-
-           if (aux.next()){               
- 
-                int Ultimo= Integer.parseInt(aux.getString("Ultimo"));
-                int URG= (Ultimo + 1);
-                Bancos.codigo.setText(""+URG);
-           }else{
-                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
-                conect.desconectar();
-           }
-
-                aux.close(); 
-                UltimoRg.close();
-                
-                conect.desconectar();
+   numerobanco=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsbanco=numerobanco.executeQuery(consulta);
+     //recorremos el resulset
+    rsbanco.next();
+        
+               ultimobanco=rsbanco.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
            
-   }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
-   }
-    
-}    
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             numerobanco.close();
+             rsbanco.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimobanco;
+    }
 }

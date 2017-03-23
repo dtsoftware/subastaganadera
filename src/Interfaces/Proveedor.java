@@ -25,7 +25,8 @@ public class Proveedor extends javax.swing.JFrame {
         Proveedor.fecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         Proveedor.fecha.setDate(date); 
-        
+        CrearProvedor ch = new CrearProvedor();        
+        this.codigo.setText(ch.buscarultimo().toString());
       
     }
 
@@ -432,8 +433,7 @@ public class Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_direccionActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        CrearProvedor Numero = new CrearProvedor();
-        Numero.UltimoRg();
+
         Habilitar();
     }//GEN-LAST:event_nuevoActionPerformed
 
@@ -493,7 +493,9 @@ public class Proveedor extends javax.swing.JFrame {
         CrearProvedor user = new CrearProvedor();
         user.guardarproveedor();
         Limpiar();
-        Habilitar();   
+        Habilitar();  
+        CrearProvedor ch = new CrearProvedor();        
+        this.codigo.setText(ch.buscarultimo().toString());
     }//GEN-LAST:event_guardarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed

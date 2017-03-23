@@ -28,6 +28,8 @@ public class Recibos extends javax.swing.JFrame {
         Date date = new Date(); 
         Recibos.jDateChooserFecha.setDate(date); 
         Aux = 1;
+                ReciboAbonos ch = new ReciboAbonos();        
+        this.recibo.setText(ch.buscarultimo().toString());
     }
 
     /**
@@ -266,8 +268,8 @@ public class Recibos extends javax.swing.JFrame {
             }
         });
 
+        recibo.setEditable(false);
         recibo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        recibo.setEnabled(false);
 
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -546,6 +548,8 @@ public class Recibos extends javax.swing.JFrame {
             ReciboAbonos Factura = new ReciboAbonos();
             Factura.guardarrecibo();
         }
+        ReciboAbonos ch = new ReciboAbonos();        
+        this.recibo.setText(ch.buscarultimo().toString());
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -683,13 +687,11 @@ public class Recibos extends javax.swing.JFrame {
         Recibos.saldo.setText("");
         Recibos.txtBeneficiario.setText("");
         Recibos.Suma.setText("");
-         ReciboAbonos busca = new ReciboAbonos();
-        busca.BuscarUltFact();  
+        ReciboAbonos ch = new ReciboAbonos();        
+        this.recibo.setText(ch.buscarultimo().toString());
     }//GEN-LAST:event_clientes1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ReciboAbonos busca = new ReciboAbonos();
-        busca.BuscarUltFact();  
         ReciboAbonos llenar = new ReciboAbonos();
         llenar.llenarcombo();
     }//GEN-LAST:event_formWindowOpened

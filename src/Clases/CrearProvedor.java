@@ -21,10 +21,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class CrearProvedor {
-   PreparedStatement guardarbanco, UltimoRg, cargar, cargar2, cargar3;
+   PreparedStatement guardarbanco, numerop, cargar, cargar2, cargar3;
     String idproveedor,nombre,Dv,Direccion,Ruc, Telefono01, Telefono02, Email, estado;
     Double montoi, montoa;
-    ResultSet aux, rs, rs2;
+    ResultSet aux, rs, rs2, rsp;
+    Integer ultimop;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[9];
     public CrearProvedor() {
@@ -75,42 +76,41 @@ public class CrearProvedor {
         
     
     }
-  public void UltimoRg(){
-    try {
-     String consulta;  
+  public Integer buscarultimo(){
+    
      conectar conect = new conectar(); 
-     conect.conexion();
-     
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
      // creamos la consulta
-     consulta="SELECT MAX(idProveedor) AS 'Ultimo' FROM proveedor";
-   
+     consulta="SELECT MAX(idProveedor) FROM Proveedor ";
      //pasamos la consulta al preparestatement
-    
-     UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
-     aux=UltimoRg.executeQuery(consulta);
-
-           if (aux.next()){               
- 
-                int Ultimo= Integer.parseInt(aux.getString("Ultimo"));
-                int URG= (Ultimo + 1);
-                Proveedor.codigo.setText(""+URG);
-           }else{
-                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
-                conect.desconectar();
-           }
-
-                aux.close(); 
-                UltimoRg.close();
-                
-                conect.desconectar();
+   numerop=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsp=numerop.executeQuery(consulta);
+     //recorremos el resulset
+    rsp.next();
+        
+               ultimop=rsp.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
            
-   }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
-   }
-    
-}      
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             numerop.close();
+             rsp.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimop;
+    }
     
 public void eliminarproveedor(Integer Codigo){
   try {

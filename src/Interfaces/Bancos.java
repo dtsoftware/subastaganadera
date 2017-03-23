@@ -27,6 +27,8 @@ public static Integer Edicion;
         Date date = new Date(); 
         Bancos.fecha.setDate(date); 
         Edicion = 0;
+                CrearBancos ch = new CrearBancos();        
+        this.codigo.setText(ch.buscarultimo().toString());
     }
 
     /**
@@ -381,8 +383,6 @@ public static Integer Edicion;
     }//GEN-LAST:event_cmdcancelarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        CrearBancos Numero = new CrearBancos();
-        Numero.UltimoRg();
         Habilitar();
         this.guardar.setEnabled(true);
     }//GEN-LAST:event_nuevoActionPerformed
@@ -402,6 +402,8 @@ if (((Bancos.codigo.getText().trim().length()==0) || (Bancos.nombre.getText().tr
         this.guardar.setEnabled(false);
         CrearBancos buscar = new CrearBancos();
         buscar.buscarregistros();
+                        CrearBancos ch = new CrearBancos();        
+        this.codigo.setText(ch.buscarultimo().toString());
 }
 
 

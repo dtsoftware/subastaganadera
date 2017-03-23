@@ -21,8 +21,9 @@ import javax.swing.table.DefaultTableModel;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, todos, todos2, rs5, aux;
-    PreparedStatement cargar2, cargar3, guardarrecibo, facturas, facturas2, factmax, UltimoRg;
+      ResultSet rs2, todos, todos2, rs5, aux, rsr;
+      Integer ultimor;
+    PreparedStatement cargar2, cargar3, guardarrecibo, facturas, facturas2, factmax, numeror, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -320,42 +321,41 @@ public void guardarrecibo(){
        
     }
  
-public void BuscarUltFact(){
-    try {
-     String consulta;  
+public Integer buscarultimo(){
+    
      conectar conect = new conectar(); 
-     conect.conexion();
-     
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
      // creamos la consulta
-     consulta="SELECT MAX(idRecibos) AS 'Ultimo' FROM recibos";
-   
+     consulta="SELECT MAX(idRecibos) FROM Recibos ";
      //pasamos la consulta al preparestatement
-    
-     factmax=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
-     rs5=factmax.executeQuery(consulta);
-
-           if (rs5.next()){               
- 
-                int Ultimo= Integer.parseInt(rs5.getString("Ultimo"));
-                int FactProx= (Ultimo + 1);
-                Recibos.recibo.setText(""+Integer.valueOf(FactProx));
-           }else{
-                JOptionPane.showMessageDialog(null,"Error en Numeracion de Facturas"  ); 
-                conect.desconectar();
-           }
-
-                rs5.close(); 
-                factmax.close();
-                
-                conect.desconectar();
+   numeror=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsr=numeror.executeQuery(consulta);
+     //recorremos el resulset
+    rsr.next();
+        
+               ultimor=rsr.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
            
-   }catch (SQLException ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
-   }
-    
-}    
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             numeror.close();
+             rsr.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimor;
+    }
 
     public void llenarcombo(){
         try {
