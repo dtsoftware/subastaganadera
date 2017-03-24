@@ -474,8 +474,8 @@ public class Clientes extends javax.swing.JFrame {
             Telefono2=jTextFieldTelefono2.getText();
             Credito=jComboBoxCredito.getSelectedItem().toString();
             Estado=jComboBoxActivo.getSelectedItem().toString();
-            Audito1="hhh";
-            Audito2="hhh";
+            Audito1="MASTER";
+            Audito2="MASTER";
              //-----obtener la fecha----------------------
       String  dia = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.MONTH) + 1);
