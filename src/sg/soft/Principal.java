@@ -15,6 +15,7 @@ import Interfaces.Facturacion;
 import Interfaces.FacturarC;
 import Interfaces.FacturarV;
 import Interfaces.ImprimirConciliacion;
+import Interfaces.Listadodepositos;
 import Interfaces.MantChk;
 import Interfaces.MantDepositos;
 import Interfaces.MantNotas;
@@ -127,7 +128,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItemListarcheques = new javax.swing.JMenuItem();
-        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItemDepositos = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
@@ -507,8 +508,13 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu8.add(jMenuItemListarcheques);
 
-        jMenuItem21.setText("Listas Depositos");
-        jMenu8.add(jMenuItem21);
+        jMenuItemDepositos.setText("Listas Depositos");
+        jMenuItemDepositos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDepositosActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItemDepositos);
 
         jMenuItem23.setText("Listas Notas Debito/Credito");
         jMenu8.add(jMenuItem23);
@@ -816,6 +822,12 @@ fact.setVisible(true);
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
+    private void jMenuItemDepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDepositosActionPerformed
+        // TODO add your handling code here:
+        Listadodepositos list = new Listadodepositos();
+        list.setVisible(true);
+    }//GEN-LAST:event_jMenuItemDepositosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -892,7 +904,6 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
-    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
@@ -910,6 +921,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemCuentasbancarias;
+    private javax.swing.JMenuItem jMenuItemDepositos;
     private javax.swing.JMenuItem jMenuItemListadeusuarios;
     private javax.swing.JMenuItem jMenuItemListarcheques;
     private javax.swing.JMenuItem jMenuItemProveedores;
