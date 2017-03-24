@@ -356,12 +356,19 @@ public class animalesregistrados {
             Integer Codigo= Integer.parseInt(Facturacion.idcomprador.getText());
             Integer CODFact= Integer.parseInt(Facturacion.NumFactura.getText());
             
-            Integer TH, TM, TT, TR;
+            Integer TH, TM, TT, TR, TT2, TN1, TN2, TTOR, TY, TV, TVC, TCAB;
                 TH = 0;
                 TM = 0;
                 TT = 0;
                 TR = 0;
-                
+                TT2 = 0;
+                TN1 = 0;
+                TN2 = 0;
+                TTOR = 0;
+                TY = 0; 
+                TV = 0;
+                TVC = 0;
+                TCAB = 0;
             for (int i = 0; i < Facturacion.jTableAnimalesVendidos.getRowCount(); i++) {
             Integer Animal =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 1)));
             Integer Comprador =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 5)));            
@@ -418,7 +425,31 @@ public class animalesregistrados {
                       if ("TE".equals(cargall.getString("Tipo"))){
                         TT = TT + 1;
                     }
-                   
+                    if ("TA".equals(cargall.getString("Tipo"))){
+                        TT2 = TT2 + 1;
+                    }
+                     if ("VA".equals(cargall.getString("Tipo"))){
+                        TV = TV + 1;
+                    }
+                      if ("VF".equals(cargall.getString("Tipo"))){
+                        TVC = TVC + 1;
+                    }
+                    if ("NA".equals(cargall.getString("Sexo"))){
+                        TN1 = TN1 + 1;
+                    }
+                     if ("NO".equals(cargall.getString("Sexo"))){
+                        TN2 = TN2 + 1;
+                    }
+                      if ("TO".equals(cargall.getString("Tipo"))){
+                        TTOR = TTOR + 1;
+                    } 
+                      if ("YG".equals(cargall.getString("Sexo"))){
+                        TY = TY + 1;
+                    }
+                     if ("CB".equals(cargall.getString("Sexo"))){
+                        TCAB = TCAB + 1;
+                    }                   
+                      
                     int decimales;
                     decimales = 2;
                     redondear redon  = new redondear();
@@ -487,13 +518,21 @@ public class animalesregistrados {
                     cargalll.next();
                     Fact = cargalll.getInt(1);
                     // ACTUALIZAR CANTIDAD DE RESES
-                    CActualizarl="UPDATE facturas SET TotalAnimales =?,TotalHembras=?,TotalMachos=?,TotalTerneros=? WHERE idFacturas = '"+Fact+"'";
+                    CActualizarl="UPDATE facturas SET TotalAnimales =?,TotalHembras=?,TotalMachos=?,TotalTerneros=?, TotalTerneras =?,TotalNovillos=?,TotalNovillas=?,TotalVacas=?, TotalYeguas =?,TotalCaballos=?,TotalVacaCeba=?,TotalToros=? WHERE idFacturas = '"+Fact+"'";
                     //pasamos la consulta al preparestatement
                     ActEdetallel=conect.con.prepareStatement(CActualizarl);
                     ActEdetallel.setInt(1, TR);
                     ActEdetallel.setInt(2, TH);
                     ActEdetallel.setInt(3, TM);
                     ActEdetallel.setInt(4, TT);
+                    ActEdetallel.setInt(5, TT2);
+                    ActEdetallel.setInt(6, TN1);
+                    ActEdetallel.setInt(7, TN2);
+                    ActEdetallel.setInt(8, TV);
+                    ActEdetallel.setInt(9, TY);
+                    ActEdetallel.setInt(10, TCAB);
+                    ActEdetallel.setInt(11, TVC);
+                    ActEdetallel.setInt(12, TTOR);
                     ActEdetallel.executeUpdate(); 
           
             
