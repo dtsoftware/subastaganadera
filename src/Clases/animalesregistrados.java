@@ -20,8 +20,8 @@ import java.util.Objects;
  * @author Tserng
  */
 public class animalesregistrados {
-    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, ActualizarE,rsexiste, TVendidos, TVendedor;
-    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, InsertFact, ActEdetalle, Completados, ActEntrada,existe, TV01, TV02;
+    ResultSet rsmachos,rshembras,todos,rsentradas, buy, cargall, cargalll, ActualizarE,rsexiste, TVendidos, TVendedor, ActualizarEl;
+    PreparedStatement machos,hembras,animales,editar,numeroentrada, comprados, compradosl, InsertFact, ActEdetalle, Completados, ActEntrada,existe, TV01, TV02, ActEdetallel;
     Integer totalmachos,totalhembras, ultimaentrada,totalexiste;
     
     //DefaultTableModel tabla;
@@ -356,7 +356,12 @@ public class animalesregistrados {
             Integer Codigo= Integer.parseInt(Facturacion.idcomprador.getText());
             Integer CODFact= Integer.parseInt(Facturacion.NumFactura.getText());
             
-            
+            Integer TH, TM, TT, TR;
+                TH = 0;
+                TM = 0;
+                TT = 0;
+                TR = 0;
+                
             for (int i = 0; i < Facturacion.jTableAnimalesVendidos.getRowCount(); i++) {
             Integer Animal =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 1)));
             Integer Comprador =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 5)));            
@@ -373,19 +378,47 @@ public class animalesregistrados {
                           }
                 }
             
-                consulta="SELECT CodVendedor, idAnimal,Precio, Peso FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And idAnimal = '"+Animal+"' ";
+                consulta="SELECT CodVendedor, idAnimal,Precio, Tipo, Color, Sexo, Ferrete, Precio, totalBruto, IdComprador, ferre2, ferre3, ferre4, ferre5, ferre6, ferre7, Peso FROM entrada_detalle Where Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idComprador = '"+Codigo+"' And idAnimal = '"+Animal+"' ";
            
                 comprados=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
                 cargall=comprados.executeQuery(consulta);
                 Integer CodVen = 0;
-                Double comision, TotalReal, TotalBruto, Valor;
+                Double comision, TotalReal, TotalBruto, Valor; 
 
                 while (cargall.next()){
+
+                    InsertFact=conect.con.prepareStatement("INSERT INTO facturas_detalle ( idFactura, idAnimal, Color, Tipo, Sexo, Peso, Precio, TotalBruto, CodVendedor, idComprador, Ferrete, ferre2, ferre3, ferre4, ferre5, ferre6, ferre7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     
-                    InsertFact=conect.con.prepareStatement("INSERT INTO facturas_detalle ( idFactura, idAnimal) VALUES (?,?)");
                     InsertFact.setInt(1,CODFact);
-                    InsertFact.setInt(2,cargall.getInt("idAnimal")); 
+                    InsertFact.setInt(2,cargall.getInt("idAnimal"));        
+                    InsertFact.setString(3,cargall.getString("Color")); 
+                    InsertFact.setString(4,cargall.getString("Tipo")); 
+                    InsertFact.setString(5,cargall.getString("Sexo")); 
+                    InsertFact.setDouble(6,cargall.getDouble("Peso")); 
+                    InsertFact.setDouble(7,cargall.getDouble("Precio")); 
+                    InsertFact.setDouble(8,cargall.getDouble("TotalBruto")); 
+                    InsertFact.setInt(9,cargall.getInt("CodVendedor")); 
+                    InsertFact.setInt(10,cargall.getInt("idComprador")); 
+                    InsertFact.setString(11,cargall.getString("Ferrete")); 
+                    InsertFact.setString(12,cargall.getString("ferre2")); 
+                    InsertFact.setString(13,cargall.getString("ferre3")); 
+                    InsertFact.setString(14,cargall.getString("ferre4")); 
+                    InsertFact.setString(15,cargall.getString("ferre5")); 
+                    InsertFact.setString(16,cargall.getString("ferre6")); 
+                    InsertFact.setString(17,cargall.getString("ferre7")); 
                     InsertFact.execute();
+
+                    TR = TR + 1;
+                    if ("HEMBRA".equals(cargall.getString("Sexo"))){
+                        TH = TH + 1;
+                    }
+                     if ("MACHO".equals(cargall.getString("Sexo"))){
+                        TM = TM + 1;
+                    }
+                      if ("TE".equals(cargall.getString("Tipo"))){
+                        TT = TT + 1;
+                    }
+                   
                     int decimales;
                     decimales = 2;
                     redondear redon  = new redondear();
@@ -393,7 +426,7 @@ public class animalesregistrados {
                     TotalBruto = redon.redondearDecimales((cargall.getDouble("Precio")*cargall.getDouble("Peso")), decimales);                   
                     comision = redon.redondearDecimales((TotalBruto* 0.03), decimales);
                     TotalReal = redon.redondearDecimales((TotalBruto - comision), decimales);
-                    
+
                     CActualizar="UPDATE entrada_detalle SET Estado =?,TotalBruto=?,Comision=?,TotalReal=? WHERE idComprador= '"+Codigo+"' And Fecha = '"+fecha+"' And Estado = '"+Estado+"' And idAnimal = ?";
                     //pasamos la consulta al preparestatement
                     ActEdetalle=conect.con.prepareStatement(CActualizar);
@@ -405,8 +438,11 @@ public class animalesregistrados {
                     ActEdetalle.executeUpdate();  
                    CodVen = cargall.getInt("CodVendedor");
                 }
-                  
-                
+                                 
+
+                   
+                   
+                   
                     Integer Vendidos = 0;
                     Integer Totales = 0;
                     
@@ -440,10 +476,26 @@ public class animalesregistrados {
                             }
                             
                         }
-           
+                    
+                    
             }
-            
-            
+            Integer Fact;
+                    consulta="SELECT MAX(idFacturas) AS 'Ultima' From Facturas";    
+                    compradosl=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    cargalll=compradosl.executeQuery(consulta);
+                    String CActualizarl;
+                    cargalll.next();
+                    Fact = cargalll.getInt(1);
+                    // ACTUALIZAR CANTIDAD DE RESES
+                    CActualizarl="UPDATE facturas SET TotalAnimales =?,TotalHembras=?,TotalMachos=?,TotalTerneros=? WHERE idFacturas = '"+Fact+"'";
+                    //pasamos la consulta al preparestatement
+                    ActEdetallel=conect.con.prepareStatement(CActualizarl);
+                    ActEdetallel.setInt(1, TR);
+                    ActEdetallel.setInt(2, TH);
+                    ActEdetallel.setInt(3, TM);
+                    ActEdetallel.setInt(4, TT);
+                    ActEdetallel.executeUpdate(); 
+          
             
             
             cargall.close();
