@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3c7f932-d882-4a9a-a57a-f3af4ebf200c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="109"/>
 	<parameter name="fechainicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -21,7 +21,7 @@
 	<field name="Beneficiario" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Monto" class="java.lang.String">
+	<field name="Monto" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Fecha" class="java.sql.Date">
@@ -30,6 +30,15 @@
 	<field name="Cuenta" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<variable name="Numero_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{Numero}]]></variableExpression>
+	</variable>
+	<variable name="Monto_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{Monto}]]></variableExpression>
+	</variable>
+	<variable name="Monto_2" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{Monto}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -170,7 +179,30 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="3" width="110" height="20" uuid="8f9ce040-effb-4693-9317-f3135d6bdfde"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Canidad De Cheques:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="3" width="73" height="20" uuid="4944f53d-dab1-4d78-ae34-00071787482f"/>
+				<textFieldExpression><![CDATA[$V{Numero_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="3" width="67" height="20" uuid="1df95479-128e-462f-ae1b-6900855a8266"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="366" y="3" width="84" height="20" uuid="a6a35687-18fc-4f18-acaa-61d2409ccd82"/>
+				<textFieldExpression><![CDATA[$V{Monto_2}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
