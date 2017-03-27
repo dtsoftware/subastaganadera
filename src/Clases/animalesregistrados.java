@@ -357,6 +357,7 @@ public class animalesregistrados {
             Integer CODFact= Integer.parseInt(Facturacion.NumFactura.getText());
             
             Integer TH, TM, TT, TR, TT2, TN1, TN2, TTOR, TY, TV, TVC, TCAB;
+            Double PromH, PromM, PesoM, PesoH;
                 TH = 0;
                 TM = 0;
                 TT = 0;
@@ -369,6 +370,10 @@ public class animalesregistrados {
                 TV = 0;
                 TVC = 0;
                 TCAB = 0;
+                PromH = 0.00;
+                PromM = 0.00;
+                PesoM = 0.00;
+                PesoH = 0.00;
             for (int i = 0; i < Facturacion.jTableAnimalesVendidos.getRowCount(); i++) {
             Integer Animal =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 1)));
             Integer Comprador =Integer.parseInt(String.valueOf(Facturacion.jTableAnimalesVendidos.getValueAt(i, 5)));            
@@ -414,13 +419,19 @@ public class animalesregistrados {
                     InsertFact.setString(16,cargall.getString("ferre6")); 
                     InsertFact.setString(17,cargall.getString("ferre7")); 
                     InsertFact.execute();
-
+                    
+                    int decimales;
+                    decimales = 2;
+                    redondear redon  = new redondear();
+                    
                     TR = TR + 1;
                     if ("HEMBRA".equals(cargall.getString("Sexo"))){
                         TH = TH + 1;
+                        PesoH = redon.redondearDecimales((PesoH + cargall.getDouble("Peso")), decimales);
                     }
                      if ("MACHO".equals(cargall.getString("Sexo"))){
                         TM = TM + 1;
+                        PesoM = redon.redondearDecimales((PesoM + cargall.getDouble("Peso")), decimales);
                     }
                       if ("TE".equals(cargall.getString("Tipo"))){
                         TT = TT + 1;
@@ -450,9 +461,7 @@ public class animalesregistrados {
                         TCAB = TCAB + 1;
                     }                   
                       
-                    int decimales;
-                    decimales = 2;
-                    redondear redon  = new redondear();
+                    
                     
                     TotalBruto = redon.redondearDecimales((cargall.getDouble("Precio")*cargall.getDouble("Peso")), decimales);                   
                     comision = redon.redondearDecimales((TotalBruto* 0.03), decimales);
@@ -517,8 +526,13 @@ public class animalesregistrados {
                     String CActualizarl;
                     cargalll.next();
                     Fact = cargalll.getInt(1);
+                    int decimales1;
+                    decimales1 = 2;
+                    redondear redon  = new redondear();
+                    PromH = redon.redondearDecimales((PesoH/TH), decimales1);
+                    PromM = redon.redondearDecimales((PesoM/TM), decimales1);
                     // ACTUALIZAR CANTIDAD DE RESES
-                    CActualizarl="UPDATE facturas SET TotalAnimales =?,TotalHembras=?,TotalMachos=?,TotalTerneros=?, TotalTerneras =?,TotalNovillos=?,TotalNovillas=?,TotalVacas=?, TotalYeguas =?,TotalCaballos=?,TotalVacaCeba=?,TotalToros=? WHERE idFacturas = '"+Fact+"'";
+                    CActualizarl="UPDATE facturas SET TotalAnimales =?,TotalHembras=?,TotalMachos=?,TotalTerneros=?, TotalTerneras =?,TotalNovillos=?,TotalNovillas=?,TotalVacas=?, TotalYeguas =?,TotalCaballos=?,TotalVacaCeba=?,TotalToros=?, PPromHembras=?, PPromMachos=? WHERE idFacturas = '"+Fact+"'";
                     //pasamos la consulta al preparestatement
                     ActEdetallel=conect.con.prepareStatement(CActualizarl);
                     ActEdetallel.setInt(1, TR);
@@ -533,6 +547,8 @@ public class animalesregistrados {
                     ActEdetallel.setInt(10, TCAB);
                     ActEdetallel.setInt(11, TVC);
                     ActEdetallel.setInt(12, TTOR);
+                    ActEdetallel.setDouble(13, PromH);
+                    ActEdetallel.setDouble(14, PromM);
                     ActEdetallel.executeUpdate(); 
           
             
