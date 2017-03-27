@@ -515,8 +515,7 @@ public class animalesregistrados {
 
                             }
                             
-                        }
-                    
+                        } 
                     
             }
             Integer Fact;
@@ -529,16 +528,24 @@ public class animalesregistrados {
                     int decimales1;
                     decimales1 = 2;
                     redondear redon  = new redondear();
-                    PromH = redon.redondearDecimales((PesoH/TH), decimales1);
-                    PromM = redon.redondearDecimales((PesoM/TM), decimales1);
+                    
+                    if (PesoH!=0){
+                        PromH = redon.redondearDecimales((PesoH/TH), decimales1);
+                    }
+                    if (PesoM!=0){
+                        PromM = redon.redondearDecimales((PesoM/TM), decimales1);
+                    }
+ 
                     // ACTUALIZAR CANTIDAD DE RESES
+                    
+                    
                     CActualizarl="UPDATE facturas SET TotalAnimales =?,TotalHembras=?,TotalMachos=?,TotalTerneros=?, TotalTerneras =?,TotalNovillos=?,TotalNovillas=?,TotalVacas=?, TotalYeguas =?,TotalCaballos=?,TotalVacaCeba=?,TotalToros=?, PPromHembras=?, PPromMachos=? WHERE idFacturas = '"+Fact+"'";
                     //pasamos la consulta al preparestatement
                     ActEdetallel=conect.con.prepareStatement(CActualizarl);
                     ActEdetallel.setInt(1, TR);
                     ActEdetallel.setInt(2, TH);
                     ActEdetallel.setInt(3, TM);
-                    ActEdetallel.setInt(4, TT);
+                    ActEdetallel.setInt(4, TT);                
                     ActEdetallel.setInt(5, TT2);
                     ActEdetallel.setInt(6, TN1);
                     ActEdetallel.setInt(7, TN2);
@@ -551,7 +558,6 @@ public class animalesregistrados {
                     ActEdetallel.setDouble(14, PromM);
                     ActEdetallel.executeUpdate(); 
           
-            
             
             cargall.close();
             comprados.close();
