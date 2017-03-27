@@ -6,12 +6,12 @@
 package Interfaces;
 
 import Clases.CrearCheques;
+import Clases.conectar;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import Clases.conectar;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -22,14 +22,14 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Tserng
  */
-public class Listadodepositos extends javax.swing.JFrame {
+public class Listadenotas extends javax.swing.JFrame {
 
     /**
-     * Creates new form Listadodepositos
+     * Creates new form Listadenotas
      */
-    public Listadodepositos() {
+    public Listadenotas() {
         initComponents();
-        Date date = new Date();
+         Date date = new Date();
         jDateChooserFechaInicio.setDateFormatString("dd/MM/yyyy");
         jDateChooserFechaFin.setDateFormatString("dd/MM/yyyy");
         jDateChooserFechaInicio.setDate(date);
@@ -52,7 +52,7 @@ public class Listadodepositos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jDateChooserFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        cuenta = new javax.swing.JComboBox();
+        Cuenta = new javax.swing.JComboBox();
         jButtonImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,7 +92,7 @@ public class Listadodepositos extends javax.swing.JFrame {
                     .addComponent(jDateChooserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -104,7 +104,7 @@ public class Listadodepositos extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cuenta))
+                        .addComponent(Cuenta))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -133,7 +133,7 @@ public class Listadodepositos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +142,7 @@ public class Listadodepositos extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonImprimir)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,17 +183,17 @@ public class Listadodepositos extends javax.swing.JFrame {
             String  mesf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.MONTH) + 1);
             String yearf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.YEAR));
             String  fechafin = (yearf + "-" + mesf+ "-" + diaf);
-            //---------fin de obtener la fecha       
-           String cuent=cuenta.getSelectedItem().toString();
-                Map<String, Object> params = new HashMap<String, Object>();
-                //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
-                String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Depositos.jrxml";  
-                JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
-                params.put("fechainicio", fechainicio);
-                params.put("fechafin", fechafin); 
-                params.put("cuent", cuent);
-                JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
-                JasperViewer.viewReport(jasperPrint, false);            
+            //---------fin de obtener la fecha
+            String cuent=Cuenta.getSelectedItem().toString();
+            Map<String, Object> params = new HashMap<String, Object>();
+            //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
+            String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Notasdebitocredito.jrxml";  
+            JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+            params.put("fechainicio", fechainicio);
+            params.put("fechafin", fechafin);
+            params.put("cuent", cuent);
+            JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
+            JasperViewer.viewReport(jasperPrint, false);
 
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
@@ -205,8 +205,9 @@ public class Listadodepositos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        CrearCheques cr = new CrearCheques();
-        cr.llenarcomboreportedeposito();
+          CrearCheques cr = new CrearCheques();
+        cr.llenarcomboreportenotas();
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -226,26 +227,26 @@ public class Listadodepositos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Listadodepositos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listadenotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Listadodepositos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listadenotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Listadodepositos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listadenotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Listadodepositos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listadenotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Listadodepositos().setVisible(true);
+                new Listadenotas().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JComboBox cuenta;
+    public static javax.swing.JComboBox Cuenta;
     private javax.swing.JButton jButtonImprimir;
     private com.toedter.calendar.JDateChooser jDateChooserFechaFin;
     private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;

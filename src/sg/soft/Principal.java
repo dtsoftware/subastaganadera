@@ -15,7 +15,8 @@ import Interfaces.Facturacion;
 import Interfaces.FacturarC;
 import Interfaces.FacturarV;
 import Interfaces.ImprimirConciliacion;
-import Interfaces.Listadodepositos;
+import Interfaces.Listadenotas;
+import Interfaces.Listadodedepositos;
 import Interfaces.MantChk;
 import Interfaces.MantDepositos;
 import Interfaces.MantNotas;
@@ -129,7 +130,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu8 = new javax.swing.JMenu();
         jMenuItemListarcheques = new javax.swing.JMenuItem();
         jMenuItemDepositos = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItemNotas = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem25 = new javax.swing.JMenuItem();
@@ -516,8 +517,13 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu8.add(jMenuItemDepositos);
 
-        jMenuItem23.setText("Listas Notas Debito/Credito");
-        jMenu8.add(jMenuItem23);
+        jMenuItemNotas.setText("Listas Notas Debito/Credito");
+        jMenuItemNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNotasActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItemNotas);
 
         jMenuItem24.setText("Conciliaciones Bancarias");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -824,9 +830,15 @@ fact.setVisible(true);
 
     private void jMenuItemDepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDepositosActionPerformed
         // TODO add your handling code here:
-        Listadodepositos list = new Listadodepositos();
+        Listadodedepositos list = new Listadodedepositos();
         list.setVisible(true);
     }//GEN-LAST:event_jMenuItemDepositosActionPerformed
+
+    private void jMenuItemNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNotasActionPerformed
+        // TODO add your handling code here:
+        Listadenotas list = new Listadenotas();
+        list.setVisible(true);
+    }//GEN-LAST:event_jMenuItemNotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -904,7 +916,6 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
-    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
@@ -924,6 +935,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItemDepositos;
     private javax.swing.JMenuItem jMenuItemListadeusuarios;
     private javax.swing.JMenuItem jMenuItemListarcheques;
+    private javax.swing.JMenuItem jMenuItemNotas;
     private javax.swing.JMenuItem jMenuItemProveedores;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
