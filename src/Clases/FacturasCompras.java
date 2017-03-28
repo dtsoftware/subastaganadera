@@ -10,10 +10,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -267,4 +279,44 @@ public void guardarfactura(){
     modelocentrar8.setHorizontalAlignment(SwingConstants.RIGHT); Facturacion.jTableAnimalesVendidos.getColumnModel().getColumn(8).setCellRenderer(modelocentrar8); 
 
  }
+  
+  
+         public void imprimirfactura(Integer nfactura){
+    // JOptionPane.showMessageDialog(null,"Se Genero");
+    conectar conect = new conectar(); 
+    conect.conexion();
+    PrintService[] printService = PrintServiceLookup.lookupPrintServices(null, null);
+    PrintService impresora = (PrintService) JOptionPane.showInputDialog(null, "Eliga impresora:",
+                "Imprimir Reporte", JOptionPane.QUESTION_MESSAGE, null, printService, printService[1]);       
+       //JOptionPane.showMessageDialog(null,"Se Genero en la66 " + printService);
+       // PrinterJob job = PrinterJob.getPrinterJob();
+    if( impresora!= null)//si existen impresoras
+        {           
+                      try {
+                   
+                    JasperReport jasperReport;
+                    JasperPrint jasperPrint;
+                
+                     Map<String, Object> params = new HashMap<String, Object>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Facturadecompra.jrxml";  
+                    jasperReport =JasperCompileManager.compileReport(ruta);
+                    params.put("nfactura", nfactura);
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
+                  JasperViewer.viewReport(jasperPrint, false);
+                   //se manda a la impresora
+                   JRPrintServiceExporter jrprintServiceExporter = new JRPrintServiceExporter();
+                   jrprintServiceExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint );
+                   jrprintServiceExporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, impresora );
+                   //jrprintServiceExporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
+                   jrprintServiceExporter.exportReport();
+                  
+                JOptionPane.showMessageDialog(null,"Se Genero en la " + impresora);
+                 } catch (Exception ex) {
+                    System.err.println("Error JRException: " + ex.getMessage());
+                 }
+                              
+            }else {
+               JOptionPane.showMessageDialog(null,"El Proceso Ha Sido Cancelado O no Hay Impresoras Instaladas");
+           }
+        }
 }

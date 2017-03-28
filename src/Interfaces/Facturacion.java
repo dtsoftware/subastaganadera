@@ -772,8 +772,14 @@ public class Facturacion extends javax.swing.JFrame {
                Facturacion.idcomprador.setText("0");
                      animalesregistrados Acomprados = new animalesregistrados();
         Acomprados.cargaracomprados();
-        FacturasCompras ch = new FacturasCompras();        
-        Facturacion.NumFactura.setText(ch.BuscarUltFact().toString());    
+                 FacturasCompras ch = new FacturasCompras();   
+            Facturacion.NumFactura.setText(ch.BuscarUltFact().toString());  
+        Integer factura = (Integer.parseInt(ch.BuscarUltFact().toString())-1);
+         FacturasCompras fact = new FacturasCompras();
+          fact.imprimirfactura(factura);
+                    
+
+ 
         // imprimir Reporte
         
                 // TODO add your handling code here:
