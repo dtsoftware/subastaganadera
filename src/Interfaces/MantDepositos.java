@@ -249,7 +249,7 @@ public static String Orden;
 
         Estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Estado.setForeground(new java.awt.Color(0, 0, 255));
-        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depositado", "Transito", "Conciliado" }));
+        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Depositado", "Transito", "Conciliado", "Anulado" }));
         jPanel1.add(Estado);
         Estado.setBounds(370, 500, 115, 47);
 

@@ -21,10 +21,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrearNotas {
     
-     PreparedStatement guardarbanco, UltimoRg, cargar;
+     PreparedStatement guardarbanco, UltimoRg, cargar, cargar2, ActEdetalle;
     String idbanco,nombre,cuenta,detalle,estado, tipo;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1, rsnotas;
+    ResultSet aux, rs, aux1, rsnotas, rs2;
     Integer ultimo;
     Object[] filas1 = new Object[7];  
     
@@ -58,6 +58,8 @@ public class CrearNotas {
         guardarbanco.setString(6, tipo);
         guardarbanco.setString(7, Estado);
         guardarbanco.execute();
+        ActualizarSaldo(monto, tipo, cuenta);
+        
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException | HeadlessException ex) {
@@ -255,25 +257,45 @@ public void llenarcombo(){
      conectar conect = new conectar(); 
      conect.conexion();  
     
- 
+     String EActual;
+     Double monto;
     //pasamos la consulta al preparestatement
     
     for (int i = 0; i < MantNotas.jTablenotas.getRowCount(); i++) {
 
     if( MantNotas.jTablenotas.getValueAt(i, 7)!=null){ 
+        EActual = MantNotas.jTablenotas.getValueAt(i, 6).toString();
              // creamos la consulta
      consulta="UPDATE notas SET Estado =?, Tipo =?  WHERE idNotas= ? ";
          int Codigo;
-         String Tipo;
+         String Tipo, cuenta1;
+         cuenta1 = MantNotas.cuenta.getSelectedItem().toString();
          Estado = MantNotas.Estado.getSelectedItem().toString();
          Codigo = Integer.parseInt(MantNotas.jTablenotas.getValueAt(i, 0).toString());
          Tipo = MantNotas.jTablenotas.getValueAt(i, 5).toString();
+         monto = Double.valueOf(MantNotas.jTablenotas.getValueAt(i, 4).toString());
      cargar=conect.con.prepareStatement(consulta);
      //pasamos al resulset la consulta preparada y ejecutamos
+     
      cargar.setString(1, Estado); 
      cargar.setString(2, Tipo); 
      cargar.setInt(3, Codigo);
-      cargar.executeUpdate();  
+     
+      cargar.executeUpdate();
+      if ("Registrada".equals(EActual)){
+        if("Anulada".equals(Estado)){
+         monto = (monto*-1);
+         ActualizarSaldo(monto, Tipo, cuenta1);
+        }  
+      }
+      
+      if ("Anulada".equals(EActual)){
+        if("Registrada".equals(Estado)){
+         monto = (monto);   
+         ActualizarSaldo(monto, Tipo, cuenta1);
+        }  
+      }
+      
                         }else{
                             continue;
                         }
@@ -288,5 +310,44 @@ public void llenarcombo(){
         
         }
        
-   } 
+   }
+
+   public void ActualizarSaldo(Double monto, String tipo, String cuenta){
+               //ACTUALIZAR SALDO EN CUENTA BANCARIA
+                  try {
+              conectar conect = new conectar(); 
+     conect.conexion();    
+        String consulta1, CActualizar; 
+        Double SaldoNuevo = 0.00, SaldoActual = 0.00;
+        consulta1="SELECT  SaldoActual FROM cuentas where Nombre ='"+cuenta+"'";    
+        cargar2=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+        rs2=cargar2.executeQuery(consulta1);
+            if (rs2.next()){
+                SaldoActual = (Double.valueOf(rs2.getString("SaldoActual")));
+            }   
+            
+            if ("CREDITO".equals(tipo)){
+                SaldoNuevo = (SaldoActual + monto);
+            }
+            if ("DEBITO".equals(tipo)){
+                SaldoNuevo = (SaldoActual - monto);
+            }
+
+            CActualizar="UPDATE cuentas SET SaldoActual =? WHERE Nombre= '"+cuenta+"'";
+            //pasamos la consulta al preparestatement
+            ActEdetalle=conect.con.prepareStatement(CActualizar);
+            ActEdetalle.setDouble(1, SaldoNuevo);
+            ActEdetalle.executeUpdate();  
+            ActEdetalle.close();
+            rs2.close();
+            cargar2.close();
+                conect.desconectar(); 
+        }catch(SQLException ex){
+            
+       JOptionPane.showMessageDialog(null,"Error" +ex);  
+        
+        }
+   }
+           
 }

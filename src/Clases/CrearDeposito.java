@@ -21,10 +21,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrearDeposito {
     
-   PreparedStatement guardarbanco, UltimoRg, cargar;
+   PreparedStatement guardarbanco, UltimoRg, cargar, ActEdetalle, cargar2;
     String idbanco,nombre,cuenta,detalle,estado;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1, rsdeposito;
+    ResultSet aux, rs, aux1, rsdeposito, rs2;
     Integer ultimodeposito;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[8];  
@@ -59,6 +59,30 @@ public class CrearDeposito {
         guardarbanco.setDouble(5, monto);
         guardarbanco.setString(6, Estado);
         guardarbanco.execute();
+        
+        //ACTUALIZAR SALDO EN CUENTA BANCARIA
+            
+        String consulta1, CActualizar; 
+        Double SaldoNuevo = 0.00, SaldoActual = 0.00;
+             
+        consulta1="SELECT  SaldoActual FROM cuentas where Nombre ='"+ cuenta +"'";    
+        cargar2=conexcio.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+        rs2=cargar2.executeQuery(consulta1);
+            if (rs2.next()){
+                SaldoActual = (Double.valueOf(rs2.getString("SaldoActual")));
+            }   
+            
+            SaldoNuevo = (SaldoActual + monto);
+            CActualizar="UPDATE cuentas SET SaldoActual =? WHERE Nombre= '"+cuenta+"'";
+            //pasamos la consulta al preparestatement
+            ActEdetalle=conexcio.con.prepareStatement(CActualizar);
+            ActEdetalle.setDouble(1, SaldoNuevo);
+            ActEdetalle.executeUpdate();  
+            ActEdetalle.close();
+            rs2.close();
+            cargar2.close();
+        
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException | HeadlessException ex) {

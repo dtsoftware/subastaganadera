@@ -35,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Tserng
  */
 public class Cheque {
-    PreparedStatement cargar2,guardar,numerocheque;
+    PreparedStatement cargar2,guardar,numerocheque, ActEdetalle;
     ResultSet rs2,rscheque;
     Integer ultimocheque;
     public Cheque(){}
@@ -155,7 +155,8 @@ public class Cheque {
                  conectar conect = new conectar(); 
                  conect.conexion();
           try {
-          String Estado = "Impreso";     
+          String Estado = "Impreso";
+
             guardar=conect.con.prepareStatement("INSERT INTO cheques (Numero,Beneficiario,Monto,Fecha,montoletras,observacion,Cuenta,Estado,Tipo,a1,a2,a3,a4,m1,m2,d1,d2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             guardar.setString(1, numero);
             guardar.setString(2, beneficiario);
@@ -175,11 +176,36 @@ public class Cheque {
             guardar.setString(16, d1);
             guardar.setString(17, d2);
             guardar.execute();
+            
+            //ACTUALIZAR SALDO EN CUENTA BANCARIA
+            
+             String consulta1, CActualizar; 
+             Double SaldoNuevo = 0.00, SaldoActual = 0.00;
+             
+                consulta1="SELECT  SaldoActual FROM cuentas where Nombre ='"+ CuentaB +"'";    
+                cargar2=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+                rs2=cargar2.executeQuery(consulta1);
+                if (rs2.next()){
+                    SaldoActual = (Double.valueOf(rs2.getString("SaldoActual")));
+                }   
+            
+                    SaldoNuevo = (SaldoActual - monto);
+                    CActualizar="UPDATE cuentas SET SaldoActual =? WHERE Nombre= '"+CuentaB+"'";
+                    //pasamos la consulta al preparestatement
+                    ActEdetalle=conect.con.prepareStatement(CActualizar);
+                    ActEdetalle.setDouble(1, SaldoNuevo);
+                    ActEdetalle.executeUpdate();  
+                    ActEdetalle.close();
+                    rs2.close();
+                    cargar2.close();
+                    
+                    
             JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente");
             Cheque ch = new Cheque();
             ch.imprimircheque2(numero);
             
-          
+
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex.getMessage());
                 
