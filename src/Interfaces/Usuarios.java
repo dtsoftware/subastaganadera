@@ -101,7 +101,9 @@ public class Usuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRO DE USUARIOS");
-        setMinimumSize(new java.awt.Dimension(935, 510));
+        setMaximumSize(new java.awt.Dimension(839, 484));
+        setMinimumSize(new java.awt.Dimension(839, 484));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -116,10 +118,10 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
                 .addComponent(jLabel1)
-                .addGap(178, 178, 178))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +132,7 @@ public class Usuarios extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 11, 910, 41);
+        jPanel1.setBounds(10, 11, 820, 41);
 
         jPanel2.setBackground(java.awt.Color.white);
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -143,7 +145,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtcodigo.setMinimumSize(new java.awt.Dimension(187, 25));
         txtcodigo.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtcodigo);
-        txtcodigo.setBounds(193, 26, 95, 25);
+        txtcodigo.setBounds(170, 30, 95, 25);
 
         txtnombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtnombre.setEnabled(false);
@@ -151,7 +153,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtnombre.setMinimumSize(new java.awt.Dimension(187, 25));
         txtnombre.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtnombre);
-        txtnombre.setBounds(193, 60, 187, 24);
+        txtnombre.setBounds(170, 60, 187, 24);
 
         txtapellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtapellido.setEnabled(false);
@@ -159,7 +161,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtapellido.setMinimumSize(new java.awt.Dimension(187, 25));
         txtapellido.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtapellido);
-        txtapellido.setBounds(193, 97, 187, 28);
+        txtapellido.setBounds(170, 100, 187, 28);
 
         txtusuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtusuario.setEnabled(false);
@@ -167,7 +169,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtusuario.setMinimumSize(new java.awt.Dimension(187, 25));
         txtusuario.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtusuario);
-        txtusuario.setBounds(193, 143, 187, 25);
+        txtusuario.setBounds(170, 140, 187, 25);
 
         txtcontraseña.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcontraseña.setEnabled(false);
@@ -175,7 +177,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtcontraseña.setMinimumSize(new java.awt.Dimension(187, 25));
         txtcontraseña.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtcontraseña);
-        txtcontraseña.setBounds(193, 187, 187, 25);
+        txtcontraseña.setBounds(170, 180, 187, 25);
 
         txtcorreo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcorreo.setEnabled(false);
@@ -183,7 +185,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtcorreo.setMinimumSize(new java.awt.Dimension(187, 25));
         txtcorreo.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtcorreo);
-        txtcorreo.setBounds(507, 59, 187, 25);
+        txtcorreo.setBounds(470, 60, 120, 25);
 
         txtrecontraseña.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtrecontraseña.setEnabled(false);
@@ -196,7 +198,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtrecontraseña);
-        txtrecontraseña.setBounds(193, 220, 185, 25);
+        txtrecontraseña.setBounds(170, 220, 185, 25);
 
         txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtdireccion.setEnabled(false);
@@ -204,13 +206,13 @@ public class Usuarios extends javax.swing.JFrame {
         txtdireccion.setMinimumSize(new java.awt.Dimension(187, 25));
         txtdireccion.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtdireccion);
-        txtdireccion.setBounds(193, 259, 500, 25);
+        txtdireccion.setBounds(170, 260, 420, 25);
 
         cmb_tipousuario.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         cmb_tipousuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "SUPERVISOR", "USUARIO" }));
         cmb_tipousuario.setEnabled(false);
         jPanel2.add(cmb_tipousuario);
-        cmb_tipousuario.setBounds(507, 186, 187, 28);
+        cmb_tipousuario.setBounds(470, 190, 120, 28);
 
         btn_examinar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_examinar.setText("EXAMINAR");
@@ -221,7 +223,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btn_examinar);
-        btn_examinar.setBounds(720, 260, 170, 23);
+        btn_examinar.setBounds(620, 260, 170, 23);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("ID USUARIO:");
@@ -231,12 +233,12 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel3.setText("NOMBRE:");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(32, 59, 47, 13);
+        jLabel3.setBounds(30, 70, 47, 13);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel4.setText("APELLIDOS:");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(32, 97, 63, 13);
+        jLabel4.setBounds(30, 110, 63, 13);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel5.setText("DIRECCION:");
@@ -246,27 +248,27 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel6.setText("E-MAIL:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(422, 66, 41, 13);
+        jLabel6.setBounds(380, 70, 41, 13);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel7.setText("TELEFONO:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(422, 111, 57, 13);
+        jLabel7.setBounds(380, 110, 57, 13);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel8.setText("CELULAR:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(422, 150, 50, 13);
+        jLabel8.setBounds(380, 150, 50, 13);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel9.setText("TIPO USUARIO:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(422, 194, 81, 13);
+        jLabel9.setBounds(380, 190, 81, 13);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel10.setText("ESTADO:");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(422, 227, 70, 13);
+        jLabel10.setBounds(380, 230, 70, 13);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel11.setText("CONTRASEÑA:");
@@ -286,23 +288,23 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel14.setText("FOTOGRAFIA");
         jPanel2.add(jLabel14);
-        jLabel14.setBounds(760, 40, 70, 13);
+        jLabel14.setBounds(660, 40, 70, 13);
 
         txttelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txttelefono.setEnabled(false);
         jPanel2.add(txttelefono);
-        txttelefono.setBounds(507, 106, 187, 21);
+        txttelefono.setBounds(470, 110, 120, 21);
 
         txtcelular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcelular.setEnabled(false);
         jPanel2.add(txtcelular);
-        txtcelular.setBounds(507, 144, 187, 24);
+        txtcelular.setBounds(470, 150, 120, 24);
 
         cmb_estado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         cmb_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
         cmb_estado.setEnabled(false);
         jPanel2.add(cmb_estado);
-        cmb_estado.setBounds(510, 225, 180, 20);
+        cmb_estado.setBounds(470, 230, 120, 20);
 
         imagen.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 0)));
 
@@ -313,22 +315,27 @@ public class Usuarios extends javax.swing.JFrame {
         imagen.setLayout(imagenLayout);
         imagenLayout.setHorizontalGroup(
             imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_foto, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagenLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         imagenLayout.setVerticalGroup(
             imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_foto, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagenLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbl_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.add(imagen);
-        imagen.setBounds(710, 60, 185, 150);
+        imagen.setBounds(610, 60, 185, 150);
 
         txtrutaimagen.setEnabled(false);
         jPanel2.add(txtrutaimagen);
-        txtrutaimagen.setBounds(710, 220, 185, 30);
+        txtrutaimagen.setBounds(610, 220, 185, 30);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 60, 910, 305);
+        jPanel2.setBounds(10, 60, 820, 305);
 
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -345,7 +352,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_agregar);
-        btn_agregar.setBounds(12, 13, 111, 72);
+        btn_agregar.setBounds(10, 10, 90, 72);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Developmer Folder.png"))); // NOI18N
@@ -359,7 +366,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton2);
-        jButton2.setBounds(141, 13, 112, 72);
+        jButton2.setBounds(120, 10, 90, 72);
 
         btn_eliminar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
@@ -373,7 +380,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_eliminar);
-        btn_eliminar.setBounds(271, 13, 105, 72);
+        btn_eliminar.setBounds(230, 10, 80, 72);
 
         btn_listar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Product-sale-report-icon.png"))); // NOI18N
@@ -386,7 +393,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_listar);
-        btn_listar.setBounds(394, 13, 102, 72);
+        btn_listar.setBounds(330, 10, 80, 72);
 
         btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
@@ -400,7 +407,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_guardar);
-        btn_guardar.setBounds(514, 13, 125, 72);
+        btn_guardar.setBounds(430, 10, 90, 72);
 
         btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
@@ -413,7 +420,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_regresar);
-        btn_regresar.setBounds(788, 13, 110, 72);
+        btn_regresar.setBounds(650, 10, 140, 72);
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/certificate-icon.png"))); // NOI18N
@@ -422,10 +429,10 @@ public class Usuarios extends javax.swing.JFrame {
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel3.add(jButton8);
-        jButton8.setBounds(657, 13, 113, 72);
+        jButton8.setBounds(540, 10, 90, 72);
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(10, 371, 910, 100);
+        jPanel3.setBounds(10, 371, 820, 100);
 
         pack();
         setLocationRelativeTo(null);

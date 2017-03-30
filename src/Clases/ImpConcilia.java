@@ -56,9 +56,9 @@ public class ImpConcilia {
                      Map<String, Object> params = new HashMap<>();
                     String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "RptConciliacion.jrxml";  
                     jasperReport =JasperCompileManager.compileReport(ruta);
-                    params.put("cuenta", cuenta1);
-                    params.put("ano", ano1);
-                    params.put("mes", mes1);
+                    params.put("cuenta1", cuenta1);
+                    params.put("ano1", ano1);
+                    params.put("mes1", mes1);
                     jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
                   JasperViewer.viewReport(jasperPrint, false);
                    //se manda a la impresora

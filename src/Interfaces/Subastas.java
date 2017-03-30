@@ -127,7 +127,7 @@ public class Subastas extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -140,7 +140,7 @@ public class Subastas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel1)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +151,7 @@ public class Subastas extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(null);
 
         jTextFieldNombredelcomprador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -225,13 +225,13 @@ public class Subastas extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(20, 390, 720, 120);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Product-sale-report-icon.png"))); // NOI18N
-        jButton2.setText("LISTA COMPRADORES");
+        jButton2.setText("COMPRADORES");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(jButton2);
-        jButton2.setBounds(760, 280, 112, 50);
+        jButton2.setBounds(760, 270, 110, 60);
 
         jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
@@ -249,11 +249,11 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonGuardar);
-        jButtonGuardar.setBounds(760, 450, 112, 50);
+        jButtonGuardar.setBounds(760, 440, 112, 60);
 
-        jButtonListaIndividual.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButtonListaIndividual.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonListaIndividual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
-        jButtonListaIndividual.setText("LISTA INDIVIDUAL");
+        jButtonListaIndividual.setText("INDIVIDUAL");
         jButtonListaIndividual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonListaIndividual.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonListaIndividual.addActionListener(new java.awt.event.ActionListener() {
@@ -262,7 +262,7 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonListaIndividual);
-        jButtonListaIndividual.setBounds(760, 340, 112, 50);
+        jButtonListaIndividual.setBounds(760, 330, 110, 60);
 
         jButtonNosubastado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButtonNosubastado.setForeground(new java.awt.Color(0, 0, 255));
@@ -286,7 +286,7 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btn_salir);
-        btn_salir.setBounds(760, 510, 112, 50);
+        btn_salir.setBounds(760, 500, 112, 60);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
@@ -684,6 +684,8 @@ public class Subastas extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonLista);
         jButtonLista.setBounds(650, 280, 80, 30);
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jSeparator2);
         jSeparator2.setBounds(20, 258, 850, 10);
 
@@ -696,7 +698,7 @@ public class Subastas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonLimpiar);
-        jButtonLimpiar.setBounds(760, 400, 110, 40);
+        jButtonLimpiar.setBounds(760, 390, 110, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

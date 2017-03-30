@@ -103,6 +103,14 @@ public void cargarfacturas(){
                     filas[5]=todos.getString("Estado");                    
        tabla.addRow(filas);
     }
+    
+    Double Suma = 0.00;
+    for (int i = 0; i < Recibos.jTableFacturas.getRowCount(); i++) {
+        Suma = Suma + (Double.valueOf(Recibos.jTableFacturas.getValueAt(i, 3).toString()));
+    }
+      
+    Recibos.SaldoT.setText(String.valueOf(Suma));
+    
     todos.close();
     facturas.close();
     conect.desconectar();
