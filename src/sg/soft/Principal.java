@@ -24,6 +24,7 @@ import Interfaces.NotasDC;
 import Interfaces.Proveedor;
 import Interfaces.ReciboCaja;
 import Interfaces.Recibos;
+import Interfaces.RegCaja;
 import Interfaces.Subastas;
 import Interfaces.Traspaso;
 import Interfaces.Usuarios;
@@ -105,7 +106,9 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu14 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenu11 = new javax.swing.JMenu();
@@ -361,14 +364,30 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenu2.setText("Banco     ");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Money-icon.png"))); // NOI18N
-        jMenuItem7.setText("Caja Menuda");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jMenu14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Money-icon.png"))); // NOI18N
+        jMenu14.setText("Caja Menuda");
+
+        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem8.setForeground(new java.awt.Color(255, 102, 0));
+        jMenuItem8.setText("Crear");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu14.add(jMenuItem8);
+
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem9.setForeground(new java.awt.Color(255, 102, 0));
+        jMenuItem9.setText("Registros de Caja");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu14.add(jMenuItem9);
+
+        jMenu2.add(jMenu14);
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/money-icon (1).png"))); // NOI18N
         jMenuItem6.setText("Cuentas");
@@ -383,6 +402,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cheque-icon.png"))); // NOI18N
         jMenu11.setText("Cheques");
 
+        jMenuItem12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem12.setForeground(new java.awt.Color(255, 102, 0));
         jMenuItem12.setText("Crear");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,6 +412,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu11.add(jMenuItem12);
 
+        jMenuItem31.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem31.setForeground(new java.awt.Color(255, 102, 0));
         jMenuItem31.setText("Mantenimiento");
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,6 +427,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/safe-icon.png"))); // NOI18N
         jMenu12.setText("Depositos");
 
+        jMenuItem33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem33.setForeground(new java.awt.Color(255, 102, 0));
         jMenuItem33.setText("Registrar");
         jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,6 +437,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu12.add(jMenuItem33);
 
+        jMenuItem34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem34.setForeground(new java.awt.Color(255, 102, 0));
         jMenuItem34.setText("Mantenimiento");
         jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,6 +452,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Bank-icon.png"))); // NOI18N
         jMenu13.setText("Notas Debito/Credito");
 
+        jMenuItem35.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem35.setForeground(new java.awt.Color(255, 102, 0));
         jMenuItem35.setText("Registrar");
         jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,6 +462,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu13.add(jMenuItem35);
 
+        jMenuItem36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem36.setForeground(new java.awt.Color(255, 102, 0));
         jMenuItem36.setText("Mantenimiento");
         jMenuItem36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -733,11 +764,6 @@ fact.setVisible(true);
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem36ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       ReciboCaja fact = new ReciboCaja();
-       fact.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
         // TODO add your handling code here:
          conectar conect = new conectar(); 
@@ -840,6 +866,16 @@ fact.setVisible(true);
         list.setVisible(true);
     }//GEN-LAST:event_jMenuItemNotasActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+             ReciboCaja fact = new ReciboCaja();
+       fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+          RegCaja fact = new RegCaja();
+       fact.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -894,6 +930,7 @@ fact.setVisible(true);
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu14;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -929,7 +966,8 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemCuentasbancarias;
     private javax.swing.JMenuItem jMenuItemDepositos;
