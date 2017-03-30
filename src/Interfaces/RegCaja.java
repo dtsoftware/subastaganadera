@@ -51,6 +51,8 @@ public class RegCaja extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         lbl_foto = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -69,7 +71,7 @@ public class RegCaja extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("FECHA:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(337, 34, 43, 15);
+        jLabel2.setBounds(310, 40, 43, 15);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("TIPO DE REGISTRO:");
@@ -84,7 +86,7 @@ public class RegCaja extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("MONTO:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(337, 84, 48, 15);
+        jLabel5.setBounds(310, 90, 48, 15);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -106,7 +108,7 @@ public class RegCaja extends javax.swing.JFrame {
         jScrollPane1.setViewportView(detalle);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(22, 195, 544, 90);
+        jScrollPane1.setBounds(22, 225, 780, 60);
 
         ID.setEditable(false);
         jPanel2.add(ID);
@@ -114,9 +116,9 @@ public class RegCaja extends javax.swing.JFrame {
 
         monto.setEditable(false);
         jPanel2.add(monto);
-        monto.setBounds(410, 80, 152, 31);
+        monto.setBounds(432, 80, 130, 31);
         jPanel2.add(fecha);
-        fecha.setBounds(410, 30, 152, 32);
+        fecha.setBounds(430, 30, 130, 32);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -196,7 +198,7 @@ public class RegCaja extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("DESCRIPCION:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(20, 170, 88, 15);
+        jLabel7.setBounds(20, 200, 88, 15);
 
         tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GASTO", "INGRESO" }));
@@ -224,10 +226,19 @@ public class RegCaja extends javax.swing.JFrame {
         jScrollPane2.setBounds(20, 380, 780, 170);
 
         lbl_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/CLIENTES.png"))); // NOI18N
+        lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cAJArEG.JPG"))); // NOI18N
         lbl_foto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel2.add(lbl_foto);
-        lbl_foto.setBounds(580, 30, 220, 260);
+        lbl_foto.setBounds(570, 30, 220, 180);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setText("FORMA DE PAGO:");
+        jPanel2.add(jLabel8);
+        jLabel8.setBounds(310, 140, 110, 14);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EFECTIVO", "CHEQUE" }));
+        jPanel2.add(jComboBox1);
+        jComboBox1.setBounds(430, 130, 130, 30);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -342,6 +353,7 @@ public class RegCaja extends javax.swing.JFrame {
     public static javax.swing.JTextArea detalle;
     public static com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -349,6 +361,7 @@ public class RegCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
