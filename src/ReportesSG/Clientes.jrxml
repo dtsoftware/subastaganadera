@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="46ca2414-6d23-4a13-b0fd-f8d1cec9e000">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -36,24 +36,24 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement mode="Transparent" x="4" y="0" width="748" height="74" uuid="6e64b08b-6c4c-4b23-8b8c-de39b35b4e4e"/>
+				<reportElement mode="Transparent" x="2" y="0" width="748" height="74" uuid="6e64b08b-6c4c-4b23-8b8c-de39b35b4e4e"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="570" y="28" width="131" height="20" uuid="40686925-219e-49f7-96f1-8715476b0f9c"/>
+				<reportElement x="532" y="34" width="131" height="20" uuid="40686925-219e-49f7-96f1-8715476b0f9c"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono: 959-0112]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="121" y="3" width="606" height="33" uuid="bf3f6e4d-335e-4e96-b4d6-3b9415124564"/>
+				<reportElement x="77" y="9" width="606" height="33" uuid="bf3f6e4d-335e-4e96-b4d6-3b9415124564"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SUBASTA GANADERA VERAGUENSE, S.A.]]></text>
 			</staticText>
 			<image>
-				<reportElement x="24" y="3" width="55" height="43" uuid="6e718266-59fb-4f8f-bf4b-9b36cb8e1101"/>
+				<reportElement x="19" y="9" width="55" height="43" uuid="6e718266-59fb-4f8f-bf4b-9b36cb8e1101"/>
 				<imageExpression><![CDATA["C:\\SG-SOFT\\imagen\\photo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
@@ -71,7 +71,7 @@
 				<text><![CDATA[LISTADO DE CLIENTES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="519" y="54" width="214" height="20" uuid="8b311f21-80e4-4ea4-b44a-0b6ed9284670"/>
+				<reportElement x="530" y="54" width="214" height="20" uuid="8b311f21-80e4-4ea4-b44a-0b6ed9284670"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
