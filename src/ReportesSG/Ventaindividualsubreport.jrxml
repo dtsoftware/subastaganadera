@@ -80,11 +80,7 @@
 				<text><![CDATA[Ferrete]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="441" y="0" width="36" height="20" uuid="69085035-bc5f-41bb-9eca-8c62fe797040"/>
-				<text><![CDATA[P.Neto]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="239" y="0" width="34" height="20" uuid="4293d4c2-7ce4-4975-90be-f351d2e58bcc"/>
+				<reportElement x="236" y="0" width="34" height="20" uuid="4293d4c2-7ce4-4975-90be-f351d2e58bcc"/>
 				<text><![CDATA[Color]]></text>
 			</staticText>
 			<staticText>
@@ -97,19 +93,19 @@
 				<text><![CDATA[Comprador]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="277" y="0" width="31" height="20" uuid="cc270003-7a5a-4ac7-b333-ebc3e0787bee"/>
+				<reportElement x="276" y="0" width="31" height="20" uuid="cc270003-7a5a-4ac7-b333-ebc3e0787bee"/>
 				<text><![CDATA[Sexo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="359" y="0" width="27" height="20" uuid="5a138bb5-54fe-4af7-95b5-f484d5a091e6"/>
-				<text><![CDATA[Neto]]></text>
+				<reportElement x="359" y="0" width="51" height="20" uuid="5a138bb5-54fe-4af7-95b5-f484d5a091e6"/>
+				<text><![CDATA[Peso Neto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="201" y="0" width="28" height="20" uuid="6027bc67-3d28-448f-9493-86ef8bc443bd"/>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="395" y="0" width="40" height="20" uuid="638ecbca-d90d-4be9-ac79-2ff338178510"/>
+				<reportElement x="424" y="0" width="40" height="20" uuid="638ecbca-d90d-4be9-ac79-2ff338178510"/>
 				<text><![CDATA[PxKilo]]></text>
 			</staticText>
 		</band>
@@ -121,11 +117,11 @@
 				<textFieldExpression><![CDATA[$F{idAnimal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="66" y="2" width="59" height="20" uuid="f759e440-72ae-44a9-9de0-fa663d1ebf32"/>
+				<reportElement x="66" y="2" width="60" height="20" uuid="f759e440-72ae-44a9-9de0-fa663d1ebf32"/>
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="2" width="58" height="20" uuid="e1eceb21-26e9-4e9f-8e62-697ef1d862a0"/>
+				<reportElement x="132" y="2" width="61" height="20" uuid="e1eceb21-26e9-4e9f-8e62-697ef1d862a0"/>
 				<textFieldExpression><![CDATA[$F{Apellido}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -133,11 +129,11 @@
 				<textFieldExpression><![CDATA[$F{Tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="239" y="3" width="34" height="20" uuid="c13870f6-e9f3-4e55-b88d-29ea97d0bbbb"/>
+				<reportElement x="236" y="3" width="34" height="20" uuid="c13870f6-e9f3-4e55-b88d-29ea97d0bbbb"/>
 				<textFieldExpression><![CDATA[$F{Color}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="277" y="3" width="38" height="20" uuid="94e4b0b4-5b24-47e9-9359-729596335598"/>
+				<reportElement x="275" y="3" width="38" height="20" uuid="94e4b0b4-5b24-47e9-9359-729596335598"/>
 				<textFieldExpression><![CDATA[$F{Sexo}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -145,11 +141,11 @@
 				<textFieldExpression><![CDATA[$F{Ferrete}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="359" y="3" width="27" height="20" uuid="45881e49-4295-4273-b744-f211799a22b6"/>
+				<reportElement x="359" y="3" width="51" height="20" uuid="45881e49-4295-4273-b744-f211799a22b6"/>
 				<textFieldExpression><![CDATA[$F{Peso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="395" y="3" width="40" height="20" uuid="05438a1d-2a73-474a-8581-a0750db58030"/>
+				<reportElement x="424" y="2" width="53" height="20" uuid="05438a1d-2a73-474a-8581-a0750db58030"/>
 				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -161,14 +157,14 @@
 	<columnFooter>
 		<band height="29" splitType="Stretch">
 			<textField pattern="B/: #,##0.00">
-				<reportElement x="477" y="7" width="65" height="20" uuid="0550992d-dccc-45ac-8f84-033dce548223"/>
+				<reportElement x="477" y="7" width="71" height="20" uuid="0550992d-dccc-45ac-8f84-033dce548223"/>
 				<textFieldExpression><![CDATA[$V{TotalBruto_1}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="359" y="3" width="189" height="1" uuid="42aec835-9f7d-4842-9d94-efa75561aac4"/>
 			</line>
 			<textField>
-				<reportElement x="359" y="8" width="27" height="20" uuid="fe185b0b-043a-479e-9087-5aaf0c9a472a"/>
+				<reportElement x="359" y="8" width="65" height="20" uuid="fe185b0b-043a-479e-9087-5aaf0c9a472a"/>
 				<textFieldExpression><![CDATA[$V{Peso_1}]]></textFieldExpression>
 			</textField>
 			<textField>

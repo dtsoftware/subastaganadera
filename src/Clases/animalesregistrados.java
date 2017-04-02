@@ -193,7 +193,7 @@ public class animalesregistrados {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Sexo,Color,CodVendedor,Peso,Observacion FROM entrada_detalle  where Fecha ='"+ fecha +"' ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Sexo,Color,CodVendedor,Peso,Observacion FROM entrada_detalle  where Fecha ='"+ fecha +"' ORDER BY idAnimal desc";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos

@@ -342,7 +342,7 @@ public class subastas {
     conect.conexion();
       try {
           
-    String consulta,tipo,detalle;
+    String consulta,tipo,detalle,nombrecomprador;
     Double peso,precio,valortotal;
     Integer numeroa,codcomprador,nlote;
     conect.con.setAutoCommit(false);
@@ -352,6 +352,7 @@ public class subastas {
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
     detalle=Subastas.jTextFieldDetalle.getText();
     valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
+     nombrecomprador=Subastas.jTextFieldNombredelcomprador.getText();
    // nlote= Integer.parseInt(Subastas.jTextFieldNumerodelote.getText());
     lotes lo = new lotes();
     nlote= lo.buscarultimolote();
@@ -387,7 +388,7 @@ public class subastas {
  //hasta aki
     
  //codigo para actualizar el estado en entrada detalle a subastado   
- consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?,nlote=?   WHERE idAnimal= ? and Fecha=?";
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=?,nlote=?,nombrecomprador=?   WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
     estado =conect.con.prepareStatement(consulta);
     estado.setString(1, estados);
@@ -396,8 +397,9 @@ public class subastas {
     estado.setDouble(4, precio);
     estado.setDouble(5, peso);
     estado.setInt(6, nlote);
-    estado.setInt(7, numeroa);
-    estado.setString(8, fecha);
+    estado.setString(7, nombrecomprador);
+    estado.setInt(8, numeroa);    
+    estado.setString(9, fecha);
     estado.executeUpdate(); 
  //hasta aki 
        }           
@@ -454,7 +456,7 @@ public class subastas {
      
      
      public void guardarsubasta() throws SQLException{
-    String consulta,tipo,detalle;
+    String consulta,tipo,detalle,nombrecomprador;
     Double peso,precio,valortotal;
     Integer numeroa,codcomprador;  
     conectar conect = new conectar();  
@@ -464,12 +466,14 @@ public class subastas {
     //se deshabilita el modo de confirmación automática
     conect.con.setAutoCommit(false);
     codcomprador= Integer.parseInt(Subastas.jTextFieldCodigoComprador.getText());
+    
     tipo= Subastas.jTextFieldTipo.getText();
     numeroa= Integer.parseInt(Subastas.jTextFieldNanimal.getText());
     peso= Double.parseDouble(Subastas.jTextFieldPesoNeto.getText());
     precio=Double.parseDouble(Subastas.jTextFieldPrecioPactado.getText());
     detalle=Subastas.jTextFieldDetalle.getText();
     valortotal=Double.parseDouble(Subastas.jTextFieldMontoTotal.getText());
+    nombrecomprador=Subastas.jTextFieldNombredelcomprador.getText();
     //numero=Subastas.jTextFieldNumerodelote.getText();
    // nlote= Integer.parseInt(numero);
     //-----obtener la fecha----------------------
@@ -498,7 +502,7 @@ public class subastas {
  //hasta aki
   
  //codigo para actualizar el estado en entrada detalle a subastado   
- consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=? WHERE idAnimal= ? and Fecha=?";
+ consulta="UPDATE entrada_detalle SET Estado =?, idComprador=?,TotalBruto=?,Precio=?,Peso=? , nombrecomprador=? WHERE idAnimal= ? and Fecha=?";
     //pasamos la consulta al preparestatement
     estado =conect.con.prepareStatement(consulta);
     estado.setString(1, estados);
@@ -506,9 +510,10 @@ public class subastas {
     estado.setDouble(3, valortotal);
     estado.setDouble(4, precio);
     estado.setDouble(5, peso);
+    estado.setString(6,nombrecomprador);
    // estado.setInt(6, nlote);
-    estado.setInt(6, numeroa);
-    estado.setString(7, fecha);
+    estado.setInt(7, numeroa);
+    estado.setString(8, fecha);
    
     estado.executeUpdate(); 
  //hasta aki     

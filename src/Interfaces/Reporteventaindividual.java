@@ -145,10 +145,10 @@ public class Reporteventaindividual extends javax.swing.JFrame {
          
     Map<String, Object> params = new HashMap<String, Object>();
     //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
-    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "VentaIndividual.jrxml";  
+    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Ventaporcodigo.jrxml";  
     JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
     params.put("codigo", codigo);
-     params.put("fecha", fecha);
+     params.put("fechaa", fecha);
     JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
     JasperViewer.viewReport(jasperPrint, false);
             
