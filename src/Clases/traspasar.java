@@ -159,6 +159,32 @@ public class traspasar {
     
     }
     
+     public void guardartraspasoselecionadoscomprador(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo, String nombre){
+    try{
+    String consulta2;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
+    consulta2="UPDATE entrada_detalle SET traspasado='si', idComprador=?, nombrecomprador=? WHERE Fecha =? and idAnimal=?";
+    //pasamos la consulta al preparestatement
+    detentradas=conect.con.prepareStatement(consulta2);
+    detentradas.setInt(1, nuevocodigo);
+     detentradas.setString(2, nombre);
+    detentradas.setString(3, fecha);
+    detentradas.setInt(4, idanimal);    
+    detentradas.executeUpdate(); 
+    detentradas.close(); 
+    
+    conect.desconectar(); 
+    //JOptionPane.showMessageDialog(null, "Registro De Traspaso Realizado Satisfactoriamente");
+    
+    
+    }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());    
+    }
+        
+    
+    }
+    
      public void guardartraspasoselecionados(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
     try{
     String consulta2;  
@@ -184,6 +210,31 @@ public class traspasar {
     
     }
     
+     public void guardartraspasocomprador(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo, String nombre){
+    try{
+    String consulta2;  
+     conectar conect = new conectar(); 
+     conect.conexion();  
+    consulta2="UPDATE entrada_detalle SET traspasado='si', idComprador=?, nombrecomprador=? WHERE Fecha =? and idAnimal=?";
+    //pasamos la consulta al preparestatement
+    detentradas=conect.con.prepareStatement(consulta2);
+    detentradas.setInt(1, nuevocodigo);
+    detentradas.setString(2, nombre);
+    detentradas.setString(3, fecha);
+    detentradas.setInt(4, idanimal);    
+    detentradas.executeUpdate(); 
+    detentradas.close(); 
+    
+    conect.desconectar(); 
+    JOptionPane.showMessageDialog(null, "Registro De Traspaso Realizado Satisfactoriamente");
+    
+    
+    }catch(Exception ex){
+     JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());    
+    }
+        
+    
+    }
     
     public void guardartraspaso(Integer identrada, String fecha , Integer idanimal,Integer nuevocodigo){
     try{
@@ -210,6 +261,63 @@ public class traspasar {
     
     }
     
+     public void buscarparatraspasocomprador(){
+    try {
+     DefaultTableModel tabla= (DefaultTableModel) Traspaso.jTableTraspasos.getModel();   
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+                 
+//Calendar c = Calendar.getInstance();
+    
+//-----obtener la fecha----------------------
+      String  dia = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Traspaso.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String fecha = (year + "-" + mes+ "-" + dia);         
+     //---------fin de obtener la fecha
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        }
+        //-----hasta aki limpiar tabla-----
+     
+     // creamos la consulta
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,idComprador, idEntrada FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Completado' ORDER BY idAnimal";
+     //pasamos la consulta al preparestatement
+     animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     todos=animales.executeQuery(consulta);
+     //recorremos el resulset
+    while (todos.next()){
+        
+                    filas1[0]=todos.getInt("idAnimal");
+                    filas1[1]=todos.getString("Tipo");
+                    filas1[2]=todos.getString("Sexo");
+                    filas1[3]=todos.getString("Color");
+                    filas1[4]=todos.getDouble("Peso");
+                    filas1[5]=todos.getString("Ferrete");
+                    filas1[6]=todos.getInt("idComprador");
+                    filas1[7]=false;
+                    filas1[8]=todos.getInt("idEntrada");
+       tabla.addRow(filas1);
+    }
+    todos.close();
+    animales.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+   }
+    }
+     
     public void buscarparatraspaso(){
     try {
      DefaultTableModel tabla= (DefaultTableModel) Traspaso.jTableTraspasos.getModel();   
