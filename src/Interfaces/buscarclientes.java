@@ -28,8 +28,8 @@ public class buscarclientes extends javax.swing.JFrame {
      */
     public buscarclientes() {
        initComponents();
-       CrearClientes busc = new CrearClientes();
-       busc.buscartodos();
+       //CrearClientes busc = new CrearClientes();
+      // busc.buscartodos();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -387,6 +387,12 @@ public class buscarclientes extends javax.swing.JFrame {
         if (Validar=="5"){
             CrearClientes buscar = new  CrearClientes();
             buscar.buscarvendedores();
+        }else if (Validar=="4"){
+            CrearClientes buscar = new  CrearClientes();
+            buscar.buscarcompradores();
+        }else{
+            CrearClientes buscar = new  CrearClientes();
+            buscar.buscartodos();
         }
             
     }//GEN-LAST:event_formWindowOpened

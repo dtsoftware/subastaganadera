@@ -213,7 +213,57 @@ public class CrearClientes {
    }
      
      } 
-         
+      
+public void buscarcompradores(){
+     try {
+         tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+      String  dia = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String Fecha = (year + "-" + mes+ "-" + dia); 
+     // creamos la consulta
+
+      consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM `sg-soft`.subastas, `sg-soft`.clientes WHERE idClientes = CodComprador AND Fecha = '"+Fecha+"' ORDER BY Nombre";
+
+     //pasamos la consulta al preparestatement
+     cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     rs=cargar.executeQuery(consulta);
+     //recorremos el resulset
+    while (rs.next()){
+        
+                    filas[0]=rs.getInt("idClientes");
+                    filas[1]=rs.getString("Cedula");
+                    filas[2]=rs.getString("Nombre");
+                    filas[3]=rs.getString("Apellido");
+                    filas[4]=rs.getString("Direccion");
+                                        
+       tabla.addRow(filas);
+    }
+    rs.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+     
+     } 
+
   public void buscarporcedula( String Cedula){
      try {
          tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
