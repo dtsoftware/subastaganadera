@@ -7,7 +7,9 @@ package Interfaces;
 
 import Clases.Cheque;
 import Clases.CrearCheques;
+import Clases.FacturasCompras;
 import Clases.Numero_a_Letra;
+import Clases.animalesregistrados;
 import static Interfaces.MantChk.Orden;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
@@ -76,6 +78,7 @@ public static String Orden;
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         Beneficiario = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButtonImprimir = new javax.swing.JButton();
@@ -141,7 +144,7 @@ public static String Orden;
         Detalle.setViewportView(Detalle01);
 
         jPanel5.add(Detalle);
-        Detalle.setBounds(130, 290, 610, 62);
+        Detalle.setBounds(130, 290, 620, 62);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Observaciones");
@@ -151,15 +154,15 @@ public static String Orden;
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("La suma de:");
         jPanel5.add(jLabel9);
-        jLabel9.setBounds(30, 210, 73, 15);
+        jLabel9.setBounds(60, 220, 73, 15);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel5.add(jLabel2);
         jLabel2.setBounds(110, 240, 630, 0);
 
-        jLabelCliente.setText("_____________________________________________________________________________");
+        jLabelCliente.setText("_____________________________________________________________________");
         jPanel5.add(jLabelCliente);
-        jLabelCliente.setBounds(110, 180, 462, 20);
+        jLabelCliente.setBounds(152, 180, 420, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Paguese a la Orden de:");
@@ -189,7 +192,7 @@ public static String Orden;
         jPanel5.add(jLabel13);
         jLabel13.setBounds(20, 90, 229, 13);
 
-        jButtonListarCliente.setText("Client/Prov");
+        jButtonListarCliente.setText("Cliente");
         jButtonListarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonListarClienteActionPerformed(evt);
@@ -201,7 +204,7 @@ public static String Orden;
             }
         });
         jPanel5.add(jButtonListarCliente);
-        jButtonListarCliente.setBounds(20, 160, 90, 30);
+        jButtonListarCliente.setBounds(20, 160, 70, 30);
 
         txtmonto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -213,7 +216,7 @@ public static String Orden;
         jPanel5.add(Numero);
         Numero.setBounds(610, 70, 140, 30);
         jPanel5.add(montoletra);
-        montoletra.setBounds(120, 220, 470, 19);
+        montoletra.setBounds(150, 220, 600, 19);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(null);
@@ -260,16 +263,25 @@ public static String Orden;
         jPanel5.add(jDateChooserFecha);
         jDateChooserFecha.setBounds(610, 110, 140, 30);
 
-        jLabel5.setText("__________________________________________________________________________________");
+        jLabel5.setText("____________________________________________________________________________________________________");
         jPanel5.add(jLabel5);
-        jLabel5.setBounds(110, 230, 510, 14);
+        jLabel5.setBounds(150, 230, 600, 14);
 
         Beneficiario.setEditable(false);
         Beneficiario.setBackground(new java.awt.Color(255, 255, 255));
         Beneficiario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Beneficiario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel5.add(Beneficiario);
-        Beneficiario.setBounds(120, 160, 440, 30);
+        Beneficiario.setBounds(150, 160, 410, 30);
+
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jTextField1);
+        jTextField1.setBounds(100, 160, 40, 30);
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(11, 13, 770, 380);
@@ -580,6 +592,20 @@ public static String Orden;
         jButtonListarCliente.requestFocus();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+       // TODO add your handling code here:
+        try{
+         Integer cod;
+        cod= Integer.parseInt(this.jTextField1.getText());
+        evt.setSource((char) KeyEvent.VK_ENTER);
+        CrearCheques busca = new CrearCheques();
+        busca.buscarcliente(cod);
+       // jTextFieldNumeroanimal.requestFocus();
+        }catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "Error:"+ex);
+        }
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -622,9 +648,9 @@ public static String Orden;
     public static javax.swing.JRadioButton gasto;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButtonImprimir;
+    public static javax.swing.JButton jButtonImprimir;
     public static javax.swing.JButton jButtonListarCliente;
-    private com.toedter.calendar.JDateChooser jDateChooserFecha;
+    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -643,6 +669,7 @@ public static String Orden;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    public static javax.swing.JTextField jTextField1;
     public static javax.swing.JLabel montoletra;
     public static javax.swing.JRadioButton planilla;
     public static javax.swing.JTextField txtmonto;

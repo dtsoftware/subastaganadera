@@ -23,10 +23,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class CrearCheques {
-    PreparedStatement guardarbanco, UltimoRg, cargar,reporte,reporte2;
+    PreparedStatement guardarbanco, UltimoRg, cargar,reporte,reporte2, cargar2;
     String idbanco,nombre,cuenta,detalle,estado;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1,rsreporte,rsreporte2;
+    ResultSet aux, rs, rs2, aux1,rsreporte,rsreporte2;
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[8];
     Object[] filas1 = new Object[7];
@@ -320,4 +320,50 @@ public class CrearCheques {
        
    } 
     
+ 
+ public void buscarcliente(Integer Codigo){
+    conectar conect = new conectar(); 
+    conect.conexion();
+    try {
+    String consulta; 
+    
+      String  dia = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String Fecha = (year + "-" + mes+ "-" + dia);   
+     // creamos la consulta
+     consulta="SELECT Nombre, Apellido, Total FROM `sg-soft`.entradas, `sg-soft`.clientes WHERE idClientes = CodCliente AND Fecha = '"+Fecha+"' AND idClientes ='"+ Codigo +"' AND `sg-soft`.entradas.Estado = '"+"Completado"+"'";
+     //pasamos la consulta al preparestatement
+    
+     cargar2=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    
+     rs2=cargar2.executeQuery(consulta);
+           if (rs2.next()){
+           Cheques.Beneficiario.setText((rs2.getString("Nombre"))+" "+ (rs2.getString("Apellido")) );                
+           Cheques.txtmonto.setText(rs2.getString("Total"));
+           
+            Numero_a_Letra NumLetra = new Numero_a_Letra();
+            String numero = Cheques.txtmonto.getText();
+            Cheques.montoletra.setText(NumLetra.Convertir(numero,true));
+            Cheques.Detalle01.setText("PAGO POR VENTA DE ANIMALES");
+            Cheques.jButtonImprimir.requestFocus();
+       
+    rs2.close();
+    cargar2.close();
+    conect.desconectar();
+           }else{
+           JOptionPane.showMessageDialog(null,"El Cliente No Existe o No Tiene Facturas Pendientes"  ); 
+ //           Entradas.jTextFieldCodigoG.selectAll();
+  //          Entradas.jTextFieldCodigoG.requestFocus();
+            rs2.close();
+            cargar2.close();
+           conect.desconectar();
+            }
+    }catch (SQLException ex){
+    conect.desconectar();   
+   JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+   }
+    
+    }
 }

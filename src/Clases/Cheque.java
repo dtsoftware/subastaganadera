@@ -35,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Tserng
  */
 public class Cheque {
-    PreparedStatement cargar2,guardar,numerocheque, ActEdetalle;
+    PreparedStatement cargar2,guardar,numerocheque, ActEdetalle, ActEdetalle2;
     ResultSet rs2,rscheque;
     Integer ultimocheque;
     public Cheque(){}
@@ -179,7 +179,7 @@ public class Cheque {
             
             //ACTUALIZAR SALDO EN CUENTA BANCARIA
             
-             String consulta1, CActualizar; 
+             String consulta1, CActualizar, CActualizar2; 
              Double SaldoNuevo = 0.00, SaldoActual = 0.00;
              
                 consulta1="SELECT  SaldoActual FROM cuentas where Nombre ='"+ CuentaB +"'";    
@@ -197,6 +197,14 @@ public class Cheque {
                     ActEdetalle.setDouble(1, SaldoNuevo);
                     ActEdetalle.executeUpdate();  
                     ActEdetalle.close();
+                    
+                    CActualizar2="UPDATE entradas SET Estado =? WHERE CodCliente= '"+Integer.valueOf(Cheques.jTextField1.getText().toString())+"'";
+                    //pasamos la consulta al preparestatement
+                    ActEdetalle2=conect.con.prepareStatement(CActualizar2);
+                    ActEdetalle2.setString(1, "PAGADO");
+                    ActEdetalle2.executeUpdate();  
+                    ActEdetalle2.close();
+                    
                     rs2.close();
                     cargar2.close();
                     

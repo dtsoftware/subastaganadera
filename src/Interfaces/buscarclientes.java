@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import Clases.Entradasubasta;
 import Clases.FacturasCompras;
 import Clases.Cheque;
+import Clases.CrearCheques;
 import Clases.ReciboAbonos;
 import Clases.subastas;
 /**
@@ -51,6 +52,11 @@ public class buscarclientes extends javax.swing.JFrame {
         Seleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
         jButtonCancelar.setText("CANCELAR");
@@ -364,7 +370,7 @@ public class buscarclientes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
             }else{
             DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
-             Cheque buscar = new  Cheque();
+             CrearCheques buscar = new  CrearCheques();
              Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
               buscar.buscarcliente(Codigo);
               this.dispose();
@@ -376,6 +382,14 @@ public class buscarclientes extends javax.swing.JFrame {
         }        
         }
     }//GEN-LAST:event_SeleccionarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if (Validar=="5"){
+            CrearClientes buscar = new  CrearClientes();
+            buscar.buscarvendedores();
+        }
+            
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param argrs
