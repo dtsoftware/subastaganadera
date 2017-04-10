@@ -198,7 +198,7 @@
 				</textElement>
 				<text><![CDATA[Monto Total:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="¤ #,##0.00">
 				<reportElement x="366" y="3" width="84" height="20" uuid="a6a35687-18fc-4f18-acaa-61d2409ccd82"/>
 				<textFieldExpression><![CDATA[$V{Monto_2}]]></textFieldExpression>
 			</textField>

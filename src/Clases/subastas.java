@@ -309,7 +309,7 @@ public class subastas {
         }
         //-----hasta aki limpiar tabla-----
       // creamos la consulta
-     consulta="SELECT idAnimal,Observacion,Sexo,Color,Precio,Peso,idComprador FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Subastado'";
+     consulta="SELECT idAnimal,Observacion,Sexo,Color,Precio,Peso,idComprador FROM entrada_detalle  where  (Estado='Subastado' xor Estado='Completado') and Fecha ='"+ fecha +"' ";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos

@@ -734,7 +734,7 @@ this.dispose();      // TODO add your handling code here:
          try {
         buscarclientes list = new buscarclientes();
         list.setVisible(true); 
-        buscarclientes.Validar="4";
+        buscarclientes.Validar="6";
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Error:"+ex);
         }

@@ -17,6 +17,8 @@ import Interfaces.FacturarV;
 import Interfaces.ImprimirConciliacion;
 import Interfaces.Listadenotas;
 import Interfaces.Listadodedepositos;
+import Interfaces.ListarVentas;
+import Interfaces.Listarentrada;
 import Interfaces.MantChk;
 import Interfaces.MantDepositos;
 import Interfaces.MantNotas;
@@ -127,14 +129,14 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItemProveedores = new javax.swing.JMenuItem();
         jMenuItemCuentasbancarias = new javax.swing.JMenuItem();
         jMenuItemListadeusuarios = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuAnimalesregistrados = new javax.swing.JMenu();
+        jMenuItemEntradasanimales = new javax.swing.JMenuItem();
         jMenu15 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jMenuItem22 = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItemResumenVentas = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItemListarcheques = new javax.swing.JMenuItem();
         jMenuItemDepositos = new javax.swing.JMenuItem();
@@ -517,12 +519,22 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenu4.add(jMenu9);
 
-        jMenu7.setText("Entradas");
+        jMenuAnimalesregistrados.setText("Entradas");
+        jMenuAnimalesregistrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAnimalesregistradosActionPerformed(evt);
+            }
+        });
 
-        jMenuItem21.setText("Animales Registrados");
-        jMenu7.add(jMenuItem21);
+        jMenuItemEntradasanimales.setText("Animales Registrados");
+        jMenuItemEntradasanimales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEntradasanimalesActionPerformed(evt);
+            }
+        });
+        jMenuAnimalesregistrados.add(jMenuItemEntradasanimales);
 
-        jMenu4.add(jMenu7);
+        jMenu4.add(jMenuAnimalesregistrados);
 
         jMenu15.setText("Subastas");
 
@@ -536,8 +548,13 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem22.setText("Resumen de Compras");
         jMenu15.add(jMenuItem22);
 
-        jMenuItem23.setText("Resumen de Ventas");
-        jMenu15.add(jMenuItem23);
+        jMenuItemResumenVentas.setText("Resumen de Ventas");
+        jMenuItemResumenVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemResumenVentasActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItemResumenVentas);
 
         jMenu4.add(jMenu15);
 
@@ -882,6 +899,24 @@ fact.setVisible(true);
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuAnimalesregistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAnimalesregistradosActionPerformed
+        // TODO add your handling code here:
+              
+    }//GEN-LAST:event_jMenuAnimalesregistradosActionPerformed
+
+    private void jMenuItemEntradasanimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEntradasanimalesActionPerformed
+        // TODO add your handling code here:
+        Listarentrada le = new Listarentrada();
+        le.setVisible(true); 
+    }//GEN-LAST:event_jMenuItemEntradasanimalesActionPerformed
+
+    private void jMenuItemResumenVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResumenVentasActionPerformed
+        // TODO add your handling code here:
+        ListarVentas list = new ListarVentas();
+        list.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItemResumenVentasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -943,9 +978,9 @@ fact.setVisible(true);
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenu jMenuAnimalesregistrados;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -958,9 +993,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
-    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
@@ -980,10 +1013,12 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemCuentasbancarias;
     private javax.swing.JMenuItem jMenuItemDepositos;
+    private javax.swing.JMenuItem jMenuItemEntradasanimales;
     private javax.swing.JMenuItem jMenuItemListadeusuarios;
     private javax.swing.JMenuItem jMenuItemListarcheques;
     private javax.swing.JMenuItem jMenuItemNotas;
     private javax.swing.JMenuItem jMenuItemProveedores;
+    private javax.swing.JMenuItem jMenuItemResumenVentas;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;

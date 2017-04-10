@@ -381,6 +381,25 @@ public class buscarclientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
         }        
         }
+        
+         if (Validar=="6"){   // LLAMADO DESDE VENTANA SUBASTAS
+             try{
+           filaseleccionada= this.Tbl_Clientes.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+            DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Clientes.getModel();
+             subastas buscar = new  subastas();
+             Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
+              buscar.buscarcliente(Codigo);
+              this.dispose();
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }        
+        }
     }//GEN-LAST:event_SeleccionarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
