@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.Caja;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +21,7 @@ public class ReciboCaja extends javax.swing.JFrame {
      */
     public ReciboCaja() {
         initComponents();
+         DefaultTableModel tabla1= (DefaultTableModel) this.registros.getModel();
         ReciboCaja.fecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         ReciboCaja.fecha.setDate(date); 
@@ -47,21 +49,29 @@ public class ReciboCaja extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         detalle = new javax.swing.JTextArea();
         ID = new javax.swing.JTextField();
-        monto = new javax.swing.JTextField();
+        montoi = new javax.swing.JTextField();
         fecha = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
-        listar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         nuevo = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        monto1 = new javax.swing.JTextField();
+        Nombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        monto2 = new javax.swing.JTextField();
+        montoa = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        registros = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        ESTADO = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -75,9 +85,9 @@ public class ReciboCaja extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(124, 124, 124)
                 .addComponent(jLabel6)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +109,7 @@ public class ReciboCaja extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("FECHA:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(380, 40, 43, 15);
+        jLabel2.setBounds(450, 40, 43, 15);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("DESCRIPCION:");
@@ -131,29 +141,19 @@ public class ReciboCaja extends javax.swing.JFrame {
         jScrollPane1.setViewportView(detalle);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 220, 544, 50);
+        jScrollPane1.setBounds(20, 210, 650, 60);
 
         ID.setEditable(false);
         jPanel2.add(ID);
         ID.setBounds(140, 30, 86, 31);
 
-        monto.setEditable(false);
-        jPanel2.add(monto);
-        monto.setBounds(140, 130, 110, 31);
+        montoi.setEditable(false);
+        jPanel2.add(montoi);
+        montoi.setBounds(140, 130, 110, 31);
         jPanel2.add(fecha);
-        fecha.setBounds(440, 30, 130, 32);
+        fecha.setBounds(500, 30, 160, 32);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        listar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
-        listar.setText("LISTAR");
-        listar.setEnabled(false);
-        listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarActionPerformed(evt);
-            }
-        });
 
         guardar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
@@ -208,57 +208,97 @@ public class ReciboCaja extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(salir)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(listar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevo)
+                    .addComponent(editar)
                     .addComponent(guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(salir))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5);
-        jPanel5.setBounds(20, 290, 550, 130);
+        jPanel5.setBounds(20, 420, 650, 70);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("MONTO ACTUAL:");
+        jLabel7.setText("ESTADO:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(330, 140, 110, 15);
+        jLabel7.setBounds(500, 140, 60, 15);
 
-        monto1.setEditable(false);
-        jPanel2.add(monto1);
-        monto1.setBounds(140, 80, 430, 31);
+        Nombre.setEditable(false);
+        jPanel2.add(Nombre);
+        Nombre.setBounds(140, 80, 520, 31);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("MONTO INICIAL:");
         jPanel2.add(jLabel8);
         jLabel8.setBounds(20, 140, 99, 15);
 
-        monto2.setEditable(false);
-        jPanel2.add(monto2);
-        monto2.setBounds(460, 130, 110, 31);
+        montoa.setEditable(false);
+        jPanel2.add(montoa);
+        montoa.setBounds(380, 130, 110, 31);
+
+        registros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "CODIGO", "NOMBRE", "FECHA", "DETALLE", "M. INICIAL", "M. ACTUAL", "ESTADO"
+            }
+        ));
+        registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrosMouseClicked(evt);
+            }
+        });
+        registros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                registrosKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(registros);
+        if (registros.getColumnModel().getColumnCount() > 0) {
+            registros.getColumnModel().getColumn(0).setMinWidth(60);
+            registros.getColumnModel().getColumn(0).setMaxWidth(60);
+            registros.getColumnModel().getColumn(2).setMinWidth(75);
+            registros.getColumnModel().getColumn(2).setMaxWidth(75);
+            registros.getColumnModel().getColumn(4).setMinWidth(75);
+            registros.getColumnModel().getColumn(4).setMaxWidth(75);
+            registros.getColumnModel().getColumn(5).setMinWidth(75);
+            registros.getColumnModel().getColumn(5).setMaxWidth(75);
+            registros.getColumnModel().getColumn(6).setMinWidth(75);
+            registros.getColumnModel().getColumn(6).setMaxWidth(75);
+        }
+
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(20, 280, 650, 130);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("MONTO ACTUAL:");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(270, 140, 110, 15);
+
+        ESTADO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
+        jPanel2.add(ESTADO);
+        ESTADO.setBounds(560, 130, 100, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -277,20 +317,16 @@ public class ReciboCaja extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
-
-    }//GEN-LAST:event_listarActionPerformed
-
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.monto.getText().trim().length()==0)|| (ReciboCaja.ID.getText().trim().length()==0))){
+if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.montoi.getText().trim().length()==0)|| (ReciboCaja.ID.getText().trim().length()==0))){
          JOptionPane.showMessageDialog(null, "Los Campos No pueden Estar En Blanco");
 
          }else{ 
@@ -319,6 +355,47 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.monto.getT
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
                 this.dispose();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrosMouseClicked
+        int filaseleccionada;
+
+        try{
+            filaseleccionada= ReciboCaja.registros.getSelectedRow();
+            if (filaseleccionada==-1){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+            }else{
+                DefaultTableModel modelotabla=(DefaultTableModel) ReciboCaja.registros.getModel();
+                String Codigo = String.valueOf(modelotabla.getValueAt(filaseleccionada, 0));
+                ReciboCaja.ID.setText(""+Codigo);
+                String Name =(String) modelotabla.getValueAt(filaseleccionada, 1);
+                ReciboCaja.Nombre.setText(""+Name);
+                String cta =(String) modelotabla.getValueAt(filaseleccionada, 3);
+                ReciboCaja.detalle.setText(""+cta);
+                String mi = String.valueOf(modelotabla.getValueAt(filaseleccionada, 5));
+                ReciboCaja.montoi.setText(""+mi);
+                String ma =String.valueOf(modelotabla.getValueAt(filaseleccionada, 4));
+                ReciboCaja.montoa.setText(""+ma);
+
+                ReciboCaja.Nombre.setEditable(false);
+                ReciboCaja.detalle.setEditable(false);
+                ReciboCaja.montoi.setEditable(false);
+                ReciboCaja.montoa.setEditable(false);
+            }
+
+        }catch (Exception ex){
+
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_registrosMouseClicked
+
+    private void registrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registrosKeyPressed
+
+    }//GEN-LAST:event_registrosKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+               Caja buscar = new Caja();
+        buscar.buscarregistros();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -356,7 +433,9 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.monto.getT
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JComboBox<String> ESTADO;
     public static javax.swing.JTextField ID;
+    public static javax.swing.JTextField Nombre;
     public static javax.swing.JTextArea detalle;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
@@ -369,29 +448,34 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.monto.getT
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton listar;
-    public static javax.swing.JTextField monto;
-    public static javax.swing.JTextField monto1;
-    public static javax.swing.JTextField monto2;
+    private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JTextField montoa;
+    public static javax.swing.JTextField montoi;
     private javax.swing.JButton nuevo;
+    public static javax.swing.JTable registros;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 public void Limpiar(){
     
         ReciboCaja.detalle.setText("");
-        ReciboCaja.monto.setText("");
+        ReciboCaja.montoi.setText("");
+        ReciboCaja.montoa.setText("");
+        ReciboCaja.Nombre.setText("");
            
 }
 
 public void Habilitar(){
     
         ReciboCaja.detalle.setEditable(true);
-        ReciboCaja.monto.setEditable(true);
+        ReciboCaja.montoi.setEditable(true);
+        ReciboCaja.montoa.setEditable(true);
+        ReciboCaja.Nombre.setEditable(true);
            
 }
 }
