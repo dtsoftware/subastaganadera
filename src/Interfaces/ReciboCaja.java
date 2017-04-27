@@ -21,12 +21,12 @@ public class ReciboCaja extends javax.swing.JFrame {
      */
     public ReciboCaja() {
         initComponents();
-         DefaultTableModel tabla1= (DefaultTableModel) this.registros.getModel();
+         DefaultTableModel tabla1= (DefaultTableModel) ReciboCaja.registros.getModel();
         ReciboCaja.fecha.setDateFormatString("dd/MM/yyyy");
         Date date = new Date(); 
         ReciboCaja.fecha.setDate(date); 
         Caja ch = new Caja();        
-        this.ID.setText(ch.buscarultimo().toString());
+        ReciboCaja.ID.setText(ch.buscarultimo().toString());
     }
 
     /**
@@ -330,11 +330,10 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.montoi.get
          JOptionPane.showMessageDialog(null, "Los Campos No pueden Estar En Blanco");
 
          }else{ 
-
         Caja user = new Caja();
         user.guardarrecibo();
         Caja ch = new Caja();        
-        this.ID.setText(ch.buscarultimo().toString());
+        ReciboCaja.ID.setText(ch.buscarultimo().toString());
         Limpiar();
         Habilitar();    
 }
@@ -342,6 +341,9 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.montoi.get
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         Habilitar();
+        Limpiar();
+        ReciboCaja.editar.setEnabled(false);
+        ReciboCaja.eliminar.setEnabled(false);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -375,7 +377,8 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.montoi.get
                 ReciboCaja.montoi.setText(""+mi);
                 String ma =String.valueOf(modelotabla.getValueAt(filaseleccionada, 4));
                 ReciboCaja.montoa.setText(""+ma);
-
+                ReciboCaja.editar.setEnabled(true);
+                ReciboCaja.eliminar.setEnabled(true);
                 ReciboCaja.Nombre.setEditable(false);
                 ReciboCaja.detalle.setEditable(false);
                 ReciboCaja.montoi.setEditable(false);
@@ -437,8 +440,8 @@ if (((ReciboCaja.detalle.getText().trim().length()==0) || (ReciboCaja.montoi.get
     public static javax.swing.JTextField ID;
     public static javax.swing.JTextField Nombre;
     public static javax.swing.JTextArea detalle;
-    private javax.swing.JButton editar;
-    private javax.swing.JButton eliminar;
+    public static javax.swing.JButton editar;
+    public static javax.swing.JButton eliminar;
     public static com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;

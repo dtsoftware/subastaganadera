@@ -232,9 +232,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nuevo" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="nuevo1" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="editar" min="-2" pref="130" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="nuevo2" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="eliminar" min="-2" pref="130" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="guardar" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -251,8 +251,8 @@
                           <Component id="SALIR" max="32767" attributes="0"/>
                           <Component id="guardar" alignment="1" min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="nuevo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="nuevo1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="nuevo2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="editar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="eliminar" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -293,7 +293,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="nuevo1">
+            <Component class="javax.swing.JButton" name="editar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Graficos/Apps-system-software-update-icon.png"/>
@@ -301,10 +301,13 @@
                 <Property name="text" type="java.lang.String" value="EDITAR"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="nuevo2">
+            <Component class="javax.swing.JButton" name="eliminar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Graficos/Actions-trash-empty-icon.png"/>
@@ -312,8 +315,11 @@
                 <Property name="text" type="java.lang.String" value="ELIMINAR"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

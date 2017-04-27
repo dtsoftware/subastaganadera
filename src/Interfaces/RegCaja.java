@@ -43,8 +43,8 @@ public class RegCaja extends javax.swing.JFrame {
         SALIR = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         nuevo = new javax.swing.JButton();
-        nuevo1 = new javax.swing.JButton();
-        nuevo2 = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         tipo = new javax.swing.JComboBox<>();
         cuenta = new javax.swing.JComboBox<>();
@@ -146,19 +146,19 @@ public class RegCaja extends javax.swing.JFrame {
             }
         });
 
-        nuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
-        nuevo1.setText("EDITAR");
-        nuevo1.addActionListener(new java.awt.event.ActionListener() {
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-system-software-update-icon.png"))); // NOI18N
+        editar.setText("EDITAR");
+        editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo1ActionPerformed(evt);
+                editarActionPerformed(evt);
             }
         });
 
-        nuevo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
-        nuevo2.setText("ELIMINAR");
-        nuevo2.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
+        eliminar.setText("ELIMINAR");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo2ActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
 
@@ -170,9 +170,9 @@ public class RegCaja extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,8 +187,8 @@ public class RegCaja extends javax.swing.JFrame {
                     .addComponent(SALIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nuevo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nuevo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -314,16 +314,19 @@ public class RegCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-
+       Habilitar();
+        Limpiar();
+        RegCaja.editar.setEnabled(false);
+        RegCaja.eliminar.setEnabled(false);
     }//GEN-LAST:event_nuevoActionPerformed
 
-    private void nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo1ActionPerformed
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo1ActionPerformed
+    }//GEN-LAST:event_editarActionPerformed
 
-    private void nuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo2ActionPerformed
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo2ActionPerformed
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,6 +368,8 @@ public class RegCaja extends javax.swing.JFrame {
     private javax.swing.JButton SALIR;
     public static javax.swing.JComboBox<String> cuenta;
     public static javax.swing.JTextArea detalle;
+    public static javax.swing.JButton editar;
+    public static javax.swing.JButton eliminar;
     public static com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -386,8 +391,21 @@ public class RegCaja extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_foto;
     public static javax.swing.JTextField monto;
     private javax.swing.JButton nuevo;
-    private javax.swing.JButton nuevo1;
-    private javax.swing.JButton nuevo2;
     public static javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
+public void Limpiar(){
+    
+        RegCaja.detalle.setText("");
+        RegCaja.monto.setText("");
+        RegCaja.detalle.setText("");
+           
+}
+
+public void Habilitar(){
+    
+        RegCaja.detalle.setEditable(true);
+        RegCaja.monto.setEditable(true);
+        RegCaja.detalle.setEditable(true);
+           
+}
 }
