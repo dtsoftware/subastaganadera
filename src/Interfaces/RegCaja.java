@@ -5,6 +5,11 @@
  */
 package Interfaces;
 
+import Clases.Caja;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
@@ -16,6 +21,12 @@ public class RegCaja extends javax.swing.JFrame {
      */
     public RegCaja() {
         initComponents();
+        DefaultTableModel tabla1= (DefaultTableModel) RegCaja.registros.getModel();
+        RegCaja.fecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        RegCaja.fecha.setDate(date); 
+        Caja ch = new Caja();        
+        RegCaja.ID.setText(ch.buscarultimoR().toString());
     }
 
     /**
@@ -49,7 +60,7 @@ public class RegCaja extends javax.swing.JFrame {
         tipo = new javax.swing.JComboBox<>();
         cuenta = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        registros = new javax.swing.JTable();
         lbl_foto = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -58,6 +69,11 @@ public class RegCaja extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -209,7 +225,7 @@ public class RegCaja extends javax.swing.JFrame {
         jPanel2.add(cuenta);
         cuenta.setBounds(160, 80, 130, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -220,20 +236,20 @@ public class RegCaja extends javax.swing.JFrame {
                 "N°. REGISTRO", "CAJA", "FECHA", "TIPO", "MONTO", "DESCRIPCION"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(250);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(250);
+        jScrollPane2.setViewportView(registros);
+        if (registros.getColumnModel().getColumnCount() > 0) {
+            registros.getColumnModel().getColumn(0).setMinWidth(100);
+            registros.getColumnModel().getColumn(0).setMaxWidth(100);
+            registros.getColumnModel().getColumn(1).setMinWidth(150);
+            registros.getColumnModel().getColumn(1).setMaxWidth(150);
+            registros.getColumnModel().getColumn(2).setMinWidth(100);
+            registros.getColumnModel().getColumn(2).setMaxWidth(100);
+            registros.getColumnModel().getColumn(3).setMinWidth(100);
+            registros.getColumnModel().getColumn(3).setMaxWidth(100);
+            registros.getColumnModel().getColumn(4).setMinWidth(100);
+            registros.getColumnModel().getColumn(4).setMaxWidth(100);
+            registros.getColumnModel().getColumn(5).setMinWidth(250);
+            registros.getColumnModel().getColumn(5).setMaxWidth(250);
         }
 
         jPanel2.add(jScrollPane2);
@@ -310,7 +326,18 @@ public class RegCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_SALIRActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+ if (((RegCaja.detalle.getText().trim().length()==0) || (RegCaja.monto.getText().trim().length()==0)|| (RegCaja.ID.getText().trim().length()==0))){
+         JOptionPane.showMessageDialog(null, "Los Campos No pueden Estar En Blanco");
 
+         }else{ 
+
+        Caja user = new Caja();
+        user.guardarreciboCaja();
+        Caja ch = new Caja();        
+        this.ID.setText(ch.buscarultimoR().toString());
+        Limpiar();
+        Habilitar();    
+}
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -327,6 +354,11 @@ public class RegCaja extends javax.swing.JFrame {
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+                Caja llenar = new Caja();
+        llenar.llenarcombo();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -372,7 +404,7 @@ public class RegCaja extends javax.swing.JFrame {
     public static javax.swing.JButton eliminar;
     public static com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -387,10 +419,10 @@ public class RegCaja extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_foto;
     public static javax.swing.JTextField monto;
     private javax.swing.JButton nuevo;
+    public static javax.swing.JTable registros;
     public static javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 public void Limpiar(){

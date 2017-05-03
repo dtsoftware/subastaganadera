@@ -6,6 +6,7 @@
 package Clases;
 
 import Interfaces.ReciboCaja;
+import Interfaces.RegCaja;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,41 +63,143 @@ public class Caja {
     
     }
    
+    public void guardarreciboCaja(){
+    
+        try {
+            
+        String  dia = Integer.toString(RegCaja.fecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String  mes = Integer.toString(RegCaja.fecha.getCalendar().get(Calendar.MONTH) + 1);
+        String year = Integer.toString(RegCaja.fecha.getCalendar().get(Calendar.YEAR));
+        String fecha = (year + "-" + mes+ "-" + dia); 
+        String Estado = "Registrado";
+        int idcaja=Integer.parseInt(RegCaja.ID.getText());
+        detalle= RegCaja.detalle.getText();
+        String Caja = RegCaja.cuenta.getSelectedItem().toString();
+        Double monto = Double.parseDouble(RegCaja.monto.getText());
+        String Tipo = RegCaja.tipo.getSelectedItem().toString();
+        conectar conexcio = new conectar(); 
+        conexcio.conexion();
+
+        guardarbanco=conexcio.con.prepareStatement("INSERT INTO registroscaja (idRegistrosCaja, Fecha, Monto, Descripcion, Tipo, Caja, Estado) VALUES (?,?,?,?,?,?,?)");
+        guardarbanco.setInt(1, idcaja);
+        guardarbanco.setString(2, fecha);
+        guardarbanco.setDouble(3, monto);
+        guardarbanco.setString(5, detalle);
+        guardarbanco.setString(6, Tipo);
+        guardarbanco.setString(4, Caja);
+        guardarbanco.setString(7, Estado);
+        guardarbanco.execute();
+        JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
+        }
+        
+    
+    }
+    
+    
     public Integer buscarultimo(){
     
-     conectar conect = new conectar(); 
+        conectar conect = new conectar(); 
                  conect.conexion();
          try {
-     String consulta; 
+        String consulta; 
                       
-     // creamos la consulta
-     consulta="SELECT MAX(idCaja) FROM caja ";
-     //pasamos la consulta al preparestatement
-   UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-     //pasamos al resulset la consulta preparada y ejecutamos
-    rsdeposito=UltimoRg.executeQuery(consulta);
-     //recorremos el resulset
-    rsdeposito.next();
+            // creamos la consulta
+            consulta="SELECT MAX(idCaja) FROM caja ";
+            //pasamos la consulta al preparestatement
+            UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            //pasamos al resulset la consulta preparada y ejecutamos
+            rsdeposito=UltimoRg.executeQuery(consulta);
+            //recorremos el resulset
+            rsdeposito.next();
         
-               ultimo=rsdeposito.getInt(1)+1;
-          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+            ultimo=rsdeposito.getInt(1)+1;
+            //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
   
    
            
-   }catch (SQLException ex1){
-   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
-   }finally{
-         try {
-             UltimoRg.close();
-             rsdeposito.close();
-             conect.desconectar();
-         } catch (SQLException ex) {
+        }catch (SQLException ex1){
+            JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+        }finally{
+            try {
+                UltimoRg.close();
+                rsdeposito.close();
+                conect.desconectar();
+            } catch (SQLException ex) {
               JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
-         }
+            }
    
-     }   
+        }   
     return ultimo;
     }
+    
+    public Integer buscarultimoR(){
+    
+        conectar conect = new conectar(); 
+                 conect.conexion();
+         try {
+        String consulta; 
+                      
+            // creamos la consulta
+            consulta="SELECT MAX(idRegistrosCaja) FROM registroscaja ";
+            //pasamos la consulta al preparestatement
+            UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            //pasamos al resulset la consulta preparada y ejecutamos
+            rsdeposito=UltimoRg.executeQuery(consulta);
+            //recorremos el resulset
+            rsdeposito.next();
+        
+            ultimo=rsdeposito.getInt(1)+1;
+            //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
+           
+        }catch (SQLException ex1){
+            JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+        }finally{
+            try {
+                UltimoRg.close();
+                rsdeposito.close();
+                conect.desconectar();
+            } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+            }
+   
+        }   
+    return ultimo;
+    }
+    
+    public void llenarcombo(){
+        try {
+            String consulta;  
+            conectar conect = new conectar(); 
+            conect.conexion();
+     
+            // creamos la consulta
+            consulta="SELECT Nombre FROM Caja Where idCaja !='"+'0'+"'";
+   
+            //pasamos la consulta al preparestatement
+    
+            UltimoRg=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+    
+            aux=UltimoRg.executeQuery(consulta);
+
+            while(aux.next()){               
+
+                
+                        RegCaja.cuenta.addItem(aux.getString("Nombre"));
+               
+                }
+           
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+    
+    }
+ 
 public void buscarregistros(){
      try {
          tabla = (DefaultTableModel) ReciboCaja.registros.getModel();
