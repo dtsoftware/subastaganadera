@@ -86,6 +86,8 @@ public class Recibos extends javax.swing.JFrame {
         clientes1 = new javax.swing.JButton();
         SaldoT = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        NumeroCHT = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -249,7 +251,7 @@ public class Recibos extends javax.swing.JFrame {
         jLabel11.setText("No. RECIBO:");
 
         tipo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Cheque", "Tranf. Bancaria" }));
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Cheque", "Tarjeta", "Tranf. Bancaria" }));
 
         clientes.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         clientes.setForeground(new java.awt.Color(0, 0, 255));
@@ -350,6 +352,7 @@ public class Recibos extends javax.swing.JFrame {
         jLabel8.setText("LISTA DE BANCO:");
 
         banco.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        banco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Banco General", "Multibank", "Banistomo", "BacCredomatic", "GlobalBank", "CrediCorpBank", "Banco Nacional", "Caja de Ahorro" }));
 
         jTableFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -392,6 +395,9 @@ public class Recibos extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("SALDO TOTAL DEL CLIENTE");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setText("N°:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -406,17 +412,23 @@ public class Recibos extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel8)
-                                .addComponent(banco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField6)
-                                .addComponent(tipo, 0, 143, Short.MAX_VALUE)))
+                            .addComponent(banco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField6)
+                            .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(NumeroCHT, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -457,7 +469,7 @@ public class Recibos extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(0, 0, Short.MAX_VALUE)))))))
-                .addGap(187, 187, 187))
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,7 +523,11 @@ public class Recibos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NumeroCHT, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addGap(2, 2, 2)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -532,7 +548,7 @@ public class Recibos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -751,6 +767,7 @@ public class Recibos extends javax.swing.JFrame {
     public static javax.swing.JLabel Fact;
     public static javax.swing.JLabel Fact2;
     private javax.swing.JButton Guardar;
+    public static javax.swing.JTextField NumeroCHT;
     public static javax.swing.JTextField SaldoT;
     public static javax.swing.JTextField Suma;
     public static javax.swing.JRadioButton asaldo;
@@ -772,6 +789,7 @@ public class Recibos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

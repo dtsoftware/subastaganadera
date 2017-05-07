@@ -11,7 +11,18 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 
 
 /**
@@ -139,10 +150,14 @@ public void guardarrecibo(){
                
             int codigo= Integer.parseInt(Recibos.recibo.getText());
             int codigocliente= Integer.parseInt(Recibos.cliente.getText());
-            Double Monto =Double.parseDouble(Recibos.txtCantidad.getText());   
+            Double Monto =Double.parseDouble(Recibos.txtCantidad.getText());
+            Double Saldo =Double.parseDouble(Recibos.saldo.getText());
             String Tipo = String.valueOf(Recibos.tipo.getSelectedItem());
             String Concepto = Recibos.detalle.getText();    
             String Banco =String.valueOf(Recibos.banco.getSelectedItem());
+            String MontoLetras =String.valueOf(Recibos.Suma.getText());
+            String NumeroCHT =String.valueOf(Recibos.NumeroCHT.getText());
+            String NombreCliente =String.valueOf(Recibos.txtBeneficiario.getText());
             if (Recibos.AFactura.isSelected()){
                 
             
@@ -163,15 +178,37 @@ public void guardarrecibo(){
                     
                 }else
                 {
-                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, Monto, CodCliente, Detalle, Fecha, Tipo, Banco) VALUES (?,?,?,?,?,?,?)");
+                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, Tipo, NombreCliente, SaldoActual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,codigo);
-                    guardarrecibo.setDouble(2, Monto);
-                    guardarrecibo.setInt(3, codigocliente);
-                    guardarrecibo.setString(4, Concepto);
-                    guardarrecibo.setString(5, fecha);
-                    guardarrecibo.setString(6, Tipo);
-                    guardarrecibo.setString(7, Banco);
+                    guardarrecibo.setString(2, MontoLetras);
+                    guardarrecibo.setDouble(3, Monto);
+                    if("Efectivo".equals(Tipo)){
+                        guardarrecibo.setDouble(4, Monto);
+                    }
+                    else{
+                        guardarrecibo.setDouble(4, 0.00);
+                    }
+                    if("Cheque".equals(Tipo)){
+                        guardarrecibo.setDouble(5, Monto);
+                    }
+                    else{
+                        guardarrecibo.setDouble(5, 0.00);
+                    }
+                    if("Tarjeta".equals(Tipo)){
+                        guardarrecibo.setDouble(6, Monto);
+                    }
+                    else{
+                        guardarrecibo.setDouble(6, 0.00);
+                    }
+                    guardarrecibo.setString(7, NumeroCHT);
+                    guardarrecibo.setString(8, Banco);
+                    guardarrecibo.setInt(9, codigocliente);
+                    guardarrecibo.setString(10, Concepto);
+                    guardarrecibo.setString(11, fecha);
+                    guardarrecibo.setString(12, Tipo);
+                    guardarrecibo.setString(13, NombreCliente);
+                    guardarrecibo.setDouble(14, Saldo);
                     guardarrecibo.execute(); 
                     
                     ActualizarSaldo();  
@@ -196,23 +233,48 @@ public void guardarrecibo(){
                 Recibos.Suma.setText("");
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
-    
+                
+                ReciboAbonos ra = new ReciboAbonos();
+                
+                ra.imprimirrecibo(codigo);
+                
                 guardarrecibo.close();
                 conect.desconectar();    
                     
                 }
             }else{
-                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, Monto, CodCliente, Detalle, Fecha, Tipo, Banco) VALUES (?,?,?,?,?,?,?)");
+                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, Tipo, NombreCliente, SaldoActual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,codigo);
-                    guardarrecibo.setDouble(2, Monto);
-                    guardarrecibo.setInt(3, codigocliente);
-                    guardarrecibo.setString(4, Concepto);
-                    guardarrecibo.setString(5, fecha);
-                    guardarrecibo.setString(6, Tipo);
-                    guardarrecibo.setString(7, Banco);
-                    guardarrecibo.execute(); 
-                 
+                    guardarrecibo.setString(2, MontoLetras);
+                    guardarrecibo.setDouble(3, Monto);
+                    if("Efectivo".equals(Tipo)){
+                        guardarrecibo.setDouble(4, Monto);
+                    }
+                    else{
+                        guardarrecibo.setDouble(4, 0.00);
+                    }
+                    if("Cheque".equals(Tipo)){
+                        guardarrecibo.setDouble(5, Monto);
+                    }
+                    else{
+                        guardarrecibo.setDouble(5, 0.00);
+                    }
+                    if("Tarjeta".equals(Tipo)){
+                        guardarrecibo.setDouble(6, Monto);
+                    }
+                    else{
+                        guardarrecibo.setDouble(6, 0.00);
+                    }
+                    guardarrecibo.setString(7, NumeroCHT);
+                    guardarrecibo.setString(8, Banco);
+                    guardarrecibo.setInt(9, codigocliente);
+                    guardarrecibo.setString(10, Concepto);
+                    guardarrecibo.setString(11, fecha);
+                    guardarrecibo.setString(12, Tipo);
+                    guardarrecibo.setString(13, NombreCliente);
+                    guardarrecibo.setDouble(14, Saldo);
+                    guardarrecibo.execute();                  
                     String Est1 = "POR PAGAR";
                     
                     SaldoI = Double.parseDouble(Recibos.txtCantidad.getText());
@@ -276,7 +338,8 @@ public void guardarrecibo(){
                 Recibos.Suma.setText("");
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
-    
+                ReciboAbonos ra = new ReciboAbonos();
+                ra.imprimirrecibo(codigo);
                 guardarrecibo.close();
                 conect.desconectar();   
             
@@ -393,7 +456,44 @@ public Integer buscarultimo(){
    }
     
     }
-
+       public void imprimirrecibo(Integer nrecibo){
+    // JOptionPane.showMessageDialog(null,"Se Genero");
+    conectar conect = new conectar(); 
+    conect.conexion();
+    PrintService[] printService = PrintServiceLookup.lookupPrintServices(null, null);
+    PrintService impresora = (PrintService) JOptionPane.showInputDialog(null, "Eliga impresora:",
+                "Imprimir Reporte", JOptionPane.QUESTION_MESSAGE, null, printService, printService[1]);       
+       //JOptionPane.showMessageDialog(null,"Se Genero en la66 " + printService);
+       // PrinterJob job = PrinterJob.getPrinterJob();
+    if( impresora!= null)//si existen impresoras
+        {           
+                      try {
+                   
+                    JasperReport jasperReport;
+                    JasperPrint jasperPrint;
+                
+                     Map<String, Object> params = new HashMap<String, Object>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "ImprimirRecibo.jrxml";  
+                    jasperReport =JasperCompileManager.compileReport(ruta);
+                    params.put("nrecibo", nrecibo);
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
+                  //JasperViewer.viewReport(jasperPrint, false);
+                   //se manda a la impresora
+                   JRPrintServiceExporter jrprintServiceExporter = new JRPrintServiceExporter();
+                   jrprintServiceExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint );
+                   jrprintServiceExporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, impresora );
+                   //jrprintServiceExporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
+                   jrprintServiceExporter.exportReport();
+                  
+                JOptionPane.showMessageDialog(null,"Se Genero en la " + impresora);
+                 } catch (Exception ex) {
+                    System.err.println("Error JRException: " + ex.getMessage());
+                 }
+                              
+            }else {
+               JOptionPane.showMessageDialog(null,"El Proceso Ha Sido Cancelado O no Hay Impresoras Instaladas");
+           }
+        }
 }
 
 
