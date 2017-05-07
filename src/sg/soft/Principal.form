@@ -365,6 +365,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Estadistica General"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem17ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator8">
                 </MenuItem>

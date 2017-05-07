@@ -11,6 +11,7 @@ import Interfaces.Clientes;
 import Interfaces.Conciliacion;
 import Interfaces.Depositos;
 import Interfaces.Entradas;
+import Interfaces.EstadisticaGeneral;
 import Interfaces.Facturacion;
 import Interfaces.FacturarC;
 import Interfaces.FacturarV;
@@ -542,6 +543,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu15.add(jMenuItem16);
 
         jMenuItem17.setText("Estadistica General");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu15.add(jMenuItem17);
         jMenu15.add(jSeparator8);
 
@@ -916,6 +922,11 @@ fact.setVisible(true);
         list.setVisible(true);
         
     }//GEN-LAST:event_jMenuItemResumenVentasActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        EstadisticaGeneral list = new EstadisticaGeneral();
+        list.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
