@@ -5,6 +5,18 @@
  */
 package Interfaces;
 
+import Clases.conectar;
+import static Interfaces.Cheques.cuenta;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Juan
@@ -136,39 +148,39 @@ public class EstadisticaGeneral extends javax.swing.JFrame {
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
         // TODO add your handling code here:
- //       conectar conect = new conectar();
- //       conect.conexion();
+        conectar conect = new conectar();
+        conect.conexion();
 
- //       try{
+        try{
             //-----obtener la fecha----------------------
- //           String  dia = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-  //          String  mes = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.MONTH) + 1);
- //           String year = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.YEAR));
- //           String  fechainicio = (year + "-" + mes+ "-" + dia);
+            String  dia = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.YEAR));
+            String  fechainicio = (year + "-" + mes+ "-" + dia);
             //---------fin de obtener la fecha
             //-----obtener la fecha----------------------
-//            String  diaf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.DAY_OF_MONTH));
- //           String  mesf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.MONTH) + 1);
- //           String yearf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.YEAR));
- //           String  fechafin = (yearf + "-" + mesf+ "-" + diaf);
+            String  diaf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mesf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.MONTH) + 1);
+            String yearf = Integer.toString(jDateChooserFechaFin.getCalendar().get(Calendar.YEAR));
+            String  fechafin = (yearf + "-" + mesf+ "-" + diaf);
             //---------fin de obtener la fecha
- //           String cuent=cuenta.getSelectedItem().toString();
- //           Map<String, Object> params = new HashMap<String, Object>();
+       //     String cuent=cuenta.getSelectedItem().toString();
+            Map<String, Object> params = new HashMap<String, Object>();
             //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
- //           String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Depositos.jrxml";  
- //           JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
- //           params.put("fechainicio", fechainicio);
- //           params.put("fechafin", fechafin);
- //           params.put("cuent", cuent);
- //           JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
- //           JasperViewer.viewReport(jasperPrint, false);
+            String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "EstadisticaGeneral.jrxml";  
+            JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
+        //    params.put("fechainicio", fechainicio);
+        //    params.put("fechafin", fechafin);
+        //    params.put("cuent", cuent);
+            JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
+            JasperViewer.viewReport(jasperPrint, false);
 
- //       }catch(Exception ex){
-  //          JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
 
-  //      }finally{
- //           conect.desconectar();
- //       }
+        }finally{
+            conect.desconectar();
+        }
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
