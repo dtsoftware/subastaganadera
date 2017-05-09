@@ -152,6 +152,20 @@ public class EstadisticaGeneral extends javax.swing.JFrame {
         conect.conexion();
 
         try{
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //-----obtener la fecha----------------------
             String  dia = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
             String  mes = Integer.toString(jDateChooserFechaInicio.getCalendar().get(Calendar.MONTH) + 1);
@@ -224,8 +238,8 @@ public class EstadisticaGeneral extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonImprimir;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaFin;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
+    public static com.toedter.calendar.JDateChooser jDateChooserFechaFin;
+    public static com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -84,9 +84,9 @@ public class Caja {
         guardarbanco.setInt(1, idcaja);
         guardarbanco.setString(2, fecha);
         guardarbanco.setDouble(3, monto);
-        guardarbanco.setString(5, detalle);
-        guardarbanco.setString(6, Tipo);
-        guardarbanco.setString(4, Caja);
+        guardarbanco.setString(4, detalle);
+        guardarbanco.setString(5, Tipo);
+        guardarbanco.setString(6, Caja);
         guardarbanco.setString(7, Estado);
         guardarbanco.execute();
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
