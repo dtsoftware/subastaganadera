@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Clases.Estadistica;
 import Clases.conectar;
 import static Interfaces.Cheques.cuenta;
 import java.util.Calendar;
@@ -153,9 +154,9 @@ public class EstadisticaGeneral extends javax.swing.JFrame {
 
         try{
             
-            
-            
-            
+            Estadistica val = new Estadistica();
+            val.extraerregistros();
+ 
             
             
             
