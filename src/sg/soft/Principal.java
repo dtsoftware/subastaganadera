@@ -5,6 +5,7 @@
  */
 package sg.soft;
 import Clases.conectar;
+import Interfaces.AnimalesSubastado;
 import Interfaces.Bancos;
 import Interfaces.Cheques;
 import Interfaces.Clientes;
@@ -540,6 +541,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu15.setText("Subastas");
 
         jMenuItem16.setText("Animales Subastados");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu15.add(jMenuItem16);
 
         jMenuItem17.setText("Estadistica General");
@@ -927,6 +933,12 @@ fact.setVisible(true);
         EstadisticaGeneral list = new EstadisticaGeneral();
         list.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        AnimalesSubastado ans = new AnimalesSubastado();
+        ans.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
