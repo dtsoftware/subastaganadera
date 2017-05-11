@@ -171,7 +171,7 @@ public class Estadistica {
                         aux=UltimoRg.executeQuery(consulta7);
 
                         while(aux.next()){                  
-                                FCambio = (aux.getDouble("Total"));  
+                                FCambio = (aux.getDouble("Total")-ReciboTotal-MontoING+MontoGAS);  
                                
                         }
             UltimoRg.close();

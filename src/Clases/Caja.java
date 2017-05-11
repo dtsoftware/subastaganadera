@@ -18,10 +18,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class Caja {
-    PreparedStatement guardarbanco, UltimoRg, cargar;
+    PreparedStatement guardarbanco, UltimoRg, cargar, cargar3, facturas;
     String idbanco,nombre,cuenta,detalle,estado;
     Double montoi, montoa;
-    ResultSet aux, rs, aux1, rsdeposito; 
+    ResultSet aux, rs, aux1, rsdeposito, todos; 
     DefaultTableModel tabla = new DefaultTableModel(); 
     Object[] filas = new Object[7];
     int ultimo;
@@ -66,7 +66,7 @@ public class Caja {
     public void guardarreciboCaja(){
     
         try {
-            
+        String consulta, consulta1;    
         String  dia = Integer.toString(RegCaja.fecha.getCalendar().get(Calendar.DAY_OF_MONTH));
         String  mes = Integer.toString(RegCaja.fecha.getCalendar().get(Calendar.MONTH) + 1);
         String year = Integer.toString(RegCaja.fecha.getCalendar().get(Calendar.YEAR));
@@ -89,8 +89,36 @@ public class Caja {
         guardarbanco.setString(6, Caja);
         guardarbanco.setString(7, Estado);
         guardarbanco.execute();
-        JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        String Nombre = RegCaja.cuenta.getSelectedItem().toString();
+        
+        Double MontoActual=0.00; 
+        consulta1="SELECT MontoActual FROM caja WHERE Nombre= '"+Nombre+"'";
 
+        facturas=conexcio.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+        todos=facturas.executeQuery(consulta1);
+      
+                            while (todos.next()){   
+
+                                    MontoActual = (todos.getDouble("MontoActual"));                              
+                            }
+        
+        consulta="UPDATE caja SET MontoActual =? WHERE Nombre= '"+Nombre+"' ";
+        if("GASTO".equals(RegCaja.tipo.getSelectedItem().toString())){
+                     cargar3=conexcio.con.prepareStatement(consulta);
+                     cargar3.setDouble(1, MontoActual - monto);
+                     cargar3.executeUpdate(); 
+        }else{
+                     cargar3=conexcio.con.prepareStatement(consulta);
+                     cargar3.setDouble(1, MontoActual + monto);
+                     cargar3.executeUpdate(); 
+            
+        }
+        
+
+                               
+        JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
         }

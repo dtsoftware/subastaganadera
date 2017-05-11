@@ -56,7 +56,7 @@ ResultSet rs;
         jRadioButtonCedula = new javax.swing.JRadioButton();
         Valido = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jButton1.setText("CANCELAR");
