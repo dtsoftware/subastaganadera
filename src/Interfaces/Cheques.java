@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class Cheques extends javax.swing.JFrame {
 public static String Orden;
+public static String Existe;
 
     /**
      * Creates new form Cheques
@@ -351,77 +352,82 @@ public static String Orden;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-    String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque, CuentaB,Tipo;
+    String a,m,d,a1,a2,a3,a4,m1,m2,d1,d2,nombre,montoletras,observacion,ncheque,nchequex,existe, CuentaB,Tipo;
     double monto;
       
     try{
-     
+        Existe = "0";
+        nchequex = this.Numero.getText();
+    Cheque xx = new Cheque(); 
+    xx.buscarsiexiste(nchequex);
+    
+    if (Existe == "0"){
     if ((Cheques.Numero.getText().trim().length()==0) || Cheques.txtmonto.getText().trim().length()==0 || Cheques.Beneficiario.getText().trim().length()==0 || Cheques.montoletra.getText().trim().length()==0 ){
     JOptionPane.showMessageDialog(null,"Para Realizar La Impresion Del Cheque, Debe Completar Los Datos");
     }else{ 
       
-      nombre=Beneficiario.getText();
-      montoletras=montoletra.getText();
-      monto= Double.parseDouble(txtmonto.getText());
-      observacion=Detalle01.getText();  
-      Cheque ch = new Cheque(); 
-      ncheque= ch.buscarultimocheque().toString();
-     //-----obtener la fecha-------- --------------
-      String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
-      String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
-      String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-      String fecha = (year +"-"+ mes+ "-"+ dia); 
-     //---------fin de obtener la fecha 20170314
+            nombre=Beneficiario.getText();
+            montoletras=montoletra.getText();
+            monto= Double.parseDouble(txtmonto.getText());
+            observacion=Detalle01.getText();  
+            Cheque ch = new Cheque(); 
+            ncheque= ch.buscarultimocheque().toString();
+            //-----obtener la fecha-------- --------------
+            String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+            String fecha = (year +"-"+ mes+ "-"+ dia); 
+            //---------fin de obtener la fecha 20170314
  
-   a =year;
-  // m=mes;
-   //d=dia;  
+            a =year;
+            // m=mes;
+            //d=dia;  
  
-   //validando si el mes es de una cifra
-   if (mes.length()==1) {
-   m="0"+mes;
-   }else{
-   m=mes;
-   }
-   //validando si el dia es de una cifra
-    if (dia.length()==1) {
-   d="0"+dia;
-   }else{
-   d=dia;
-   }   
-     //separando el año
-   a1 = a.substring(0,1);
-   a2 = a.substring(1,2);
-   a3= a.substring(2,3);
-   a4 = a.substring(3,4);   
-   //separando el mes
-  m1 = m.substring(0,1);
-  m2 = m.substring(1,2);   
-   //separando el dia
-    d1 = d.substring(0,1);
-    d2 = d.substring(1,2);
-   // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
-   //Cheque ch = new Cheque();
-   CuentaB = Cheques.cuenta.getSelectedItem().toString();
+            //validando si el mes es de una cifra
+            if (mes.length()==1) {
+                m="0"+mes;
+            }else{
+                m=mes;
+            }
+            //validando si el dia es de una cifra
+            if (dia.length()==1) {
+                d="0"+dia;
+            }else{
+                d=dia;
+            }   
+            //separando el año
+            a1 = a.substring(0,1);
+            a2 = a.substring(1,2);
+            a3= a.substring(2,3);
+            a4 = a.substring(3,4);   
+            //separando el mes
+            m1 = m.substring(0,1);
+            m2 = m.substring(1,2);   
+            //separando el dia
+            d1 = d.substring(0,1);
+            d2 = d.substring(1,2);
+            // Numero.setText(a1+a2+a3+a4+m1+m2+d1+d2);  
+            //Cheque ch = new Cheque();
+            CuentaB = Cheques.cuenta.getSelectedItem().toString();
    
-   if(Cheques.venta.isSelected()){
-       Tipo = "Venta";
-   }else if(Cheques.gasto.isSelected()){
-       Tipo = "Gasto";
-   }else{
-       Tipo = "Planilla";
-   }
+            if(Cheques.venta.isSelected()){
+                Tipo = "Venta";
+            }else if(Cheques.gasto.isSelected()){
+                Tipo = "Gasto";
+            }else{
+                Tipo = "Planilla";
+            }
    
-   ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, CuentaB, Tipo, a1, a2, a3, a4, m1, m2, d1, d2);
-   //ch.imprimircheque2(ncheque);
-   Cheques.Numero.setText(ch.buscarultimocheque().toString());
-   txtmonto.setText("");
-   Beneficiario.setText("");
-   montoletra.setText("");
-   Detalle01.setText("");
-   jButtonListarCliente.requestFocus();
+            ch.guardarcheque(ncheque,nombre,monto, fecha, montoletras, observacion, CuentaB, Tipo, a1, a2, a3, a4, m1, m2, d1, d2);
+            //ch.imprimircheque2(ncheque);
+            Cheques.Numero.setText(ch.buscarultimocheque().toString());
+            txtmonto.setText("");
+            Beneficiario.setText("");
+            montoletra.setText("");
+            Detalle01.setText("");
+            jButtonListarCliente.requestFocus();
     }
-  
+    }
     
     }catch(HeadlessException | NumberFormatException | SQLException ex){    
     JOptionPane.showMessageDialog(null, "Error:"+ex.getMessage());

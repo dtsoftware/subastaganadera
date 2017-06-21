@@ -151,6 +151,35 @@ public class Cheque {
     return ultimocheque;
     }
     
+    
+        public void buscarsiexiste(String Numero){
+    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
+     // creamos la consulta
+     consulta="SELECT Numero FROM cheques Where Numero = '"+Numero+"' ";
+     //pasamos la consulta al preparestatement
+   numerocheque=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rscheque=numerocheque.executeQuery(consulta);
+     //recorremos el resulset
+    
+  //   JOptionPane.showMessageDialog(null, "datos"+rscheque.getString(Numero));
+   if (rscheque.next()){
+                      JOptionPane.showMessageDialog(null, "Ya existe un Cheque con este Numero en la Base de Datos.");
+                        Cheques.Existe = "1";
+           }else{
+    
+            }   
+           
+   }catch (SQLException ex1){
+ 
+   }
+
+    }
       public void guardarcheque(String numero,String beneficiario, Double monto,String fecha,String montoletras,String observacion, String CuentaB, String Tipo, String a1,String a2,String a3,String a4,String m1,String m2,String d1,String d2) throws SQLException{
                  conectar conect = new conectar(); 
                  conect.conexion();
