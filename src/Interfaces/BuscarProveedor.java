@@ -66,7 +66,7 @@ public class BuscarProveedor extends javax.swing.JFrame {
         });
 
         jRadioButtonNombre.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButtonNombre.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jRadioButtonNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButtonNombre.setForeground(new java.awt.Color(0, 0, 255));
         jRadioButtonNombre.setSelected(true);
         jRadioButtonNombre.setText("Nombre");
@@ -77,7 +77,7 @@ public class BuscarProveedor extends javax.swing.JFrame {
         });
 
         jRadioButtonCedula.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButtonCedula.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jRadioButtonCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButtonCedula.setForeground(new java.awt.Color(0, 0, 255));
         jRadioButtonCedula.setText("Codigo");
 
@@ -96,11 +96,11 @@ public class BuscarProveedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(18, 18, 18)
                 .addComponent(jRadioButtonCedula)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jRadioButtonNombre)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonRealizarBusqueda)
                 .addContainerGap())
         );

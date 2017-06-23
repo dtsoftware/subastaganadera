@@ -6,7 +6,9 @@
 package Interfaces;
 
 import Clases.Conciliar;
+import Clases.ImpConcilia;
 import java.util.Date;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -479,6 +481,7 @@ public class Conciliacion extends javax.swing.JFrame {
         guardar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
         guardar.setText("GUARDAR");
+        guardar.setEnabled(false);
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -488,6 +491,11 @@ public class Conciliacion extends javax.swing.JFrame {
         imprimir.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/print-icon (2)_1.png"))); // NOI18N
         imprimir.setText("IMPRIMIR");
+        imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirActionPerformed(evt);
+            }
+        });
 
         CANCELAR.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         CANCELAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Apps-Dialog-Logout-icon.png"))); // NOI18N
@@ -703,8 +711,9 @@ public class Conciliacion extends javax.swing.JFrame {
     }//GEN-LAST:event_CANCELARActionPerformed
 
     private void CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularActionPerformed
-        Conciliar aux = new Conciliar();
+       Conciliar aux = new Conciliar();
        aux.Calculos();
+       this.guardar.setEnabled(true);
     }//GEN-LAST:event_CalcularActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -721,13 +730,38 @@ public class Conciliacion extends javax.swing.JFrame {
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         Conciliar aux = new Conciliar();
         aux.limpiar();
+        this.guardar.setEnabled(false);
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+       
+        Double a, b;
+        
+        a = Double.parseDouble(Conciliacion.SL.getText());
+        b = Double.parseDouble(Conciliacion.SB.getText());
+        
+        JOptionPane.showMessageDialog(null,"Saldo en Libros: "+a); 
+        JOptionPane.showMessageDialog(null,"Saldo en Banco: "+b); 
+        
+        if (Objects.equals(a, b)){
+          //  if ((Cheques.Numero.getText().trim().length()==0) || Cheques.txtmonto.getText().trim().length()==0 || Cheques.Beneficiario.getText().trim().length()==0 ||
         Conciliar aux = new Conciliar();
         aux.guardarconciliacion();
-        aux.limpiar();       
+        aux.limpiar(); 
+        }else{
+             JOptionPane.showMessageDialog(null,"No Se Puede Salvar Este Registro"  ); 
+        }
+            
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
+        String cuenta1 = Conciliacion.cuenta.getSelectedItem().toString();
+        String ano1 = Conciliacion.ano.getSelectedItem().toString();
+        String mes1 = Conciliacion.mes.getSelectedItem().toString();
+        
+        ImpConcilia aux = new ImpConcilia ();
+        aux.imprimircheque2(cuenta1, ano1, mes1);
+    }//GEN-LAST:event_imprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -784,7 +818,7 @@ public class Conciliacion extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> cuenta;
     public static javax.swing.JTable debitos;
     public static javax.swing.JTable depositos;
-    private javax.swing.JButton guardar;
+    public static javax.swing.JButton guardar;
     private javax.swing.JButton imprimir;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha1;
     public static com.toedter.calendar.JDateChooser jDateChooserFecha2;

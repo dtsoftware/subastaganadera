@@ -242,9 +242,7 @@ public class Conciliar {
     while (aux2.next()){
                     DT=DT + aux2.getDouble("Monto");
     }
-    
-    
-    JOptionPane.showMessageDialog(null,"DEPOSITOS GENERADOS");
+
         redondear redon  = new redondear(); 
         Conciliacion.Schequesg.setText(String.valueOf(SumaCheques));
         Conciliacion.Sdepositos.setText(String.valueOf(SumaDepositos));
@@ -362,7 +360,7 @@ public class Conciliar {
 
         guardarconcilia.execute();
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-
+        Conciliacion.guardar.setEnabled(false);
         } catch (SQLException  ex) {
             JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
         }
