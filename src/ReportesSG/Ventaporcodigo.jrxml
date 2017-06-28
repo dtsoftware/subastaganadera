@@ -10,7 +10,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select  cc.idClientes,cc.Nombre,cc.Apellido,cc.Direccion, ed.Fecha,ed.idAnimal,ed.nombrecomprador,ed.Tipo,ed.Color,ed.Sexo,ed.Ferrete,ed.Peso,ed.Precio,ed.TotalBruto,ed.Comision,ed.TotalReal from clientes cc, entrada_detalle ed where cc.idClientes=ed.CodVendedor and ed.CodVendedor=$P{codigo} and ed.Fecha=$P{fechaa} and ed.Estado='Completado';]]>
+		<![CDATA[select  cc.idClientes,cc.Nombre,cc.Apellido,cc.Direccion, ed.Fecha,ed.idAnimal,ed.nombrecomprador,ed.Tipo,ed.Color,ed.Sexo,ed.Ferrete,ed.Peso,ed.Precio,ed.TotalBruto,ed.Comision,ed.TotalReal from clientes cc, entrada_detalle ed, rptselectcompras cm where cc.idClientes=ed.CodVendedor and ed.CodVendedor=$P{codigo} and ed.Fecha=$P{fechaa} and ed.Estado='Completado' and cm.Factura =ed.CodVendedor;]]>
 	</queryString>
 	<field name="idClientes" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>

@@ -8,6 +8,7 @@ package Clases;
 import Interfaces.FacturarC;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class FactCompras {
     
  ResultSet ventas;
-   PreparedStatement buscarv;   
+   PreparedStatement buscarv, facturas;   
    Object[] filas = new Object[6];
     
 
@@ -81,6 +82,40 @@ public void buscarfcompras(){
     
 }
 
+public void InsertarFacturas(){
+    
+      try {
+          
+    DefaultTableModel tabla = (DefaultTableModel) FacturarC.Tcompras.getModel();
+    conectar conect = new conectar(); 
+    conect.conexion();
+ 
+            facturas=conect.con.prepareStatement("TRUNCATE TABLE rptselectcompras");
+            facturas.execute();
+            facturas.close();
+      
+    for (int i = 0; i < FacturarC.Tcompras.getRowCount(); i++) {
 
+        if( FacturarC.Tcompras.getValueAt(i, 6)!=null){ 
+            
+            int Factura= Integer.parseInt(FacturarC.Tcompras.getValueAt(i, 2).toString());
+            facturas=conect.con.prepareStatement("INSERT INTO rptselectcompras ( Factura) VALUES (?)");
+            facturas.setInt(1,Factura);
+            facturas.execute();
+            facturas.close();
+            }else{
+                  continue;
+            }   
+    }
+    
+    conect.desconectar();
+    
+        }catch(SQLException ex){
+           
+        JOptionPane.showMessageDialog(null, "Error" + ex);
+        
+        }
+    
+}
 
 }

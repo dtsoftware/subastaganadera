@@ -754,15 +754,15 @@ public class Facturacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay Registros Para Facturar a Este Cliente");
         }else{   FacturasCompras guardaf = new FacturasCompras ();
             guardaf.guardarfactura();
-    Integer codigo;
-    codigo= Integer.parseInt(Facturacion.idcomprador.getText());
+            Integer codigo;
+            codigo= Integer.parseInt(Facturacion.idcomprador.getText());
             animalesregistrados detallefact = new animalesregistrados();
             detallefact.cargartodasfacturas();
 
             FacturasCompras limpiarFinal = new FacturasCompras ();
             limpiarFinal.LimpiarCampos();
 
-            JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
+             JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
              Facturacion.oph.setEnabled(false);
               Facturacion.opm.setEnabled(false);
               Facturacion.oph.setSelected(false);
@@ -778,37 +778,6 @@ public class Facturacion extends javax.swing.JFrame {
          FacturasCompras fact = new FacturasCompras();
           fact.imprimirfactura(factura);
                     
-
- 
-        // imprimir Reporte
-        
-                // TODO add your handling code here:
-    //    try{
-
-    //-----obtener la fecha----------------------
-    //  String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
-    //  String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
-   //   String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-   //   String  fecha = (year + "-" + mes+ "-" + dia);    
-     //---------fin de obtener la fecha  
-    
-   // conectar conect = new conectar(); 
-   // conect.conexion();
-         
-  //  Map<String, Object> params = new HashMap<String, Object>();
-    //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
-   // String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "FacturaCompras.jrxml";
-   // JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
-    //params.put("codigo", codigo);
-    // params.put("fecha", fecha);
-    //JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
-   // JasperViewer.viewReport(jasperPrint, false);
-            
-    //    }catch(Exception ex){
-     //   JOptionPane.showMessageDialog(null,"Error" +ex);
-        
-     //   }
-        
     }//GEN-LAST:event_guardarMouseClicked
     }
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
