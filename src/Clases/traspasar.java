@@ -349,7 +349,7 @@ public class traspasar {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,idComprador, idEntrada FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Completado' ORDER BY idAnimal";
+     consulta="SELECT idAnimal,Tipo,Sexo,Color,Peso,Ferrete,idComprador, idEntrada FROM entrada_detalle  where Fecha ='"+ fecha +"' and Estado='Subastado' ORDER BY idAnimal";
      //pasamos la consulta al preparestatement
      animales=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos

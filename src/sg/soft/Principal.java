@@ -33,6 +33,7 @@ import Interfaces.Subastas;
 import Interfaces.Traspaso;
 import Interfaces.Usuarios;
 import Interfaces.ReporteCheques;
+import Interfaces.Resumendecompra;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -558,6 +559,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenu15.add(jSeparator8);
 
         jMenuItem22.setText("Resumen de Compras");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
         jMenu15.add(jMenuItem22);
 
         jMenuItemResumenVentas.setText("Resumen de Ventas");
@@ -939,6 +945,11 @@ fact.setVisible(true);
         AnimalesSubastado ans = new AnimalesSubastado();
         ans.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+        Resumendecompra rc = new Resumendecompra();
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     /**
      * @param args the command line arguments
