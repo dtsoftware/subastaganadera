@@ -82,7 +82,7 @@ public void cargarfacturas(){
      conectar conect = new conectar(); 
                  conect.conexion();
 
-      String codigo = Recibos.cliente.getText();         
+      Integer codigo = Integer.parseInt(Recibos.cliente.getText());         
       String Est = "POR PAGAR";
      //--------limpiar tabla------
       try {
@@ -98,7 +98,7 @@ public void cargarfacturas(){
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idFacturas, Fecha, Monto, Saldo, Tipo, Estado FROM facturas  where (CodCliente ='"+ codigo +"') and (Estado = '"+ Est +"') ORDER BY Fecha ASC";
+     consulta="SELECT idFacturas, Fecha, Monto, Saldo, Tipo, Estado FROM facturas  where (CodCliente ='"+ codigo +"') and (Saldo <> 0) ORDER BY Fecha ASC";
      //pasamos la consulta al preparestatement
      facturas=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
