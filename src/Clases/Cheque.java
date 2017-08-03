@@ -169,7 +169,7 @@ public class Cheque {
     
   //   JOptionPane.showMessageDialog(null, "datos"+rscheque.getString(Numero));
    if (rscheque.next()){
-                      JOptionPane.showMessageDialog(null, "Ya existe un Cheque con este Numero en la Base de Datos.");
+                      JOptionPane.showMessageDialog(null, "Ya existe un Cheque con este Numero en la Base de Datos.", "Registro Existente", JOptionPane.WARNING_MESSAGE);
                         Cheques.Existe = "1";
            }else{
     

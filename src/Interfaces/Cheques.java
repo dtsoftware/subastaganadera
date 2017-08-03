@@ -596,6 +596,8 @@ public static String Existe;
         montoletra.setText("");
         Detalle01.setText("");
         jButtonListarCliente.requestFocus();
+        Cheque ch = new Cheque();        
+        this.Numero.setText(ch.buscarultimocheque().toString());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import Interfaces.Clientes;
+import Interfaces.Facturacion;
 import javax.swing.table.DefaultTableModel;
 import Interfaces.buscarclientes;
 import java.awt.HeadlessException;
@@ -67,8 +68,8 @@ public class CrearClientes {
             Clientes.jTextFieldTelefono1.setText("");
             Clientes.jTextFieldTelefono2.setText("");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
-                
+                JOptionPane.showMessageDialog(null,"El Registro no se ha guardado. Es probable que el codigo este Duplicado", "Registro Existente", JOptionPane.WARNING_MESSAGE);
+                ex= null;
             }
              
         
@@ -222,6 +223,7 @@ public void buscarcompradores(){
      conectar conect = new conectar(); 
                  conect.conexion();
      //--------limpiar tabla------
+
       try {
             if (tabla != null) {
                 while (tabla.getRowCount() > 0) {
@@ -232,10 +234,12 @@ public void buscarcompradores(){
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Error" +ex);
         }
+      
+
         //-----hasta aki limpiar tabla-----
-      String  dia = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
-      String  mes = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
-      String year = Integer.toString(Cheques.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+      String  dia = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+      String year = Integer.toString(Facturacion.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
       String Fecha = (year + "-" + mes+ "-" + dia); 
      // creamos la consulta
 
@@ -260,7 +264,8 @@ public void buscarcompradores(){
     conect.desconectar();
            
    }catch (Exception ex){
-   JOptionPane.showMessageDialog(null,"Error" +ex);
+   JOptionPane.showMessageDialog(null,"No hay registro de compradores para el dia de hoy", "Registros",JOptionPane.WARNING_MESSAGE);
+   ex=null;
    }
      
      } 
@@ -417,6 +422,7 @@ public void buscarcompradores(){
     JOptionPane.showMessageDialog(null,"Registro Eliminado Satisfactoriamente");
     Clientes.jButtonEditar.setEnabled(false);
     Clientes.jButtonEliminar.setEnabled(false);
+    Clientes.jButtonGuardar.setEnabled(true);
     Date date = new Date();
             Clientes.jDateChooserFecha1.setDate(date);
             Clientes.jTextFieldIDcliente.setText("");

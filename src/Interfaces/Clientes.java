@@ -541,6 +541,19 @@ public class Clientes extends javax.swing.JFrame {
        // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);   
       // JOptionPane.showMessageDialog(null,"REGISTRO EDITADO CORRECTAMENTE " );
          }
+           Date date = new Date();
+            jDateChooserFecha1.setDate(date);
+            jTextFieldIDcliente.setText("");
+            jTextFieldNombre.setText("");
+            jTextFieldApellido.setText("");
+            jTextFieldCedula.setText("");
+            jTextFieldDireccion.setText("");
+            jTextFieldTelefono1.setText("");
+            jTextFieldTelefono2.setText("");
+            jTextFieldIDcliente.requestFocus();
+            Clientes.jButtonGuardar.setEnabled(true);
+            Clientes.jButtonEditar.setEnabled(false);
+            Clientes.jButtonEliminar.setEnabled(false);
         }catch(Exception ex) {
        JOptionPane.showMessageDialog(null,"Error  = " +ex);
        }
