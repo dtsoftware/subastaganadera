@@ -231,7 +231,7 @@ public void guardarrecibo(){
                 Recibos.saldo.setText("");
                 Recibos.txtBeneficiario.setText("");
                 Recibos.Suma.setText("");
-
+                Recibos.SaldoT.setText("0.00");
                 JOptionPane.showMessageDialog(null, "Registro Guardado Exitosamente");
                 
                 ReciboAbonos ra = new ReciboAbonos();

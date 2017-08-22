@@ -504,4 +504,6 @@ public class buscarclientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldBuscar;
     private javax.swing.ButtonGroup seleccionaropciones;
     // End of variables declaration//GEN-END:variables
+
+    
 }
