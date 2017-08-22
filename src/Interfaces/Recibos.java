@@ -551,7 +551,7 @@ public class Recibos extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -720,8 +720,26 @@ public class Recibos extends javax.swing.JFrame {
         Recibos.saldo.setText("");
         Recibos.txtBeneficiario.setText("");
         Recibos.Suma.setText("");
+        Recibos.SaldoT.setText("0.00");
+        Recibos.NumeroCHT.setText("");
+        Recibos.jTextField6.setText("");
         ReciboAbonos ch = new ReciboAbonos();        
         this.recibo.setText(ch.buscarultimo().toString());
+     
+     DefaultTableModel tabla= (DefaultTableModel) Recibos.jTableFacturas.getModel();   
+  
+     
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
     }//GEN-LAST:event_clientes1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -806,7 +824,7 @@ public class Recibos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTableFacturas;
-    private javax.swing.JTextField jTextField6;
+    public static javax.swing.JTextField jTextField6;
     public static javax.swing.JTextField recibo;
     public static javax.swing.JTextField saldo;
     public static javax.swing.JComboBox<String> tipo;
