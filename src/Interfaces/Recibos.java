@@ -282,6 +282,7 @@ public class Recibos extends javax.swing.JFrame {
         recibo.setEditable(false);
         recibo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtCantidad.setEditable(false);
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -326,17 +327,16 @@ public class Recibos extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(AFactura)
                         .addGap(18, 18, 18)
                         .addComponent(asaldo))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Fact2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Fact2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -686,6 +686,7 @@ public class Recibos extends javax.swing.JFrame {
                 Recibos.Fact.setText("0");
                 Recibos.Fact2.setText("----");
                 Recibos.saldo.setText(""+STotal);
+                Recibos.txtCantidad.setEditable(rootPaneCheckingEnabled);
             }
         Aux = 2;   
        
@@ -708,6 +709,7 @@ public class Recibos extends javax.swing.JFrame {
                     String Saldo =String.valueOf(modelotabla.getValueAt(filaseleccionada, 3));
                     Recibos.saldo.setText(Saldo);
                     Recibos.detalle.setText("PAGO PARA CANCELAR FACTURA N°:"+Facturax);
+                    Recibos.txtCantidad.setEditable(rootPaneCheckingEnabled);
                 }
 
             }catch (Exception ex){
@@ -728,9 +730,12 @@ public class Recibos extends javax.swing.JFrame {
         Recibos.SaldoT.setText("0.00");
         Recibos.NumeroCHT.setText("");
         Recibos.jTextField6.setText("");
+        Recibos.AFactura.setSelected(true);
         ReciboAbonos ch = new ReciboAbonos();        
         this.recibo.setText(ch.buscarultimo().toString());
-     
+        Recibos.txtCantidad.setEditable(false);
+        Recibos.AFactura.setSelected(true);
+        Recibos.asaldo.setSelected(false);
      DefaultTableModel tabla= (DefaultTableModel) Recibos.jTableFacturas.getModel();   
   
      

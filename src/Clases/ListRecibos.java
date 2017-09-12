@@ -24,7 +24,7 @@ public class ListRecibos {
  PreparedStatement cargar,cargar2,cargar3,cargar4;
  ResultSet rs,rs2,rs4;
  DefaultTableModel tabla = new DefaultTableModel(); 
- Object[] filas = new Object[10]; 
+ Object[] filas = new Object[11]; 
  
      public ListRecibos(){
   // tabla = (DefaultTableModel) buscarclientes.Tbl_Clientes.getModel();
@@ -49,7 +49,7 @@ public class ListRecibos {
         }
         //-----hasta aki limpiar tabla-----
 
-         consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, SaldoActual FROM recibos ORDER BY Codigo";
+         consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, AFactura, SaldoActual FROM recibos ORDER BY Codigo";
   
      
      //pasamos la consulta al preparestatement
@@ -68,7 +68,8 @@ public class ListRecibos {
                     filas[6]=rs.getString("Tipo");
                     filas[7]=rs.getString("Estado");
                     filas[8]=rs.getString("MontoLetras");
-                    filas[9]=rs.getDouble("SaldoActual");
+                    filas[9]=rs.getString("AFactura");
+                    filas[10]=rs.getDouble("SaldoActual");
 
                                         
        tabla.addRow(filas);
@@ -91,7 +92,7 @@ public class ListRecibos {
     
      
      // creamos la consulta
-     consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, SaldoActual FROM recibos where Codigo ='"+ Codigo +"'";
+     consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, AFactura, SaldoActual FROM recibos where Codigo ='"+ Codigo +"'";
      //pasamos la consulta al preparestatement
     
      cargar2=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -108,8 +109,13 @@ public class ListRecibos {
                             Recibos.jDateChooserFecha.setDate(rs2.getDate("Fecha"));
                             Recibos.tipo.setSelectedItem(rs2.getString("Tipo"));
                             Recibos.Suma.setText(rs2.getString("MontoLetras"));
-                            Recibos.SaldoT.setText(String.valueOf(rs2.getDouble("SaldoActual")) );
-
+                            Recibos.saldo.setText(String.valueOf(rs2.getDouble("SaldoActual")) );
+                            Recibos.Fact.setText(rs2.getString("AFactura"));
+                            if ("".equals(rs2.getString("AFactura")))
+                            {
+                                Recibos.AFactura.setSelected(false);
+                                Recibos.asaldo.setSelected(true);
+                            }
                             rs2.close();
                             conect.desconectar();
                           }

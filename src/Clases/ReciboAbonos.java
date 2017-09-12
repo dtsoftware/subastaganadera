@@ -34,7 +34,7 @@ public class ReciboAbonos {
     Object[] filas1 = new Object[9];
       ResultSet rs2, todos, todos2, rs5, aux, rsr;
       Integer ultimor;
-    PreparedStatement cargar2, cargar3, guardarrecibo, facturas, facturas2, factmax, numeror, UltimoRg;
+    PreparedStatement cargar2, cargar3, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -138,7 +138,7 @@ public void guardarrecibo(){
             conectar conect = new conectar(); 
             conect.conexion();
             String consulta1, consulta2;
-                    Double STotal, GValor, SaldoI;
+                    Double STotal, GValor, SaldoI, aux;
     
             //-----obtener la fecha----------------------
             String  dia = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -158,9 +158,9 @@ public void guardarrecibo(){
             String MontoLetras =String.valueOf(Recibos.Suma.getText());
             String NumeroCHT =String.valueOf(Recibos.NumeroCHT.getText());
             String NombreCliente =String.valueOf(Recibos.txtBeneficiario.getText());
+            String AFactura =String.valueOf(Recibos.Fact.getText());
             if (Recibos.AFactura.isSelected()){
                 
-            
                 if(!"0.0".equals(Recibos.saldo.getText()) && "CONTADO".equals(Recibos.Fact2.getText())){
                     JOptionPane.showMessageDialog(null, "LA FACTURA ES AL CONTADO, DEBE CANCELAR SU TOTALIDAD");
                      int filaseleccionada;
@@ -178,7 +178,7 @@ public void guardarrecibo(){
                     
                 }else
                 {
-                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, Tipo, NombreCliente, SaldoActual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, AFactura, Tipo, NombreCliente, SaldoActual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,codigo);
                     guardarrecibo.setString(2, MontoLetras);
@@ -206,9 +206,10 @@ public void guardarrecibo(){
                     guardarrecibo.setInt(9, codigocliente);
                     guardarrecibo.setString(10, Concepto);
                     guardarrecibo.setString(11, fecha);
-                    guardarrecibo.setString(12, Tipo);
-                    guardarrecibo.setString(13, NombreCliente);
-                    guardarrecibo.setDouble(14, Saldo);
+                    guardarrecibo.setString(12, AFactura);
+                    guardarrecibo.setString(13, Tipo);
+                    guardarrecibo.setString(14, NombreCliente);
+                    guardarrecibo.setDouble(15, Saldo);
                     guardarrecibo.execute(); 
                     
                     ActualizarSaldo();  
@@ -243,6 +244,7 @@ public void guardarrecibo(){
                     
                 }
             }else{
+    
                     guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, Tipo, NombreCliente, SaldoActual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,codigo);
@@ -279,8 +281,9 @@ public void guardarrecibo(){
                     
                     SaldoI = Double.parseDouble(Recibos.txtCantidad.getText());
                     STotal = 0.00;
-                    
+                    //
                     consulta1="SELECT idFacturas, Fecha, Monto, Saldo, Tipo, Estado FROM facturas  where (CodCliente ='"+ codigocliente +"') and (Estado = '"+ Est1 +"') ORDER BY Fecha ASC";
+
 
                     facturas2=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
@@ -291,17 +294,46 @@ public void guardarrecibo(){
                                     redondear redon  = new redondear();
                                     GValor = redon.redondearDecimales(todos2.getDouble("Saldo")- SaldoI, 2);
                                     if(GValor<0){
+                                        
                                         Est1 = "CANCELADO";
+                                        aux = SaldoI;
                                         SaldoI = GValor*(-1);
                                         STotal = 0.00;
+                                       
+                                         guardarrecibo1=conect.con.prepareStatement("INSERT INTO recibos_detalles ( idRecibo, idFactura, Abono, Saldo) VALUES (?,?,?,?)");                 
+                                         guardarrecibo1.setInt(1,codigo);
+                                         guardarrecibo1.setInt(2, todos2.getInt("idFacturas"));
+                                         guardarrecibo1.setDouble(3, (aux - SaldoI)); 
+                                         guardarrecibo1.setDouble(4, (STotal));
+                                         guardarrecibo1.execute(); 
+                                         guardarrecibo1.close();
+                                         
                                     }else if(GValor==0){
                                         Est1 = "CANCELADO";
+                                        aux = SaldoI;
                                         STotal = 0.00;
-                                        SaldoI = 0.00;                       
+                                        SaldoI = 0.00;
+                                      
+                                         guardarrecibo1=conect.con.prepareStatement("INSERT INTO recibos_detalles ( idRecibo, idFactura, Abono, Saldo) VALUES (?,?,?,?)");                 
+                                         guardarrecibo1.setInt(1,codigo);
+                                         guardarrecibo1.setInt(2, todos2.getInt("idFacturas"));
+                                         guardarrecibo1.setDouble(3, (aux - SaldoI)); 
+                                         guardarrecibo1.setDouble(4, (STotal));
+                                         guardarrecibo1.execute(); 
+                                         guardarrecibo1.close();
                                     }else{
                                         Est1 = "POR PAGAR";
+                                        aux = SaldoI;
                                         STotal = GValor;
                                         SaldoI = 0.00;
+                                        
+                                         guardarrecibo1=conect.con.prepareStatement("INSERT INTO recibos_detalles ( idRecibo, idFactura, Abono, Saldo) VALUES (?,?,?,?)");                 
+                                         guardarrecibo1.setInt(1,codigo);
+                                         guardarrecibo1.setInt(2, todos2.getInt("idFacturas"));
+                                         guardarrecibo1.setDouble(3, (aux));
+                                         guardarrecibo1.setDouble(4, (STotal));
+                                         guardarrecibo1.execute(); 
+                                         guardarrecibo1.close();
                                     }
                                     
                                     consulta2="UPDATE facturas SET Saldo =?,Estado=? WHERE idFacturas= ? ";
@@ -310,7 +342,8 @@ public void guardarrecibo(){
                                         cargar3.setDouble(1, STotal);
                                         cargar3.setString(2, Est1);
                                         cargar3.setInt(3, todos2.getInt("idFacturas"));
-                                        cargar3.executeUpdate();                                       
+                                        cargar3.executeUpdate();
+                        
                             }
             
                     todos2.close();
@@ -343,7 +376,7 @@ public void guardarrecibo(){
                 guardarrecibo.close();
                 conect.desconectar();   
             
-            
+
             
             }
     
