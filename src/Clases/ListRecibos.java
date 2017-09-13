@@ -111,6 +111,9 @@ public class ListRecibos {
                             Recibos.Suma.setText(rs2.getString("MontoLetras"));
                             Recibos.saldo.setText(String.valueOf(rs2.getDouble("SaldoActual")) );
                             Recibos.Fact.setText(rs2.getString("AFactura"));
+                            Recibos.estado.setText(rs2.getString("Estado"));
+                            Recibos.jButton3.setEnabled(true);
+                            Recibos.Guardar.setEnabled(false);
                             if ("".equals(rs2.getString("AFactura")))
                             {
                                 Recibos.AFactura.setSelected(false);

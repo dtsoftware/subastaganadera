@@ -32,9 +32,9 @@ import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, todos, todos2, rs5, aux, rsr;
+      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr;
       Integer ultimor;
-    PreparedStatement cargar2, cargar3, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
+    PreparedStatement cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -159,6 +159,7 @@ public void guardarrecibo(){
             String NumeroCHT =String.valueOf(Recibos.NumeroCHT.getText());
             String NombreCliente =String.valueOf(Recibos.txtBeneficiario.getText());
             String AFactura =String.valueOf(Recibos.Fact.getText());
+            String Estado = "REGISTRADO";
             if (Recibos.AFactura.isSelected()){
                 
                 if(!"0.0".equals(Recibos.saldo.getText()) && "CONTADO".equals(Recibos.Fact2.getText())){
@@ -178,7 +179,7 @@ public void guardarrecibo(){
                     
                 }else
                 {
-                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, AFactura, Tipo, NombreCliente, SaldoActual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    guardarrecibo=conect.con.prepareStatement("INSERT INTO recibos ( Codigo, MontoLetras, MontoTotal, MontoEfectivo, MontoCheque, MontoTarjeta, NumeroCH, BancoCh, CodCliente, Detalle, Fecha, AFactura, Tipo, NombreCliente, SaldoActual, Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,codigo);
                     guardarrecibo.setString(2, MontoLetras);
@@ -210,6 +211,7 @@ public void guardarrecibo(){
                     guardarrecibo.setString(13, Tipo);
                     guardarrecibo.setString(14, NombreCliente);
                     guardarrecibo.setDouble(15, Saldo);
+                    guardarrecibo.setString(16, Estado);
                     guardarrecibo.execute(); 
                     
                     ActualizarSaldo();  
@@ -425,6 +427,105 @@ public void guardarrecibo(){
        
     }
  
+    public void Anular()
+    {
+    try {
+        String consulta;  
+        conectar conect = new conectar(); 
+        conect.conexion();  
+        String Estado1, Estado2, ValidarE, ValidarF;
+        Double Saldo=0.00, Monto=0.00;
+        Integer idFactura=0, idRecibo=0;
+        redondear redon  = new redondear();
+        Estado1 = "POR PAGAR";
+        Estado2 = "ANULADO";
+        ValidarE = Recibos.estado.getText();
+        idRecibo = Integer.parseInt(Recibos.recibo.getText());
+
+        
+        if (!"ANULADO".equals(ValidarE))
+        {
+            ValidarF = Recibos.Fact.getText();
+
+            if (ValidarF!=null)
+            {
+                idFactura = Integer.parseInt(Recibos.Fact.getText());
+                Monto = Double.parseDouble(Recibos.txtCantidad.getText());
+                consulta="SELECT idFacturas, Saldo, Estado FROM facturas where idFacturas ='"+ idFactura +"'";
+                cargar2=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                rs2=cargar2.executeQuery(consulta);
+
+                while (rs2.next())
+                { 
+                    consulta="UPDATE facturas SET Saldo =?,Estado=? WHERE idFacturas= ? ";
+                    cargar3=conect.con.prepareStatement(consulta);
+                    cargar3.setDouble(1, (rs2.getDouble("Saldo"))+ Monto);
+                    cargar3.setString(2, Estado1);
+                    cargar3.setInt(3, idFactura);
+                    cargar3.executeUpdate();
+                
+                    consulta="UPDATE recibos SET Estado =? WHERE idRecibos= ? ";
+                    cargar4=conect.con.prepareStatement(consulta);
+                    cargar4.setString(1, Estado2);
+                    cargar4.setInt(2, idRecibo);
+                    cargar4.executeUpdate();                    
+                }
+                JOptionPane.showMessageDialog(null,"Recibo Anulado Con Exito");
+            
+            }else{
+                JOptionPane.showMessageDialog(null,"entro al else recibo: "+idRecibo);
+                
+                consulta="SELECT idFactura, Saldo, Abono FROM recibos_detalles where idRecibo ='"+ idRecibo +"'";
+                cargar2=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                rs2=cargar2.executeQuery(consulta);
+                JOptionPane.showMessageDialog(null,"paso consulta");
+                while (rs2.next())
+                { 
+                    JOptionPane.showMessageDialog(null,"entro al while");
+                    consulta="SELECT idFacturas, Saldo, Estado FROM facturas where idfacturas ='"+ (rs2.getInt("idFactura")) +"'";
+                    cargar3=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    rs3=cargar3.executeQuery(consulta);
+
+                    while (rs3.next())
+                    { 
+                        JOptionPane.showMessageDialog(null,"while 2");
+                        consulta="UPDATE facturas SET Saldo =?,Estado=? WHERE idFacturas= ? ";
+                        cargar3=conect.con.prepareStatement(consulta);
+                        Double Valor = redon.redondearDecimales((rs3.getDouble("Saldo"))+ (rs2.getDouble("Abono")), 2);
+                        cargar3.setDouble(1, Valor);
+                        cargar3.setString(2, Estado1);
+                        cargar3.setInt(3, (rs2.getInt("idFactura")));
+                        cargar3.executeUpdate();
+                JOptionPane.showMessageDialog(null,"actualiza 1");
+                        consulta="UPDATE recibos SET Estado =? WHERE idRecibos= ? ";
+                        cargar4=conect.con.prepareStatement(consulta);
+                        cargar4.setString(1, Estado2);
+                        cargar4.setInt(2, idRecibo);
+                        cargar4.executeUpdate();   
+                        JOptionPane.showMessageDialog(null,"Actualiza 2");
+                    }
+                    JOptionPane.showMessageDialog(null,"Factura N°: '"+rs2.getInt("idFactura")+"' Actualizada");            
+                }
+                
+                JOptionPane.showMessageDialog(null,"Recibo Anulado Con Exito");
+   
+             }  
+
+        }else{
+
+          JOptionPane.showMessageDialog(null,"Recibo Ya Esta Anulado");  
+        }
+    
+    conect.desconectar(); 
+
+    }catch(SQLException ex){
+            
+       JOptionPane.showMessageDialog(null,"Error" +ex);  
+        
+        }
+       
+    }
+    
 public Integer buscarultimo(){
     
      conectar conect = new conectar(); 
