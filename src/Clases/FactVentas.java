@@ -35,7 +35,7 @@ public void buscarfventas(){
      String consulta;    
      conectar conect = new conectar(); 
      conect.conexion();
-       
+     
      Calendar c1 = Calendar.getInstance();
       String  dia = Integer.toString(c1.get(Calendar.DAY_OF_MONTH));
       String  mes = Integer.toString(c1.get(Calendar.MONTH) + 1);
@@ -52,8 +52,22 @@ public void buscarfventas(){
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Error" +ex);
         }
-
-     consulta="SELECT idEntradas, Fecha, CodCliente, Condicion, Total, Estado FROM entradas  where Fecha ='"+ fecha +"' ORDER BY idEntradas";
+      
+      consulta="SELECT idEntradas, Fecha, CodCliente, Condicion, Total, Estado FROM entradas  where Fecha ='"+ fecha +"' ORDER BY idEntradas ASC";
+      
+     if ("1".equals(FacturarV.Orden)) {
+         consulta="SELECT idEntradas, Fecha, CodCliente, Condicion, Total, Estado FROM entradas  where Fecha ='"+ fecha +"' ORDER BY idEntradas ASC";
+     }
+     
+         if ("2".equals(FacturarV.Orden)) {
+         consulta="SELECT idEntradas, Fecha, CodCliente, Condicion, Total, Estado FROM entradas  where Fecha ='"+ fecha +"' ORDER BY CodCliente ASC";
+     }
+          
+         if ("3".equals(FacturarV.Orden)) {
+         consulta="SELECT idEntradas, Fecha, CodCliente, Condicion, Total, Estado FROM entradas  where Fecha ='"+ fecha +"' ORDER BY Estado ASC";
+     }
+               
+     
      //pasamos la consulta al preparestatement
      buscarv=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -73,7 +87,7 @@ public void buscarfventas(){
     ventas.close();
     buscarv.close();
     conect.desconectar();
-           
+     FacturarV.Orden = "1";      
    }catch (Exception ex){
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }

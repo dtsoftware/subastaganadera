@@ -12,7 +12,7 @@ import Clases.FactCompras;
  * @author Juan
  */
 public class FacturarC extends javax.swing.JFrame {
-
+public static String Orden;
     /**
      * Creates new form FacturarC
      */
@@ -56,7 +56,12 @@ public class FacturarC extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 255), null));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N° Factura", "Cliente", "Estado" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -312,6 +317,18 @@ this.dispose();
           
   
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+         if("N° Factura".equals(String.valueOf(this.jComboBox1.getSelectedItem()))){
+           FacturarC.Orden = "1";   
+        }else if("Cliente".equals(String.valueOf(this.jComboBox1.getSelectedItem()))){
+            FacturarC.Orden = "2";   
+        }else{
+            FacturarC.Orden = "3";   
+        }
+        FactCompras Acomprados = new FactCompras();
+        Acomprados.buscarfcompras(); 
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments

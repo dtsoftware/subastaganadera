@@ -54,7 +54,19 @@ public void buscarfcompras(){
             JOptionPane.showMessageDialog(null,"Error" +ex);
         }
 
-     consulta="SELECT idFacturas, Fecha, CodCliente, Tipo, Monto, Estado FROM facturas  where Fecha ='"+ fecha +"' ORDER BY idFacturas";
+     consulta="SELECT idFacturas, Fecha, CodCliente, Tipo, Monto, Estado FROM facturas  where Fecha ='"+ fecha +"' ORDER BY idFacturas ASC";
+      
+     if ("1".equals(FacturarC.Orden)) {
+         consulta="SELECT idFacturas, Fecha, CodCliente, Tipo, Monto, Estado FROM facturas  where Fecha ='"+ fecha +"' ORDER BY idFacturas ASC";
+     }
+     
+         if ("2".equals(FacturarC.Orden)) {
+         consulta="SELECT idFacturas, Fecha, CodCliente, Tipo, Monto, Estado FROM facturas  where Fecha ='"+ fecha +"' ORDER BY CodCliente ASC";
+     }
+          
+         if ("3".equals(FacturarC.Orden)) {
+         consulta="SELECT idFacturas, Fecha, CodCliente, Tipo, Monto, Estado FROM facturas  where Fecha ='"+ fecha +"' ORDER BY Estado ASC";
+     }
      //pasamos la consulta al preparestatement
      buscarv=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -74,7 +86,7 @@ public void buscarfcompras(){
     ventas.close();
     buscarv.close();
     conect.desconectar();
-           
+    FacturarC.Orden = "1";       
    }catch (Exception ex){
    JOptionPane.showMessageDialog(null,"Error" +ex);
    }

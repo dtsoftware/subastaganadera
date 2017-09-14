@@ -23,7 +23,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Juan
  */
 public class FacturarV extends javax.swing.JFrame {
-
+public static String Orden;
     /**
      * Creates new form FacturarV
      */
@@ -67,7 +67,17 @@ public class FacturarV extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 255), null));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N° Factura", "Cliente", "Estado" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox1PropertyChange(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -178,12 +188,14 @@ public class FacturarV extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
         jButton3.setText("ELIMINAR");
+        jButton3.setEnabled(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-trash-empty-icon.png"))); // NOI18N
         jButton4.setText("ANULAR");
+        jButton4.setEnabled(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -201,6 +213,7 @@ public class FacturarV extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/task-notes-icon.png"))); // NOI18N
         jButton7.setText("NOTA D/C");
+        jButton7.setEnabled(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -308,7 +321,7 @@ public class FacturarV extends javax.swing.JFrame {
         ch.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_chequesActionPerformed
-
+     
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try{
     Integer codigo;
@@ -337,6 +350,22 @@ public class FacturarV extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1PropertyChange
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+          if("N° Factura".equals(String.valueOf(this.jComboBox1.getSelectedItem()))){
+           FacturarV.Orden = "1";   
+        }else if("Cliente".equals(String.valueOf(this.jComboBox1.getSelectedItem()))){
+            FacturarV.Orden = "2";   
+        }else{
+            FacturarV.Orden = "3";   
+        }
+        FactVentas Acomprados = new FactVentas();
+        Acomprados.buscarfventas(); 
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
