@@ -324,6 +324,11 @@ public class Recibos extends javax.swing.JFrame {
         asaldo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         asaldo.setForeground(new java.awt.Color(255, 0, 0));
         asaldo.setText("A Saldo");
+        asaldo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                asaldoMouseClicked(evt);
+            }
+        });
         asaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 asaldoActionPerformed(evt);
@@ -723,8 +728,11 @@ public class Recibos extends javax.swing.JFrame {
                 }
                 Recibos.Fact.setText("0");
                 Recibos.Fact2.setText("----");
+                
+                redondear redon  = new redondear();
+                STotal = redon.redondearDecimales(STotal, 2);  
                 Recibos.saldo.setText(""+STotal);
-                Recibos.txtCantidad.setEditable(rootPaneCheckingEnabled);
+                Recibos.txtCantidad.setEditable(true);
             }
         Aux = 2;   
        
@@ -768,7 +776,6 @@ public class Recibos extends javax.swing.JFrame {
         Recibos.SaldoT.setText("0.00");
         Recibos.NumeroCHT.setText("");
         Recibos.jTextField6.setText("");
-        Recibos.AFactura.setSelected(true);
         ReciboAbonos ch = new ReciboAbonos();        
         this.recibo.setText(ch.buscarultimo().toString());
         Recibos.txtCantidad.setEditable(false);
@@ -776,6 +783,7 @@ public class Recibos extends javax.swing.JFrame {
         Recibos.asaldo.setSelected(false);
         Recibos.Guardar.setEnabled(true);
         Recibos.jButton3.setEnabled(false);
+        Aux = 1;
      DefaultTableModel tabla= (DefaultTableModel) Recibos.jTableFacturas.getModel();   
   
      
@@ -815,6 +823,10 @@ public class Recibos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error:"+ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void asaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asaldoMouseClicked
+
+    }//GEN-LAST:event_asaldoMouseClicked
 
     /**
      * @param args the command line arguments

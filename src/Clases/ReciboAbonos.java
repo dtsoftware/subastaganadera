@@ -6,6 +6,7 @@
 package Clases;
 import Interfaces.Entradas;
 import Interfaces.Recibos;
+import Interfaces.buscarclientes;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -32,9 +33,9 @@ import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr;
+      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr, rs;
       Integer ultimor;
-    PreparedStatement cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
+    PreparedStatement cargar, cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -119,7 +120,8 @@ public void cargarfacturas(){
     for (int i = 0; i < Recibos.jTableFacturas.getRowCount(); i++) {
         Suma = Suma + (Double.valueOf(Recibos.jTableFacturas.getValueAt(i, 3).toString()));
     }
-      
+    redondear redon  = new redondear();
+    Suma = redon.redondearDecimales(Suma, 2);  
     Recibos.SaldoT.setText(String.valueOf(Suma));
     
     todos.close();
@@ -628,6 +630,8 @@ public Integer buscarultimo(){
                JOptionPane.showMessageDialog(null,"El Proceso Ha Sido Cancelado O no Hay Impresoras Instaladas");
            }
         }
+       
+      
 }
 
 

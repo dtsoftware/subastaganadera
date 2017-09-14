@@ -7,6 +7,7 @@ package Clases;
 
 import Interfaces.ListarRecibos;
 import Interfaces.Recibos;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -133,4 +134,158 @@ public class ListRecibos {
    }
   
   }
+      
+             public void buscarpornombre(String nombre){
+     try {
+         tabla = (DefaultTableModel) ListarRecibos.Tbl_Recibos.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+     
+     // creamos la consulta
+     consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, AFactura, SaldoActual FROM recibos where NombreCliente LIKE'"+ nombre +"%' ORDER BY NombreCliente";
+     //pasamos la consulta al preparestatement
+     cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     rs=cargar.executeQuery(consulta);
+     //recorremos el resulset
+    while (rs.next()){
+        
+                    filas[0]=rs.getInt("Codigo");
+                    filas[1]=rs.getInt("CodCliente");
+                    filas[2]=rs.getString("NombreCliente");
+                    filas[3]=rs.getDouble("MontoTotal");
+                    filas[4]=rs.getString("Detalle");
+                    filas[5]=rs.getString("Fecha");
+                    filas[6]=rs.getString("Tipo");
+                    filas[7]=rs.getString("Estado");
+                    filas[8]=rs.getString("MontoLetras");
+                    filas[9]=rs.getInt("AFactura");
+                    filas[10]=rs.getDouble("SaldoActual");
+                                        
+       tabla.addRow(filas);
+    }
+    rs.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+     
+     }
+             
+             public void buscarporcedula( String Recibo){
+     try {
+         tabla = (DefaultTableModel) ListarRecibos.Tbl_Recibos.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+     
+     // creamos la consulta
+     consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, AFactura, SaldoActual FROM recibos where Codigo LIKE'"+ Recibo +"%' ORDER BY Fecha ASC";
+     //pasamos la consulta al preparestatement
+     cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     rs=cargar.executeQuery(consulta);
+     //recorremos el resulset
+    while (rs.next()){
+        
+                    filas[0]=rs.getInt("Codigo");
+                    filas[1]=rs.getInt("CodCliente");
+                    filas[2]=rs.getString("NombreCliente");
+                    filas[3]=rs.getDouble("MontoTotal");
+                    filas[4]=rs.getString("Detalle");
+                    filas[5]=rs.getString("Fecha");
+                    filas[6]=rs.getString("Tipo");
+                    filas[7]=rs.getString("Estado");
+                    filas[8]=rs.getString("MontoLetras");
+                    filas[9]=rs.getInt("AFactura");
+                    filas[10]=rs.getDouble("SaldoActual");
+                                        
+       tabla.addRow(filas);
+    }
+    rs.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+    }
+  
+   public void buscarporcodigo( String Fecha){
+     try {
+         tabla = (DefaultTableModel) ListarRecibos.Tbl_Recibos.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+     // creamos la consulta
+
+     consulta="SELECT Codigo, CodCliente, NombreCliente, MontoTotal, Detalle, Fecha, Tipo, Estado, MontoLetras, AFactura, SaldoActual FROM recibos where Fecha = '"+ Fecha +"' ORDER BY Codigo";
+  
+//pasamos la consulta al preparestatement
+     cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     rs=cargar.executeQuery(consulta);
+     //recorremos el resulset
+    while (rs.next()){
+        
+                    filas[0]=rs.getInt("Codigo");
+                    filas[1]=rs.getInt("CodCliente");
+                    filas[2]=rs.getString("NombreCliente");
+                    filas[3]=rs.getDouble("MontoTotal");
+                    filas[4]=rs.getString("Detalle");
+                    filas[5]=rs.getString("Fecha");
+                    filas[6]=rs.getString("Tipo");
+                    filas[7]=rs.getString("Estado");
+                    filas[8]=rs.getString("MontoLetras");
+                    filas[9]=rs.getInt("AFactura");
+                    filas[10]=rs.getDouble("SaldoActual");
+                                        
+       tabla.addRow(filas);
+    }
+    rs.close();
+    conect.desconectar();
+           
+   }catch (HeadlessException | SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+    }
 }

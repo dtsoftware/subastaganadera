@@ -5,8 +5,9 @@
  */
 package Interfaces;
 
-import Clases.CrearClientes;
 import Clases.ListRecibos;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class ListarRecibos extends javax.swing.JFrame {
-
+String Nombre,Recibo, Apellido;
     /**
      * Creates new form ListarRecibos
      */
     public ListarRecibos() {
         initComponents();
-         ListRecibos buscar = new  ListRecibos();
-         buscar.buscartodos();
+        ListRecibos buscar = new  ListRecibos();
+        buscar.buscartodos();
     }
 
     /**
@@ -42,11 +43,17 @@ public class ListarRecibos extends javax.swing.JFrame {
         jRadioButtonCedula = new javax.swing.JRadioButton();
         jButtonRealizarBusqueda = new javax.swing.JButton();
         jRadioButtonCedula1 = new javax.swing.JRadioButton();
+        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         Seleccionar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         Tbl_Recibos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,10 +79,34 @@ public class ListarRecibos extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "N° Recibo", "Cod. Cliente", "Nombre Cliente", "Monto", "Descripcion", "Fecha", "Tipo", "Estado", "Monto en Letras", "A Factura", "Saldo"
+                "Recibo", "CodClie", "Nombre Cliente", "Monto", "Descripcion", "Fecha", "Tipo", "Estado", "Monto en Letras", "A Factura", "Saldo"
             }
         ));
         jScrollPane1.setViewportView(Tbl_Recibos);
+        if (Tbl_Recibos.getColumnModel().getColumnCount() > 0) {
+            Tbl_Recibos.getColumnModel().getColumn(0).setMinWidth(55);
+            Tbl_Recibos.getColumnModel().getColumn(0).setMaxWidth(55);
+            Tbl_Recibos.getColumnModel().getColumn(1).setMinWidth(55);
+            Tbl_Recibos.getColumnModel().getColumn(1).setMaxWidth(55);
+            Tbl_Recibos.getColumnModel().getColumn(2).setMinWidth(150);
+            Tbl_Recibos.getColumnModel().getColumn(2).setMaxWidth(150);
+            Tbl_Recibos.getColumnModel().getColumn(3).setMinWidth(70);
+            Tbl_Recibos.getColumnModel().getColumn(3).setMaxWidth(70);
+            Tbl_Recibos.getColumnModel().getColumn(4).setMinWidth(150);
+            Tbl_Recibos.getColumnModel().getColumn(4).setMaxWidth(150);
+            Tbl_Recibos.getColumnModel().getColumn(5).setMinWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(5).setMaxWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(6).setMinWidth(65);
+            Tbl_Recibos.getColumnModel().getColumn(6).setMaxWidth(65);
+            Tbl_Recibos.getColumnModel().getColumn(7).setMinWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(7).setMaxWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(8).setMinWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(8).setMaxWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(9).setMinWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(9).setMaxWidth(75);
+            Tbl_Recibos.getColumnModel().getColumn(10).setMinWidth(70);
+            Tbl_Recibos.getColumnModel().getColumn(10).setMaxWidth(70);
+        }
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -116,8 +147,10 @@ public class ListarRecibos extends javax.swing.JFrame {
             }
         });
 
+        jButtonRealizarBusqueda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonRealizarBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Zoom-icon.png"))); // NOI18N
-        jButtonRealizarBusqueda.setText("BUSCAR");
+        jButtonRealizarBusqueda.setText("BUSCAR X FECHA");
+        jButtonRealizarBusqueda.setEnabled(false);
         jButtonRealizarBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRealizarBusquedaActionPerformed(evt);
@@ -127,7 +160,7 @@ public class ListarRecibos extends javax.swing.JFrame {
         jRadioButtonCedula1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButtonCedula1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jRadioButtonCedula1.setForeground(new java.awt.Color(0, 0, 255));
-        jRadioButtonCedula1.setText("Codigo");
+        jRadioButtonCedula1.setText("Fecha");
         jRadioButtonCedula1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonCedula1ActionPerformed(evt);
@@ -141,14 +174,16 @@ public class ListarRecibos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
-                .addComponent(jRadioButtonNombre)
-                .addGap(30, 30, 30)
-                .addComponent(jRadioButtonCedula)
-                .addGap(34, 34, 34)
-                .addComponent(jRadioButtonCedula1)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonRealizarBusqueda)
+                .addComponent(jRadioButtonNombre)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonCedula)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonCedula1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRealizarBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,11 +194,13 @@ public class ListarRecibos extends javax.swing.JFrame {
                     .addComponent(jButtonRealizarBusqueda)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButtonNombre)
-                            .addComponent(jRadioButtonCedula)
-                            .addComponent(jRadioButtonCedula1))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioButtonNombre)
+                                .addComponent(jRadioButtonCedula)
+                                .addComponent(jRadioButtonCedula1)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -221,28 +258,33 @@ public class ListarRecibos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarPropertyChange
 
     private void jTextFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyReleased
-  //      try {
-  //          if (this.jRadioButtonNombre.isSelected()==true)
-  //          {
-  //              CrearClientes busc = new CrearClientes();
-  //              Nombre=this.jTextFieldBuscar.getText();
-  //              Apellido=this.jTextFieldBuscar.getText();
-  //              busc.buscarpornombre(Nombre, Apellido);
-//
-  //          }else if (this.jRadioButtonCedula.isSelected()==true){
-   //             CrearClientes busc = new CrearClientes();
-   //             Cedula=this.jTextFieldBuscar.getText();
-   //             busc.buscarporcedula(Cedula);
-   //         }else if (this.jRadioButtonCedula1.isSelected()==true){
-  //              CrearClientes busc = new CrearClientes();
-  //              Codigo=this.jTextFieldBuscar.getText();
-  //              busc.buscarporcodigo(Codigo);
-  //          }
-   //         evt.consume();
-   //     }catch(Exception ex){
-//
-   //         JOptionPane.showMessageDialog(null, "ERROR");
-   //     }
+        try {
+            //-----obtener la fecha----------------------
+            String  dia = Integer.toString(ListarRecibos.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(ListarRecibos.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(ListarRecibos.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+            String fecha = (year + "-" + mes+ "-" + dia);         
+            //---------fin de obtener la fecha
+            
+            if (this.jRadioButtonNombre.isSelected()==true)
+            {
+                ListRecibos busc = new ListRecibos();
+                Nombre=this.jTextFieldBuscar.getText();
+                busc.buscarpornombre(Nombre);
+
+            }else if (this.jRadioButtonCedula.isSelected()==true){
+                ListRecibos busc = new ListRecibos();
+                Recibo=this.jTextFieldBuscar.getText();
+                busc.buscarporcedula(Recibo);
+            }else if (this.jRadioButtonCedula1.isSelected()==true){
+                ListRecibos busc = new ListRecibos();
+                busc.buscarporcodigo(fecha);
+            }
+            evt.consume();
+        }catch(Exception ex){
+
+            JOptionPane.showMessageDialog(null, "ERROR");
+        }
     }//GEN-LAST:event_jTextFieldBuscarKeyReleased
 
     private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
@@ -253,38 +295,44 @@ public class ListarRecibos extends javax.swing.JFrame {
         this.jRadioButtonCedula.setSelected(false);
         this.jRadioButtonCedula1.setSelected(false);
         this.jRadioButtonNombre.setSelected(true);
+        this.jButtonRealizarBusqueda.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonNombreActionPerformed
 
     private void jRadioButtonCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCedulaActionPerformed
         this.jRadioButtonCedula.setSelected(true);
         this.jRadioButtonCedula1.setSelected(false);
         this.jRadioButtonNombre.setSelected(false);
+        this.jButtonRealizarBusqueda.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonCedulaActionPerformed
 
     private void jButtonRealizarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarBusquedaActionPerformed
         // TODO add your handling code here:
         try {
+            
+            String  dia = Integer.toString(ListarRecibos.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(ListarRecibos.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(ListarRecibos.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+            String fecha = (year + "-" + mes+ "-" + dia);  
+            
             if (this.jRadioButtonNombre.isSelected()==true)
             {
 
- //               CrearClientes busc = new CrearClientes();
- //               Nombre=this.jTextFieldBuscar.getText();
-  //              Apellido=this.jTextFieldBuscar.getText();
-  //              busc.buscarpornombre(Nombre, Apellido);
+                ListRecibos busc = new ListRecibos ();
+                Nombre=this.jTextFieldBuscar.getText();
+                busc.buscarpornombre(Nombre);
 
             }else if (this.jRadioButtonCedula.isSelected()==true){
-   //             CrearClientes busc = new CrearClientes();
-   //             Cedula=this.jTextFieldBuscar.getText();
-    //            busc.buscarporcedula(Cedula);
+                ListRecibos busc = new ListRecibos();
+                Recibo=this.jTextFieldBuscar.getText();
+                busc.buscarporcedula(Recibo);
             }else if (this.jRadioButtonCedula1.isSelected()==true){
-    //            CrearClientes busc = new CrearClientes();
-     //           Codigo=this.jTextFieldBuscar.getText();
-    //            busc.buscarporcodigo(Codigo);
+                ListRecibos busc = new ListRecibos();
+                busc.buscarporcodigo(fecha);
             }
 
         }catch(Exception ex){
 
-     //       JOptionPane.showMessageDialog(null, "ERROR");
+            JOptionPane.showMessageDialog(null, "ERROR");
         }
     }//GEN-LAST:event_jButtonRealizarBusquedaActionPerformed
 
@@ -292,6 +340,7 @@ public class ListarRecibos extends javax.swing.JFrame {
         this.jRadioButtonCedula.setSelected(false);
         this.jRadioButtonCedula1.setSelected(true);
         this.jRadioButtonNombre.setSelected(false);
+        this.jButtonRealizarBusqueda.setEnabled(true);
     }//GEN-LAST:event_jRadioButtonCedula1ActionPerformed
 
     private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
@@ -319,6 +368,12 @@ public class ListarRecibos extends javax.swing.JFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ListarRecibos.jDateChooserFecha.setDateFormatString("dd/MM/yyyy");
+        Date date = new Date(); 
+        ListarRecibos.jDateChooserFecha.setDate(date); 
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -360,6 +415,7 @@ public class ListarRecibos extends javax.swing.JFrame {
     public static javax.swing.JTable Tbl_Recibos;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonRealizarBusqueda;
+    public static com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButtonCedula;
     private javax.swing.JRadioButton jRadioButtonCedula1;
