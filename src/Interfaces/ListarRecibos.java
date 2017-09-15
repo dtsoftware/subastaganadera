@@ -349,7 +349,7 @@ String Nombre,Recibo, Apellido;
         try{
             filaseleccionada= this.Tbl_Recibos.getSelectedRow();
             if (filaseleccionada==-1){
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro","ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }else{
               DefaultTableModel modelotabla=(DefaultTableModel) this.Tbl_Recibos.getModel();
               ListRecibos crear = new  ListRecibos ();

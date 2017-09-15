@@ -174,6 +174,11 @@ public class Recibos extends javax.swing.JFrame {
         jButton4.setText("RE-IMPRIMIR RECIBO");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/print-icon (3).png"))); // NOI18N
@@ -624,7 +629,7 @@ public class Recibos extends javax.swing.JFrame {
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
 
         if ((Recibos.recibo.getText().trim().length()==0) || (this.txtCantidad.getText().trim().length()==0) || (this.cliente.getText().trim().length()==0)|| (this.Suma.getText().trim().length()==0) ) {
-            JOptionPane.showMessageDialog(null, "Falta Rellenar Campos Claves Para Completar El Registro");
+            JOptionPane.showMessageDialog(null, "Falta Rellenar Campos Claves Para Completar El Registro","ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         }else{
             ReciboAbonos Factura = new ReciboAbonos();
             Factura.guardarrecibo();
@@ -685,7 +690,7 @@ public class Recibos extends javax.swing.JFrame {
                 try{
                     filaseleccionada= this.jTableFacturas.getSelectedRow();
                     if (filaseleccionada==-1){
-                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro","ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                     }else{
                         DefaultTableModel modelotabla=(DefaultTableModel) this.jTableFacturas.getModel();
                         String Facturax =String.valueOf(modelotabla.getValueAt(filaseleccionada, 0));
@@ -745,7 +750,7 @@ public class Recibos extends javax.swing.JFrame {
             try{
                 filaseleccionada= this.jTableFacturas.getSelectedRow();
                 if (filaseleccionada==-1){
-                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro");
+                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun registro","ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                 }else{
                     DefaultTableModel modelotabla=(DefaultTableModel) this.jTableFacturas.getModel();
                     String Facturax =String.valueOf(modelotabla.getValueAt(filaseleccionada, 0));
@@ -827,6 +832,19 @@ public class Recibos extends javax.swing.JFrame {
     private void asaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asaldoMouseClicked
 
     }//GEN-LAST:event_asaldoMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Integer Codigo;                
+        Codigo = Integer.parseInt(this.recibo.getText().toString());
+        
+        if ((Recibos.recibo.getText().trim().length()==0) || (this.txtCantidad.getText().trim().length()==0) || (this.cliente.getText().trim().length()==0)|| (this.Suma.getText().trim().length()==0) || (this.estado.getText()== "CREACION"))  {
+            JOptionPane.showMessageDialog(null, "No Se puede Re-Imprimir un Registro Sin Guardar","ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        }else{
+                ReciboAbonos ra = new ReciboAbonos();
+                ra.imprimirrecibo(Codigo);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
