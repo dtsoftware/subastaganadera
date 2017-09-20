@@ -11,7 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.print.PrintService;
@@ -24,6 +27,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 /**
@@ -33,9 +37,9 @@ import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr, rs;
+      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr, rs, rs1;
       Integer ultimor;
-    PreparedStatement cargar, cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
+    PreparedStatement cargar, cargar1, cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -630,8 +634,159 @@ public Integer buscarultimo(){
                JOptionPane.showMessageDialog(null,"El Proceso Ha Sido Cancelado O no Hay Impresoras Instaladas");
            }
         }
-       
+   
+    public void imprimirecuenta(Integer CodCliente){
+
+    conectar conect = new conectar(); 
+    conect.conexion();
+ 
+                      try {
+                   
+                    JasperReport jasperReport;
+                    JasperPrint jasperPrint;
+                
+                     Map<String, Object> params = new HashMap<String, Object>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "EstadoCuenta.jrxml";  
+                    jasperReport =JasperCompileManager.compileReport(ruta);
+                    params.put("CodCliente", CodCliente);
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
+                    JasperViewer.viewReport(jasperPrint, false);
+
+                 } catch (Exception ex) {
+                    System.err.println("Error JRException: " + ex.getMessage());
+                 }
+
+        }
       
+    
+    public void EstadoCuenta(Integer codigo){
+    try {
+     Integer IdCliente=0, Diferencia=0;
+     String consulta1, consulta2, consulta3, Nombre, Apellido, Direccion, Concepto, Pd="01";  
+     conectar conect = new conectar(); 
+     conect.conexion();
+    Nombre = "";
+    Apellido = "";
+    Direccion = "";
+     Concepto = "Pago por Venta de Animales";
+    //-----obtener la fecha----------------------
+            String  dia = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String  mes = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
+            String year = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.YEAR));
+            String fecha = (year + "-" + mes+ "-" + dia);
+            String fechaMes = (year + "-" + mes + "-" +Pd);
+            //---------fin de obtener la fecha
+    
+     consulta1="SELECT idClientes, Nombre, Apellido, Direccion FROM clientes where idClientes ='"+ codigo +"'";
+     consulta2="SELECT Fecha, idFacturas, Monto  FROM facturas where CodCliente ='"+ codigo +"' AND Estado = '"+"POR PAGAR"+"' ORDER BY Fecha ASC";
+     consulta3="SELECT Fecha,Codigo, MontoTotal, Detalle FROM recibos where CodCliente ='"+ codigo +"' AND Fecha >= '"+ fechaMes+ "' ORDER BY Fecha ASC";
+     
+     cargar1=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     cargar2=conect.con.prepareStatement(consulta2,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     cargar3=conect.con.prepareStatement(consulta3,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+     rs1=cargar1.executeQuery(consulta1);
+     rs2=cargar2.executeQuery(consulta2);
+     rs3=cargar3.executeQuery(consulta3);
+     Date Actual = new Date();
+     Date Pasada = new Date();
+     double A7=0.00, A15=0.00, A30=0.00, A60=0.00, Saldo =0.00;
+            if (rs1.next()){
+                IdCliente = rs1.getInt("idClientes");
+                Nombre = rs1.getString("Nombre");
+                Apellido = rs1.getString("Apellido");
+                Direccion = rs1.getString("Direccion");
+            rs1.close();
+           }else{
+                JOptionPane.showMessageDialog(null,"No Hay Registros Para Mostrar"  ); 
+                conect.desconectar();
+            }
+            
+            
+            while (rs2.next()){
+                Pasada = rs2.getDate("Fecha");               
+                int dias=(int) ((Actual.getTime()-Pasada.getTime())/86400000);
+                
+                if (dias <= 7){
+                    A7 =  rs2.getDouble("Monto");   
+                }else if ((dias > 7 )&&(dias <=15)){
+                    A15 =  rs2.getDouble("Monto"); 
+                }else if ((dias > 15 )&&(dias <=30)){
+                    A30 =  rs2.getDouble("Monto"); 
+                }else {
+                    A60 =  rs2.getDouble("Monto"); 
+                }
+                
+               Saldo = (Saldo + rs2.getDouble("Monto")); 
+                    guardarrecibo=conect.con.prepareStatement("INSERT INTO rptestadocuenta ( CodCliente, Nombre, Apellido, Direccion, "
+                            + "FechaReporte, FechaRegistro, Codigo, Concepto, Cargos, Dias, A7d, A15d, A30d, A60d, Saldo) "
+                            + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    //este es duplicando el numero consultar a juan el uso del codigo
+                    guardarrecibo.setInt(1,IdCliente);
+                    guardarrecibo.setString(2, Nombre);
+                    guardarrecibo.setString(3, Apellido);
+                    guardarrecibo.setString(4, Direccion);
+                    guardarrecibo.setString(5, fecha);
+                    guardarrecibo.setString(6, rs2.getString("Fecha"));
+                    guardarrecibo.setInt(7, rs2.getInt("idFacturas"));
+                    guardarrecibo.setString(8, Concepto);
+                    guardarrecibo.setDouble(9, rs2.getDouble("Monto"));
+                    guardarrecibo.setDouble(10, dias);
+                    guardarrecibo.setDouble(11, A7);
+                    guardarrecibo.setDouble(12, A15);
+                    guardarrecibo.setDouble(13, A30);
+                    guardarrecibo.setDouble(14, A60);
+                    guardarrecibo.setDouble(15, Saldo);
+                    guardarrecibo.execute(); 
+                    
+                    A7=0.00;
+                    A15=0.00;
+                    A30=0.00;
+                    A60=0.00;
+                    dias = 0;
+           }
+
+            
+            while (rs3.next()){
+
+                    Saldo = (Saldo - rs3.getDouble("MontoTotal")); 
+                    guardarrecibo1=conect.con.prepareStatement("INSERT INTO rptestadocuenta ( CodCliente, Nombre, Apellido, Direccion, "
+                            + "FechaReporte, FechaRegistro, Codigo, Concepto, Abonos, Saldo) "
+                            + "VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    //este es duplicando el numero consultar a juan el uso del codigo
+                    guardarrecibo1.setInt(1,IdCliente);
+                    guardarrecibo1.setString(2, Nombre);
+                    guardarrecibo1.setString(3, Apellido);
+                    guardarrecibo1.setString(4, Direccion);
+                    guardarrecibo1.setString(5, fecha);
+                    guardarrecibo1.setString(6, rs3.getString("Fecha"));
+                    guardarrecibo1.setInt(7, rs3.getInt("Codigo"));
+                    guardarrecibo1.setString(8, rs3.getString("Detalle"));
+                    guardarrecibo1.setDouble(9, rs3.getDouble("MontoTotal"));
+                    guardarrecibo1.setDouble(10, Saldo);
+                    guardarrecibo1.execute(); 
+                    
+           }
+                
+            JOptionPane.showMessageDialog(null,"Datos Generados");
+   }catch (SQLException ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+    
+}
+   
+ 
+	public static void main(String[] args) throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+ 
+		Date fechaInicial=dateFormat.parse("2016-02-14");
+		Date fechaFinal=dateFormat.parse("2016-03-22");
+ 
+		int dias=(int) ((fechaFinal.getTime()-fechaInicial.getTime())/86400000);
+ 
+		System.out.println("Hay "+dias+" dias de diferencia");
+	}
+
 }
 
 

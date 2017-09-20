@@ -639,7 +639,12 @@ public class Recibos extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        Integer codigo = Integer.parseInt(Recibos.cliente.getText());
+        ReciboAbonos aux = new ReciboAbonos();
+        aux.EstadoCuenta(codigo);       
+        
+        ReciboAbonos ra = new ReciboAbonos();
+        ra.imprimirecuenta(codigo);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
