@@ -37,9 +37,9 @@ import net.sf.jasperreports.view.JasperViewer;
 public class ReciboAbonos {
      Object[] filas = new Object[6];
     Object[] filas1 = new Object[9];
-      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr, rs, rs1;
+      ResultSet rs2, rs3, todos, todos2, rs5, aux, rsr, rs, rs0, rs1, rs4;
       Integer ultimor;
-    PreparedStatement cargar, cargar1, cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, facturas, facturas2, factmax, numeror, UltimoRg;
+    PreparedStatement cargar, cargar0, cargar1, cargar2, cargar3, cargar4, guardarrecibo, guardarrecibo1, guardarrecibo3, facturas, facturas2, factmax, numeror, UltimoRg;
     DefaultTableModel tabla; 
 
 
@@ -662,9 +662,18 @@ public Integer buscarultimo(){
     public void EstadoCuenta(Integer codigo){
     try {
      Integer IdCliente=0, Diferencia=0;
-     String consulta1, consulta2, consulta3, Nombre, Apellido, Direccion, Concepto, Pd="01";  
+     String consulta0, consulta1, consulta2, consulta3, consulta4, Nombre, Apellido, Direccion, Concepto, Pd="01";  
      conectar conect = new conectar(); 
      conect.conexion();
+     
+          consulta0="TRUNCATE TABLE rptestadocuenta";
+            //pasamos la consulta al preparestatement
+            cargar4=conect.con.prepareStatement(consulta0);
+            cargar4.executeUpdate(consulta0);    
+            JOptionPane.showMessageDialog(null,"tABLA lIMPIA");
+            
+            
+            
     Nombre = "";
     Apellido = "";
     Direccion = "";
@@ -676,21 +685,34 @@ public Integer buscarultimo(){
             String fecha = (year + "-" + mes+ "-" + dia);
             String fechaMes = (year + "-" + mes + "-" +Pd);
             //---------fin de obtener la fecha
-    
+     consulta0="SELECT Fecha FROM facturas where CodCliente ='"+ codigo +"' AND Estado = '"+"POR PAGAR"+"' ORDER BY Fecha ASC";  
+     cargar0=conect.con.prepareStatement(consulta0,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);   
+     rs0=cargar0.executeQuery(consulta0);
+     Date Inicio = new Date();
+          if (rs0.next()){
+            Inicio = rs0.getDate("Fecha");           
+           }
+          
      consulta1="SELECT idClientes, Nombre, Apellido, Direccion FROM clientes where idClientes ='"+ codigo +"'";
      consulta2="SELECT Fecha, idFacturas, Monto  FROM facturas where CodCliente ='"+ codigo +"' AND Estado = '"+"POR PAGAR"+"' ORDER BY Fecha ASC";
-     consulta3="SELECT Fecha,Codigo, MontoTotal, Detalle FROM recibos where CodCliente ='"+ codigo +"' AND Fecha >= '"+ fechaMes+ "' ORDER BY Fecha ASC";
+     consulta3="SELECT Fecha,Codigo, MontoTotal, Detalle FROM recibos where CodCliente ='"+ codigo +"' AND Fecha >= '"+ Inicio + "' ORDER BY Fecha ASC";
+     
      
      cargar1=conect.con.prepareStatement(consulta1,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      cargar2=conect.con.prepareStatement(consulta2,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      cargar3=conect.con.prepareStatement(consulta3,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
+     
+     
      rs1=cargar1.executeQuery(consulta1);
      rs2=cargar2.executeQuery(consulta2);
      rs3=cargar3.executeQuery(consulta3);
      Date Actual = new Date();
      Date Pasada = new Date();
+
      double A7=0.00, A15=0.00, A30=0.00, A60=0.00, Saldo =0.00;
+     
+        
+        
             if (rs1.next()){
                 IdCliente = rs1.getInt("idClientes");
                 Nombre = rs1.getString("Nombre");
@@ -717,9 +739,8 @@ public Integer buscarultimo(){
                     A60 =  rs2.getDouble("Monto"); 
                 }
                 
-               Saldo = (Saldo + rs2.getDouble("Monto")); 
                     guardarrecibo=conect.con.prepareStatement("INSERT INTO rptestadocuenta ( CodCliente, Nombre, Apellido, Direccion, "
-                            + "FechaReporte, FechaRegistro, Codigo, Concepto, Cargos, Dias, A7d, A15d, A30d, A60d, Saldo) "
+                            + "FechaReporte, FechaRegistro, Codigo, Concepto, Cargos, Dias, A7d, A15d, A30d, A60d, Abonos) "
                             + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo.setInt(1,IdCliente);
@@ -736,7 +757,7 @@ public Integer buscarultimo(){
                     guardarrecibo.setDouble(12, A15);
                     guardarrecibo.setDouble(13, A30);
                     guardarrecibo.setDouble(14, A60);
-                    guardarrecibo.setDouble(15, Saldo);
+                    guardarrecibo.setDouble(15, 0.00);
                     guardarrecibo.execute(); 
                     
                     A7=0.00;
@@ -749,9 +770,8 @@ public Integer buscarultimo(){
             
             while (rs3.next()){
 
-                    Saldo = (Saldo - rs3.getDouble("MontoTotal")); 
                     guardarrecibo1=conect.con.prepareStatement("INSERT INTO rptestadocuenta ( CodCliente, Nombre, Apellido, Direccion, "
-                            + "FechaReporte, FechaRegistro, Codigo, Concepto, Abonos, Saldo) "
+                            + "FechaReporte, FechaRegistro, Codigo, Concepto, Cargos, Abonos) "
                             + "VALUES (?,?,?,?,?,?,?,?,?,?)");
                     //este es duplicando el numero consultar a juan el uso del codigo
                     guardarrecibo1.setInt(1,IdCliente);
@@ -762,12 +782,28 @@ public Integer buscarultimo(){
                     guardarrecibo1.setString(6, rs3.getString("Fecha"));
                     guardarrecibo1.setInt(7, rs3.getInt("Codigo"));
                     guardarrecibo1.setString(8, rs3.getString("Detalle"));
-                    guardarrecibo1.setDouble(9, rs3.getDouble("MontoTotal"));
-                    guardarrecibo1.setDouble(10, Saldo);
+                    guardarrecibo1.setDouble(9, 0.00);
+                    guardarrecibo1.setDouble(10, rs3.getDouble("MontoTotal"));
                     guardarrecibo1.execute(); 
                     
            }
-                
+            
+           consulta4 = "Select idrptestadocuenta, Cargos, Abonos,FechaRegistro Saldo From rptestadocuenta Order By FechaRegistro ASC"; 
+           cargar4=conect.con.prepareStatement(consulta4,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE); 
+           rs4=cargar4.executeQuery(consulta4);
+           double Pendiente = 0.00;
+           while(rs4.next()){
+            Pendiente = (Pendiente +  ((rs4.getDouble("Cargos"))-(rs4.getDouble("Abonos")))) ;
+               consulta4="UPDATE rptestadocuenta SET Saldo =? WHERE idrptestadocuenta= ? ";
+            //pasamos la consulta al preparestatement
+            cargar4=conect.con.prepareStatement(consulta4);
+            cargar4.setDouble(1, Pendiente);
+            cargar4.setInt(2, rs4.getInt("idrptestadocuenta"));
+
+            cargar4.executeUpdate();    
+           }
+           
+           
             JOptionPane.showMessageDialog(null,"Datos Generados");
    }catch (SQLException ex){
    JOptionPane.showMessageDialog(null,"Error" +ex);
