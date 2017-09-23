@@ -109,7 +109,7 @@ public static String Orden;
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -323,32 +323,11 @@ public static String Orden;
     }//GEN-LAST:event_chequesActionPerformed
      
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        try{
-    Integer codigo;
-    codigo= 565;
-    //-----obtener la fecha----------------------
-   //   String  dia = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
-   //   String  mes = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
-   //   String year = Integer.toString(jDateChooserFecha.getCalendar().get(Calendar.YEAR));
-      String  fecha = "2017-06-22";    
-     //---------fin de obtener la fecha  
-    
-    conectar conect = new conectar(); 
-    conect.conexion();
-         
-    Map<String, Object> params = new HashMap<String, Object>();
-    //String  ruta="/home/avbravo/NetBeansProjects/sistema de viveros/viverosis/src/reportes/" +  "recibo.jrxml";
-    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "Ventaporcodigo.jrxml";  
-    JasperReport jasperReport =JasperCompileManager.compileReport(ruta);
-    params.put("codigo", codigo);
-     params.put("fechaa", fecha);
-    JasperPrint jasperPrint =JasperFillManager.fillReport(jasperReport, params, conect.con);
-    JasperViewer.viewReport(jasperPrint, false);
-            
-        }catch(Exception ex){
-        JOptionPane.showMessageDialog(null,"Error" +ex);
-        
-        }
+          FactVentas select = new FactVentas();
+          select.InsertarValores();
+          
+          FactVentas prin = new FactVentas();
+          prin.imprimirfactura();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange

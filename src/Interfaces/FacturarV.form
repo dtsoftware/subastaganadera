@@ -145,7 +145,7 @@
                     <Column editable="true" title="Fecha" type="java.lang.Object"/>
                     <Column editable="true" title="Vendido Por." type="java.lang.Object"/>
                     <Column editable="true" title="Condicion" type="java.lang.Object"/>
-                    <Column editable="true" title="Total" type="java.lang.Object"/>
+                    <Column editable="true" title="Total" type="java.lang.Double"/>
                     <Column editable="true" title="Estado" type="java.lang.Object"/>
                     <Column editable="true" title="Listo" type="java.lang.Boolean"/>
                   </Table>
