@@ -109,32 +109,26 @@ public void buscarfcompras(){
 }
 
 public void InsertarValores(){
-    JOptionPane.showMessageDialog(null,"va a empezar"); 
       try {
     String consulta;      
     DefaultTableModel tabla = (DefaultTableModel) FacturarC.Tcompras.getModel();
     conectar conect = new conectar(); 
     conect.conexion();
-    JOptionPane.showMessageDialog(null,"Limpia DB"); 
             facturas=conect.con.prepareStatement("TRUNCATE TABLE rptselectcompras");
             facturas.execute();
-            facturas.close();
-       JOptionPane.showMessageDialog(null,"Inicia For");         
+            facturas.close();       
     
-    for (int i = 0; i < FacturarC.Tcompras.getRowCount(); i++) {
-   JOptionPane.showMessageDialog(null,"Validar if"); 
+    for (int i = 0; i < FacturarC.Tcompras.getRowCount(); i++) { 
         if( FacturarC.Tcompras.getValueAt(i, 8)!=null){ 
             
             int Factura= Integer.parseInt(FacturarC.Tcompras.getValueAt(i, 0).toString());
-             JOptionPane.showMessageDialog(null,"Factura: "+Factura ); 
             consulta = "select   f.idFacturas, f.Fecha,f.CodCliente,f.Monto,f.TotalAnimales,f.TotalHembras,f.TotalMachos,f.TotalTerneros,f.PPromHembras,f.PPromMachos, c.Nombre,c.Apellido,c.Cedula,fd.idAnimal,fd.Color,fd.Tipo,fd.CodVendedor,fd.Ferrete,fd.ferre2,fd.ferre3,fd.Precio,fd.Peso,fd.TotalBruto from facturas f, clientes c , facturas_detalle fd WHERE f.CodCliente=c.idClientes and f.idFacturas=fd.idFactura and fd.idFactura='"+Factura+"'";
             
             cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs=cargar.executeQuery(consulta);
             
            while (rs.next()){               
-                
-              JOptionPane.showMessageDialog(null,"ENtra al While");  
+                 
                facturas=conect.con.prepareStatement("INSERT INTO rptselectcompras (Factura, Fecha, CodCliente, Monto, TAnimales, THembras, TMachos, TTerneros, PPHembras, PPMachos, CNombre, CApellido, CCedula, idAnimal, Color, Tipo, CodVendedor, Ferrete, Ferrete2, Ferrete3, Precio, Peso, TotalBruto ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                facturas.setInt(1,Factura);
                facturas.setString(2,rs.getString("Fecha"));
