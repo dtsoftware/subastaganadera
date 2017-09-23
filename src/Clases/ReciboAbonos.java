@@ -670,7 +670,6 @@ public Integer buscarultimo(){
             //pasamos la consulta al preparestatement
             cargar4=conect.con.prepareStatement(consulta0);
             cargar4.executeUpdate(consulta0);    
-            JOptionPane.showMessageDialog(null,"tABLA lIMPIA");
             
             
             

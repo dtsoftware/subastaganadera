@@ -69,31 +69,31 @@ public static String Orden;
 
         Tcompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No. Fact", "Fecha", "Comprado Por.", "Condicion", "Total", "Estado", "Check"
+                "No. Fact", "Fecha", "Codigo", "Nombre", "Apellido", "Condicion", "Total", "Estado", "Check"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,8 +104,24 @@ public static String Orden;
         jScrollPane1.setViewportView(Tcompras);
         Tcompras.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (Tcompras.getColumnModel().getColumnCount() > 0) {
-            Tcompras.getColumnModel().getColumn(6).setMinWidth(50);
-            Tcompras.getColumnModel().getColumn(6).setMaxWidth(50);
+            Tcompras.getColumnModel().getColumn(0).setMinWidth(70);
+            Tcompras.getColumnModel().getColumn(0).setMaxWidth(70);
+            Tcompras.getColumnModel().getColumn(1).setMinWidth(75);
+            Tcompras.getColumnModel().getColumn(1).setMaxWidth(75);
+            Tcompras.getColumnModel().getColumn(2).setMinWidth(50);
+            Tcompras.getColumnModel().getColumn(2).setMaxWidth(50);
+            Tcompras.getColumnModel().getColumn(3).setMinWidth(175);
+            Tcompras.getColumnModel().getColumn(3).setMaxWidth(175);
+            Tcompras.getColumnModel().getColumn(4).setMinWidth(175);
+            Tcompras.getColumnModel().getColumn(4).setMaxWidth(175);
+            Tcompras.getColumnModel().getColumn(5).setMinWidth(75);
+            Tcompras.getColumnModel().getColumn(5).setMaxWidth(75);
+            Tcompras.getColumnModel().getColumn(6).setMinWidth(75);
+            Tcompras.getColumnModel().getColumn(6).setMaxWidth(75);
+            Tcompras.getColumnModel().getColumn(7).setMinWidth(100);
+            Tcompras.getColumnModel().getColumn(7).setMaxWidth(100);
+            Tcompras.getColumnModel().getColumn(8).setMinWidth(55);
+            Tcompras.getColumnModel().getColumn(8).setMaxWidth(55);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
