@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Clases.conectar;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -12,11 +13,25 @@ import Clases.subastas;
 import Clases.redondear;
 import Clases.lotes;
 import static Interfaces.Clientes.jDateChooserFecha1;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Juan
@@ -230,6 +245,11 @@ public class Subastas extends javax.swing.JFrame {
         jButton2.setText("COMPRADORES");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
         jButton2.setBounds(760, 270, 110, 60);
 
@@ -253,7 +273,7 @@ public class Subastas extends javax.swing.JFrame {
 
         jButtonListaIndividual.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonListaIndividual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Distributor-report-icon.png"))); // NOI18N
-        jButtonListaIndividual.setText("INDIVIDUAL");
+        jButtonListaIndividual.setText("VENDEDORES");
         jButtonListaIndividual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonListaIndividual.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonListaIndividual.addActionListener(new java.awt.event.ActionListener() {
@@ -946,12 +966,41 @@ this.dispose();      // TODO add your handling code here:
 
     private void jButtonListaIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListaIndividualActionPerformed
         // TODO add your handling code here:
-        try{
-        Reporteventaindividual rep = new Reporteventaindividual();
-        rep.setVisible(true);
-        }catch(Exception ex){
-        JOptionPane.showMessageDialog(null,"Error" +ex);         
-        }
+      //  try{
+     //   Reporteventaindividual rep = new Reporteventaindividual();
+     //   rep.setVisible(true);
+     //   }catch(Exception ex){
+     //   JOptionPane.showMessageDialog(null,"Error" +ex);         
+     //   }
+     
+     conectar conect = new conectar(); 
+    conect.conexion();
+  
+       
+            Calendar c1 = Calendar.getInstance();
+      String  dia = Integer.toString(c1.get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(c1.get(Calendar.MONTH) + 1);
+      String year = Integer.toString(c1.get(Calendar.YEAR));
+      String Fecha = (year + "-" + mes+ "-" + dia);  
+           
+                      try {
+                   
+                    JasperReport jasperReport;
+                    JasperPrint jasperPrint;
+                
+                     Map<String, Object> params = new HashMap<>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "vendedoresdia.jrxml";  
+                    jasperReport =JasperCompileManager.compileReport(ruta);
+                    params.put("Fecha", Fecha);
+
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
+                  JasperViewer.viewReport(jasperPrint, false);
+
+
+                 } catch (Exception ex) {
+                    System.err.println("Error JRException: " + ex.getMessage());
+                 }
+
       
     }//GEN-LAST:event_jButtonListaIndividualActionPerformed
 
@@ -1262,6 +1311,38 @@ this.dispose();      // TODO add your handling code here:
     private void jTextFieldMontoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMontoTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldMontoTotalActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+   
+    conectar conect = new conectar(); 
+    conect.conexion();
+  
+       
+            Calendar c1 = Calendar.getInstance();
+      String  dia = Integer.toString(c1.get(Calendar.DAY_OF_MONTH));
+      String  mes = Integer.toString(c1.get(Calendar.MONTH) + 1);
+      String year = Integer.toString(c1.get(Calendar.YEAR));
+      String Fecha = (year + "-" + mes+ "-" + dia);  
+           
+                      try {
+                   
+                    JasperReport jasperReport;
+                    JasperPrint jasperPrint;
+                
+                     Map<String, Object> params = new HashMap<>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "compradoresdia.jrxml";  
+                    jasperReport =JasperCompileManager.compileReport(ruta);
+                    params.put("Fecha", Fecha);
+
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
+                  JasperViewer.viewReport(jasperPrint, false);
+
+
+                 } catch (Exception ex) {
+                    System.err.println("Error JRException: " + ex.getMessage());
+                 }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

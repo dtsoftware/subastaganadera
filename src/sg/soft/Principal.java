@@ -31,6 +31,7 @@ import Interfaces.Recibos;
 import Interfaces.RegCaja;
 import Interfaces.Subastas;
 import Interfaces.Traspaso;
+import Interfaces.RptCuentasxPagar;
 import Interfaces.Usuarios;
 import Interfaces.ReporteCheques;
 import Interfaces.Resumendecompra;
@@ -145,7 +146,9 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItemDepositos = new javax.swing.JMenuItem();
         jMenuItemNotas = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -610,9 +613,20 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu8.add(jMenuItem24);
 
+        jMenuItem19.setText("Movimientos de Cuenta");
+        jMenu8.add(jMenuItem19);
+
         jMenu4.add(jMenu8);
 
         jMenu10.setText("Otros Listados");
+
+        jMenuItem20.setText("Cuentas x Cobrar");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem20);
 
         jMenuItem25.setText("Estados de Cuenta");
         jMenu10.add(jMenuItem25);
@@ -951,6 +965,11 @@ fact.setVisible(true);
         Resumendecompra rc = new Resumendecompra();
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        RptCuentasxPagar sw = new RptCuentasxPagar();
+        sw.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1026,7 +1045,9 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;

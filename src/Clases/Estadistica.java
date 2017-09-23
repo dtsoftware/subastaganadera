@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class Estadistica {
-    PreparedStatement guardarbanco, UltimoRg, cargar;
+    PreparedStatement guardarbanco, UltimoRg, cargar, facturas;
     ResultSet aux, rs, aux1, rsdeposito; 
     
      public Estadistica() { 
@@ -30,7 +30,10 @@ public class Estadistica {
             conectar conect = new conectar(); 
             conect.conexion();
             
-            
+            facturas=conect.con.prepareStatement("TRUNCATE TABLE rptgeneral");
+            facturas.execute();
+            facturas.close();       
+    
             String  dia = Integer.toString(EstadisticaGeneral.jDateChooserFechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
             String  mes = Integer.toString(EstadisticaGeneral.jDateChooserFechaInicio.getCalendar().get(Calendar.MONTH) + 1);
             String year = Integer.toString(EstadisticaGeneral.jDateChooserFechaInicio.getCalendar().get(Calendar.YEAR));
