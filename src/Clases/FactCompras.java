@@ -10,8 +10,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -96,8 +108,8 @@ public void buscarfcompras(){
     
 }
 
-public void InsertarFacturas(){
-    
+public void InsertarValores(){
+    JOptionPane.showMessageDialog(null,"va a empezar"); 
       try {
     String consulta;      
     DefaultTableModel tabla = (DefaultTableModel) FacturarC.Tcompras.getModel();
@@ -167,4 +179,23 @@ public void InsertarFacturas(){
     
 }
 
+ public void imprimirfactura(){
+      conectar conect = new conectar(); 
+    conect.conexion();
+ 
+                      try {
+                   
+                    JasperReport jasperReport;
+                    JasperPrint jasperPrint;
+                
+                     Map<String, Object> params = new HashMap<String, Object>();
+                    String  ruta="C:\\SG-SOFT\\subastaganadera\\src\\ReportesSG\\" +  "ComprasFact.jrxml";  
+                    jasperReport =JasperCompileManager.compileReport(ruta);
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, params, conect.con);
+                    JasperViewer.viewReport(jasperPrint, false);
+
+                 } catch (Exception ex) {
+                    System.err.println("Error JRException: " + ex.getMessage());
+                 }
+ }
 }

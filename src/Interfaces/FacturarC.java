@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.FactCompras;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -182,6 +183,11 @@ public static String Orden;
         jButton1.setText("RE-IMPRIMIR");
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         CFactura.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         CFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-New-Database-icon.png"))); // NOI18N
@@ -222,6 +228,11 @@ public static String Orden;
         jButton8.setText("VER FACT.");
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -327,11 +338,12 @@ this.dispose();
     }//GEN-LAST:event_reciboActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-             
           FactCompras select = new FactCompras();
-          select.InsertarFacturas();
+          select.InsertarValores();
           
-  
+          FactCompras prin = new FactCompras();
+          prin.imprimirfactura();
+          
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -345,6 +357,15 @@ this.dispose();
         FactCompras Acomprados = new FactCompras();
         Acomprados.buscarfcompras(); 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+          FactCompras select = new FactCompras();
+          select.InsertarValores();
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
