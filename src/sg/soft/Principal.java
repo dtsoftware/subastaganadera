@@ -151,6 +151,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -634,6 +635,9 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem30.setText("Lista de Traspasos");
         jMenu10.add(jMenuItem30);
 
+        jMenuItem21.setText("Compras x Proceso");
+        jMenu10.add(jMenuItem21);
+
         jMenu4.add(jMenu10);
 
         jMenuBar1.add(jMenu4);
@@ -1048,6 +1052,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
