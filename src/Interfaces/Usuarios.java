@@ -7,14 +7,11 @@ package Interfaces;
 
 import Clases.CrearUsuarios;
 import Clases.conectar;
+import static Interfaces.Usuarios.txtcontraseña;
 import java.awt.HeadlessException;
-import java.awt.Image;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 /**
  *
@@ -32,6 +29,7 @@ public class Usuarios extends javax.swing.JFrame {
      */
     public Usuarios() {
         initComponents();
+
     }
 
     /**
@@ -52,12 +50,9 @@ public class Usuarios extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
         txtusuario = new javax.swing.JTextField();
-        txtcontraseña = new javax.swing.JTextField();
         txtcorreo = new javax.swing.JTextField();
-        txtrecontraseña = new javax.swing.JTextField();
         txtdireccion = new javax.swing.JTextField();
         cmb_tipousuario = new javax.swing.JComboBox<>();
-        btn_examinar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -70,13 +65,12 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
         txtcelular = new javax.swing.JTextField();
         cmb_estado = new javax.swing.JComboBox<>();
-        imagen = new javax.swing.JPanel();
         lbl_foto = new javax.swing.JLabel();
-        txtrutaimagen = new javax.swing.JTextField();
+        txtcontraseña = new javax.swing.JPasswordField();
+        txtrecontraseña = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         btn_agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -84,7 +78,6 @@ public class Usuarios extends javax.swing.JFrame {
         btn_listar = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
         btn_regresar = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,10 +94,15 @@ public class Usuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRO DE USUARIOS");
-        setMaximumSize(new java.awt.Dimension(839, 484));
-        setMinimumSize(new java.awt.Dimension(839, 484));
-        setUndecorated(true);
+        setMaximumSize(new java.awt.Dimension(885, 520));
+        setMinimumSize(new java.awt.Dimension(885, 520));
+        setPreferredSize(new java.awt.Dimension(885, 520));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(java.awt.Color.white);
@@ -121,7 +119,7 @@ public class Usuarios extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(jLabel1)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,14 +130,13 @@ public class Usuarios extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 11, 820, 41);
+        jPanel1.setBounds(10, 11, 860, 41);
 
         jPanel2.setBackground(java.awt.Color.white);
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(null);
 
         txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtcodigo.setText("4");
         txtcodigo.setEnabled(false);
         txtcodigo.setMaximumSize(new java.awt.Dimension(187, 25));
         txtcodigo.setMinimumSize(new java.awt.Dimension(187, 25));
@@ -171,14 +168,6 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel2.add(txtusuario);
         txtusuario.setBounds(170, 140, 187, 25);
 
-        txtcontraseña.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtcontraseña.setEnabled(false);
-        txtcontraseña.setMaximumSize(new java.awt.Dimension(187, 25));
-        txtcontraseña.setMinimumSize(new java.awt.Dimension(187, 25));
-        txtcontraseña.setPreferredSize(new java.awt.Dimension(187, 25));
-        jPanel2.add(txtcontraseña);
-        txtcontraseña.setBounds(170, 180, 187, 25);
-
         txtcorreo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcorreo.setEnabled(false);
         txtcorreo.setMaximumSize(new java.awt.Dimension(187, 25));
@@ -186,19 +175,6 @@ public class Usuarios extends javax.swing.JFrame {
         txtcorreo.setPreferredSize(new java.awt.Dimension(187, 25));
         jPanel2.add(txtcorreo);
         txtcorreo.setBounds(470, 60, 120, 25);
-
-        txtrecontraseña.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtrecontraseña.setEnabled(false);
-        txtrecontraseña.setMaximumSize(new java.awt.Dimension(187, 25));
-        txtrecontraseña.setMinimumSize(new java.awt.Dimension(187, 25));
-        txtrecontraseña.setPreferredSize(new java.awt.Dimension(187, 25));
-        txtrecontraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtrecontraseñaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtrecontraseña);
-        txtrecontraseña.setBounds(170, 220, 185, 25);
 
         txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtdireccion.setEnabled(false);
@@ -213,17 +189,6 @@ public class Usuarios extends javax.swing.JFrame {
         cmb_tipousuario.setEnabled(false);
         jPanel2.add(cmb_tipousuario);
         cmb_tipousuario.setBounds(470, 190, 120, 28);
-
-        btn_examinar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_examinar.setText("EXAMINAR");
-        btn_examinar.setEnabled(false);
-        btn_examinar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_examinarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_examinar);
-        btn_examinar.setBounds(620, 260, 170, 23);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("ID USUARIO:");
@@ -285,11 +250,6 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel2.add(jLabel13);
         jLabel13.setBounds(32, 228, 123, 13);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel14.setText("FOTOGRAFIA");
-        jPanel2.add(jLabel14);
-        jLabel14.setBounds(660, 40, 70, 13);
-
         txttelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txttelefono.setEnabled(false);
         jPanel2.add(txttelefono);
@@ -306,36 +266,21 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel2.add(cmb_estado);
         cmb_estado.setBounds(470, 230, 120, 20);
 
-        imagen.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 0)));
-
         lbl_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Login.png"))); // NOI18N
+        lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/user_permisos.png"))); // NOI18N
+        jPanel2.add(lbl_foto);
+        lbl_foto.setBounds(570, 0, 290, 270);
 
-        javax.swing.GroupLayout imagenLayout = new javax.swing.GroupLayout(imagen);
-        imagen.setLayout(imagenLayout);
-        imagenLayout.setHorizontalGroup(
-            imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        imagenLayout.setVerticalGroup(
-            imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagenLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lbl_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        txtcontraseña.setText("jPasswordField1");
+        jPanel2.add(txtcontraseña);
+        txtcontraseña.setBounds(170, 190, 190, 20);
 
-        jPanel2.add(imagen);
-        imagen.setBounds(610, 60, 185, 150);
-
-        txtrutaimagen.setEnabled(false);
-        jPanel2.add(txtrutaimagen);
-        txtrutaimagen.setBounds(610, 220, 185, 30);
+        txtrecontraseña.setText("jPasswordField2");
+        jPanel2.add(txtrecontraseña);
+        txtrecontraseña.setBounds(170, 220, 190, 20);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 60, 820, 305);
+        jPanel2.setBounds(10, 60, 860, 305);
 
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -366,7 +311,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton2);
-        jButton2.setBounds(120, 10, 90, 72);
+        jButton2.setBounds(120, 10, 110, 72);
 
         btn_eliminar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Misc-Delete-Database-icon.png"))); // NOI18N
@@ -380,7 +325,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_eliminar);
-        btn_eliminar.setBounds(230, 10, 80, 72);
+        btn_eliminar.setBounds(250, 10, 120, 72);
 
         btn_listar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Product-sale-report-icon.png"))); // NOI18N
@@ -393,7 +338,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_listar);
-        btn_listar.setBounds(330, 10, 80, 72);
+        btn_listar.setBounds(390, 10, 120, 72);
 
         btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Save-icon.png"))); // NOI18N
@@ -407,7 +352,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_guardar);
-        btn_guardar.setBounds(430, 10, 90, 72);
+        btn_guardar.setBounds(540, 10, 130, 72);
 
         btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
@@ -420,27 +365,14 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btn_regresar);
-        btn_regresar.setBounds(650, 10, 140, 72);
-
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/certificate-icon.png"))); // NOI18N
-        jButton8.setText("AUDITO");
-        jButton8.setEnabled(false);
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel3.add(jButton8);
-        jButton8.setBounds(540, 10, 90, 72);
+        btn_regresar.setBounds(700, 10, 140, 72);
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(10, 371, 820, 100);
+        jPanel3.setBounds(10, 371, 860, 100);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtrecontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrecontraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtrecontraseñaActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         this.dispose();        // TODO add your handling code here:
@@ -449,33 +381,37 @@ public class Usuarios extends javax.swing.JFrame {
     private void btn_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarActionPerformed
         BuscarU list = new BuscarU();
         list.setVisible(true);
-       BuscarU.Valido.setText("1");
     }//GEN-LAST:event_btn_listarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        Activar();      
+        Activar();   
+        Limpiar();
+          CrearUsuarios ch = new CrearUsuarios();        
+        this.txtcodigo.setText(ch.buscarultimoregistro().toString());
+         this.btn_guardar.setEnabled(true);
+                 this.jButton2.setEnabled(false);
+                         this.btn_eliminar.setEnabled(false);
+        txtnombre.requestFocus();
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        CrearUsuarios user = new CrearUsuarios();
+        try {
+         if ((this.txtcodigo.getText().trim().length()==0) || (this.txtnombre.getText().trim().length()==0) || (this.txtapellido.getText().trim().length()==0)|| (this.txtusuario.getText().trim().length()==0)|| (this.txtcontraseña.getText().trim().length()==0)  ) {
+         JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
+         }else{    
+         CrearUsuarios user = new CrearUsuarios();
         user.guardarusuario();
         Limpiar();
-        Desactivar();       
-    }//GEN-LAST:event_btn_guardarActionPerformed
-
-    private void btn_examinarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_examinarActionPerformed
-        JFileChooser archivo = new JFileChooser();
-        int ventana = archivo.showOpenDialog(null);
+         CrearUsuarios ch = new CrearUsuarios();        
+       this.txtcodigo.setText(ch.buscarultimoregistro().toString());
+       txtnombre.requestFocus();// TODO a
+         }
+        }catch(Exception ex) {
+       JOptionPane.showMessageDialog(null,"Error  = " +ex);
+       }
         
-        if (ventana == JFileChooser.APPROVE_OPTION)
-        {
-            File file = archivo.getSelectedFile();
-            txtrutaimagen.setText(String.valueOf(file));
-            Image foto = getToolkit().getImage(txtrutaimagen.getText());
-            foto = foto.getScaledInstance(183, 148, Image.SCALE_DEFAULT);
-            lbl_foto.setIcon(new ImageIcon(foto));
-        }
-    }//GEN-LAST:event_btn_examinarActionPerformed
+
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
       
@@ -492,12 +428,32 @@ public class Usuarios extends javax.swing.JFrame {
         }
         
         Limpiar();
-        Desactivar(); 
+        CrearUsuarios ch = new CrearUsuarios(); 
+         this.btn_guardar.setEnabled(true);
+                 this.jButton2.setEnabled(false);
+                         this.btn_eliminar.setEnabled(false);
+       this.txtcodigo.setText(ch.buscarultimoregistro().toString());
+       txtnombre.requestFocus();
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+              CrearUsuarios user = new CrearUsuarios();
+        user.actualizarusuario();
+        Limpiar();
+         CrearUsuarios ch = new CrearUsuarios();  
+                 Limpiar();
+                 this.btn_guardar.setEnabled(true);
+                 this.jButton2.setEnabled(false);
+                         this.btn_eliminar.setEnabled(false);
+       this.txtcodigo.setText(ch.buscarultimoregistro().toString());
+       txtnombre.requestFocus();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+               CrearUsuarios ch = new CrearUsuarios();        
+       this.txtcodigo.setText(ch.buscarultimoregistro().toString());
+       txtnombre.requestFocus();// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
 public void Activar  (){
      Usuarios.txtusuario.setEnabled(true);
@@ -509,27 +465,9 @@ public void Activar  (){
      Usuarios.txtcorreo.setEnabled(true);
      Usuarios.txttelefono.setEnabled(true);
      Usuarios.txtcelular.setEnabled(true);
-     Usuarios.txtrutaimagen.setEnabled(true);
      Usuarios.cmb_estado.setEnabled(true);
      Usuarios.cmb_tipousuario.setEnabled(true);
-     Usuarios.btn_examinar.setEnabled(true);
      Usuarios.btn_guardar.setEnabled(true);
-}
-
-public void Desactivar  (){
-     Usuarios.txtusuario.setEnabled(false);
-     Usuarios.txtnombre.setEnabled(false);
-     Usuarios.txtapellido.setEnabled(false);
-     Usuarios.txtcontraseña.setEnabled(false);
-     Usuarios.txtrecontraseña.setEnabled(false);
-     Usuarios.txtdireccion.setEnabled(false);
-     Usuarios.txtcorreo.setEnabled(false);
-     Usuarios.txttelefono.setEnabled(false);
-     Usuarios.txtcelular.setEnabled(false);
-     Usuarios.txtrutaimagen.setEnabled(false);
-     Usuarios.cmb_estado.setEnabled(false);
-     Usuarios.cmb_tipousuario.setEnabled(false);
-     Usuarios.btn_examinar.setEnabled(false);
 }
 
 public void Limpiar  (){
@@ -543,8 +481,6 @@ public void Limpiar  (){
     Usuarios.txtcorreo.setText("");
     Usuarios.txttelefono.setText("");
     Usuarios.txtcelular.setText("");
-    Usuarios.txtrutaimagen.setText("");
-    Usuarios.this.lbl_foto.setIcon(null);
 }
     /**
      * @param args the command line arguments
@@ -582,21 +518,17 @@ public void Limpiar  (){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btn_agregar;
     public static javax.swing.JButton btn_eliminar;
-    public static javax.swing.JButton btn_examinar;
     public static javax.swing.JButton btn_guardar;
     public static javax.swing.JButton btn_listar;
     public static javax.swing.JButton btn_regresar;
     public static javax.swing.JComboBox<String> cmb_estado;
     public static javax.swing.JComboBox<String> cmb_tipousuario;
-    private javax.swing.JPanel imagen;
     public static javax.swing.JButton jButton2;
-    public static javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -614,12 +546,11 @@ public void Limpiar  (){
     public static javax.swing.JTextField txtapellido;
     public static javax.swing.JTextField txtcelular;
     public static javax.swing.JTextField txtcodigo;
-    public static javax.swing.JTextField txtcontraseña;
+    public static javax.swing.JPasswordField txtcontraseña;
     public static javax.swing.JTextField txtcorreo;
     public static javax.swing.JTextField txtdireccion;
     public static javax.swing.JTextField txtnombre;
-    public static javax.swing.JTextField txtrecontraseña;
-    public static javax.swing.JTextField txtrutaimagen;
+    public static javax.swing.JPasswordField txtrecontraseña;
     public static javax.swing.JTextField txttelefono;
     public static javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables

@@ -482,12 +482,9 @@ public class Clientes extends javax.swing.JFrame {
       String year = Integer.toString(jDateChooserFecha1.getCalendar().get(Calendar.YEAR));
       Fecha1 = (year + "-" + mes+ "-" + dia);    
       Fecha2 = (year + "-" + mes+ "-" + dia);
-     //---------fin de obtener la fecha
-            //Fecha1=jDateChooserFecha1.getDate().toString();
-            //Fecha2=jDateChooserFecha1.getDate().toString();
+
             cliente.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);
-       // crear.guardar(idClientes, Nombre, Apellido, Cedula, Direccion, Telefono1, Telefono2, Credito, Imagen, Estado, Audito1, Audito2, Fecha1, Fecha2);   
-          //JOptionPane.showMessageDialog(null,"REGISTRO GUARDADO" );
+
          }
         }catch(Exception ex) {
        JOptionPane.showMessageDialog(null,"Error  = " +ex);
@@ -496,8 +493,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoClienteActionPerformed
-        // TODO add your handling code here:
-        //this.jDateChooserFecha1.setDateFormatString("dd/MM/yyyy");
+
         Date date = new Date();
             jDateChooserFecha1.setDate(date);
             jTextFieldIDcliente.setText("");

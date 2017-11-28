@@ -7,8 +7,6 @@ package Clases;
 import Interfaces.BuscarU;
 import Interfaces.Usuarios;
 import java.awt.HeadlessException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,12 +21,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class CrearUsuarios {
 
-    
+    Integer ultimoreg;
     Connection conectar;
-    PreparedStatement guardarusuario;
-    String idusuario,nombre,apellido,clave,tipodeusuario,estado,telefono,celular,correo,direccion, ruta;
+    PreparedStatement guardarusuario, uregistro;
+    String idusuario,nombre,apellido,clave,tipodeusuario,estado,telefono,celular,correo,direccion, ruta, codigo;
  PreparedStatement cargar,cargar2,cargar3,cargar4;
- ResultSet rs,rs2,rs4;
+ ResultSet rs,rs2,rs4,rsregistro;
  DefaultTableModel tabla = new DefaultTableModel(); 
  Object[] filas = new Object[5]; 
     
@@ -40,6 +38,7 @@ public class CrearUsuarios {
     
         try {
                    
+        codigo = Usuarios.txtcodigo.getText();
         idusuario=Usuarios.txtusuario.getText();
         nombre=Usuarios.txtnombre.getText();
         apellido=Usuarios.txtapellido.getText();
@@ -50,16 +49,10 @@ public class CrearUsuarios {
         celular=Usuarios.txtcelular.getText();
         correo=Usuarios.txtcorreo.getText();
         direccion=Usuarios.txtdireccion.getText();
-        if (!"".equals(Usuarios.txtrutaimagen.getText())){
-        ruta=Usuarios.txtrutaimagen.getText();}
-        if ("".equals(Usuarios.txtrutaimagen.getText()));{
-        ruta = "C:\\Users\\Juan\\Documents\\NetBeansProjects\\SG-SOFT\\src\\Graficos\\Login.png";
-        }
         
         conectar conexcio = new conectar(); 
         conexcio.conexion();
-        FileInputStream archivofoto;
-        guardarusuario=conexcio.con.prepareStatement("INSERT INTO usuarios (Usuario, Contraseña, Nombre, Apellido, Direccion, Correo, TipoUsuario, Telefono1, Telefono2, Estado, Foto, RutaImagen) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+        guardarusuario=conexcio.con.prepareStatement("INSERT INTO usuarios (Usuario, Contraseña, Nombre, Apellido, Direccion, Correo, TipoUsuario, Telefono1, Telefono2, Estado, idUsuarios) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
         guardarusuario.setString(1, idusuario);
         guardarusuario.setString(2, clave);
         guardarusuario.setString(3, nombre);
@@ -70,14 +63,55 @@ public class CrearUsuarios {
         guardarusuario.setString(8, telefono);
         guardarusuario.setString(9, celular);
         guardarusuario.setString(10, estado);
-        archivofoto = new FileInputStream(ruta);
-        guardarusuario.setBinaryStream(11, archivofoto);
-        guardarusuario.setString(12, ruta);
+        guardarusuario.setString(11, codigo);
+
         guardarusuario.execute();
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException | FileNotFoundException | HeadlessException ex) {
+        } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
         }
+        
+    
+    }
+    
+    
+    public void actualizarusuario(){
+    
+        try {
+                   
+        codigo = Usuarios.txtcodigo.getText();
+        idusuario=Usuarios.txtusuario.getText();
+        nombre=Usuarios.txtnombre.getText();
+        apellido=Usuarios.txtapellido.getText();
+        clave=Usuarios.txtcontraseña.getText();
+        tipodeusuario= Usuarios.cmb_tipousuario.getSelectedItem().toString();
+        estado=Usuarios.cmb_estado.getSelectedItem().toString();
+        telefono=Usuarios.txttelefono.getText();
+        celular=Usuarios.txtcelular.getText();
+        correo=Usuarios.txtcorreo.getText();
+        direccion=Usuarios.txtdireccion.getText();
+        
+        conectar conexcio = new conectar(); 
+        conexcio.conexion();
+        guardarusuario=conexcio.con.prepareStatement("UPDATE Usuarios SET Usuario=?, Contraseña=?, Nombre=?, Apellido=?, Direccion=?, Correo=?, TipoUsuario=?, Telefono1=?, Telefono2=?, Estado=? WHERE idUsuarios=? ");
+        guardarusuario.setString(1, idusuario);
+        guardarusuario.setString(2, clave);
+        guardarusuario.setString(3, nombre);
+        guardarusuario.setString(4, apellido);
+        guardarusuario.setString(5, direccion);
+        guardarusuario.setString(6, correo);
+        guardarusuario.setString(7, tipodeusuario);
+        guardarusuario.setString(8, telefono);
+        guardarusuario.setString(9, celular);
+        guardarusuario.setString(10, estado);
+        guardarusuario.setString(11, codigo);
+
+        guardarusuario.executeUpdate();  
+        JOptionPane.showMessageDialog(null, "Registro Actualizado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
+        }
+  
         
     
     }
@@ -101,7 +135,53 @@ public class CrearUsuarios {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idUsuarios,Usuario, Nombre, Apellido, Direccion FROM Usuarios where Nombre LIKE'"+ nombre +"%' ORDER BY Nombre";
+     consulta="SELECT idUsuarios,Usuario, Nombre, Apellido, Direccion FROM Usuarios where Nombre LIKE'"+ nombre +"%' ORDER BY idUsuarios";
+     //pasamos la consulta al preparestatement
+     cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+     rs=cargar.executeQuery(consulta);
+     //recorremos el resulset
+    while (rs.next()){
+        
+                    filas[0]=rs.getInt("idUsuarios");
+                    filas[1]=rs.getString("Usuario");
+                    filas[2]=rs.getString("Nombre");
+                    filas[3]=rs.getString("Apellido");
+                    filas[4]=rs.getString("Direccion");
+                                        
+       tabla.addRow(filas);
+    }
+    rs.close();
+    conect.desconectar();
+           
+   }catch (Exception ex){
+   JOptionPane.showMessageDialog(null,"Error" +ex);
+   }
+     
+     }
+    
+    
+    public void buscarporcodigo(String codigo){
+     try {
+         tabla = (DefaultTableModel) BuscarU.Tbl_usuarios.getModel();
+     String consulta;    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+     //--------limpiar tabla------
+      try {
+            if (tabla != null) {
+                while (tabla.getRowCount() > 0) {
+                    tabla.removeRow(0);
+                }
+            }
+           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error" +ex);
+        }
+        //-----hasta aki limpiar tabla-----
+     
+     // creamos la consulta
+     consulta="SELECT idUsuarios,Usuario, Nombre, Apellido, Direccion FROM Usuarios where idUsuarios LIKE'"+ codigo +"%' ORDER BY idUsuarios";
      //pasamos la consulta al preparestatement
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -146,7 +226,7 @@ public class CrearUsuarios {
         //-----hasta aki limpiar tabla-----
      
      // creamos la consulta
-     consulta="SELECT idUsuarios,Usuario, Nombre, Apellido, Direccion FROM Usuarios ORDER BY Nombre";
+     consulta="SELECT idUsuarios,Usuario, Nombre, Apellido, Direccion FROM Usuarios ORDER BY idUsuarios";
      //pasamos la consulta al preparestatement
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
      //pasamos al resulset la consulta preparada y ejecutamos
@@ -201,6 +281,7 @@ public class CrearUsuarios {
                             Usuarios.cmb_estado.setSelectedItem(rs2.getString("Estado"));
                             //imagen pendiente 
                             Usuarios.jButton2.setEnabled(true);
+                            Usuarios.btn_guardar.setEnabled(false);
                             Usuarios.btn_eliminar.setEnabled(true);
                             rs2.close();
                             conect.desconectar();
@@ -217,4 +298,40 @@ public class CrearUsuarios {
   
   }
   
+      
+      public Integer buscarultimoregistro(){
+    
+     conectar conect = new conectar(); 
+                 conect.conexion();
+         try {
+     String consulta; 
+                      
+     // creamos la consulta
+     consulta="SELECT MAX(idUsuarios) FROM usuarios ";
+     //pasamos la consulta al preparestatement
+    uregistro=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+     //pasamos al resulset la consulta preparada y ejecutamos
+    rsregistro=uregistro.executeQuery(consulta);
+     //recorremos el resulset
+    rsregistro.next();
+        
+               ultimoreg=rsregistro.getInt(1)+1;
+          //Entradas.jTextFieldTotalMachos.setText(totalmachos.toString());
+  
+   
+           
+   }catch (SQLException ex1){
+   JOptionPane.showMessageDialog(null,"Error" +ex1.getMessage());
+   }finally{
+         try {
+             uregistro.close();
+             rsregistro.close();
+             conect.desconectar();
+         } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error" +ex.getMessage());
+         }
+   
+     }   
+    return ultimoreg;
+    }
     }
