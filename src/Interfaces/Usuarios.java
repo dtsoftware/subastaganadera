@@ -9,6 +9,7 @@ import Clases.CrearUsuarios;
 import Clases.conectar;
 import static Interfaces.Usuarios.txtcontraseña;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -71,6 +72,7 @@ public class Usuarios extends javax.swing.JFrame {
         lbl_foto = new javax.swing.JLabel();
         txtcontraseña = new javax.swing.JPasswordField();
         txtrecontraseña = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btn_agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -149,6 +151,11 @@ public class Usuarios extends javax.swing.JFrame {
         txtnombre.setMaximumSize(new java.awt.Dimension(187, 25));
         txtnombre.setMinimumSize(new java.awt.Dimension(187, 25));
         txtnombre.setPreferredSize(new java.awt.Dimension(187, 25));
+        txtnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtnombre);
         txtnombre.setBounds(170, 60, 187, 24);
 
@@ -157,6 +164,11 @@ public class Usuarios extends javax.swing.JFrame {
         txtapellido.setMaximumSize(new java.awt.Dimension(187, 25));
         txtapellido.setMinimumSize(new java.awt.Dimension(187, 25));
         txtapellido.setPreferredSize(new java.awt.Dimension(187, 25));
+        txtapellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtapellidoActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtapellido);
         txtapellido.setBounds(170, 100, 187, 28);
 
@@ -165,6 +177,11 @@ public class Usuarios extends javax.swing.JFrame {
         txtusuario.setMaximumSize(new java.awt.Dimension(187, 25));
         txtusuario.setMinimumSize(new java.awt.Dimension(187, 25));
         txtusuario.setPreferredSize(new java.awt.Dimension(187, 25));
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtusuarioActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtusuario);
         txtusuario.setBounds(170, 140, 187, 25);
 
@@ -173,6 +190,11 @@ public class Usuarios extends javax.swing.JFrame {
         txtcorreo.setMaximumSize(new java.awt.Dimension(187, 25));
         txtcorreo.setMinimumSize(new java.awt.Dimension(187, 25));
         txtcorreo.setPreferredSize(new java.awt.Dimension(187, 25));
+        txtcorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcorreoActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtcorreo);
         txtcorreo.setBounds(470, 60, 120, 25);
 
@@ -181,12 +203,22 @@ public class Usuarios extends javax.swing.JFrame {
         txtdireccion.setMaximumSize(new java.awt.Dimension(187, 25));
         txtdireccion.setMinimumSize(new java.awt.Dimension(187, 25));
         txtdireccion.setPreferredSize(new java.awt.Dimension(187, 25));
+        txtdireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdireccionActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtdireccion);
         txtdireccion.setBounds(170, 260, 420, 25);
 
         cmb_tipousuario.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         cmb_tipousuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "SUPERVISOR", "USUARIO" }));
         cmb_tipousuario.setEnabled(false);
+        cmb_tipousuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_tipousuarioActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmb_tipousuario);
         cmb_tipousuario.setBounds(470, 190, 120, 28);
 
@@ -238,7 +270,7 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel11.setText("CONTRASEÑA:");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(32, 194, 74, 13);
+        jLabel11.setBounds(30, 180, 74, 13);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel12.setText("NOMBRE USUARIO:");
@@ -248,36 +280,66 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel13.setText("REPETIR-CONTRASEÑA:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(32, 228, 123, 13);
+        jLabel13.setBounds(30, 220, 123, 10);
 
         txttelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txttelefono.setEnabled(false);
+        txttelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttelefonoActionPerformed(evt);
+            }
+        });
         jPanel2.add(txttelefono);
         txttelefono.setBounds(470, 110, 120, 21);
 
         txtcelular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcelular.setEnabled(false);
+        txtcelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcelularActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtcelular);
         txtcelular.setBounds(470, 150, 120, 24);
 
         cmb_estado.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         cmb_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
         cmb_estado.setEnabled(false);
+        cmb_estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_estadoActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmb_estado);
         cmb_estado.setBounds(470, 230, 120, 20);
 
         lbl_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/user_permisos.png"))); // NOI18N
         jPanel2.add(lbl_foto);
-        lbl_foto.setBounds(570, 0, 290, 270);
+        lbl_foto.setBounds(570, 0, 290, 220);
 
         txtcontraseña.setText("jPasswordField1");
+        txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontraseñaActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtcontraseña);
-        txtcontraseña.setBounds(170, 190, 190, 20);
+        txtcontraseña.setBounds(170, 170, 190, 30);
 
         txtrecontraseña.setText("jPasswordField2");
+        txtrecontraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrecontraseñaActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtrecontraseña);
-        txtrecontraseña.setBounds(170, 220, 190, 20);
+        txtrecontraseña.setBounds(170, 210, 190, 30);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("A C C E S O S");
+        jPanel2.add(jButton1);
+        jButton1.setBounds(630, 250, 190, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 60, 860, 305);
@@ -455,6 +517,61 @@ public class Usuarios extends javax.swing.JFrame {
        txtnombre.requestFocus();// TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
+    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtapellido.requestFocus();
+    }//GEN-LAST:event_txtnombreActionPerformed
+
+    private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtusuario.requestFocus();
+    }//GEN-LAST:event_txtapellidoActionPerformed
+
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtcontraseña.requestFocus();
+    }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtrecontraseña.requestFocus();
+    }//GEN-LAST:event_txtcontraseñaActionPerformed
+
+    private void txtrecontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrecontraseñaActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtdireccion.requestFocus();
+    }//GEN-LAST:event_txtrecontraseñaActionPerformed
+
+    private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtcorreo.requestFocus();
+    }//GEN-LAST:event_txtdireccionActionPerformed
+
+    private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txttelefono.requestFocus();
+    }//GEN-LAST:event_txtcorreoActionPerformed
+
+    private void txttelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefonoActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        txtcelular.requestFocus();
+    }//GEN-LAST:event_txttelefonoActionPerformed
+
+    private void txtcelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcelularActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        cmb_tipousuario.requestFocus();
+    }//GEN-LAST:event_txtcelularActionPerformed
+
+    private void cmb_tipousuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipousuarioActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        cmb_estado.requestFocus();
+    }//GEN-LAST:event_cmb_tipousuarioActionPerformed
+
+    private void cmb_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_estadoActionPerformed
+         evt.setSource((char) KeyEvent.VK_ENTER);
+        btn_guardar.requestFocus();
+    }//GEN-LAST:event_cmb_estadoActionPerformed
+
 public void Activar  (){
      Usuarios.txtusuario.setEnabled(true);
      Usuarios.txtnombre.setEnabled(true);
@@ -523,6 +640,7 @@ public void Limpiar  (){
     public static javax.swing.JButton btn_regresar;
     public static javax.swing.JComboBox<String> cmb_estado;
     public static javax.swing.JComboBox<String> cmb_tipousuario;
+    private javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
