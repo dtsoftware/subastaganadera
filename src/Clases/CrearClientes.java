@@ -243,7 +243,7 @@ public void buscarcompradores(){
       String Fecha = (year + "-" + mes+ "-" + dia); 
      // creamos la consulta
 
-      consulta="SELECT idClientes,Cedula, Nombre, Apellido, Direccion FROM `sg-soft`.subastas, `sg-soft`.clientes WHERE idClientes = CodComprador AND Fecha = '"+Fecha+"' ORDER BY Nombre";
+      consulta="SELECT DISTINCT idClientes,Cedula, Nombre, Apellido, Direccion FROM `sg-soft`.subastas, `sg-soft`.clientes WHERE idClientes = CodComprador AND Fecha = '"+Fecha+"' ORDER BY Nombre";
 
      //pasamos la consulta al preparestatement
      cargar=conect.con.prepareStatement(consulta,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);

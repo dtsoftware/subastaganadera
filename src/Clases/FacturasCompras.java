@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import Interfaces.EstadoCuenta;
 import Interfaces.Facturacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -120,6 +121,7 @@ public class FacturasCompras {
                     int M= Integer.parseInt(rs2.getString("MACHOS"));
                     int Final= (H+M);
                     Facturacion.txttotal.setText(""+Integer.valueOf(Final));
+                     Facturacion.guardar.setEnabled(true);
                     rs1.close();
                     rs2.close();
                     rs3.close();
@@ -319,4 +321,7 @@ public void guardarfactura(){
                JOptionPane.showMessageDialog(null,"El Proceso Ha Sido Cancelado O no Hay Impresoras Instaladas");
            }
         }
+         
+         
+    
 }

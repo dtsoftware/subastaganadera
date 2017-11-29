@@ -678,6 +678,7 @@ public Integer buscarultimo(){
     Direccion = "";
      Concepto = "Pago por Venta de Animales";
     //-----obtener la fecha----------------------
+    
             String  dia = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
             String  mes = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.MONTH) + 1);
             String year = Integer.toString(Recibos.jDateChooserFecha.getCalendar().get(Calendar.YEAR));

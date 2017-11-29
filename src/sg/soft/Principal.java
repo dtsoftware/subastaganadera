@@ -149,8 +149,6 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
-        jMenuItem25 = new javax.swing.JMenuItem();
-        jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -629,12 +627,6 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         jMenu10.add(jMenuItem20);
 
-        jMenuItem25.setText("Estados de Cuenta");
-        jMenu10.add(jMenuItem25);
-
-        jMenuItem30.setText("Lista de Traspasos");
-        jMenu10.add(jMenuItem30);
-
         jMenuItem21.setText("Compras x Proceso");
         jMenu10.add(jMenuItem21);
 
@@ -1055,9 +1047,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem24;
-    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
