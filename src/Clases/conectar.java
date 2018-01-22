@@ -19,7 +19,7 @@ public class conectar {
 private static final String username="root";
 private static final String password="root";
 private static final String database="sg-soft";
-private static final String url="jdbc:mysql://localhost/"+database;
+private static final String url="jdbc:mysql://192.168.0.100/"+database;
 public Connection con = null;
     
     //constructor de la clase
