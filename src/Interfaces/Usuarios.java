@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import Interfaces.Permisos;
 /**
  *
  * @author Juan
@@ -72,7 +73,7 @@ public class Usuarios extends javax.swing.JFrame {
         lbl_foto = new javax.swing.JLabel();
         txtcontraseña = new javax.swing.JPasswordField();
         txtrecontraseña = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        accesos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btn_agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -336,10 +337,16 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel2.add(txtrecontraseña);
         txtrecontraseña.setBounds(170, 210, 190, 30);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("A C C E S O S");
-        jPanel2.add(jButton1);
-        jButton1.setBounds(630, 250, 190, 40);
+        accesos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        accesos.setText("A C C E S O S");
+        accesos.setEnabled(false);
+        accesos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accesosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(accesos);
+        accesos.setBounds(630, 250, 190, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 60, 860, 305);
@@ -572,6 +579,10 @@ public class Usuarios extends javax.swing.JFrame {
         btn_guardar.requestFocus();
     }//GEN-LAST:event_cmb_estadoActionPerformed
 
+    private void accesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accesosActionPerformed
+        new Permisos(this,true).setVisible(true);
+    }//GEN-LAST:event_accesosActionPerformed
+
 public void Activar  (){
      Usuarios.txtusuario.setEnabled(true);
      Usuarios.txtnombre.setEnabled(true);
@@ -633,6 +644,7 @@ public void Limpiar  (){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton accesos;
     public static javax.swing.JButton btn_agregar;
     public static javax.swing.JButton btn_eliminar;
     public static javax.swing.JButton btn_guardar;
@@ -640,7 +652,6 @@ public void Limpiar  (){
     public static javax.swing.JButton btn_regresar;
     public static javax.swing.JComboBox<String> cmb_estado;
     public static javax.swing.JComboBox<String> cmb_tipousuario;
-    private javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

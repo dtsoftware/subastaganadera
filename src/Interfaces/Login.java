@@ -6,6 +6,7 @@
 package Interfaces;
 
 
+import Clases.Accesos;
 import Clases.validarusuario;
 import java.awt.event.KeyEvent;
 import sg.soft.Principal;
@@ -188,9 +189,11 @@ public class Login extends javax.swing.JFrame {
      clave=this.txtcontra.getText();
      user=bususuario.BusquedaUsuario(id, clave);
      
-        if (user!=null){
+        if (user!=null){           
            Principal prin = new Principal ();
            prin.setVisible(true);
+           Accesos var = new Accesos();
+           var.buscaracceso(id);
            this.dispose();
         }else{
            txtusuario.setText(null);

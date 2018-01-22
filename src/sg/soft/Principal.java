@@ -87,12 +87,12 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem32 = new javax.swing.JMenuItem();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        btn_pagos = new javax.swing.JButton();
+        BP01 = new javax.swing.JButton();
+        BP02 = new javax.swing.JButton();
+        BP05 = new javax.swing.JButton();
+        BP03 = new javax.swing.JButton();
+        BP04 = new javax.swing.JButton();
+        BP06 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -102,55 +102,55 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
+        MA01 = new javax.swing.JMenuItem();
+        MA02 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        MA03 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu14 = new javax.swing.JMenu();
+        MB01 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        MB02 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenu11 = new javax.swing.JMenu();
+        MB03 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
-        jMenu12 = new javax.swing.JMenu();
+        MB04 = new javax.swing.JMenu();
         jMenuItem33 = new javax.swing.JMenuItem();
         jMenuItem34 = new javax.swing.JMenuItem();
-        jMenu13 = new javax.swing.JMenu();
+        MB05 = new javax.swing.JMenu();
         jMenuItem35 = new javax.swing.JMenuItem();
         jMenuItem36 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        MB06 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
+        MR01 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
         jMenuItemProveedores = new javax.swing.JMenuItem();
         jMenuItemCuentasbancarias = new javax.swing.JMenuItem();
         jMenuItemListadeusuarios = new javax.swing.JMenuItem();
-        jMenuAnimalesregistrados = new javax.swing.JMenu();
+        MR02 = new javax.swing.JMenu();
         jMenuItemEntradasanimales = new javax.swing.JMenuItem();
-        jMenu15 = new javax.swing.JMenu();
+        MR03 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItemResumenVentas = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        MR04 = new javax.swing.JMenu();
         jMenuItemListarcheques = new javax.swing.JMenuItem();
         jMenuItemDepositos = new javax.swing.JMenuItem();
         jMenuItemNotas = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
-        jMenu10 = new javax.swing.JMenu();
+        MR05 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        MC01 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenu6 = new javax.swing.JMenu();
@@ -181,77 +181,77 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         });
         getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Add-Folder-icon.png"))); // NOI18N
-        jButton1.setText("ENTRADAS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BP01.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BP01.setForeground(new java.awt.Color(0, 102, 102));
+        BP01.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Add-Folder-icon.png"))); // NOI18N
+        BP01.setText("ENTRADAS");
+        BP01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BP01ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(40, 160, 270, 145);
+        getContentPane().add(BP01);
+        BP01.setBounds(40, 160, 270, 145);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Gavel-Law-icon (1).png"))); // NOI18N
-        jButton2.setText("SUBASTAS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BP02.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BP02.setForeground(new java.awt.Color(0, 102, 102));
+        BP02.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Gavel-Law-icon (1).png"))); // NOI18N
+        BP02.setText("SUBASTAS");
+        BP02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BP02ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(350, 160, 270, 145);
+        getContentPane().add(BP02);
+        BP02.setBounds(350, 160, 270, 145);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 102, 102));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/peer-to-peer-icon (2).png"))); // NOI18N
-        jButton3.setText("TRASPASOS");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BP05.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BP05.setForeground(new java.awt.Color(0, 102, 102));
+        BP05.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/peer-to-peer-icon (2).png"))); // NOI18N
+        BP05.setText("TRASPASOS");
+        BP05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BP05ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(40, 520, 270, 145);
+        getContentPane().add(BP05);
+        BP05.setBounds(40, 520, 270, 145);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 102, 102));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/shop-cart-apply-icon.png"))); // NOI18N
-        jButton4.setText("COMPRAS");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BP03.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BP03.setForeground(new java.awt.Color(0, 102, 102));
+        BP03.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/shop-cart-apply-icon.png"))); // NOI18N
+        BP03.setText("COMPRAS");
+        BP03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BP03ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(40, 340, 270, 145);
+        getContentPane().add(BP03);
+        BP03.setBounds(40, 340, 270, 145);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 102, 102));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Invoice-icon.png"))); // NOI18N
-        jButton5.setText("VENTAS");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BP04.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BP04.setForeground(new java.awt.Color(0, 102, 102));
+        BP04.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Invoice-icon.png"))); // NOI18N
+        BP04.setText("VENTAS");
+        BP04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BP04ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(350, 340, 270, 145);
+        getContentPane().add(BP04);
+        BP04.setBounds(350, 340, 270, 145);
 
-        btn_pagos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_pagos.setForeground(new java.awt.Color(0, 102, 102));
-        btn_pagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Pay-Per-Click-icon.png"))); // NOI18N
-        btn_pagos.setText("CHEQUES");
-        btn_pagos.addActionListener(new java.awt.event.ActionListener() {
+        BP06.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BP06.setForeground(new java.awt.Color(0, 102, 102));
+        BP06.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Pay-Per-Click-icon.png"))); // NOI18N
+        BP06.setText("CHEQUES");
+        BP06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pagosActionPerformed(evt);
+                BP06ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_pagos);
-        btn_pagos.setBounds(350, 520, 270, 145);
+        getContentPane().add(BP06);
+        BP06.setBounds(350, 520, 270, 145);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/run-icon.png"))); // NOI18N
         jButton6.setToolTipText("SALIR DEL SISTEMA");
@@ -311,33 +311,33 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenu1.setText("Archivo     ");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/user_red.png"))); // NOI18N
-        jMenuItem1.setText("Clientes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        MA01.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/user_red.png"))); // NOI18N
+        MA01.setText("Clientes");
+        MA01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                MA01ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(MA01);
 
-        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
-        jMenuItem18.setText("Proveedores");
-        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+        MA02.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Actions-list-add-user-icon.png"))); // NOI18N
+        MA02.setText("Proveedores");
+        MA02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem18ActionPerformed(evt);
+                MA02ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem18);
+        jMenu1.add(MA02);
         jMenu1.add(jSeparator1);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Database-Backup-icon.png"))); // NOI18N
-        jMenuItem4.setText("Respaldo");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        MA03.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Database-Backup-icon.png"))); // NOI18N
+        MA03.setText("Respaldo");
+        MA03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                MA03ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(MA03);
         jMenu1.add(jSeparator2);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Perspective-Button-Shutdown-icon.png"))); // NOI18N
@@ -353,8 +353,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
 
         jMenu2.setText("Banco     ");
 
-        jMenu14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Money-icon.png"))); // NOI18N
-        jMenu14.setText("Caja Menuda");
+        MB01.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Money-icon.png"))); // NOI18N
+        MB01.setText("Caja Menuda");
 
         jMenuItem8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem8.setForeground(new java.awt.Color(255, 102, 0));
@@ -364,7 +364,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu14.add(jMenuItem8);
+        MB01.add(jMenuItem8);
 
         jMenuItem9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem9.setForeground(new java.awt.Color(255, 102, 0));
@@ -374,8 +374,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu14.add(jMenuItem9);
-        jMenu14.add(jSeparator7);
+        MB01.add(jMenuItem9);
+        MB01.add(jSeparator7);
 
         jMenuItem7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem7.setForeground(new java.awt.Color(255, 102, 0));
@@ -385,22 +385,22 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu14.add(jMenuItem7);
+        MB01.add(jMenuItem7);
 
-        jMenu2.add(jMenu14);
+        jMenu2.add(MB01);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/money-icon (1).png"))); // NOI18N
-        jMenuItem6.setText("Cuentas");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        MB02.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/money-icon (1).png"))); // NOI18N
+        MB02.setText("Cuentas");
+        MB02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                MB02ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(MB02);
         jMenu2.add(jSeparator3);
 
-        jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cheque-icon.png"))); // NOI18N
-        jMenu11.setText("Cheques");
+        MB03.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cheque-icon.png"))); // NOI18N
+        MB03.setText("Cheques");
 
         jMenuItem12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem12.setForeground(new java.awt.Color(255, 102, 0));
@@ -410,7 +410,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem12ActionPerformed(evt);
             }
         });
-        jMenu11.add(jMenuItem12);
+        MB03.add(jMenuItem12);
 
         jMenuItem31.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem31.setForeground(new java.awt.Color(255, 102, 0));
@@ -420,12 +420,12 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem31ActionPerformed(evt);
             }
         });
-        jMenu11.add(jMenuItem31);
+        MB03.add(jMenuItem31);
 
-        jMenu2.add(jMenu11);
+        jMenu2.add(MB03);
 
-        jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/safe-icon.png"))); // NOI18N
-        jMenu12.setText("Depositos");
+        MB04.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/safe-icon.png"))); // NOI18N
+        MB04.setText("Depositos");
 
         jMenuItem33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem33.setForeground(new java.awt.Color(255, 102, 0));
@@ -435,7 +435,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem33ActionPerformed(evt);
             }
         });
-        jMenu12.add(jMenuItem33);
+        MB04.add(jMenuItem33);
 
         jMenuItem34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem34.setForeground(new java.awt.Color(255, 102, 0));
@@ -445,12 +445,12 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem34ActionPerformed(evt);
             }
         });
-        jMenu12.add(jMenuItem34);
+        MB04.add(jMenuItem34);
 
-        jMenu2.add(jMenu12);
+        jMenu2.add(MB04);
 
-        jMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Bank-icon.png"))); // NOI18N
-        jMenu13.setText("Notas Debito/Credito");
+        MB05.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/Bank-icon.png"))); // NOI18N
+        MB05.setText("Notas Debito/Credito");
 
         jMenuItem35.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem35.setForeground(new java.awt.Color(255, 102, 0));
@@ -460,7 +460,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem35ActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem35);
+        MB05.add(jMenuItem35);
 
         jMenuItem36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem36.setForeground(new java.awt.Color(255, 102, 0));
@@ -470,25 +470,25 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem36ActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem36);
+        MB05.add(jMenuItem36);
 
-        jMenu2.add(jMenu13);
+        jMenu2.add(MB05);
         jMenu2.add(jSeparator4);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cow-history-icon.png"))); // NOI18N
-        jMenuItem10.setText("Conciliacion");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        MB06.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/cow-history-icon.png"))); // NOI18N
+        MB06.setText("Conciliacion");
+        MB06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                MB06ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem10);
+        jMenu2.add(MB06);
 
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Reportes     ");
 
-        jMenu9.setText("Listas de Maestros");
+        MR01.setText("Listas de Maestros");
 
         jMenuItemClientes.setText("Lista de Clientes");
         jMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -496,7 +496,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemClientesActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItemClientes);
+        MR01.add(jMenuItemClientes);
 
         jMenuItemProveedores.setText("Lista de Proveedores");
         jMenuItemProveedores.addActionListener(new java.awt.event.ActionListener() {
@@ -504,7 +504,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemProveedoresActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItemProveedores);
+        MR01.add(jMenuItemProveedores);
 
         jMenuItemCuentasbancarias.setText("Lista de Cuentas Bancarias");
         jMenuItemCuentasbancarias.addActionListener(new java.awt.event.ActionListener() {
@@ -512,7 +512,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemCuentasbancariasActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItemCuentasbancarias);
+        MR01.add(jMenuItemCuentasbancarias);
 
         jMenuItemListadeusuarios.setText("Lista de Usuarios");
         jMenuItemListadeusuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -520,14 +520,14 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemListadeusuariosActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItemListadeusuarios);
+        MR01.add(jMenuItemListadeusuarios);
 
-        jMenu4.add(jMenu9);
+        jMenu4.add(MR01);
 
-        jMenuAnimalesregistrados.setText("Entradas");
-        jMenuAnimalesregistrados.addActionListener(new java.awt.event.ActionListener() {
+        MR02.setText("Entradas");
+        MR02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAnimalesregistradosActionPerformed(evt);
+                MR02ActionPerformed(evt);
             }
         });
 
@@ -537,11 +537,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemEntradasanimalesActionPerformed(evt);
             }
         });
-        jMenuAnimalesregistrados.add(jMenuItemEntradasanimales);
+        MR02.add(jMenuItemEntradasanimales);
 
-        jMenu4.add(jMenuAnimalesregistrados);
+        jMenu4.add(MR02);
 
-        jMenu15.setText("Subastas");
+        MR03.setText("Subastas");
 
         jMenuItem16.setText("Animales Subastados");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -549,7 +549,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem16ActionPerformed(evt);
             }
         });
-        jMenu15.add(jMenuItem16);
+        MR03.add(jMenuItem16);
 
         jMenuItem17.setText("Estadistica General");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -557,8 +557,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu15.add(jMenuItem17);
-        jMenu15.add(jSeparator8);
+        MR03.add(jMenuItem17);
+        MR03.add(jSeparator8);
 
         jMenuItem22.setText("Resumen de Compras");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
@@ -566,7 +566,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem22ActionPerformed(evt);
             }
         });
-        jMenu15.add(jMenuItem22);
+        MR03.add(jMenuItem22);
 
         jMenuItemResumenVentas.setText("Resumen de Ventas");
         jMenuItemResumenVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -574,11 +574,11 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemResumenVentasActionPerformed(evt);
             }
         });
-        jMenu15.add(jMenuItemResumenVentas);
+        MR03.add(jMenuItemResumenVentas);
 
-        jMenu4.add(jMenu15);
+        jMenu4.add(MR03);
 
-        jMenu8.setText("Banco");
+        MR04.setText("Banco");
 
         jMenuItemListarcheques.setText("Listas Cheques");
         jMenuItemListarcheques.addActionListener(new java.awt.event.ActionListener() {
@@ -586,7 +586,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemListarchequesActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItemListarcheques);
+        MR04.add(jMenuItemListarcheques);
 
         jMenuItemDepositos.setText("Listas Depositos");
         jMenuItemDepositos.addActionListener(new java.awt.event.ActionListener() {
@@ -594,7 +594,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemDepositosActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItemDepositos);
+        MR04.add(jMenuItemDepositos);
 
         jMenuItemNotas.setText("Listas Notas Debito/Credito");
         jMenuItemNotas.addActionListener(new java.awt.event.ActionListener() {
@@ -602,7 +602,7 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItemNotasActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItemNotas);
+        MR04.add(jMenuItemNotas);
 
         jMenuItem24.setText("Conciliaciones Bancarias");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -610,14 +610,14 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem24ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem24);
+        MR04.add(jMenuItem24);
 
         jMenuItem19.setText("Movimientos de Cuenta");
-        jMenu8.add(jMenuItem19);
+        MR04.add(jMenuItem19);
 
-        jMenu4.add(jMenu8);
+        jMenu4.add(MR04);
 
-        jMenu10.setText("Otros Listados");
+        MR05.setText("Otros Listados");
 
         jMenuItem20.setText("Cuentas x Cobrar");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
@@ -625,16 +625,16 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem20ActionPerformed(evt);
             }
         });
-        jMenu10.add(jMenuItem20);
+        MR05.add(jMenuItem20);
 
         jMenuItem21.setText("Compras x Proceso");
-        jMenu10.add(jMenuItem21);
+        MR05.add(jMenuItem21);
 
-        jMenu4.add(jMenu10);
+        jMenu4.add(MR05);
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Configuracion     ");
+        MC01.setText("Configuracion     ");
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/App-login-manager-icon.png"))); // NOI18N
         jMenuItem11.setText("Usuarios");
@@ -643,10 +643,10 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
                 jMenuItem11ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem11);
-        jMenu5.add(jSeparator5);
+        MC01.add(jMenuItem11);
+        MC01.add(jSeparator5);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(MC01);
 
         jMenu6.setText("Ayuda");
 
@@ -665,20 +665,20 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void MA01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MA01ActionPerformed
         Clientes cliente = new Clientes();
         cliente.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_MA01ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         Usuarios user = new Usuarios();
         user.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void MA03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MA03ActionPerformed
 GenerarBackupMySQL();
 
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_MA03ActionPerformed
 void GenerarBackupMySQL(){
         int resp;
         Calendar c=Calendar.getInstance();
@@ -717,11 +717,11 @@ void GenerarBackupMySQL(){
             JOptionPane.showMessageDialog(null,"PROCESO DE RESPALDO DE LA BASE DE DATOS CANCELADO");
         }
     }
-    private void btn_pagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagosActionPerformed
+    private void BP06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BP06ActionPerformed
         Cheques ch = new Cheques();
         ch.setVisible(true); 
         
-    }//GEN-LAST:event_btn_pagosActionPerformed
+    }//GEN-LAST:event_BP06ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
          if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
@@ -729,30 +729,30 @@ void GenerarBackupMySQL(){
             System.exit(0);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BP01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BP01ActionPerformed
         Entradas ent = new Entradas();
         ent.setVisible(true); 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BP01ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BP02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BP02ActionPerformed
         Subastas suba = new Subastas();
         suba.setVisible(true); 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BP02ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BP05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BP05ActionPerformed
 Traspaso cambio = new Traspaso ();
 cambio.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BP05ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void BP04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BP04ActionPerformed
  FacturarV rcbo = new FacturarV();
 rcbo.setVisible(true);       // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_BP04ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void BP03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BP03ActionPerformed
   FacturarC fact = new FacturarC();
 fact.setVisible(true);       // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_BP03ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
   if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
@@ -765,20 +765,20 @@ close();
 // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    private void MA02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MA02ActionPerformed
              Proveedor fact = new Proveedor();
 fact.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
+    }//GEN-LAST:event_MA02ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void MB02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MB02ActionPerformed
                     Bancos fact = new Bancos();
 fact.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_MB02ActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void MB06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MB06ActionPerformed
                                   Conciliacion fact = new Conciliacion();
 fact.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_MB06ActionPerformed
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
                MantChk fact = new MantChk();
@@ -927,10 +927,10 @@ fact.setVisible(true);
        fact.setVisible(true); 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuAnimalesregistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAnimalesregistradosActionPerformed
+    private void MR02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MR02ActionPerformed
         // TODO add your handling code here:
               
-    }//GEN-LAST:event_jMenuAnimalesregistradosActionPerformed
+    }//GEN-LAST:event_MR02ActionPerformed
 
     private void jMenuItemEntradasanimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEntradasanimalesActionPerformed
         // TODO add your handling code here:
@@ -1002,12 +1002,27 @@ fact.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_pagos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    public static javax.swing.JButton BP01;
+    public static javax.swing.JButton BP02;
+    public static javax.swing.JButton BP03;
+    public static javax.swing.JButton BP04;
+    public static javax.swing.JButton BP05;
+    public static javax.swing.JButton BP06;
+    public static javax.swing.JMenuItem MA01;
+    public static javax.swing.JMenuItem MA02;
+    public static javax.swing.JMenuItem MA03;
+    public static javax.swing.JMenu MB01;
+    public static javax.swing.JMenuItem MB02;
+    public static javax.swing.JMenu MB03;
+    public static javax.swing.JMenu MB04;
+    public static javax.swing.JMenu MB05;
+    public static javax.swing.JMenuItem MB06;
+    private javax.swing.JMenu MC01;
+    public static javax.swing.JMenu MR01;
+    public static javax.swing.JMenu MR02;
+    public static javax.swing.JMenu MR03;
+    public static javax.swing.JMenu MR04;
+    public static javax.swing.JMenu MR05;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1016,31 +1031,18 @@ fact.setVisible(true);
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu13;
-    private javax.swing.JMenu jMenu14;
-    private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenu jMenuAnimalesregistrados;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
+    public static javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
@@ -1054,9 +1056,7 @@ fact.setVisible(true);
     private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem36;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
