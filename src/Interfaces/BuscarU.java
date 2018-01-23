@@ -173,7 +173,7 @@ this.dispose();        // TODO add your handling code here:
               CrearUsuarios crear = new  CrearUsuarios ();
              Integer Codigo =(Integer) modelotabla.getValueAt(filaseleccionada, 0);
               crear.buscarparaeditar(Codigo);
-              Usuarios.accesos.setEnabled(true);
+
               this.dispose();
             }
 

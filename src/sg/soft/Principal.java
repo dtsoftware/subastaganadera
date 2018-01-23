@@ -1017,7 +1017,7 @@ fact.setVisible(true);
     public static javax.swing.JMenu MB04;
     public static javax.swing.JMenu MB05;
     public static javax.swing.JMenuItem MB06;
-    private javax.swing.JMenu MC01;
+    public static javax.swing.JMenu MC01;
     public static javax.swing.JMenu MR01;
     public static javax.swing.JMenu MR02;
     public static javax.swing.JMenu MR03;

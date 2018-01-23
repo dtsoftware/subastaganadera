@@ -23,7 +23,7 @@ public class CrearUsuarios {
 
     Integer ultimoreg;
     Connection conectar;
-    PreparedStatement guardarusuario, uregistro;
+    PreparedStatement guardarusuario, uregistro, guardaracceso;
     String idusuario,nombre,apellido,clave,tipodeusuario,estado,telefono,celular,correo,direccion, ruta, codigo;
  PreparedStatement cargar,cargar2,cargar3,cargar4;
  ResultSet rs,rs2,rs4,rsregistro;
@@ -66,6 +66,34 @@ public class CrearUsuarios {
         guardarusuario.setString(11, codigo);
 
         guardarusuario.execute();
+        
+        guardaracceso=conexcio.con.prepareStatement("INSERT INTO Accesos (Usuario, MA01,MA02,MA03,MB01,MB02,MB03,MB04,MB05,MB06,MR01,MR02,MR03,MR04,"
+                + "MR05,MC01,BP01,BP02,BP03,BP04,BP05,BP06) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        guardaracceso.setString(1, idusuario);
+        guardaracceso.setInt(2, 1);
+        guardaracceso.setInt(3, 1);
+        guardaracceso.setInt(4, 1);
+        guardaracceso.setInt(5, 1);
+        guardaracceso.setInt(6, 1);
+        guardaracceso.setInt(7, 1);
+        guardaracceso.setInt(8, 1);
+        guardaracceso.setInt(9, 1);
+        guardaracceso.setInt(10, 1);
+        guardaracceso.setInt(11, 1);
+        guardaracceso.setInt(12, 1);
+        guardaracceso.setInt(13, 1);
+        guardaracceso.setInt(14, 1);
+        guardaracceso.setInt(15, 1);
+        guardaracceso.setInt(16, 1);
+        guardaracceso.setInt(17, 1);
+        guardaracceso.setInt(18, 1);
+        guardaracceso.setInt(19, 1); 
+        guardaracceso.setInt(20, 1);
+        guardaracceso.setInt(21, 1);
+        guardaracceso.setInt(22, 1);
+
+        guardaracceso.execute();
+        
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException | HeadlessException ex) {
             JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
@@ -283,6 +311,12 @@ public class CrearUsuarios {
                             Usuarios.jButton2.setEnabled(true);
                             Usuarios.btn_guardar.setEnabled(false);
                             Usuarios.btn_eliminar.setEnabled(true);
+                            if ("ADMINISTRADOR".equals(rs2.getString("TipoUsuario"))){
+                                     // No lo habilita                      
+                            }else{
+                                           Usuarios.accesos.setEnabled(true);
+                            }
+
                             rs2.close();
                             conect.desconectar();
                           }

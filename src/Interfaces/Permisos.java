@@ -5,6 +5,10 @@
  */
 package Interfaces;
 
+import Clases.CrearUsuarios;
+import static Interfaces.Usuarios.txtnombre;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan
@@ -33,7 +37,7 @@ public class Permisos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Seleccionar = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -69,11 +73,11 @@ public class Permisos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        Seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/login-icon (1).png"))); // NOI18N
-        Seleccionar.setText("GUARDAR ACCESOS");
-        Seleccionar.addActionListener(new java.awt.event.ActionListener() {
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/login-icon (1).png"))); // NOI18N
+        Guardar.setText("GUARDAR ACCESOS");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarActionPerformed(evt);
+                GuardarActionPerformed(evt);
             }
         });
 
@@ -265,10 +269,11 @@ public class Permisos extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(MA02)
-                        .addComponent(MA01)
-                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(MA01, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MA02)
+                            .addComponent(jLabel3)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(MA03)))
@@ -316,7 +321,7 @@ public class Permisos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -330,7 +335,7 @@ public class Permisos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonCancelar)
-                    .addComponent(Seleccionar))
+                    .addComponent(Guardar))
                 .addContainerGap())
         );
 
@@ -338,10 +343,10 @@ public class Permisos extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
-        //la variable listacliente sirve para controlar el uso de la ventana busqueda de clientes segun el valor asignado
-
-    }//GEN-LAST:event_SeleccionarActionPerformed
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+ 
+// UPDATE
+    }//GEN-LAST:event_GuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.dispose();        // TODO add your handling code here:
@@ -396,6 +401,7 @@ public class Permisos extends javax.swing.JDialog {
     private javax.swing.JCheckBox BP04;
     private javax.swing.JCheckBox BP05;
     private javax.swing.JCheckBox BP06;
+    public static javax.swing.JButton Guardar;
     private javax.swing.JCheckBox MA01;
     private javax.swing.JCheckBox MA02;
     private javax.swing.JCheckBox MA03;
@@ -411,7 +417,6 @@ public class Permisos extends javax.swing.JDialog {
     private javax.swing.JCheckBox MR03;
     private javax.swing.JCheckBox MR04;
     private javax.swing.JCheckBox MR05;
-    public static javax.swing.JButton Seleccionar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
