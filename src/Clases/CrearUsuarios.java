@@ -96,7 +96,8 @@ public class CrearUsuarios {
         
         JOptionPane.showMessageDialog(null, "Registro Guardado Satisfactoriamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException | HeadlessException ex) {
-            JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error:" +ex);
+            JOptionPane.showMessageDialog(null,"El Registro No Se Logro Realizar Error: El usuario Ya Existe");
+            
         }
         
     

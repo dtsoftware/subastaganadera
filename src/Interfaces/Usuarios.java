@@ -459,23 +459,28 @@ public class Usuarios extends javax.swing.JFrame {
         this.txtcodigo.setText(ch.buscarultimoregistro().toString());
          this.btn_guardar.setEnabled(true);
                  this.jButton2.setEnabled(false);
+                 this.accesos.setEnabled(false);
                          this.btn_eliminar.setEnabled(false);
         txtnombre.requestFocus();
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         try {
-         if ((this.txtcodigo.getText().trim().length()==0) || (this.txtnombre.getText().trim().length()==0) || (this.txtapellido.getText().trim().length()==0)|| (this.txtusuario.getText().trim().length()==0)|| (this.txtcontraseña.getText().trim().length()==0)  ) {
-         JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
-         }else{    
-         CrearUsuarios user = new CrearUsuarios();
-        user.guardarusuario();
-        Limpiar();
-         CrearUsuarios ch = new CrearUsuarios();        
-       this.txtcodigo.setText(ch.buscarultimoregistro().toString());
-       txtnombre.requestFocus();// TODO a
-         }
-        }catch(Exception ex) {
+            if ((this.txtcontraseña.getText()).equals(this.txtrecontraseña.getText()))
+            {
+            if ((this.txtcodigo.getText().trim().length()==0) || (this.txtnombre.getText().trim().length()==0) || (this.txtapellido.getText().trim().length()==0)|| (this.txtusuario.getText().trim().length()==0)|| (this.txtcontraseña.getText().trim().length()==0) ) {
+                JOptionPane.showMessageDialog(null, "Los Campos Con Aterisco No pueden Estar En Blanco");
+            }else{    
+                CrearUsuarios user = new CrearUsuarios();
+                user.guardarusuario();
+                Limpiar();
+                CrearUsuarios ch = new CrearUsuarios();        
+                this.txtcodigo.setText(ch.buscarultimoregistro().toString());
+                txtnombre.requestFocus();// TODO a
+                }
+            }else
+            {JOptionPane.showMessageDialog(null, "Contraseñas no coinciden");}
+            }catch(Exception ex) {
        JOptionPane.showMessageDialog(null,"Error  = " +ex);
        }
         
@@ -513,6 +518,7 @@ public class Usuarios extends javax.swing.JFrame {
                  Limpiar();
                  this.btn_guardar.setEnabled(true);
                  this.jButton2.setEnabled(false);
+                  this.accesos.setEnabled(false);
                          this.btn_eliminar.setEnabled(false);
        this.txtcodigo.setText(ch.buscarultimoregistro().toString());
        txtnombre.requestFocus();

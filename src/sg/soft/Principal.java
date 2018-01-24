@@ -95,10 +95,8 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         BP06 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        usuario = new javax.swing.JLabel();
+        tipo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -276,30 +274,17 @@ JFileChooser RealizarBackupMySQL=new JFileChooser();
         getContentPane().add(jLabel2);
         jLabel2.setBounds(40, 690, 580, 14);
 
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("00/00/0000");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(950, 90, 90, 14);
+        usuario.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        usuario.setForeground(new java.awt.Color(0, 153, 153));
+        usuario.setText("JUAN DUCREUX");
+        getContentPane().add(usuario);
+        usuario.setBounds(1000, 34, 140, 20);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("00:00:00");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(1050, 90, 70, 17);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel6.setText("JUAN DUCREUX");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(1000, 34, 140, 20);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel7.setText("ADMINISTRADOR");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(1000, 60, 140, 13);
+        tipo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        tipo.setForeground(new java.awt.Color(0, 153, 153));
+        tipo.setText("ADMINISTRADOR");
+        getContentPane().add(tipo);
+        tipo.setBounds(1000, 60, 140, 13);
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/PORTADA 4.JPG"))); // NOI18N
@@ -1026,10 +1011,6 @@ fact.setVisible(true);
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1077,6 +1058,8 @@ fact.setVisible(true);
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
+    public static javax.swing.JLabel tipo;
+    public static javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 
     

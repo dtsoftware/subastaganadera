@@ -192,6 +192,8 @@ public class Login extends javax.swing.JFrame {
         if (user!=null){           
            Principal prin = new Principal ();
            prin.setVisible(true);
+           validarusuario datos = new validarusuario(); 
+           datos.datos();
            Accesos var = new Accesos();
            var.buscaracceso(id);
            this.dispose();
@@ -289,7 +291,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPasswordField txtcontra;
-    private javax.swing.JTextField txtusuario;
+    public static javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 
 }
