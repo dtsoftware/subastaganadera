@@ -309,6 +309,16 @@ public class CrearUsuarios {
                             Usuarios.cmb_tipousuario.setSelectedItem(rs2.getString("TipoUsuario"));
                             Usuarios.cmb_estado.setSelectedItem(rs2.getString("Estado"));
                             //imagen pendiente 
+
+                            Usuarios.txtcontraseña.setEnabled(true);
+                            Usuarios.txtnombre.setEnabled(true);
+                            Usuarios.txtapellido.setEnabled(true);
+                            Usuarios.txtdireccion.setEnabled(true);
+                            Usuarios.txtcorreo.setEnabled(true);
+                            Usuarios.txttelefono.setEnabled(true);
+                            Usuarios.txtcelular.setEnabled(true);
+                            Usuarios.cmb_tipousuario.setEnabled(true);
+                            Usuarios.cmb_estado.setEnabled(true);
                             Usuarios.jButton2.setEnabled(true);
                             Usuarios.btn_guardar.setEnabled(false);
                             Usuarios.btn_eliminar.setEnabled(true);

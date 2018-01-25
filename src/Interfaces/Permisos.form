@@ -9,6 +9,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -289,30 +292,45 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Entradas"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="BP02">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Subastas"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="BP03">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Compras"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="BP04">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Ventas"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="BP06">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Cheques"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MA01">
           <Properties>
@@ -322,6 +340,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Clientes"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MA02">
           <Properties>
@@ -331,6 +352,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Proveedores"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MA03">
           <Properties>
@@ -340,6 +364,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Respaldo"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MB03">
           <Properties>
@@ -349,6 +376,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Cuentas"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MB01">
           <Properties>
@@ -358,6 +388,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Caja Chica"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MB04">
           <Properties>
@@ -367,6 +400,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Cheques"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MR01">
           <Properties>
@@ -376,6 +412,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Maestros"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MB05">
           <Properties>
@@ -385,6 +424,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Notas D/C"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MB06">
           <Properties>
@@ -394,6 +436,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Depositos"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MR03">
           <Properties>
@@ -403,6 +448,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Subastas"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MR02">
           <Properties>
@@ -412,6 +460,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Entradas"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MR04">
           <Properties>
@@ -421,6 +472,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Banco"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MB02">
           <Properties>
@@ -430,6 +484,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Conciliacion"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="MR05">
           <Properties>
@@ -439,6 +496,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Otros Listados"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -462,6 +522,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Usuarios"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -479,6 +542,9 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Traspaso"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>

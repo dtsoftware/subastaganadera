@@ -522,12 +522,15 @@ public class Usuarios extends javax.swing.JFrame {
                          this.btn_eliminar.setEnabled(false);
        this.txtcodigo.setText(ch.buscarultimoregistro().toString());
        txtnombre.requestFocus();
+       Desactivar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
                CrearUsuarios ch = new CrearUsuarios();        
        this.txtcodigo.setText(ch.buscarultimoregistro().toString());
        txtnombre.requestFocus();// TODO add your handling code here:
+       Desactivar();
+               
     }//GEN-LAST:event_formWindowOpened
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -602,6 +605,21 @@ public void Activar  (){
      Usuarios.cmb_estado.setEnabled(true);
      Usuarios.cmb_tipousuario.setEnabled(true);
      Usuarios.btn_guardar.setEnabled(true);
+}
+
+public void Desactivar  (){
+     Usuarios.txtusuario.setEnabled(false);
+     Usuarios.txtnombre.setEnabled(false);
+     Usuarios.txtapellido.setEnabled(false);
+     Usuarios.txtcontraseña.setEnabled(false);
+     Usuarios.txtrecontraseña.setEnabled(false);
+     Usuarios.txtdireccion.setEnabled(false);
+     Usuarios.txtcorreo.setEnabled(false);
+     Usuarios.txttelefono.setEnabled(false);
+     Usuarios.txtcelular.setEnabled(false);
+     Usuarios.cmb_estado.setEnabled(false);
+     Usuarios.cmb_tipousuario.setEnabled(false);
+     Usuarios.btn_guardar.setEnabled(false);
 }
 
 public void Limpiar  (){

@@ -5,8 +5,12 @@
  */
 package Interfaces;
 
+import Clases.Accesos;
 import Clases.CrearUsuarios;
 import static Interfaces.Usuarios.txtnombre;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,6 +76,11 @@ public class Permisos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graficos/login-icon (1).png"))); // NOI18N
         Guardar.setText("GUARDAR ACCESOS");
@@ -344,13 +353,23 @@ public class Permisos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
- 
-// UPDATE
+        String iduser;
+        iduser = Usuarios.txtusuario.getText();
+        Accesos aux = new Accesos();
+        aux.actualizaraccesos(iduser);
+        this.dispose();
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String usuario;
+        usuario = Usuarios.txtusuario.getText();
+        Accesos user = new Accesos();
+        user.cargaraccesos(usuario);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -395,28 +414,28 @@ public class Permisos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox BP01;
-    private javax.swing.JCheckBox BP02;
-    private javax.swing.JCheckBox BP03;
-    private javax.swing.JCheckBox BP04;
-    private javax.swing.JCheckBox BP05;
-    private javax.swing.JCheckBox BP06;
+    public static javax.swing.JCheckBox BP01;
+    public static javax.swing.JCheckBox BP02;
+    public static javax.swing.JCheckBox BP03;
+    public static javax.swing.JCheckBox BP04;
+    public static javax.swing.JCheckBox BP05;
+    public static javax.swing.JCheckBox BP06;
     public static javax.swing.JButton Guardar;
-    private javax.swing.JCheckBox MA01;
-    private javax.swing.JCheckBox MA02;
-    private javax.swing.JCheckBox MA03;
-    private javax.swing.JCheckBox MB01;
-    private javax.swing.JCheckBox MB02;
-    private javax.swing.JCheckBox MB03;
-    private javax.swing.JCheckBox MB04;
-    private javax.swing.JCheckBox MB05;
-    private javax.swing.JCheckBox MB06;
-    private javax.swing.JCheckBox MC01;
-    private javax.swing.JCheckBox MR01;
-    private javax.swing.JCheckBox MR02;
-    private javax.swing.JCheckBox MR03;
-    private javax.swing.JCheckBox MR04;
-    private javax.swing.JCheckBox MR05;
+    public static javax.swing.JCheckBox MA01;
+    public static javax.swing.JCheckBox MA02;
+    public static javax.swing.JCheckBox MA03;
+    public static javax.swing.JCheckBox MB01;
+    public static javax.swing.JCheckBox MB02;
+    public static javax.swing.JCheckBox MB03;
+    public static javax.swing.JCheckBox MB04;
+    public static javax.swing.JCheckBox MB05;
+    public static javax.swing.JCheckBox MB06;
+    public static javax.swing.JCheckBox MC01;
+    public static javax.swing.JCheckBox MR01;
+    public static javax.swing.JCheckBox MR02;
+    public static javax.swing.JCheckBox MR03;
+    public static javax.swing.JCheckBox MR04;
+    public static javax.swing.JCheckBox MR05;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
